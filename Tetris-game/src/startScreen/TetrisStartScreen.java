@@ -5,13 +5,39 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class TetrisStartScreen extends JFrame {
+    private JLabel titleLabel, instructionLabel;
     private JButton startButton, settingsButton, scoreboardButton, exitButton;
-    
+    private JButton[] buttons;
+    private int selectedButtonIndex;
+
     private void applyButtonStyle(JButton button) {
         button.setFont(new Font("SansSerif", Font.BOLD, 18));
         button.setBackground(new Color(30, 60, 90));
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
+    }
+
+    private void handleKeyEvent(KeyEvent e) {
+        int keyCode = e.getKeyCode();
+        if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_RIGHT) {
+            selectedButtonIndex = (selectedButtonIndex + 1) % buttons.length;
+        } else if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_LEFT) {
+            selectedButtonIndex = (selectedButtonIndex - 1 + buttons.length) % buttons.length;
+        } else if (keyCode == KeyEvent.VK_ENTER) {
+            buttons[selectedButtonIndex].doClick();
+            return; // Enter 키 입력 후 추가 동작을 방지하기 위해 여기서 종료
+        }
+        updateButtonStyles();
+    }
+
+    private void updateButtonStyles() {
+        for (int i = 0; i < buttons.length; i++) {
+            if (i == selectedButtonIndex) {
+                buttons[i].setBackground(new Color(120, 150, 180));
+            } else {
+                buttons[i].setBackground(new Color(30, 60, 90));
+            }
+        }
     }
 
     public TetrisStartScreen() {
@@ -21,12 +47,11 @@ public class TetrisStartScreen extends JFrame {
 
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
-        
-        JLabel titleLabel = new JLabel("테트리스 게임");
+
+        titleLabel = new JLabel("테트리스 게임");
         titleLabel.setFont(new Font("NanumGothic", Font.BOLD, 30));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        
         panel.add(titleLabel, BorderLayout.NORTH);
 
         startButton = new JButton("게임 시작");
@@ -34,12 +59,14 @@ public class TetrisStartScreen extends JFrame {
         scoreboardButton = new JButton("스코어보드");
         exitButton = new JButton("게임 종료");
 
-        // 각 버튼에 동일한 스타일 적용
         applyButtonStyle(startButton);
         applyButtonStyle(settingsButton);
         applyButtonStyle(scoreboardButton);
         applyButtonStyle(exitButton);
-        
+
+        buttons = new JButton[]{startButton, settingsButton, scoreboardButton, exitButton};
+        selectedButtonIndex = 0;
+
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -52,21 +79,34 @@ public class TetrisStartScreen extends JFrame {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(4, 1, 0, 15));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
-        
+
         buttonPanel.add(startButton);
         buttonPanel.add(settingsButton);
         buttonPanel.add(scoreboardButton);
         buttonPanel.add(exitButton);
-        
+
         panel.add(buttonPanel, BorderLayout.CENTER);
-        panel.setBorder(BorderFactory.createEmptyBorder(30, 20, 20, 20));
+        panel.setBorder(BorderFactory.createEmptyBorder(30, 20, 30, 20));
         add(panel);
-        
-        // 프레임 크기 설정 및 가운데 정렬
-        setSize(400, 500);
+
+        instructionLabel = new JLabel("이동: \u2190 / \u2192 / \u2191 / \u2193   선택: Enter");
+        instructionLabel.setFont(new Font("NanumGothic", Font.BOLD, 16));
+        instructionLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(instructionLabel, BorderLayout.SOUTH);
+
+        // 프레임 설정
+        setSize(400, 550);
         setLocationRelativeTo(null);
         setVisible(true);
 
+        // 키 이벤트 핸들러
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                handleKeyEvent(e);
+            }
+        });
+        setFocusable(true);
     }
 
     public static void main(String[] args) {
