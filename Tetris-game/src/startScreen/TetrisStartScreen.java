@@ -1,7 +1,5 @@
 package startScreen;
 
-//just testing
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -21,7 +19,7 @@ public class TetrisStartScreen extends JFrame {
         panel.setLayout(new BorderLayout());
 
         JLabel titleLabel = new JLabel("테트리스 게임");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(titleLabel, BorderLayout.NORTH);
 
@@ -29,7 +27,7 @@ public class TetrisStartScreen extends JFrame {
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(30, 0, 30, 0)); // 내부 여백 조정
 
         startButton = new JButton("게임 시작");
-        startButton.setFont(new Font("Arial", Font.PLAIN, 18));
+        startButton.setFont(new Font("SansSerif", Font.PLAIN, 18));
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -39,7 +37,7 @@ public class TetrisStartScreen extends JFrame {
         buttonPanel.add(startButton);
 
         settingsButton = new JButton("설정");
-        settingsButton.setFont(new Font("Arial", Font.PLAIN, 18));
+        settingsButton.setFont(new Font("SansSerif", Font.PLAIN, 18));
         settingsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -49,7 +47,7 @@ public class TetrisStartScreen extends JFrame {
         buttonPanel.add(settingsButton);
 
         scoreboardButton = new JButton("스코어보드");
-        scoreboardButton.setFont(new Font("Arial", Font.PLAIN, 18));
+        scoreboardButton.setFont(new Font("SansSerif", Font.PLAIN, 18));
         scoreboardButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -59,7 +57,7 @@ public class TetrisStartScreen extends JFrame {
         buttonPanel.add(scoreboardButton);
 
         exitButton = new JButton("게임 종료");
-        exitButton.setFont(new Font("Arial", Font.PLAIN, 18));
+        exitButton.setFont(new Font("SansSerif", Font.PLAIN, 18));
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
