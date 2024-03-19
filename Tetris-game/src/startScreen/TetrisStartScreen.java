@@ -5,10 +5,14 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class TetrisStartScreen extends JFrame {
-    private JButton startButton;
-    private JButton settingsButton;
-    private JButton scoreboardButton;
-    private JButton exitButton;
+    private JButton startButton, settingsButton, scoreboardButton, exitButton;
+    
+    private void applyButtonStyle(JButton button) {
+        button.setFont(new Font("SansSerif", Font.BOLD, 18));
+        button.setBackground(new Color(30, 60, 90));
+        button.setForeground(Color.WHITE);
+        button.setFocusPainted(false);
+    }
 
     public TetrisStartScreen() {
         setTitle("테트리스 게임");
@@ -17,61 +21,52 @@ public class TetrisStartScreen extends JFrame {
 
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
-
+        
         JLabel titleLabel = new JLabel("테트리스 게임");
-        titleLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
+        titleLabel.setFont(new Font("NanumGothic", Font.BOLD, 30));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        
         panel.add(titleLabel, BorderLayout.NORTH);
 
-        JPanel buttonPanel = new JPanel(new GridLayout(4, 1, 0, 10));
-        buttonPanel.setBorder(BorderFactory.createEmptyBorder(30, 0, 30, 0)); // 내부 여백 조정
-
         startButton = new JButton("게임 시작");
-        startButton.setFont(new Font("SansSerif", Font.PLAIN, 18));
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // 게임 시작 버튼을 눌렀을 때 실행되는 코드 작성
-            }
-        });
-        buttonPanel.add(startButton);
-
         settingsButton = new JButton("설정");
-        settingsButton.setFont(new Font("SansSerif", Font.PLAIN, 18));
-        settingsButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // 설정 메뉴 버튼을 눌렀을 때 실행되는 코드 작성
-            }
-        });
-        buttonPanel.add(settingsButton);
-
         scoreboardButton = new JButton("스코어보드");
-        scoreboardButton.setFont(new Font("SansSerif", Font.PLAIN, 18));
-        scoreboardButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // 스코어보드 버튼을 눌렀을 때 실행되는 코드 작성
-            }
-        });
-        buttonPanel.add(scoreboardButton);
-
         exitButton = new JButton("게임 종료");
-        exitButton.setFont(new Font("SansSerif", Font.PLAIN, 18));
+
+        // 각 버튼에 동일한 스타일 적용
+        applyButtonStyle(startButton);
+        applyButtonStyle(settingsButton);
+        applyButtonStyle(scoreboardButton);
+        applyButtonStyle(exitButton);
+        
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0); // 게임 종료 버튼 기능 구현
+                // 프로그램 종료
+                System.exit(0);
             }
         });
+
+        // 버튼 패널 생성 및 설정
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(4, 1, 0, 15));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
+        
+        buttonPanel.add(startButton);
+        buttonPanel.add(settingsButton);
+        buttonPanel.add(scoreboardButton);
         buttonPanel.add(exitButton);
-
+        
         panel.add(buttonPanel, BorderLayout.CENTER);
-
+        panel.setBorder(BorderFactory.createEmptyBorder(30, 20, 20, 20));
         add(panel);
-        setSize(350, 350); // 시작 화면의 크기를 350x350으로 설정
+        
+        // 프레임 크기 설정 및 가운데 정렬
+        setSize(400, 500);
         setLocationRelativeTo(null);
         setVisible(true);
+
     }
 
     public static void main(String[] args) {
