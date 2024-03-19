@@ -11,7 +11,7 @@ public class TetrisStartScreen extends JFrame {
     private int selectedButtonIndex;
 
     private void applyButtonStyle(JButton button) {
-        button.setFont(new Font("SansSerif", Font.BOLD, 18));
+        button.setFont(new Font("NanumGothic", Font.BOLD, 18));
         button.setBackground(new Color(30, 60, 90));
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
