@@ -1,10 +1,10 @@
-package startScreen;
+package component;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class TetrisStartScreen extends JFrame {
+public class StartScreen extends JFrame {
     private JLabel titleLabel, instructionLabel;
     private JButton startButton, settingsButton, scoreboardButton, exitButton;
     private JButton[] buttons;
@@ -40,7 +40,7 @@ public class TetrisStartScreen extends JFrame {
         }
     }
 
-    public TetrisStartScreen() {
+    public StartScreen() {
         setTitle("테트리스 게임");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
@@ -113,7 +113,7 @@ public class TetrisStartScreen extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new TetrisStartScreen();
+                new StartScreen();
             }
         });
     }
