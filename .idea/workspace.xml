@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] fix setting file">
+    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] fix setting screen">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/src/component/SettingScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/component/SettingScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/src/component/StartScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/component/StartScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/component/StartScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/component/start/StartScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/component/setting/SettingElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/component/setting/SettingElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/component/setting/SettingScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/component/setting/SettingScreen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +91,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711072038900</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="[Fix] fix setting file">
+      <option name="closed" value="true" />
+      <created>1711101820026</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1711101820026</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -100,6 +109,7 @@
     <MESSAGE value="[Feature] create TetrisStartScreen" />
     <MESSAGE value="[Feature] create Setting file" />
     <MESSAGE value="[Fix] fix setting file" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Fix] fix setting file" />
+    <MESSAGE value="[Fix] fix setting screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Fix] fix setting screen" />
   </component>
 </project>

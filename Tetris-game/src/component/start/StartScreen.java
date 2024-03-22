@@ -1,5 +1,6 @@
-package component;
+package component.start;
 
+import component.setting.RunSettingScreen;
 import component.setting.SettingScreen;
 
 import javax.swing.*;
@@ -62,12 +63,12 @@ public class StartScreen extends JFrame {
         exitButton = new JButton("게임 종료");
 
 
+        // 설정 버튼 클릭 시 설정 창 열기
         settingsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new SettingScreen(); // 설정 버튼 클릭 시 설정 창 열기
+                SwingUtilities.invokeLater(new RunSettingScreen());
             }
         });
-
 
         applyButtonStyle(startButton);
         applyButtonStyle(settingsButton);

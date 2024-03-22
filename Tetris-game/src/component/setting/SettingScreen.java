@@ -1,6 +1,4 @@
 package component.setting;
-import component.setting.RunSettingScreen;
-import component.setting.SettingElement;
 
 import javax.swing.*;
 
@@ -17,10 +15,4 @@ public class SettingScreen extends JFrame {
 
         setVisible(true);
     }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new RunSettingScreen());
-    }
-    //Setting Screen의 main 메서드에서는 RunSettingScreen 클래스의 인스턴스를 만들어
-    //SwingUtilities.invokeLater() 메서드에 전달하면 됩니다.
 }
