@@ -1,11 +1,14 @@
-package component;
+package component.setting;
+import component.setting.RunSettingScreen;
+import component.setting.SettingElement;
+
 import javax.swing.*;
 
 public class SettingScreen extends JFrame {
 
     public SettingScreen() {
         setTitle("Settings");
-        setSize(400, 300);
+        setSize(400, 550);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 

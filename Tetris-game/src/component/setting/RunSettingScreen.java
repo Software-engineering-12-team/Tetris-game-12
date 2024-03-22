@@ -1,4 +1,4 @@
-package component;
+package component.setting;
 
 public class RunSettingScreen implements Runnable {
 
