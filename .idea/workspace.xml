@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Tetris-game/src/component/SettingElement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tetris-game/src/component/SettingScreen.java" afterDir="false" />
+    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Feature] create Setting file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/component/SettingScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/component/SettingScreen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +36,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.SettingScreen.executor": "Run",
+    "Application.StartScreen.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
@@ -73,9 +73,23 @@
       <workItem from="1710776263517" duration="14000" />
       <workItem from="1710777751508" duration="348000" />
     </task>
+    <task id="LOCAL-00001" summary="[Feature] create Setting file">
+      <option name="closed" value="true" />
+      <created>1711068828130</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1711068828130</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="[Feature] create TetrisStartScreen" />
+    <MESSAGE value="[Feature] create Setting file" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Feature] create Setting file" />
   </component>
 </project>
