@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Tetris-game/src/startScreen/TetrisStartScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tet.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tetris-game/src/component/SettingElement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tetris-game/src/component/SettingScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +36,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.SettingScreen.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
@@ -48,6 +50,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="component" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
