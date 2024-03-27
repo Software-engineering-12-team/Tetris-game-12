@@ -1,9 +1,8 @@
 package main.java.setting;
 
-public class RunSettingScreen implements Runnable {
-
+public class SettingScreenRunner implements Runnable {
     @Override
     public void run() {
-        new SettingScreen();
+        new SettingElement();
     }
 }
