@@ -1,13 +1,13 @@
 package main.java.menu;
 
-import main.java.setting.RunSettingScreen;
-import main.java.setting.SettingScreen;
+import main.java.setting.SettingScreenRunner;
+
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class StartScreen extends JFrame {
+public class StartMenu extends JFrame {
     private JLabel titleLabel, instructionLabel;
     private JButton startButton, settingsButton, scoreboardButton, exitButton;
     private JButton[] buttons;
@@ -43,7 +43,7 @@ public class StartScreen extends JFrame {
         }
     }
 
-    public StartScreen() {
+    public StartMenu() {
         setTitle("테트리스 게임");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
@@ -66,7 +66,7 @@ public class StartScreen extends JFrame {
         // 설정 버튼 클릭 시 설정 창 열기
         settingsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                SwingUtilities.invokeLater(new RunSettingScreen());
+                SwingUtilities.invokeLater(new SettingScreenRunner());
             }
         });
 
@@ -124,7 +124,7 @@ public class StartScreen extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new StartScreen();
+                new StartMenu();
             }
         });
     }
