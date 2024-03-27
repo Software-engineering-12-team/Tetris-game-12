@@ -1,4 +1,4 @@
-package component.setting;
+package main.java.setting;
 
 import javax.swing.*;
 import java.awt.*;

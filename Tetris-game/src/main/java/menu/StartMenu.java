@@ -1,7 +1,7 @@
-package component.start;
+package main.java.menu;
 
-import component.setting.RunSettingScreen;
-import component.setting.SettingScreen;
+import main.java.setting.RunSettingScreen;
+import main.java.setting.SettingScreen;
 
 import javax.swing.*;
 import java.awt.*;
