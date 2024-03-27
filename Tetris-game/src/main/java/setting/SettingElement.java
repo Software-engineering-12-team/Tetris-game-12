@@ -1,6 +1,7 @@
 package main.java.setting;
 
 import main.java.setting.AdjustSize;
+import main.java.util.ButtonStyle;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,23 +12,6 @@ public class SettingElement extends JFrame {
     private JButton sizeAdjustButton, controlKeyButton, scoreboardButton, colorBlindModeButton, resetSettingButton;
     private JButton[] buttons;
     private int selectedButtonIndex;
-
-    private void applyButtonStyle(JButton button) {
-        button.setFont(new Font("NanumGothic", Font.BOLD, 18));
-        button.setBackground(new Color(30, 60, 90));
-        button.setForeground(Color.WHITE);
-        button.setFocusPainted(false);
-    }
-
-    private void updateButtonStyles() {
-        for (int i = 0; i < buttons.length; i++) {
-            if (i == selectedButtonIndex) {
-                buttons[i].setBackground(new Color(120, 150, 180));
-            } else {
-                buttons[i].setBackground(new Color(30, 60, 90));
-            }
-        }
-    }
     
     private void handleKeyEvent(KeyEvent e) {
         int keyCode = e.getKeyCode();
@@ -39,7 +23,7 @@ public class SettingElement extends JFrame {
             buttons[selectedButtonIndex].doClick();
             return; // Enter 키 입력 후 추가 동작을 방지하기 위해 여기서 종료
         }
-        updateButtonStyles();
+        ButtonStyle.updateButtonStyles(buttons, selectedButtonIndex);
     }
 
     public SettingElement() {
@@ -65,7 +49,7 @@ public class SettingElement extends JFrame {
         selectedButtonIndex = 0;
         
         for (JButton button : buttons) {
-        	applyButtonStyle(button);
+        	ButtonStyle.applyButtonStyle(button);
         }
         
         JPanel buttonPanel = new JPanel();
