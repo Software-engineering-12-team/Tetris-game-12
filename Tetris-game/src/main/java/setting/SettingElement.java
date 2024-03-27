@@ -1,10 +1,10 @@
 package main.java.setting;
 
+import main.java.setting.AdjustSize;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
+import java.awt.event.*;
 
 public class SettingElement extends JFrame {
     private JLabel titleLabel;
@@ -80,6 +80,14 @@ public class SettingElement extends JFrame {
         panel.setBorder(BorderFactory.createEmptyBorder(30, 20, 30, 20));
         add(panel);
         
+        sizeAdjustButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose(); // 현재 설정 페이지 닫기
+                AdjustSize adjustSize = new AdjustSize(); // 크기 조정 페이지로 이동
+                adjustSize.setVisible(true);
+            }
+        });
 
         // 버튼 액션 리스너 설정 부분은 기능 구현에 따라 추가
        
