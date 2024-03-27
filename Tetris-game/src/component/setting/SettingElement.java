@@ -2,6 +2,8 @@ package component.setting;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 
 public class SettingElement extends JFrame {
@@ -28,11 +30,25 @@ public class SettingElement extends JFrame {
             }
         }
     }
+    
+    private void handleKeyEvent(KeyEvent e) {
+        int keyCode = e.getKeyCode();
+        if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_RIGHT) {
+            selectedButtonIndex = (selectedButtonIndex + 1) % buttons.length;
+        } else if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_LEFT) {
+            selectedButtonIndex = (selectedButtonIndex - 1 + buttons.length) % buttons.length;
+        } else if (keyCode == KeyEvent.VK_ENTER) {
+            buttons[selectedButtonIndex].doClick();
+            return; // Enter 키 입력 후 추가 동작을 방지하기 위해 여기서 종료
+        }
+        updateButtonStyles();
+    }
 
     public SettingElement() {
         setTitle("설정"); // 창 제목 설정
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // 닫기 버튼 시 동작 설정
         setResizable(false); // 창 크기 조절 비활성화
+        
         setSize(400, 550); // 창 크기 설정
         setLocationRelativeTo(null); // 창을 화면 가운데에 위치시킴
 
@@ -71,8 +87,17 @@ public class SettingElement extends JFrame {
         }
 
         panel.add(buttonPanel, BorderLayout.CENTER);
+        panel.setBorder(BorderFactory.createEmptyBorder(30, 20, 30, 20));
 
         add(panel); // 메인 패널을 프레임에 추가
+        
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                handleKeyEvent(e);
+            }
+        });
+        setFocusable(true);
 
         setVisible(true); // 창을 보이게 설정
     }
