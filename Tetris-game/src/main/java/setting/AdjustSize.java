@@ -1,6 +1,7 @@
 package main.java.setting;
 
 import main.java.util.ButtonStyle;
+import main.java.util.AdjustComponent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +9,7 @@ import java.awt.event.*;
 
 public class AdjustSize extends JFrame {
     private JLabel titleLabel;
+    private JLabel[] labels;
     private JButton smallButton, mediumButton, largeButton;
     private JButton[] buttons;
     private int selectedButtonIndex;
@@ -38,6 +40,8 @@ public class AdjustSize extends JFrame {
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(titleLabel, BorderLayout.NORTH);
         
+        labels = new JLabel[]{titleLabel};
+        
         smallButton = new JButton("사이즈 1");
         mediumButton = new JButton("사이즈 2");
         largeButton = new JButton("사이즈 3");
@@ -65,7 +69,8 @@ public class AdjustSize extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setSize(400, 550);
-                adjustComponentSizes(1.0);
+                AdjustComponent.adjustLabelSize(labels, 1.0);
+                AdjustComponent.adjustButtonSize(buttons, 1.0);
                 revalidate();
             }
         });
@@ -74,7 +79,8 @@ public class AdjustSize extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setSize(440, 605);
-                adjustComponentSizes(1.1);
+                AdjustComponent.adjustLabelSize(labels, 1.1);
+                AdjustComponent.adjustButtonSize(buttons, 1.1);
                 revalidate();
             }
         });
@@ -83,7 +89,8 @@ public class AdjustSize extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setSize(480, 660);
-                adjustComponentSizes(1.2);
+                AdjustComponent.adjustLabelSize(labels, 1.2);
+                AdjustComponent.adjustButtonSize(buttons, 1.2);
                 revalidate();
             }
         });
@@ -100,20 +107,5 @@ public class AdjustSize extends JFrame {
             }
         });
         setFocusable(true);
-    }
-    
-    private void adjustComponentSizes(double scaleFactor) {
-        int titleLabelFontSize = 30;
-        int buttonFontSize = 18;
-
-        // titleLabel 폰트 크기 조정
-        int adjustedTitleLabelFontSize = (int) (titleLabelFontSize * scaleFactor);
-        titleLabel.setFont(new Font("NanumGothic", Font.BOLD, adjustedTitleLabelFontSize));
-
-        // 버튼 폰트 크기 조정
-        int adjustedButtonFontSize = (int) (buttonFontSize * scaleFactor);
-        for (JButton button : buttons) {
-            button.setFont(new Font("NanumGothic", Font.BOLD, adjustedButtonFontSize));
-        }
     }
 }
