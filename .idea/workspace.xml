@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] add scoreboardbutton in SettingMenu">
-      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/scoreboard/ScoreBoardMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/scoreboard/ScoreBoardMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingMenu.java" afterDir="false" />
+    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] rename file name and change file directory">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/operatingkeysetting/OperatingKeySetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/operatingkeysetting/OperatingKeySettingMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +108,7 @@
       <workItem from="1710776263517" duration="14000" />
       <workItem from="1710777751508" duration="348000" />
       <workItem from="1711362441524" duration="66000" />
-      <workItem from="1711605373269" duration="6540000" />
+      <workItem from="1711605373269" duration="7787000" />
     </task>
     <task id="LOCAL-00001" summary="[Feature] create Setting file">
       <option name="closed" value="true" />
@@ -214,7 +214,23 @@
       <option name="project" value="LOCAL" />
       <updated>1711628810021</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="[Fix] add backbutton in SettingMenu">
+      <option name="closed" value="true" />
+      <created>1711628902871</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1711628902871</updated>
+    </task>
+    <task id="LOCAL-00015" summary="[Fix] rename file name and change file directory">
+      <option name="closed" value="true" />
+      <created>1711629238237</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1711629238237</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -245,6 +261,8 @@
     <MESSAGE value="[Fix] add dispose button in scoreboard menu" />
     <MESSAGE value="[Fix] add dispose button in AdjustSize.java" />
     <MESSAGE value="[Fix] add scoreboardbutton in SettingMenu" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Fix] add scoreboardbutton in SettingMenu" />
+    <MESSAGE value="[Fix] add backbutton in SettingMenu" />
+    <MESSAGE value="[Fix] rename file name and change file directory" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Fix] rename file name and change file directory" />
   </component>
 </project>
