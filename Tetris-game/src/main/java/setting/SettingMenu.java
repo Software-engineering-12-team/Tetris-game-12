@@ -84,8 +84,19 @@ public class SettingMenu extends JFrame {
 
 
         // 버튼 액션 리스너 설정 부분은 기능 구현에 따라 추가
-       
-        
+
+
+        // 뒤로가기 버튼 생성 및 이벤트 처리
+        JButton backButton = new JButton("뒤로가기");
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose(); // 현재 창 닫기
+                // 뒤로가기 버튼에 대한 동작 추가 (예: 이전 화면으로 이동)
+            }
+        });
+        panel.add(backButton, BorderLayout.SOUTH); // 뒤로가기 버튼을 패널의 SOUTH에 추가
+
         // 프레임 설정
         setSize(400, 550);
         setLocationRelativeTo(null);

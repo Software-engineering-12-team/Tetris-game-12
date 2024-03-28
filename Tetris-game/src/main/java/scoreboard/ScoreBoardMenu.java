@@ -48,7 +48,6 @@ public class ScoreBoardMenu extends JFrame {
         });
         panel.add(backButton, BorderLayout.SOUTH); // 뒤로가기 버튼을 패널의 SOUTH에 추가
 
-
         getContentPane().add(panel); // 패널을 프레임에 추가
 
         setSize(400, 550);
