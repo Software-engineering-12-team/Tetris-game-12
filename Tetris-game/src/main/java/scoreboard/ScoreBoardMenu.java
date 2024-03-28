@@ -30,7 +30,7 @@ public class ScoreBoardMenu extends JFrame {
         JScrollPane scrollPane = new JScrollPane(scoreList);
         panel.add(scrollPane, BorderLayout.CENTER);
 
-        // 임시로 몇 개의 점수 추가
+        // 임시로 몇 개의 점수추가
         addScore("Player1: 100");
         addScore("Player2: 200");
         addScore("Player3: 300");
