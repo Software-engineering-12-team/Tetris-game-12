@@ -71,6 +71,7 @@ public class ControlKeySettingMenu extends JFrame {
         add(panel);
 
         setSize(400, 550);
+        setLocationRelativeTo(null);
         setVisible(true);
         setFocusable(true);
     }
