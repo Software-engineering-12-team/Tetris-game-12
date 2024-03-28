@@ -1,13 +1,12 @@
 package main.java.setting;
 
-import main.java.setting.AdjustSize;
 import main.java.util.ButtonStyle;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class SettingElement extends JFrame {
+public class SettingMenu extends JFrame {
     private JLabel titleLabel;
     private JButton sizeAdjustButton, controlKeyButton, scoreboardButton, colorBlindModeButton, resetSettingButton;
     private JButton[] buttons;
@@ -26,7 +25,7 @@ public class SettingElement extends JFrame {
         ButtonStyle.updateButtonStyles(buttons, selectedButtonIndex);
     }
 
-    public SettingElement() {
+    public SettingMenu() {
         setTitle("설정");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // 닫기 버튼 시 동작 설정
         setResizable(false);
