@@ -1,5 +1,6 @@
 package main.java.menu;
 
+import main.java.scoreboard.ScoreBoardMenu;
 import main.java.setting.SettingScreenRunner;
 import main.java.util.ButtonStyle;
 
@@ -70,7 +71,14 @@ public class StartMenu extends JFrame {
                 SwingUtilities.invokeLater(new SettingScreenRunner());
             }
         });
-        
+
+        // 스코어보드 창 열기
+        scoreboardButton.addActionListener(e -> SwingUtilities.invokeLater(() -> {
+            ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
+            scoreBoardMenu.setVisible(true);
+        }));
+
+
         // 프로그램 종료
         exitButton.addActionListener(new ActionListener() {
             @Override

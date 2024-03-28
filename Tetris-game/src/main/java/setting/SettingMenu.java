@@ -1,5 +1,6 @@
 package main.java.setting;
 
+import main.java.scoreboard.ScoreBoardMenu;
 import main.java.util.ButtonStyle;
 
 import javax.swing.*;
@@ -62,7 +63,9 @@ public class SettingMenu extends JFrame {
         panel.add(buttonPanel, BorderLayout.CENTER);
         panel.setBorder(BorderFactory.createEmptyBorder(30, 20, 30, 20));
         add(panel);
-        
+
+
+        // 크기 조절 창 열기
         sizeAdjustButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

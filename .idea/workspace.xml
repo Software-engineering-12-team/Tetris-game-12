@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] fix setting screen">
+    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] fix setting file name">
+      <change afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/scoreboard/ScoreBoardMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/menu/StartMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/menu/StartMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +25,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "xxrainow"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="49ea3707-91d9-48f8-985d-4c748d4cafd2" />
+        <option name="url" value="https://github.com/Software-engineering-12-team/Tetris-game-12.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -93,7 +110,7 @@
       <workItem from="1710776263517" duration="14000" />
       <workItem from="1710777751508" duration="348000" />
       <workItem from="1711362441524" duration="66000" />
-      <workItem from="1711605373269" duration="943000" />
+      <workItem from="1711605373269" duration="4118000" />
     </task>
     <task id="LOCAL-00001" summary="[Feature] create Setting file">
       <option name="closed" value="true" />
@@ -127,7 +144,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711103326438</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="[Fix] fix setting file name">
+      <option name="closed" value="true" />
+      <created>1711623379139</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1711623379139</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,6 +174,7 @@
     <MESSAGE value="[Feature] create Setting file" />
     <MESSAGE value="[Fix] fix setting file" />
     <MESSAGE value="[Fix] fix setting screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Fix] fix setting screen" />
+    <MESSAGE value="[Fix] fix setting file name" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Fix] fix setting file name" />
   </component>
 </project>
