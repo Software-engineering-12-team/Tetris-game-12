@@ -1,5 +1,6 @@
 package main.java.setting;
 
+import main.java.scoreboard.ScoreBoardMenu;
 import main.java.util.ButtonStyle;
 
 import javax.swing.*;
@@ -73,6 +74,14 @@ public class SettingMenu extends JFrame {
                 adjustSize.setVisible(true);
             }
         });
+
+
+        // 스코어 보드 창 열기
+        scoreboardButton.addActionListener(e -> SwingUtilities.invokeLater(() -> {
+            ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
+            scoreBoardMenu.setVisible(true);
+        }));
+
 
         // 버튼 액션 리스너 설정 부분은 기능 구현에 따라 추가
        
