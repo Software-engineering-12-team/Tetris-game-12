@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Remove] delete SettingScreenRunner.java">
+    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] add dispose button in scoreboard menu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/scoreboard/ScoreBoardMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/scoreboard/ScoreBoardMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/AdjustSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/AdjustSize.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +108,7 @@
       <workItem from="1710776263517" duration="14000" />
       <workItem from="1710777751508" duration="348000" />
       <workItem from="1711362441524" duration="66000" />
-      <workItem from="1711605373269" duration="5831000" />
+      <workItem from="1711605373269" duration="6310000" />
     </task>
     <task id="LOCAL-00001" summary="[Feature] create Setting file">
       <option name="closed" value="true" />
@@ -175,7 +174,31 @@
       <option name="project" value="LOCAL" />
       <updated>1711627212531</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="[Fix] delete SettingScreenRunner.java">
+      <option name="closed" value="true" />
+      <created>1711628312989</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1711628312989</updated>
+    </task>
+    <task id="LOCAL-00010" summary="[Fix] fix scoreboardmenu ui">
+      <option name="closed" value="true" />
+      <created>1711628360773</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1711628360773</updated>
+    </task>
+    <task id="LOCAL-00011" summary="[Fix] add dispose button in scoreboard menu">
+      <option name="closed" value="true" />
+      <created>1711628408160</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1711628408160</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,6 +224,9 @@
     <MESSAGE value="[Feat] create scoreboardmenu file" />
     <MESSAGE value="[Fix] fix scoreboard, settingscreen button logic" />
     <MESSAGE value="[Remove] delete SettingScreenRunner.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Remove] delete SettingScreenRunner.java" />
+    <MESSAGE value="[Fix] delete SettingScreenRunner.java" />
+    <MESSAGE value="[Fix] fix scoreboardmenu ui" />
+    <MESSAGE value="[Fix] add dispose button in scoreboard menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Fix] add dispose button in scoreboard menu" />
   </component>
 </project>
