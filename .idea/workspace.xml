@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] fix ControlKeySettingMenu">
-      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/controlkeysetting/ControlKeySettingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/controlkeysetting/ControlKeySettingMenu.java" afterDir="false" />
+    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] fix ControlKeySettingMenu 2">
+      <change afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/colorblindmode/ColorBlindModeMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +109,7 @@
       <workItem from="1710776263517" duration="14000" />
       <workItem from="1710777751508" duration="348000" />
       <workItem from="1711362441524" duration="66000" />
-      <workItem from="1711605373269" duration="9304000" />
+      <workItem from="1711605373269" duration="9605000" />
     </task>
     <task id="LOCAL-00001" summary="[Feature] create Setting file">
       <option name="closed" value="true" />
@@ -245,7 +247,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711631592383</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="[Fix] fix ControlKeySettingMenu 2">
+      <option name="closed" value="true" />
+      <created>1711631664107</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1711631664107</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,6 +290,7 @@
     <MESSAGE value="[Fix] rename file name and change file directory" />
     <MESSAGE value="[Feat] create operating-key-setting-menu file" />
     <MESSAGE value="[Fix] fix ControlKeySettingMenu" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Fix] fix ControlKeySettingMenu" />
+    <MESSAGE value="[Fix] fix ControlKeySettingMenu 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Fix] fix ControlKeySettingMenu 2" />
   </component>
 </project>

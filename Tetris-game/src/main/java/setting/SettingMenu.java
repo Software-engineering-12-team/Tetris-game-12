@@ -1,5 +1,6 @@
 package main.java.setting;
 
+import main.java.setting.colorblindmode.ColorBlindModeMenu;
 import main.java.setting.controlkeysetting.ControlKeySettingMenu;
 import main.java.setting.scoreboard.ScoreBoardMenu;
 import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
@@ -100,6 +101,20 @@ public class SettingMenu extends JFrame {
                     public void run() {
                         ControlKeySettingMenu operatingKeysettingMenu = new ControlKeySettingMenu();
                         operatingKeysettingMenu.setVisible(true);
+                    }
+                });
+            }
+        });
+
+        // 색맹 모드 창 열기
+        colorBlindModeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        ColorBlindModeMenu colorBlindModeMenu = new ColorBlindModeMenu();
+                        colorBlindModeMenu.setVisible(true);
                     }
                 });
             }
