@@ -1,6 +1,7 @@
 package main.java.setting;
 
-import main.java.scoreboard.ScoreBoardMenu;
+import main.java.setting.scoreboard.ScoreBoardMenu;
+import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
 import main.java.util.ButtonStyle;
 
 import javax.swing.*;
@@ -70,7 +71,7 @@ public class SettingMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose(); // 현재 설정 페이지 닫기
-                AdjustSize adjustSize = new AdjustSize(); // 크기 조정 페이지로 이동
+                ScreenAdjustSizeMenu adjustSize = new ScreenAdjustSizeMenu(); // 크기 조정 페이지로 이동
                 adjustSize.setVisible(true);
             }
         });

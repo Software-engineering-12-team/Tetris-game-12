@@ -1,13 +1,13 @@
-package main.java.setting;
+package main.java.setting.screenadjustsize;
 
 import main.java.util.ButtonStyle;
-import main.java.util.AdjustComponent;
+import main.java.util.ScreenAdjustComponent;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class AdjustSize extends JFrame {
+public class ScreenAdjustSizeMenu extends JFrame {
     private JLabel titleLabel;
     private JLabel[] labels;
     private JButton smallButton, mediumButton, largeButton;
@@ -27,7 +27,7 @@ public class AdjustSize extends JFrame {
         ButtonStyle.updateButtonStyles(buttons, selectedButtonIndex);
     }
 
-    public AdjustSize() {
+    public ScreenAdjustSizeMenu() {
         setTitle("크기 조정");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // 닫기 버튼 시 동작 설정
         setResizable(false);
@@ -69,8 +69,8 @@ public class AdjustSize extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setSize(400, 550);
-                AdjustComponent.adjustLabelSize(labels, 1.0);
-                AdjustComponent.adjustButtonSize(buttons, 1.0);
+                ScreenAdjustComponent.adjustLabelSize(labels, 1.0);
+                ScreenAdjustComponent.adjustButtonSize(buttons, 1.0);
                 revalidate();
             }
         });
@@ -79,8 +79,8 @@ public class AdjustSize extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setSize(440, 605);
-                AdjustComponent.adjustLabelSize(labels, 1.1);
-                AdjustComponent.adjustButtonSize(buttons, 1.1);
+                ScreenAdjustComponent.adjustLabelSize(labels, 1.1);
+                ScreenAdjustComponent.adjustButtonSize(buttons, 1.1);
                 revalidate();
             }
         });
@@ -89,8 +89,8 @@ public class AdjustSize extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setSize(480, 660);
-                AdjustComponent.adjustLabelSize(labels, 1.2);
-                AdjustComponent.adjustButtonSize(buttons, 1.2);
+                ScreenAdjustComponent.adjustLabelSize(labels, 1.2);
+                ScreenAdjustComponent.adjustButtonSize(buttons, 1.2);
                 revalidate();
             }
         });

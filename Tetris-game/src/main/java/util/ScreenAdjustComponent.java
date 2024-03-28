@@ -5,7 +5,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-public class AdjustComponent {
+public class ScreenAdjustComponent {
 	public static void adjustLabelSize(JLabel[] labels, double scaleFactor) {
 		int titleLabelFontSize = 30;
         int labelFontSize = 16;

@@ -1,4 +1,4 @@
-package main.java.scoreboard;
+package main.java.setting.scoreboard;
 
 import javax.swing.*;
 import java.awt.*;
