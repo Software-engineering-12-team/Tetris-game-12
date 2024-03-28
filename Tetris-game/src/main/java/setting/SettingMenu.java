@@ -1,6 +1,5 @@
 package main.java.setting;
 
-import main.java.scoreboard.ScoreBoardMenu;
 import main.java.util.ButtonStyle;
 
 import javax.swing.*;

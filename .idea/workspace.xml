@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Feat] create scoreboardmenu file" />
+    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Remove] delete SettingScreenRunner.java">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/scoreboard/ScoreBoardMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/scoreboard/ScoreBoardMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingMenu.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -105,7 +109,7 @@
       <workItem from="1710776263517" duration="14000" />
       <workItem from="1710777751508" duration="348000" />
       <workItem from="1711362441524" duration="66000" />
-      <workItem from="1711605373269" duration="4550000" />
+      <workItem from="1711605373269" duration="5831000" />
     </task>
     <task id="LOCAL-00001" summary="[Feature] create Setting file">
       <option name="closed" value="true" />
@@ -155,7 +159,23 @@
       <option name="project" value="LOCAL" />
       <updated>1711626843564</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="[Fix] fix scoreboard, settingscreen button logic">
+      <option name="closed" value="true" />
+      <created>1711627166626</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1711627166626</updated>
+    </task>
+    <task id="LOCAL-00008" summary="[Remove] delete SettingScreenRunner.java">
+      <option name="closed" value="true" />
+      <created>1711627212531</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1711627212531</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -179,6 +199,8 @@
     <MESSAGE value="[Fix] fix setting screen" />
     <MESSAGE value="[Fix] fix setting file name" />
     <MESSAGE value="[Feat] create scoreboardmenu file" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Feat] create scoreboardmenu file" />
+    <MESSAGE value="[Fix] fix scoreboard, settingscreen button logic" />
+    <MESSAGE value="[Remove] delete SettingScreenRunner.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Remove] delete SettingScreenRunner.java" />
   </component>
 </project>
