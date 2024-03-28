@@ -2,14 +2,15 @@ package main.java.setting.controlkeysetting;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 
 public class ControlKeySettingMenu extends JFrame {
     private JLabel titleLabel;
     private JLabel keyLabel;
+
+    private JLabel[] labels;
+
+
 
     public ControlKeySettingMenu() {
         setTitle("조작키 설정");
@@ -23,6 +24,8 @@ public class ControlKeySettingMenu extends JFrame {
         titleLabel.setFont(new Font("NanumGothic", Font.BOLD, 30));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(titleLabel, BorderLayout.NORTH);
+
+        labels = new JLabel[]{titleLabel};
 
         keyLabel = new JLabel("조작키를 누르세요");
         keyLabel.setFont(new Font("SansSerif", Font.PLAIN, 20));
@@ -69,10 +72,12 @@ public class ControlKeySettingMenu extends JFrame {
         panel.add(dummyButton);
 
         add(panel);
+        panel.setBorder(BorderFactory.createEmptyBorder(30, 20, 30, 20));
 
         setSize(400, 550);
         setLocationRelativeTo(null);
         setVisible(true);
+
         setFocusable(true);
     }
 

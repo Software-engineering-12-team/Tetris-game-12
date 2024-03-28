@@ -35,6 +35,7 @@ public class ColorBlindModeMenu extends JFrame {
         panel.add(backButton, BorderLayout.SOUTH); // 뒤로가기 버튼을 패널의 SOUTH에 추가
 
         add(panel);
+        panel.setBorder(BorderFactory.createEmptyBorder(30, 20, 30, 20));
 
         setSize(400, 550);
         setLocationRelativeTo(null);

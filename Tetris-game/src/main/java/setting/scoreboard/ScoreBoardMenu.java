@@ -22,7 +22,6 @@ public class ScoreBoardMenu extends JFrame {
         titleLabel.setFont(new Font("NanumGothic", Font.BOLD, 30));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(titleLabel, BorderLayout.NORTH);
-
         // 점수 리스트 초기화
         scoreModel = new DefaultListModel<>();
         scoreList = new JList<>(scoreModel);
@@ -49,6 +48,7 @@ public class ScoreBoardMenu extends JFrame {
         panel.add(backButton, BorderLayout.SOUTH); // 뒤로가기 버튼을 패널의 SOUTH에 추가
 
         getContentPane().add(panel); // 패널을 프레임에 추가
+        panel.setBorder(BorderFactory.createEmptyBorder(30, 20, 30, 20));
 
         setSize(400, 550);
         setLocationRelativeTo(null);
