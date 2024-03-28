@@ -1,6 +1,7 @@
 package main.java.menu;
 
 import main.java.scoreboard.ScoreBoardMenu;
+import main.java.setting.SettingMenu;
 import main.java.setting.SettingScreenRunner;
 import main.java.util.ButtonStyle;
 
@@ -66,13 +67,12 @@ public class StartMenu extends JFrame {
         add(panel);
         
         // 설정 창 열기
-        settingsButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                SwingUtilities.invokeLater(new SettingScreenRunner());
-            }
-        });
+        settingsButton.addActionListener(e -> SwingUtilities.invokeLater(() -> {
+            SettingMenu settingMenu = new SettingMenu();
+            settingMenu.setVisible(true);
+        }));
 
-        // 스코어보드 창 열기
+        // 스코어 보드 창 열기
         scoreboardButton.addActionListener(e -> SwingUtilities.invokeLater(() -> {
             ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
             scoreBoardMenu.setVisible(true);
