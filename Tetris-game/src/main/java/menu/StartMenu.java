@@ -2,7 +2,6 @@ package main.java.menu;
 
 import main.java.scoreboard.ScoreBoardMenu;
 import main.java.setting.SettingMenu;
-import main.java.setting.SettingScreenRunner;
 import main.java.util.ButtonStyle;
 
 import javax.swing.*;
