@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] rename file name and change file directory">
+    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Feat] create operating-key-setting-menu file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/operatingkeysetting/OperatingKeySetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/operatingkeysetting/OperatingKeySettingMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/menu/StartMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/menu/StartMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/operatingkeysetting/OperatingKeySettingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/controlkeysetting/ControlKeySettingMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +110,7 @@
       <workItem from="1710776263517" duration="14000" />
       <workItem from="1710777751508" duration="348000" />
       <workItem from="1711362441524" duration="66000" />
-      <workItem from="1711605373269" duration="7787000" />
+      <workItem from="1711605373269" duration="9229000" />
     </task>
     <task id="LOCAL-00001" summary="[Feature] create Setting file">
       <option name="closed" value="true" />
@@ -230,7 +232,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711629238237</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="[Feat] create operating-key-setting-menu file">
+      <option name="closed" value="true" />
+      <created>1711630169480</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1711630169480</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,6 +273,7 @@
     <MESSAGE value="[Fix] add scoreboardbutton in SettingMenu" />
     <MESSAGE value="[Fix] add backbutton in SettingMenu" />
     <MESSAGE value="[Fix] rename file name and change file directory" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Fix] rename file name and change file directory" />
+    <MESSAGE value="[Feat] create operating-key-setting-menu file" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Feat] create operating-key-setting-menu file" />
   </component>
 </project>

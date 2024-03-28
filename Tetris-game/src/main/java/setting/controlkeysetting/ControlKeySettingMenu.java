@@ -1,4 +1,4 @@
-package main.java.setting.operatingkeysetting;
+package main.java.setting.controlkeysetting;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,11 +7,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class OperatingKeySettingMenu extends JFrame {
+public class ControlKeySettingMenu extends JFrame {
     private JLabel titleLabel;
     private JLabel keyLabel;
 
-    public OperatingKeySettingMenu() {
+    public ControlKeySettingMenu() {
         setTitle("조작키 설정");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -29,10 +29,13 @@ public class OperatingKeySettingMenu extends JFrame {
         keyLabel.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(keyLabel, BorderLayout.CENTER);
 
-        add(panel);
+        // 키 이벤트를 처리할 버튼 생성
+        JButton dummyButton = new JButton();
+        dummyButton.setFocusable(true); // 버튼에 포커스 설정
+        dummyButton.requestFocusInWindow(); // 포커스 설정
 
         // 키 리스너 등록
-        addKeyListener(new KeyListener() {
+        dummyButton.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
                 // 사용되지 않음
@@ -62,13 +65,14 @@ public class OperatingKeySettingMenu extends JFrame {
         });
         panel.add(backButton, BorderLayout.SOUTH); // 뒤로가기 버튼을 패널의 SOUTH에 추가
 
+        // 패널에 포커스 설정된 버튼 추가
+        panel.add(dummyButton);
+
+        add(panel);
+
         setSize(400, 550);
-        setLocationRelativeTo(null);
         setVisible(true);
         setFocusable(true);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(OperatingKeySettingMenu::new);
-    }
 }

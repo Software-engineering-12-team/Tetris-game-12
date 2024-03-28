@@ -1,5 +1,6 @@
 package main.java.setting;
 
+import main.java.setting.controlkeysetting.ControlKeySettingMenu;
 import main.java.setting.scoreboard.ScoreBoardMenu;
 import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
 import main.java.util.ButtonStyle;
@@ -76,12 +77,33 @@ public class SettingMenu extends JFrame {
             }
         });
 
+    // 스코어 보드 창 열기
+        scoreboardButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
+                        scoreBoardMenu.setVisible(true);
+                    }
+                });
+            }
+        });
 
-        // 스코어 보드 창 열기
-        scoreboardButton.addActionListener(e -> SwingUtilities.invokeLater(() -> {
-            ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
-            scoreBoardMenu.setVisible(true);
-        }));
+    // 조작키 설정 창 열기
+        controlKeyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        ControlKeySettingMenu operatingKeysettingMenu = new ControlKeySettingMenu();
+                        operatingKeysettingMenu.setVisible(true);
+                    }
+                });
+            }
+        });
 
 
         // 버튼 액션 리스너 설정 부분은 기능 구현에 따라 추가

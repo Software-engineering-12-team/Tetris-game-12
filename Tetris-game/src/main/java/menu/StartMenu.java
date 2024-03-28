@@ -64,18 +64,35 @@ public class StartMenu extends JFrame {
         panel.add(buttonPanel, BorderLayout.CENTER);
         panel.setBorder(BorderFactory.createEmptyBorder(30, 20, 30, 20));
         add(panel);
-        
+
         // 설정 창 열기
-        settingsButton.addActionListener(e -> SwingUtilities.invokeLater(() -> {
-            SettingMenu settingMenu = new SettingMenu();
-            settingMenu.setVisible(true);
-        }));
+        settingsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        SettingMenu settingMenu = new SettingMenu();
+                        settingMenu.setVisible(true);
+                    }
+                });
+            }
+        });
 
         // 스코어 보드 창 열기
-        scoreboardButton.addActionListener(e -> SwingUtilities.invokeLater(() -> {
-            ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
-            scoreBoardMenu.setVisible(true);
-        }));
+        scoreboardButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
+                        scoreBoardMenu.setVisible(true);
+                    }
+                });
+            }
+        });
+
 
 
         // 프로그램 종료
