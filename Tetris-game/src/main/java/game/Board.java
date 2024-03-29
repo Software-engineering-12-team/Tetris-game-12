@@ -8,10 +8,11 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import main.java.game.Blocks.Tetrominoe;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Board extends JPanel {
 
@@ -30,7 +31,7 @@ public class Board extends JPanel {
     private int curY = 0;
     private JLabel statusbar;
     private Blocks curPiece;
-    private Blocks.Tetrominoe[] board;
+    private Tetrominoe[] board;
 
     public Board(TetrisGame parent) {
 

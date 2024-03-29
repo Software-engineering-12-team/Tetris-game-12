@@ -3,6 +3,7 @@ package main.java.menu;
 import main.java.setting.scoreboard.ScoreBoardMenu;
 import main.java.setting.SettingMenu;
 import main.java.util.ButtonStyle;
+import main.java.game.TetrisGame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -64,6 +65,19 @@ public class StartMenu extends JFrame {
         panel.add(buttonPanel, BorderLayout.CENTER);
         panel.setBorder(BorderFactory.createEmptyBorder(30, 20, 30, 20));
         add(panel);
+        
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        TetrisGame TetrisGame = new TetrisGame();
+                        TetrisGame.setVisible(true);
+                    }
+                });
+            }
+        });
 
         // 설정 창 열기
         settingsButton.addActionListener(new ActionListener() {
