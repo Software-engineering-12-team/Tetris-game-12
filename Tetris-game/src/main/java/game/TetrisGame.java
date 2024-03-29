@@ -1,4 +1,4 @@
-package tetrismain;
+package main.java.game;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
