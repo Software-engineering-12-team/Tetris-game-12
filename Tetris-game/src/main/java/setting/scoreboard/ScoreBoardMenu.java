@@ -31,11 +31,6 @@ public class ScoreBoardMenu extends JFrame {
         JScrollPane scrollPane = new JScrollPane(scoreList);
         panel.add(scrollPane, BorderLayout.CENTER);
 
-        // 임시로 몇 개의 점수추가
-        addScore("Player1: 100");
-        addScore("Player2: 200");
-        addScore("Player3: 300");
-
         // 뒤로가기 버튼 생성 및 이벤트 처리
         JButton backButton = new JButton("뒤로가기");
         backButton.addActionListener(new ActionListener() {

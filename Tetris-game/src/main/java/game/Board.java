@@ -1,6 +1,7 @@
 package main.java.game;
 
 import java.awt.Color;
+import javax.swing.SwingUtilities;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -10,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import main.java.game.Blocks.Tetrominoe;
+import main.java.setting.scoreboard.ScoreBoardMenu;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -171,9 +173,10 @@ public class Board extends JPanel {
         removeFullLines();
 
         if (!isFallingFinished) {
-            newPiece();
+            newPiece(); 
         }
     }
+
 
     private void newPiece() {		//새로운 블록 생성
 
@@ -187,6 +190,15 @@ public class Board extends JPanel {
             timer.cancel();
             isStarted = false;
             statusbar.setText("GAME OVER!");
+            
+            int linesRemoved = numLinesRemoved;
+            SwingUtilities.invokeLater(new Runnable() {               //게임오버가 되면 점수를 스코어보드에 기록
+                @Override
+                public void run() {
+                    ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
+                    scoreBoardMenu.addScore("Score: " + linesRemoved);
+                }
+            });
         }
     }
 

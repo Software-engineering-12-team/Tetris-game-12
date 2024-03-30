@@ -10,7 +10,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class StartMenu extends JFrame {
-    private JLabel titleLabel, instructionLabel;
+
+	private static final long serialVersionUID = 1L;
+	private JLabel titleLabel, instructionLabel;
     private JButton startButton, settingsButton, scoreboardButton, exitButton;
     private JButton[] buttons;
     private int selectedButtonIndex;
