@@ -21,8 +21,8 @@ public class Board extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private final int BOARD_WIDTH = 15;
     private final int BOARD_HEIGHT = 22;
-    private final int INITIAL_DELAY = 100;
-    private final int PERIOD_INTERVAL = 300;
+    private int INITIAL_DELAY = 100;
+    private int PERIOD_INTERVAL = 1000; // 동적 변경을 위해 변경
 
     private Timer timer;
     private boolean isFallingFinished = false;
@@ -263,9 +263,29 @@ public class Board extends JPanel {
             isFallingFinished = true;
             curPiece.setBlock(Tetrominoe.NoBlock);
             repaint();
+            
+            adjustSpeed(numFullLines);
+            
         }
     }
-
+    
+    ///속도 변경 메소드, 추후 적정수치 논의 필요 
+    private void adjustSpeed(int numFullLines) {
+    	int newDelay = Math.max(INITIAL_DELAY - numFullLines*50, 0);
+    	int newInterval = Math.max(PERIOD_INTERVAL - numFullLines*10, 0); 
+    	
+    	if (newInterval <= 0) {
+    		newInterval = 1;
+    	}
+    	
+    	timer.cancel();
+    	timer = new Timer();
+    	timer.scheduleAtFixedRate(new ScheduleTask(), newDelay, newInterval);
+    	
+    	INITIAL_DELAY = newDelay;
+    	PERIOD_INTERVAL = newInterval;
+    }
+    
     private void drawBlock(Graphics g, int x, int y, 
             Tetrominoe block) {
 
