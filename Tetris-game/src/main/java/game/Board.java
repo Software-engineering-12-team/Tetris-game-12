@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 import main.java.game.Blocks.Tetrominoe;
 import main.java.setting.scoreboard.ScoreBoardMenu;
+import tetrismain.Blocks;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -19,8 +20,8 @@ import java.util.TimerTask;
 public class Board extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private final int BOARD_WIDTH = 15;
-    private final int BOARD_HEIGHT = 22;
+	private final int BOARD_WIDTH = 10;
+    private final int BOARD_HEIGHT = 20;
     private int INITIAL_DELAY = 100;
     private int PERIOD_INTERVAL = 1000; // 동적 변경을 위해 변경
 
@@ -33,6 +34,7 @@ public class Board extends JPanel {
     private int curY = 0;
     private JLabel statusbar;
     private Blocks curPiece;
+    private Blocks nextPiece;
     private Tetrominoe[] board;
 
     public Board(TetrisGame parent) {
@@ -48,6 +50,8 @@ public class Board extends JPanel {
                 INITIAL_DELAY, PERIOD_INTERVAL);
 
         curPiece = new Blocks();
+        nextPiece = new Blocks();
+        nextPiece.setRandomBlock();
 
         statusbar = parent.getStatusBar();
         board = new Blocks.Tetrominoe[BOARD_WIDTH * BOARD_HEIGHT];
@@ -56,7 +60,7 @@ public class Board extends JPanel {
     }
 
     private int squareWidth() {		//한칸의 너비
-        return (int) getSize().getWidth() / BOARD_WIDTH;
+        return (int) getSize().getWidth() / BOARD_WIDTH / 2;
     }
 
     private int squareHeight() {	//한칸의 높이
@@ -121,6 +125,30 @@ public class Board extends JPanel {
                         curPiece.getBlock());
             }
         }
+        
+     // 다음 블록 그리기
+        int nextPieceX = BOARD_WIDTH * squareWidth() + 60;
+        int nextPieceY = 50;
+        for (int i = 0; i < 4; ++i) {
+            int x = nextPiece.x(i) + 1;
+            int y = nextPiece.y(i) + 1;
+            drawBlock(g, nextPieceX + x * squareWidth(),
+                    nextPieceY + y * squareHeight(), nextPiece.getBlock());
+        }
+        
+        g.setColor(Color.WHITE);
+        int boxWidth = 6 * squareWidth();
+        int boxHeight = 4 * squareHeight();
+        int borderWidth = 5; // 박스의 두께
+     // 박스의 가로선 그리기
+     for (int i = 0; i < borderWidth; i++) {
+         g.drawRect(nextPieceX - 20 + i, nextPieceY + i, boxWidth, boxHeight);
+     	}
+     // 박스의 세로선 그리기
+     for (int i = 0; i < borderWidth; i++) {
+         g.drawRect(nextPieceX - 20 + i, nextPieceY, boxWidth, boxHeight);
+     	}
+     
     }
 
     @Override
@@ -180,8 +208,10 @@ public class Board extends JPanel {
 
     private void newPiece() {		//새로운 블록 생성
 
-        curPiece.setRandomBlock();
-        curX = BOARD_WIDTH / 2 + 1;
+    	curPiece = nextPiece;	// 현재 블록을 방금 표시되었던 블록으로 설정
+    	nextPiece = new Blocks(); // 다음 블록 생성
+    	nextPiece.setRandomBlock();
+        curX = BOARD_WIDTH / 2 ;
         curY = BOARD_HEIGHT - 1 + curPiece.minY();
 
         if (!tryMove(curPiece, curX, curY)) {
