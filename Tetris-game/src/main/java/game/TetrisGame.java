@@ -25,7 +25,7 @@ public class TetrisGame extends JFrame {
         add(board);
         board.start();
 
-        setTitle("테스리스 게임");
+        setTitle("테트리스 게임");
         setSize(400, 550);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
