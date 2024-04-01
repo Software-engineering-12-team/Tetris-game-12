@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 
 import main.java.game.Blocks.Tetrominoe;
 import main.java.setting.scoreboard.ScoreBoardMenu;
-import tetrismain.Blocks;
 
 import java.util.Timer;
 import java.util.TimerTask;

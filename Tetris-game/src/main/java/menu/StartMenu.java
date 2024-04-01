@@ -139,7 +139,26 @@ public class StartMenu extends JFrame {
         setFocusable(true);
     }
 
+    public static void setLookAndFeel() {
+        try {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            // Nimbus를 사용할 수 없을 때 기본 LookAndFeel을 사용하거나, 다른 LookAndFeel을 설정할 수 있습니다.
+            try {
+                UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
     public static void main(String[] args) {
+        setLookAndFeel();
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
