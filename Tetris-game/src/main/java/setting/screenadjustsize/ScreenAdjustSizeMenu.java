@@ -11,9 +11,10 @@ import java.awt.event.*;
 public class ScreenAdjustSizeMenu extends JFrame {
     private JLabel titleLabel;
     private JLabel[] labels;
-    private JButton smallButton, mediumButton, largeButton;
+    private JButton smallButton, mediumButton, largeButton, backButton;
     private JButton[] buttons;
     private int selectedButtonIndex;
+    private boolean isBackButton;
     
     private void handleKeyEvent(KeyEvent e) {
         int keyCode = e.getKeyCode();
@@ -47,12 +48,13 @@ public class ScreenAdjustSizeMenu extends JFrame {
         mediumButton = new JButton("사이즈 2");
         largeButton = new JButton("사이즈 3");
         
-        buttons = new JButton[]{smallButton, mediumButton, largeButton};
+        backButton = new JButton("뒤로가기");
+        
+        buttons = new JButton[]{smallButton, mediumButton, largeButton, backButton};
         selectedButtonIndex = 0;
         
-        for (JButton button : buttons) {
-        	ButtonStyle.applyButtonStyle(button);
-        }
+        isBackButton = true;
+        ButtonStyle.applyButtonStyle(buttons, isBackButton);
         
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(3, 1, 0, 15));
@@ -97,7 +99,6 @@ public class ScreenAdjustSizeMenu extends JFrame {
         });
 
         // 뒤로가기 버튼 생성 및 이벤트 처리
-        JButton backButton = new JButton("뒤로가기");
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -16,6 +16,7 @@ public class StartMenu extends JFrame {
     private JButton startButton, settingsButton, scoreboardButton, exitButton;
     private JButton[] buttons;
     private int selectedButtonIndex;
+    private boolean isBackButton;
 
     private void handleKeyEvent(KeyEvent e) {
         int keyCode = e.getKeyCode();
@@ -51,9 +52,8 @@ public class StartMenu extends JFrame {
         buttons = new JButton[]{startButton, settingsButton, scoreboardButton, exitButton};
         selectedButtonIndex = 0;
         
-        for (JButton button : buttons) {
-        	ButtonStyle.applyButtonStyle(button);
-        }
+        isBackButton = false;
+        ButtonStyle.applyButtonStyle(buttons, isBackButton);
         
         // 버튼 패널 생성 및 설정
         JPanel buttonPanel = new JPanel();

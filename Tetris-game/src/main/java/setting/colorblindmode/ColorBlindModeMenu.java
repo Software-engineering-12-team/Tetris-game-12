@@ -3,6 +3,7 @@ package main.java.setting.colorblindmode;
 import javax.swing.*;
 
 import main.java.setting.SettingMenu;
+import main.java.util.ButtonStyle;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,6 +13,10 @@ import java.awt.event.KeyListener;
 
 public class ColorBlindModeMenu extends JFrame {
     private JLabel titleLabel;
+    private JButton backButton;
+    private JButton[] buttons;
+    private int selectedButtonIndex;
+    private boolean isBackButton;
 
     public ColorBlindModeMenu() {
         setTitle("색맹 모드");
@@ -27,7 +32,13 @@ public class ColorBlindModeMenu extends JFrame {
         panel.add(titleLabel, BorderLayout.NORTH);
 
         // 뒤로가기 버튼 생성 및 이벤트 처리
-        JButton backButton = new JButton("뒤로가기");
+        backButton = new JButton("뒤로가기");
+        
+        buttons = new JButton[]{backButton};
+        selectedButtonIndex = 0;
+        
+        isBackButton = true;
+        ButtonStyle.applyButtonStyle(buttons, isBackButton);
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

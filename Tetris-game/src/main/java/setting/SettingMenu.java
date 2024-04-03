@@ -10,12 +10,14 @@ import main.java.util.ButtonStyle;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Arrays;
 
 public class SettingMenu extends JFrame {
     private JLabel titleLabel;
-    private JButton sizeAdjustButton, controlKeyButton, scoreboardButton, colorBlindModeButton, resetSettingButton;
+    private JButton sizeAdjustButton, controlKeyButton, resetscoreButton, colorBlindModeButton, resetSettingButton, backButton;
     private JButton[] buttons;
     private int selectedButtonIndex;
+    private boolean isBackButton;
     
     private void handleKeyEvent(KeyEvent e) {
         int keyCode = e.getKeyCode();
@@ -45,16 +47,19 @@ public class SettingMenu extends JFrame {
 
         sizeAdjustButton = new JButton("크기 조절");
         controlKeyButton = new JButton("조작키 설정");
-        scoreboardButton = new JButton("스코어보드");
+        resetscoreButton = new JButton("스코어보드 초기화");
         colorBlindModeButton = new JButton("색맹 모드");
         resetSettingButton = new JButton("설정 초기화");
         
-        buttons = new JButton[]{sizeAdjustButton, controlKeyButton, scoreboardButton, colorBlindModeButton, resetSettingButton};
+        backButton = new JButton("뒤로가기");
+        
+        buttons = new JButton[]{sizeAdjustButton, controlKeyButton, resetscoreButton, colorBlindModeButton, resetSettingButton, backButton};
         selectedButtonIndex = 0;
         
-        for (JButton button : buttons) {
-        	ButtonStyle.applyButtonStyle(button);
-        }
+        isBackButton = true;
+        ButtonStyle.applyButtonStyle(buttons, isBackButton);
+
+        
         
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(5, 1, 0, 15));
@@ -111,12 +116,7 @@ public class SettingMenu extends JFrame {
             }
         });
 
-
-        // 버튼 액션 리스너 설정 부분은 기능 구현에 따라 추가
-
-
         // 뒤로가기 버튼 생성 및 이벤트 처리
-        JButton backButton = new JButton("뒤로가기");
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
