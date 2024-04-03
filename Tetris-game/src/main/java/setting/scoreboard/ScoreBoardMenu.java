@@ -8,6 +8,8 @@ import main.java.util.ButtonStyle;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class ScoreBoardMenu extends JFrame {
     private JLabel titleLabel;
@@ -17,6 +19,19 @@ public class ScoreBoardMenu extends JFrame {
     private JButton[] buttons;
     private int selectedButtonIndex;
     private boolean isBackButton;
+    
+    private void handleKeyEvent(KeyEvent e) {
+        int keyCode = e.getKeyCode();
+        if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_RIGHT) {
+            selectedButtonIndex = (selectedButtonIndex + 1) % buttons.length;
+        } else if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_LEFT) {
+            selectedButtonIndex = (selectedButtonIndex - 1 + buttons.length) % buttons.length;
+        } else if (keyCode == KeyEvent.VK_ENTER) {
+            buttons[selectedButtonIndex].doClick();
+            return; // Enter 키 입력 후 추가 동작을 방지하기 위해 여기서 종료
+        }
+        ButtonStyle.updateButtonStyles(buttons, selectedButtonIndex, isBackButton);
+    }
 
     public ScoreBoardMenu() {
         setTitle("스코어보드");
@@ -68,6 +83,14 @@ public class ScoreBoardMenu extends JFrame {
         setSize(400, 550);
         setLocationRelativeTo(null);
         setVisible(true);
+        
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                handleKeyEvent(e);
+            }
+        });
+        setFocusable(true);
     }
 
     // 점수 추가 메서드

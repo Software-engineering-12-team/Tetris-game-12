@@ -15,13 +15,13 @@ public class ButtonStyle {
         }
     	if (isBackButton) {
     		buttons[buttons.length - 1].setFont(new Font("NanumGothic", Font.BOLD, 16));
-        	buttons[buttons.length - 1].setBackground(new Color(175, 175, 175));
+        	buttons[buttons.length - 1].setBackground(new Color(240, 240, 240));
         	buttons[buttons.length - 1].setForeground(Color.BLACK);
         	buttons[buttons.length - 1].setFocusPainted(false);
     	}
     }
     
-    public static void updateButtonStyles(JButton[] buttons, int selectedButtonIndex) {
+    public static void updateButtonStyles(JButton[] buttons, int selectedButtonIndex, boolean isBackButton) {
     	for (int i = 0; i < buttons.length; i++) {
         	if (i == selectedButtonIndex) {
                 buttons[i].setBackground(new Color(120, 150, 180));
@@ -29,6 +29,12 @@ public class ButtonStyle {
                 buttons[i].setBackground(new Color(30, 60, 90));
             }
         }
+    	if (isBackButton) {
+    		if (selectedButtonIndex == buttons.length - 1) {
+                buttons[buttons.length - 1].setBackground(new Color(180, 180, 180));
+            } else {
+                buttons[buttons.length - 1].setBackground(new Color(240, 240, 240));
+            }
+    	}
     }
-
 }

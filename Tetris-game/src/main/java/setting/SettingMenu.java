@@ -29,7 +29,7 @@ public class SettingMenu extends JFrame {
             buttons[selectedButtonIndex].doClick();
             return; // Enter 키 입력 후 추가 동작을 방지하기 위해 여기서 종료
         }
-        ButtonStyle.updateButtonStyles(buttons, selectedButtonIndex);
+        ButtonStyle.updateButtonStyles(buttons, selectedButtonIndex, isBackButton);
     }
 
     public SettingMenu() {
@@ -50,7 +50,6 @@ public class SettingMenu extends JFrame {
         resetscoreButton = new JButton("스코어보드 초기화");
         colorBlindModeButton = new JButton("색맹 모드");
         resetSettingButton = new JButton("설정 초기화");
-        
         backButton = new JButton("뒤로가기");
         
         buttons = new JButton[]{sizeAdjustButton, controlKeyButton, resetscoreButton, colorBlindModeButton, resetSettingButton, backButton};
@@ -58,8 +57,6 @@ public class SettingMenu extends JFrame {
         
         isBackButton = true;
         ButtonStyle.applyButtonStyle(buttons, isBackButton);
-
-        
         
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(5, 1, 0, 15));

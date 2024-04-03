@@ -26,7 +26,7 @@ public class ScreenAdjustSizeMenu extends JFrame {
             buttons[selectedButtonIndex].doClick();
             return; // Enter 키 입력 후 추가 동작을 방지하기 위해 여기서 종료
         }
-        ButtonStyle.updateButtonStyles(buttons, selectedButtonIndex);
+        ButtonStyle.updateButtonStyles(buttons, selectedButtonIndex, isBackButton);
     }
 
     public ScreenAdjustSizeMenu() {
