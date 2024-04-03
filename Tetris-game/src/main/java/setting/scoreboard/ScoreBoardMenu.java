@@ -3,7 +3,6 @@ package main.java.setting.scoreboard;
 import javax.swing.*;
 
 import main.java.menu.StartMenu;
-import main.java.setting.SettingMenu;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
