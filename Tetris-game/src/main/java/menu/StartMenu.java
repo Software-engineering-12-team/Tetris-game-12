@@ -71,6 +71,7 @@ public class StartMenu extends JFrame {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	dispose();
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
@@ -85,6 +86,7 @@ public class StartMenu extends JFrame {
         settingsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	dispose();
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
@@ -99,6 +101,7 @@ public class StartMenu extends JFrame {
         scoreboardButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	dispose();
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {

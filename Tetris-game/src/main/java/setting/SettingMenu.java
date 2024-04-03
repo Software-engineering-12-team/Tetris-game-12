@@ -82,6 +82,7 @@ public class SettingMenu extends JFrame {
         scoreboardButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	dispose();
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
@@ -96,6 +97,7 @@ public class SettingMenu extends JFrame {
         controlKeyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	dispose();
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
@@ -110,6 +112,7 @@ public class SettingMenu extends JFrame {
         colorBlindModeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	dispose();
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
