@@ -1,5 +1,6 @@
 package main.java.setting;
 
+import main.java.menu.StartMenu;
 import main.java.setting.colorblindmode.ColorBlindModeMenu;
 import main.java.setting.controlkeysetting.ControlKeySettingMenu;
 import main.java.setting.scoreboard.ScoreBoardMenu;
@@ -77,23 +78,10 @@ public class SettingMenu extends JFrame {
                 adjustSize.setVisible(true);
             }
         });
+        
+        //스코어보드 초기화 기능 구현 필요
 
-    // 스코어 보드 창 열기
-        scoreboardButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	dispose();
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
-                        scoreBoardMenu.setVisible(true);
-                    }
-                });
-            }
-        });
-
-    // 조작키 설정 창 열기
+        // 조작키 설정 창 열기
         controlKeyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -133,7 +121,13 @@ public class SettingMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose(); // 현재 창 닫기
-                // 뒤로가기 버튼에 대한 동작 추가 (예: 이전 화면으로 이동)
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                    	StartMenu StartMenu = new StartMenu();
+                    	StartMenu.setVisible(true);
+                    }
+                });
             }
         });
         panel.add(backButton, BorderLayout.SOUTH); // 뒤로가기 버튼을 패널의 SOUTH에 추가

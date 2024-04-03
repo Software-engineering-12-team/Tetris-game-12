@@ -1,6 +1,9 @@
 package main.java.setting.controlkeysetting;
 
 import javax.swing.*;
+
+import main.java.setting.SettingMenu;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -63,7 +66,13 @@ public class ControlKeySettingMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose(); // 현재 창 닫기
-                // 뒤로가기 버튼에 대한 동작 추가 (예: 이전 화면으로 이동)
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        SettingMenu settingMenu = new SettingMenu();
+                        settingMenu.setVisible(true);
+                    }
+                });
             }
         });
         panel.add(backButton, BorderLayout.SOUTH); // 뒤로가기 버튼을 패널의 SOUTH에 추가
