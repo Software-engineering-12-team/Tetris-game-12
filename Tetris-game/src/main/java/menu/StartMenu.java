@@ -97,6 +97,11 @@ public class StartMenu extends JFrame {
                         settingMenu.setSize(getSize());
                         ScreenAdjustComponent.sizeAdjust(settingMenu.labels, settingMenu.buttons, settingMenu.isBackButton, ScreenAdjustSizeMenu.size);
                         settingMenu.setVisible(true);
+                        if (settingMenu.isColorBlindModeOn()) {
+                            // 게임에 색맹 모드를 적용하는 코드 추가 "색맹 모드 적용됨!"
+                        } else {
+                            // 게임에서 색맹 모드를 해제하는 코드 추가 "색맹 모드 적용 해제됨!"
+                        }
                     }
                 });
             }
@@ -167,6 +172,7 @@ public class StartMenu extends JFrame {
                 ex.printStackTrace();
             }
         }
+
     }
 
     public static void main(String[] args) {

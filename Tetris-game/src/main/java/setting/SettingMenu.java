@@ -20,6 +20,8 @@ public class SettingMenu extends JFrame {
     public JButton[] buttons;
     private int selectedButtonIndex;
     public boolean isBackButton;
+    private boolean colorBlindModeOn; // 색맹 모드 상태를 저장할 변수
+
     
     private void handleKeyEvent(KeyEvent e) {
         int keyCode = e.getKeyCode();
@@ -51,8 +53,8 @@ public class SettingMenu extends JFrame {
 
         sizeAdjustButton = new JButton("크기 조절");
         controlKeyButton = new JButton("조작키 설정");
-        resetscoreButton = new JButton("스코어보드 초기화 [ON]");
-        colorBlindModeButton = new JButton("색맹 모드 [ON]");
+        resetscoreButton = new JButton("스코어보드 초기화");
+        colorBlindModeButton = new JButton("색맹 모드 >> OFF <<");
         resetSettingButton = new JButton("설정 초기화");
         backButton = new JButton("뒤로가기");
         
@@ -88,12 +90,9 @@ public class SettingMenu extends JFrame {
         
         //스코어보드 초기화 기능
         resetscoreButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-                if (resetscoreButton.getText().equals("스코어보드 초기화 [ON]")) {
-                    resetscoreButton.setText("스코어보드 초기화 [OFF]");
-                } else {
-                    resetscoreButton.setText("스코어보드 초기화 [ON]");
-                }
+                // 스코어보드 초기화 기능 구현하면 됨 ->  창을 나가도 유지 필요
             }
         });
 
@@ -116,14 +115,18 @@ public class SettingMenu extends JFrame {
 
         // 색맹 모드 창 열기
         colorBlindModeButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-                if (colorBlindModeButton.getText().equals("색맹 모드 [ON]")) {
-                    colorBlindModeButton.setText("색맹 모드 [OFF]");
+                if (colorBlindModeButton.getText().equals("색맹 모드 >> OFF <<")) {
+                    colorBlindModeOn = true;
+                    colorBlindModeButton.setText("색맹 모드 >> ON <<");
                 } else {
-                    colorBlindModeButton.setText("색맹 모드 [ON]");
+                    colorBlindModeOn = false;
+                    colorBlindModeButton.setText("색맹 모드 >> OFF <<");
                 }
             }
         });
+
 
         // 뒤로가기 버튼 생성 및 이벤트 처리
         backButton.addActionListener(new ActionListener() {
@@ -155,5 +158,9 @@ public class SettingMenu extends JFrame {
             }
         });
         setFocusable(true);
+    }
+
+    public boolean isColorBlindModeOn() {
+        return colorBlindModeOn;
     }
 }

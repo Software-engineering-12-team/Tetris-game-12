@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] fix resetscoreButton addActionlistener">
+    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] fix colorBlindModeButton addActionlistener">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/menu/StartMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/menu/StartMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -323,7 +324,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712155290550</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="[Fix] fix colorBlindModeButton addActionlistener">
+      <option name="closed" value="true" />
+      <created>1712156380000</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1712156380000</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -364,6 +373,7 @@
     <MESSAGE value="[Fix] change file directory" />
     <MESSAGE value="[Fix] fix error Board.java" />
     <MESSAGE value="[Fix] fix resetscoreButton addActionlistener" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Fix] fix resetscoreButton addActionlistener" />
+    <MESSAGE value="[Fix] fix colorBlindModeButton addActionlistener" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Fix] fix colorBlindModeButton addActionlistener" />
   </component>
 </project>
