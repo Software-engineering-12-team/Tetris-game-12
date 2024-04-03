@@ -1,6 +1,5 @@
 package main.java.menu;
 
-import main.java.setting.scoreboard.ScoreBoardMenu;
 import main.java.setting.SettingMenu;
 import main.java.util.ButtonStyle;
 import main.java.game.TetrisGame;

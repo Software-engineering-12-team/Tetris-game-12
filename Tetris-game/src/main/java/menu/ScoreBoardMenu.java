@@ -1,8 +1,7 @@
-package main.java.setting.scoreboard;
+package main.java.menu;
 
 import javax.swing.*;
 
-import main.java.menu.StartMenu;
 import main.java.util.ButtonStyle;
 
 import java.awt.*;
