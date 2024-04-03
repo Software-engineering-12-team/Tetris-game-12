@@ -1,7 +1,10 @@
 package main.java.menu;
 
+import main.java.menu.ScoreBoardMenu;
 import main.java.setting.SettingMenu;
+import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
 import main.java.util.ButtonStyle;
+import main.java.util.ScreenAdjustComponent;
 import main.java.game.TetrisGame;
 
 import javax.swing.*;
@@ -12,10 +15,11 @@ public class StartMenu extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel titleLabel, instructionLabel;
+    public JLabel[] labels;
     private JButton startButton, settingsButton, scoreboardButton, exitButton;
-    private JButton[] buttons;
+    public JButton[] buttons;
     private int selectedButtonIndex;
-    private boolean isBackButton;
+    public boolean isBackButton;
 
     private void handleKeyEvent(KeyEvent e) {
         int keyCode = e.getKeyCode();
@@ -90,6 +94,8 @@ public class StartMenu extends JFrame {
                     @Override
                     public void run() {
                         SettingMenu settingMenu = new SettingMenu();
+                        settingMenu.setSize(getSize());
+                        ScreenAdjustComponent.sizeAdjust(settingMenu.labels, settingMenu.buttons, settingMenu.isBackButton, ScreenAdjustSizeMenu.size);
                         settingMenu.setVisible(true);
                     }
                 });
@@ -105,6 +111,8 @@ public class StartMenu extends JFrame {
                     @Override
                     public void run() {
                         ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
+                        scoreBoardMenu.setSize(getSize());
+                        ScreenAdjustComponent.sizeAdjust(scoreBoardMenu.labels, scoreBoardMenu.buttons, scoreBoardMenu.isBackButton, ScreenAdjustSizeMenu.size);
                         scoreBoardMenu.setVisible(true);
                     }
                 });
@@ -125,6 +133,8 @@ public class StartMenu extends JFrame {
         instructionLabel.setFont(new Font("NanumGothic", Font.BOLD, 16));
         instructionLabel.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(instructionLabel, BorderLayout.SOUTH);
+        
+        labels = new JLabel[]{titleLabel, instructionLabel};
 
         // 프레임 설정
         setSize(400, 550);

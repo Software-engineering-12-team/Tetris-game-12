@@ -3,7 +3,9 @@ package main.java.setting.colorblindmode;
 import javax.swing.*;
 
 import main.java.setting.SettingMenu;
+import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
 import main.java.util.ButtonStyle;
+import main.java.util.ScreenAdjustComponent;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,10 +16,11 @@ import java.awt.event.KeyListener;
 
 public class ColorBlindModeMenu extends JFrame {
     private JLabel titleLabel;
+    public JLabel[] labels;
     private JButton backButton;
-    private JButton[] buttons;
+    public JButton[] buttons;
     private int selectedButtonIndex;
-    private boolean isBackButton;
+    public boolean isBackButton;
     
     private void handleKeyEvent(KeyEvent e) {
         int keyCode = e.getKeyCode();
@@ -44,6 +47,8 @@ public class ColorBlindModeMenu extends JFrame {
         titleLabel.setFont(new Font("NanumGothic", Font.BOLD, 30));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(titleLabel, BorderLayout.NORTH);
+        
+        labels = new JLabel[]{titleLabel};
 
         // 뒤로가기 버튼 생성 및 이벤트 처리
         backButton = new JButton("뒤로가기");
@@ -61,6 +66,8 @@ public class ColorBlindModeMenu extends JFrame {
                     @Override
                     public void run() {
                         SettingMenu settingMenu = new SettingMenu();
+                        settingMenu.setSize(getSize());
+                        ScreenAdjustComponent.sizeAdjust(settingMenu.labels, settingMenu.buttons, settingMenu.isBackButton, ScreenAdjustSizeMenu.size);
                         settingMenu.setVisible(true);
                     }
                 });

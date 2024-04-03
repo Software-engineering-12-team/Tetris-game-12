@@ -6,6 +6,7 @@ import main.java.setting.colorblindmode.ColorBlindModeMenu;
 import main.java.setting.controlkeysetting.ControlKeySettingMenu;
 import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
 import main.java.util.ButtonStyle;
+import main.java.util.ScreenAdjustComponent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,10 +15,11 @@ import java.util.Arrays;
 
 public class SettingMenu extends JFrame {
     private JLabel titleLabel;
+    public JLabel[] labels;
     private JButton sizeAdjustButton, controlKeyButton, resetscoreButton, colorBlindModeButton, resetSettingButton, backButton;
-    private JButton[] buttons;
+    public JButton[] buttons;
     private int selectedButtonIndex;
-    private boolean isBackButton;
+    public boolean isBackButton;
     
     private void handleKeyEvent(KeyEvent e) {
         int keyCode = e.getKeyCode();
@@ -44,6 +46,8 @@ public class SettingMenu extends JFrame {
         titleLabel.setFont(new Font("NanumGothic", Font.BOLD, 30));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(titleLabel, BorderLayout.NORTH);
+        
+        labels = new JLabel[]{titleLabel};
 
         sizeAdjustButton = new JButton("크기 조절");
         controlKeyButton = new JButton("조작키 설정");
@@ -70,13 +74,14 @@ public class SettingMenu extends JFrame {
         panel.setBorder(BorderFactory.createEmptyBorder(30, 20, 30, 20));
         add(panel);
 
-
         // 크기 조절 창 열기
         sizeAdjustButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose(); // 현재 설정 페이지 닫기
                 ScreenAdjustSizeMenu adjustSize = new ScreenAdjustSizeMenu(); // 크기 조정 페이지로 이동
+                adjustSize.setSize(getSize());
+                ScreenAdjustComponent.sizeAdjust(adjustSize.labels, adjustSize.buttons, adjustSize.isBackButton, ScreenAdjustSizeMenu.size);
                 adjustSize.setVisible(true);
             }
         });
@@ -100,7 +105,9 @@ public class SettingMenu extends JFrame {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        ControlKeySettingMenu operatingKeysettingMenu = new ControlKeySettingMenu();
+                    	ControlKeySettingMenu operatingKeysettingMenu = new ControlKeySettingMenu();
+                        operatingKeysettingMenu.setSize(getSize());
+                        ScreenAdjustComponent.sizeAdjust(operatingKeysettingMenu.labels, operatingKeysettingMenu.buttons, operatingKeysettingMenu.isBackButton, ScreenAdjustSizeMenu.size);
                         operatingKeysettingMenu.setVisible(true);
                     }
                 });
@@ -127,6 +134,8 @@ public class SettingMenu extends JFrame {
                     @Override
                     public void run() {
                     	StartMenu StartMenu = new StartMenu();
+                    	StartMenu.setSize(getSize());
+                        ScreenAdjustComponent.sizeAdjust(StartMenu.labels, StartMenu.buttons, StartMenu.isBackButton, ScreenAdjustSizeMenu.size);
                     	StartMenu.setVisible(true);
                     }
                 });

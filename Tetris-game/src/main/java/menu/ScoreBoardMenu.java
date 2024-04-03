@@ -2,7 +2,9 @@ package main.java.menu;
 
 import javax.swing.*;
 
+import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
 import main.java.util.ButtonStyle;
+import main.java.util.ScreenAdjustComponent;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,12 +14,13 @@ import java.awt.event.KeyEvent;
 
 public class ScoreBoardMenu extends JFrame {
     private JLabel titleLabel;
+    public JLabel[] labels;
     private JList<String> scoreList;
     private DefaultListModel<String> scoreModel;
     private JButton backButton;
-    private JButton[] buttons;
+    public JButton[] buttons;
     private int selectedButtonIndex;
-    private boolean isBackButton;
+    public boolean isBackButton;
     
     private void handleKeyEvent(KeyEvent e) {
         int keyCode = e.getKeyCode();
@@ -44,6 +47,9 @@ public class ScoreBoardMenu extends JFrame {
         titleLabel.setFont(new Font("NanumGothic", Font.BOLD, 30));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(titleLabel, BorderLayout.NORTH);
+        
+        labels = new JLabel[]{titleLabel};
+        
         // 점수 리스트 초기화
         scoreModel = new DefaultListModel<>();
         scoreList = new JList<>(scoreModel);
@@ -69,6 +75,8 @@ public class ScoreBoardMenu extends JFrame {
                     @Override
                     public void run() {
                     	StartMenu StartMenu = new StartMenu();
+                    	StartMenu.setSize(getSize());
+                        ScreenAdjustComponent.sizeAdjust(StartMenu.labels, StartMenu.buttons, StartMenu.isBackButton, ScreenAdjustSizeMenu.size);
                     	StartMenu.setVisible(true);
                     }
                 });

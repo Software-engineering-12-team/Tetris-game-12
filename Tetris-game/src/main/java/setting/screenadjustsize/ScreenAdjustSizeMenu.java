@@ -10,11 +10,12 @@ import java.awt.event.*;
 
 public class ScreenAdjustSizeMenu extends JFrame {
     private JLabel titleLabel;
-    private JLabel[] labels;
+    public JLabel[] labels;
     private JButton smallButton, mediumButton, largeButton, backButton;
-    private JButton[] buttons;
+    public JButton[] buttons;
     private int selectedButtonIndex;
-    private boolean isBackButton;
+	public static int size;
+    public boolean isBackButton;
     
     private void handleKeyEvent(KeyEvent e) {
         int keyCode = e.getKeyCode();
@@ -71,30 +72,27 @@ public class ScreenAdjustSizeMenu extends JFrame {
         smallButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setSize(400, 550);
-                ScreenAdjustComponent.adjustLabelSize(labels, 1.0);
-                ScreenAdjustComponent.adjustButtonSize(buttons, 1.0);
-                revalidate();
+            	size = 0;
+            	setSize(400, 550);
+            	ScreenAdjustComponent.sizeAdjust(labels, buttons, isBackButton, size);
             }
         });
         
         mediumButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setSize(440, 605);
-                ScreenAdjustComponent.adjustLabelSize(labels, 1.1);
-                ScreenAdjustComponent.adjustButtonSize(buttons, 1.1);
-                revalidate();
+            	size = 1;
+            	setSize(440, 605);
+            	ScreenAdjustComponent.sizeAdjust(labels, buttons, isBackButton, size);
             }
         });
         
         largeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setSize(480, 660);
-                ScreenAdjustComponent.adjustLabelSize(labels, 1.2);
-                ScreenAdjustComponent.adjustButtonSize(buttons, 1.2);
-                revalidate();
+            	size = 2;
+            	setSize(480, 660);
+            	ScreenAdjustComponent.sizeAdjust(labels, buttons, isBackButton, size);
             }
         });
 
@@ -107,6 +105,8 @@ public class ScreenAdjustSizeMenu extends JFrame {
                     @Override
                     public void run() {
                         SettingMenu settingMenu = new SettingMenu();
+                        settingMenu.setSize(getSize());
+                        ScreenAdjustComponent.sizeAdjust(settingMenu.labels, settingMenu.buttons, settingMenu.isBackButton, size);
                         settingMenu.setVisible(true);
                     }
                 });
