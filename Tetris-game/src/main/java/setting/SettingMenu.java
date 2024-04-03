@@ -47,7 +47,7 @@ public class SettingMenu extends JFrame {
 
         sizeAdjustButton = new JButton("크기 조절");
         controlKeyButton = new JButton("조작키 설정");
-        resetscoreButton = new JButton("스코어보드 초기화");
+        resetscoreButton = new JButton("스코어보드 초기화 [ON]");
         colorBlindModeButton = new JButton("색맹 모드");
         resetSettingButton = new JButton("설정 초기화");
         backButton = new JButton("뒤로가기");
@@ -81,7 +81,16 @@ public class SettingMenu extends JFrame {
             }
         });
         
-        //스코어보드 초기화 기능 구현 필요
+        //스코어보드 초기화 기능
+        resetscoreButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (resetscoreButton.getText().equals("스코어보드 초기화 [ON]")) {
+                    resetscoreButton.setText("스코어보드 초기화 [OFF]");
+                } else {
+                    resetscoreButton.setText("스코어보드 초기화 [ON]");
+                }
+            }
+        });
 
         // 조작키 설정 창 열기
         controlKeyButton.addActionListener(new ActionListener() {
@@ -98,7 +107,7 @@ public class SettingMenu extends JFrame {
             }
         });
 
-        // 색맹 모드 창 열기
+/*        // 색맹 모드 창 열기
         colorBlindModeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -111,7 +120,7 @@ public class SettingMenu extends JFrame {
                     }
                 });
             }
-        });
+        });*/
 
         // 뒤로가기 버튼 생성 및 이벤트 처리
         backButton.addActionListener(new ActionListener() {
