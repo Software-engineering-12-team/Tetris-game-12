@@ -15,12 +15,12 @@ public class ControlKeySettingMenu extends JFrame {
     public JLabel[] labels;
     private JButton backButton;
     public JButton[] buttons;
-    private JLabel descriptionLabel;
+    private JLabel descriptionTitleLabel, descriptionLabel;
     private int selectedButtonIndex;
     public boolean isBackButton;
 
-    private static JLabel statusLabel, selectLabel;
-    private static boolean isSetTypeA = true;
+    private static JLabel statusLabel;
+    private static boolean isSetTypeA = true; // default
     private static boolean isSetTypeB = false;
     private static boolean isSetTypeC = false;
     private static boolean isSetUserControlKey = false;
@@ -29,8 +29,6 @@ public class ControlKeySettingMenu extends JFrame {
         isSetTypeB = false;
         isSetTypeC = false;
         isSetUserControlKey = false;
-        updateStatus("현재 모드: 타입 A");
-        System.out.println("타입 A 조작키 설정");
     }
 
     public static void setTypeB() {
@@ -38,8 +36,6 @@ public class ControlKeySettingMenu extends JFrame {
         isSetTypeB = true;
         isSetTypeC = false;
         isSetUserControlKey = false;
-        updateStatus("현재 모드: 타입 A");
-        System.out.println("타입 B 조작키 설정");
     }
 
     public static void setTypeC() {
@@ -47,8 +43,6 @@ public class ControlKeySettingMenu extends JFrame {
         isSetTypeB = false;
         isSetTypeC = true;
         isSetUserControlKey = false;
-        updateStatus("현재 모드: 타입 A");
-        System.out.println("타입 C 조작키 설정");
     }
 
     public static void setUserControlKey() {
@@ -56,21 +50,16 @@ public class ControlKeySettingMenu extends JFrame {
         isSetTypeB = false;
         isSetTypeC = false;
         isSetUserControlKey = true;
-        updateStatus("현재 모드: 사용자 정의");
-        System.out.println("사용자 정의 조작키 설정");
     }
 
     public static JButton selectedButton;
-
     private int customControlKey = -1; // 사용자 정의 조작키를 저장할 변수
-
     // 현재 모드 상태 업데이트 메소드
     private static void updateStatus(String status) {
         if (statusLabel != null) {
             statusLabel.setText(status);
         }
     }
-
 
     private void handleKeyEvent(KeyEvent e) {
         int keyCode = e.getKeyCode();
@@ -113,7 +102,6 @@ public class ControlKeySettingMenu extends JFrame {
         JButton typeBButton = new JButton("타입 B");
         JButton typeCButton = new JButton("타입 C");
         JButton typesetUserControlKeyButton = new JButton("사용자 정의 설정");
-
 
         typeAButton.addActionListener(e -> setTypeA());
         typeBButton.addActionListener(e -> setTypeB());
@@ -188,38 +176,62 @@ public class ControlKeySettingMenu extends JFrame {
         descriptionPanel.setBorder(BorderFactory.createEmptyBorder(20, 10, 10, 10)); // 타입 선택 패널의 여백 설정
 
         // 각각 레이아웃 분리
-        statusLabel = new JLabel("현재 모드: 선택되지 않음");
+        statusLabel = new JLabel("현재 모드: 타입 A");
         statusLabel.setFont(new Font("SansSerif", Font.PLAIN, 16));
         statusLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         descriptionPanel.add(statusLabel);
 
-        descriptionLabel = new JLabel("조작키 설명이 여기에 표시됩니다.", SwingConstants.CENTER);
+        descriptionTitleLabel = new JLabel("조작키 설명이 여기에 표시됩니다.", SwingConstants.CENTER);
+        descriptionTitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        descriptionPanel.add(descriptionTitleLabel);
+        descriptionTitleLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
+
+        descriptionLabel = new JLabel("조작키 설명~~~", SwingConstants.CENTER);
         descriptionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         descriptionPanel.add(descriptionLabel);
-        descriptionLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
+        descriptionLabel.setBorder(BorderFactory.createEmptyBorder(100, 0, 100, 0));
 
-        //selectLabel = new JLabel();
         selectedButton = new JButton("선택");
         selectedButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         descriptionPanel.add(selectedButton);
 
         // 각 버튼의 액션 리스너 내에서 descriptionLabel의 텍스트 업데이트
         typeAButton.addActionListener(e -> {
-            setTypeA();
-            descriptionLabel.setText("타입 A 조작키 설정");
+            descriptionTitleLabel.setText("타입 A 조작키 설정");
+
         });
         typeBButton.addActionListener(e -> {
-            setTypeB();
-            descriptionLabel.setText("타입 B 조작키 설정");
+            descriptionTitleLabel.setText("타입 B 조작키 설정");
+
         });
         typeCButton.addActionListener(e -> {
-            setTypeC();
-            descriptionLabel.setText("타입 C 조작키 설정");
+            descriptionTitleLabel.setText("타입 C 조작키 설정");
+
         });
         typesetUserControlKeyButton.addActionListener(e -> {
-            setUserControlKey();
-            descriptionLabel.setText("사용자 정의 조작키");
+            descriptionTitleLabel.setText("사용자 정의 조작키");
         });
+
+        selectedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (isSetTypeA) {
+                    setTypeA();
+                    updateStatus("현재 모드: 타입 A");
+                } else if (isSetTypeB) {
+                    setTypeB();
+                    updateStatus("현재 모드: 타입 B");
+                } else if (isSetTypeC) {
+                    setTypeC();
+                    updateStatus("현재 모드: 타입 C");
+                } else if (isSetUserControlKey) {
+                    setUserControlKey();
+                    updateStatus("현재 모드: 사용자 설정");
+                }
+                updateStatus(statusLabel.getText()); // 현재 모드 라벨 업데이트
+            }
+        });
+
 
 
         // 사이즈
