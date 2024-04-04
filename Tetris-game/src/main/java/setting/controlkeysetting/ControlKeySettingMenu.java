@@ -146,11 +146,11 @@ public class ControlKeySettingMenu extends JFrame {
         panel.add(backButton, BorderLayout.SOUTH); // 뒤로가기 버튼을 패널의 SOUTH에 추가
 
 
-        // 박스
-        JButton dummyButton = new JButton();
-        dummyButton.setFocusable(true); // 버튼에 포커스 설정
-        dummyButton.requestFocusInWindow(); // 포커스 설정
-        panel.add(dummyButton);  // 패널에 포커스 설정된 버튼 추가
+        // 상세설명 패널
+        JPanel descriptionPanel = new JPanel();
+        descriptionPanel.setFocusable(true); // 버튼에 포커스 설정
+        descriptionPanel.requestFocusInWindow(); // 포커스 설정
+        panel.add(descriptionPanel);  // 패널에 포커스 설정된 버튼 추가
         add(panel);
         panel.setBorder(BorderFactory.createEmptyBorder(30, 20, 30, 20)); // 패널의 여백 설정
 
