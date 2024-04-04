@@ -19,27 +19,57 @@ public class ControlKeySettingMenu extends JFrame {
     private int selectedButtonIndex;
     public boolean isBackButton;
 
-    private void setTypeA() {
-        // 타입 A에 대한 조작키 설정 로직
+    private static JLabel statusLabel, selectLabel;
+    private static boolean isSetTypeA = true;
+    private static boolean isSetTypeB = false;
+    private static boolean isSetTypeC = false;
+    private static boolean isSetUserControlKey = false;
+    public static void setTypeA() {
+        isSetTypeA = true;
+        isSetTypeB = false;
+        isSetTypeC = false;
+        isSetUserControlKey = false;
+        updateStatus("현재 모드: 타입 A");
         System.out.println("타입 A 조작키 설정");
     }
 
-    private void setTypeB() {
-        // 타입 B에 대한 조작키 설정 로직
+    public static void setTypeB() {
+        isSetTypeA = false;
+        isSetTypeB = true;
+        isSetTypeC = false;
+        isSetUserControlKey = false;
+        updateStatus("현재 모드: 타입 A");
         System.out.println("타입 B 조작키 설정");
     }
 
-    private void setTypeC() {
-        // 타입 C에 대한 조작키 설정 로직
+    public static void setTypeC() {
+        isSetTypeA = false;
+        isSetTypeB = false;
+        isSetTypeC = true;
+        isSetUserControlKey = false;
+        updateStatus("현재 모드: 타입 A");
         System.out.println("타입 C 조작키 설정");
     }
 
-    private void setUserControlKey() {
-        // 사용자 정의 조작키 설정 로직
+    public static void setUserControlKey() {
+        isSetTypeA = false;
+        isSetTypeB = false;
+        isSetTypeC = false;
+        isSetUserControlKey = true;
+        updateStatus("현재 모드: 사용자 정의");
         System.out.println("사용자 정의 조작키 설정");
     }
+
+    public static JButton selectedButton;
+
     private int customControlKey = -1; // 사용자 정의 조작키를 저장할 변수
 
+    // 현재 모드 상태 업데이트 메소드
+    private static void updateStatus(String status) {
+        if (statusLabel != null) {
+            statusLabel.setText(status);
+        }
+    }
 
 
     private void handleKeyEvent(KeyEvent e) {
@@ -149,18 +179,29 @@ public class ControlKeySettingMenu extends JFrame {
 
         // 상세설명 패널
         JPanel descriptionPanel = new JPanel();
+        descriptionPanel.setLayout(new BoxLayout(descriptionPanel, BoxLayout.Y_AXIS));
         descriptionPanel.setFocusable(true); // 버튼에 포커스 설정
         descriptionPanel.requestFocusInWindow(); // 포커스 설정
         panel.add(descriptionPanel);  // 패널에 포커스 설정된 버튼 추가
         add(panel);
         panel.setBorder(BorderFactory.createEmptyBorder(30, 20, 30, 20)); // 패널의 여백 설정
+        descriptionPanel.setBorder(BorderFactory.createEmptyBorder(20, 10, 10, 10)); // 타입 선택 패널의 여백 설정
 
-        descriptionLabel = new JLabel("조작키 설명이 여기에 표시됩니다.");
-        descriptionLabel.setFont(new Font("SansSerif", Font.PLAIN, 14));
-        descriptionLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        // 각각 레이아웃 분리
+        statusLabel = new JLabel("현재 모드: 선택되지 않음");
+        statusLabel.setFont(new Font("SansSerif", Font.PLAIN, 16));
+        statusLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        descriptionPanel.add(statusLabel);
+
+        descriptionLabel = new JLabel("조작키 설명이 여기에 표시됩니다.", SwingConstants.CENTER);
+        descriptionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         descriptionPanel.add(descriptionLabel);
-        descriptionPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // 타입 선택 패널의 여백 설정
-        //panel.add(descriptionPanel, BorderLayout.CENTER);
+        descriptionLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
+
+        //selectLabel = new JLabel();
+        selectedButton = new JButton("선택");
+        selectedButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        descriptionPanel.add(selectedButton);
 
         // 각 버튼의 액션 리스너 내에서 descriptionLabel의 텍스트 업데이트
         typeAButton.addActionListener(e -> {
@@ -185,6 +226,15 @@ public class ControlKeySettingMenu extends JFrame {
         setSize(400, 550);
         setLocationRelativeTo(null);
         setVisible(true);
+
+        // 조작키로 버튼 선택 이벤트 핸들러
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                handleKeyEvent(e);
+            }
+        });
+        setFocusable(true);
     }
 
 }

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Feat] create descriptionPanel">
+    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] remove ColorBlindModeMenu.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/controlkeysetting/ControlKeySettingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/controlkeysetting/ControlKeySettingMenu.java" afterDir="false" />
     </list>
@@ -138,6 +138,7 @@
       <workItem from="1711808101776" duration="713000" />
       <workItem from="1711972308095" duration="273000" />
       <workItem from="1711972753701" duration="4367000" />
+      <workItem from="1712245119190" duration="2445000" />
     </task>
     <task id="LOCAL-00001" summary="[Feature] create Setting file">
       <option name="closed" value="true" />
@@ -347,7 +348,23 @@
       <option name="project" value="LOCAL" />
       <updated>1712239277018</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="[Feat] update controlKey description">
+      <option name="closed" value="true" />
+      <created>1712240382180</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1712240382180</updated>
+    </task>
+    <task id="LOCAL-00028" summary="[Fix] remove ColorBlindModeMenu.java">
+      <option name="closed" value="true" />
+      <created>1712240503387</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1712240503387</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -365,8 +382,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[Feature] create Setting file" />
-    <MESSAGE value="[Fix] fix setting file" />
     <MESSAGE value="[Fix] fix setting screen" />
     <MESSAGE value="[Fix] fix setting file name" />
     <MESSAGE value="[Feat] create scoreboardmenu file" />
@@ -390,6 +405,8 @@
     <MESSAGE value="[Fix] fix colorBlindModeButton addActionlistener" />
     <MESSAGE value="[Fix] fix colorBlindModeButton addActionlistener 2" />
     <MESSAGE value="[Feat] create descriptionPanel" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Feat] create descriptionPanel" />
+    <MESSAGE value="[Feat] update controlKey description" />
+    <MESSAGE value="[Fix] remove ColorBlindModeMenu.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Fix] remove ColorBlindModeMenu.java" />
   </component>
 </project>
