@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] create controlKey button">
+    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] create controlKey button not always">
+      <change afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/controlkeysetting/ControlKeyType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/menu/StartMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/menu/StartMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/controlkeysetting/ControlKeySettingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/controlkeysetting/ControlKeySettingMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -17,6 +19,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="module-info" />
+        <option value="JavaScript File" />
         <option value="Class" />
       </list>
     </option>
@@ -138,7 +141,7 @@
       <workItem from="1711808101776" duration="713000" />
       <workItem from="1711972308095" duration="273000" />
       <workItem from="1711972753701" duration="4367000" />
-      <workItem from="1712245119190" duration="4484000" />
+      <workItem from="1712245119190" duration="9359000" />
     </task>
     <task id="LOCAL-00001" summary="[Feature] create Setting file">
       <option name="closed" value="true" />
@@ -372,7 +375,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712247908202</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="[Fix] create controlKey button not always">
+      <option name="closed" value="true" />
+      <created>1712250231698</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1712250231698</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -390,7 +401,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[Fix] fix setting file name" />
     <MESSAGE value="[Feat] create scoreboardmenu file" />
     <MESSAGE value="[Fix] fix scoreboard, settingscreen button logic" />
     <MESSAGE value="[Remove] delete SettingScreenRunner.java" />
@@ -415,6 +425,7 @@
     <MESSAGE value="[Feat] update controlKey description" />
     <MESSAGE value="[Fix] remove ColorBlindModeMenu.java" />
     <MESSAGE value="[Fix] create controlKey button" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Fix] create controlKey button" />
+    <MESSAGE value="[Fix] create controlKey button not always" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Fix] create controlKey button not always" />
   </component>
 </project>

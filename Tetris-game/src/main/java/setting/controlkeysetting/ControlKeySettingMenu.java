@@ -29,6 +29,7 @@ public class ControlKeySettingMenu extends JFrame {
         isSetTypeB = false;
         isSetTypeC = false;
         isSetUserControlKey = false;
+        currentSelectedType = ControlKeyType.TYPE_A;
     }
 
     public static void setTypeB() {
@@ -36,6 +37,8 @@ public class ControlKeySettingMenu extends JFrame {
         isSetTypeB = true;
         isSetTypeC = false;
         isSetUserControlKey = false;
+        currentSelectedType = ControlKeyType.TYPE_B;
+
     }
 
     public static void setTypeC() {
@@ -43,6 +46,7 @@ public class ControlKeySettingMenu extends JFrame {
         isSetTypeB = false;
         isSetTypeC = true;
         isSetUserControlKey = false;
+        currentSelectedType = ControlKeyType.TYPE_C;
     }
 
     public static void setUserControlKey() {
@@ -50,16 +54,68 @@ public class ControlKeySettingMenu extends JFrame {
         isSetTypeB = false;
         isSetTypeC = false;
         isSetUserControlKey = true;
+        currentSelectedType = ControlKeyType.TYPE_D;
+    }
+
+    private static ControlKeyType selectedType;
+    private static ControlKeyType currentSelectedType = ControlKeyType.TYPE_A;
+    private void updateStatusLabelBasedOnCurrentType() {
+        switch (currentSelectedType) {
+            case TYPE_A:
+                statusLabel.setText("현재 모드: 타입 A");
+                break;
+            case TYPE_B:
+                statusLabel.setText("현재 모드: 타입 B");
+                break;
+            case TYPE_C:
+                statusLabel.setText("현재 모드: 타입 C");
+                break;
+            case TYPE_D:
+                statusLabel.setText("현재 모드: 사용자 설정");
+                break;
+        }
+    }
+
+    public static void setType(ControlKeyType type) {
+        selectedType = type;
+    }
+
+    public static int getTypeValue() {
+        return selectedType.getValue();
+    }
+
+    public static void setTypeValue(int value) {
+        switch (value) {
+            case 0:
+                selectedType = ControlKeyType.TYPE_A;
+                break;
+            case 1:
+                selectedType = ControlKeyType.TYPE_B;
+                break;
+            case 2:
+                selectedType = ControlKeyType.TYPE_C;
+                break;
+            case 3:
+                selectedType = ControlKeyType.TYPE_D;
+                break;
+            default:
+                // 기본값으로 TYPE_A를 설정합니다.
+                selectedType = ControlKeyType.TYPE_A;
+                break;
+        }
     }
 
     public static JButton selectedButton;
-    private int customControlKey = -1; // 사용자 정의 조작키를 저장할 변수
-    // 현재 모드 상태 업데이트 메소드
-    private static void updateStatus(String status) {
+
+    public static void updateStatus(String status) {
         if (statusLabel != null) {
             statusLabel.setText(status);
         }
     }
+
+    private int customControlKey = -1; // 사용자 정의 조작키를 저장할 변수
+    // 현재 모드 상태 업데이트 메소드
+
 
     private void handleKeyEvent(KeyEvent e) {
         int keyCode = e.getKeyCode();
@@ -89,10 +145,10 @@ public class ControlKeySettingMenu extends JFrame {
         panel.add(titleLabel, BorderLayout.NORTH);
         labels = new JLabel[]{titleLabel};
 
-        keyLabel = new JLabel("조작키를 누르세요");
+/*        keyLabel = new JLabel("조작키를 누르세요");
         keyLabel.setFont(new Font("SansSerif", Font.PLAIN, 20));
         keyLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(keyLabel, BorderLayout.CENTER);
+        panel.add(keyLabel, BorderLayout.CENTER);*/
 
 
 
@@ -120,7 +176,7 @@ public class ControlKeySettingMenu extends JFrame {
         typePanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // 타입 선택 패널의 여백 설정
 
 
-        // 사용자 정의 조작키 설정 버튼 이벤트 처리
+/*        // 사용자 정의 조작키 설정 버튼 이벤트 처리
         typesetUserControlKeyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -139,30 +195,7 @@ public class ControlKeySettingMenu extends JFrame {
                     }
                 });
             }
-        });
-
-        // 뒤로가기 버튼 생성 및 이벤트 처리
-        backButton = new JButton("뒤로가기");
-        buttons = new JButton[]{backButton};
-        selectedButtonIndex = 0;
-        isBackButton = true;
-        ButtonStyle.applyButtonStyle(buttons, isBackButton);
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose(); // 현재 창 닫기
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        SettingMenu settingMenu = new SettingMenu();
-                        settingMenu.setSize(getSize());
-                        ScreenAdjustComponent.sizeAdjust(settingMenu.labels, settingMenu.buttons, settingMenu.isBackButton, ScreenAdjustSizeMenu.size);
-                        settingMenu.setVisible(true);
-                    }
-                });
-            }
-        });
-        panel.add(backButton, BorderLayout.SOUTH); // 뒤로가기 버튼을 패널의 SOUTH에 추가
+        });*/
 
 
         // 상세설명 패널
@@ -198,28 +231,34 @@ public class ControlKeySettingMenu extends JFrame {
         // 각 버튼의 액션 리스너 내에서 descriptionLabel의 텍스트 업데이트
         typeAButton.addActionListener(e -> {
             descriptionTitleLabel.setText("타입 A 조작키 설정");
-
+            setType(ControlKeyType.TYPE_A);
         });
         typeBButton.addActionListener(e -> {
             descriptionTitleLabel.setText("타입 B 조작키 설정");
+            setType(ControlKeyType.TYPE_B);
 
         });
         typeCButton.addActionListener(e -> {
             descriptionTitleLabel.setText("타입 C 조작키 설정");
+            setType(ControlKeyType.TYPE_C);
 
         });
         typesetUserControlKeyButton.addActionListener(e -> {
             descriptionTitleLabel.setText("사용자 정의 조작키");
+            setType(ControlKeyType.TYPE_D);
         });
+
 
         selectedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+               /* // 이전 저장상태
+
                 if (isSetTypeA) {
-                    setTypeA();
+                    setType(ControlKeyType.TYPE_A);
                     updateStatus("현재 모드: 타입 A");
                 } else if (isSetTypeB) {
-                    setTypeB();
+                    setType(ControlKeyType.TYPE_B);
                     updateStatus("현재 모드: 타입 B");
                 } else if (isSetTypeC) {
                     setTypeC();
@@ -229,9 +268,60 @@ public class ControlKeySettingMenu extends JFrame {
                     updateStatus("현재 모드: 사용자 설정");
                 }
                 updateStatus(statusLabel.getText()); // 현재 모드 라벨 업데이트
+            }*/
+
+                switch (getTypeValue()) {
+                    case 0:
+                        setType(ControlKeyType.TYPE_A);
+                        updateStatus("현재 모드: 타입 A");
+                        setTypeValue(0);
+                        break;
+                    case 1:
+                        setType(ControlKeyType.TYPE_B);
+                        updateStatus("현재 모드: 타입 B");
+                        setTypeValue(1);
+                        break;
+                    case 2:
+                        setType(ControlKeyType.TYPE_C);
+                        updateStatus("현재 모드: 타입 C");
+                        setTypeValue(2);
+                        break;
+                    case 3:
+                        setType(ControlKeyType.TYPE_D);
+                        updateStatus("현재 모드: 사용자 설정");
+                        setTypeValue(3);
+                        break;
+                    default:
+                        break;
+                }
+                updateStatus(statusLabel.getText()); // 현재 모드 라벨 업데이트
             }
         });
 
+        updateStatusLabelBasedOnCurrentType();
+
+        // 뒤로가기 버튼 생성 및 이벤트 처리
+        backButton = new JButton("뒤로가기");
+        buttons = new JButton[]{backButton};
+        selectedButtonIndex = 0;
+        isBackButton = true;
+        ButtonStyle.applyButtonStyle(buttons, isBackButton);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose(); // 현재 창 닫기
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        SettingMenu settingMenu = new SettingMenu();
+                        settingMenu.setSize(getSize());
+                        ScreenAdjustComponent.sizeAdjust(settingMenu.labels, settingMenu.buttons, settingMenu.isBackButton, ScreenAdjustSizeMenu.size);
+                        settingMenu.setVisible(true);
+                    }
+                });
+            }
+        });
+        panel.add(backButton, BorderLayout.SOUTH); // 뒤로가기 버튼을 패널의 SOUTH에 추가
 
 
         // 사이즈
@@ -250,4 +340,6 @@ public class ControlKeySettingMenu extends JFrame {
     }
 
 }
+
+
 

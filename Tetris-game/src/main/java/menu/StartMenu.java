@@ -13,7 +13,6 @@ import java.awt.event.*;
 
 
 public class StartMenu extends JFrame {
-
 	private static final long serialVersionUID = 1L;
 	private JLabel titleLabel, instructionLabel;
     public JLabel[] labels;
@@ -21,7 +20,6 @@ public class StartMenu extends JFrame {
     public JButton[] buttons;
     private int selectedButtonIndex;
     public boolean isBackButton;
-
 
     private void handleKeyEvent(KeyEvent e) {
         int keyCode = e.getKeyCode();
