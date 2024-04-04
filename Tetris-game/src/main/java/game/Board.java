@@ -344,7 +344,7 @@ public class Board extends JPanel {
            	 g.setColor(color); 
         }
         
-        g.setColor(color); 
+         
         Font boldFont = new Font("Arial", Font.BOLD, 20);
         g.setFont(boldFont);
         g.drawString("O", x + squareWidth() / 2 - 5, y + squareHeight() / 2 + 5); 
