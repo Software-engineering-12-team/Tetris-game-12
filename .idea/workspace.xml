@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] fix colorBlindModeButton addActionlistener 2">
+    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Feat] create descriptionPanel">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/controlkeysetting/ControlKeySettingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/controlkeysetting/ControlKeySettingMenu.java" afterDir="false" />
     </list>
@@ -339,7 +339,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712165514845</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="[Feat] create descriptionPanel">
+      <option name="closed" value="true" />
+      <created>1712239277018</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1712239277018</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -357,7 +365,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[Feature] create TetrisStartScreen" />
     <MESSAGE value="[Feature] create Setting file" />
     <MESSAGE value="[Fix] fix setting file" />
     <MESSAGE value="[Fix] fix setting screen" />
@@ -382,6 +389,7 @@
     <MESSAGE value="[Fix] fix resetscoreButton addActionlistener" />
     <MESSAGE value="[Fix] fix colorBlindModeButton addActionlistener" />
     <MESSAGE value="[Fix] fix colorBlindModeButton addActionlistener 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Fix] fix colorBlindModeButton addActionlistener 2" />
+    <MESSAGE value="[Feat] create descriptionPanel" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Feat] create descriptionPanel" />
   </component>
 </project>

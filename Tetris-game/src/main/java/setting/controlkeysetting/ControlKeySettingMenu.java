@@ -15,6 +15,7 @@ public class ControlKeySettingMenu extends JFrame {
     public JLabel[] labels;
     private JButton backButton;
     public JButton[] buttons;
+    private JLabel descriptionLabel;
     private int selectedButtonIndex;
     public boolean isBackButton;
 
@@ -153,6 +154,32 @@ public class ControlKeySettingMenu extends JFrame {
         panel.add(descriptionPanel);  // 패널에 포커스 설정된 버튼 추가
         add(panel);
         panel.setBorder(BorderFactory.createEmptyBorder(30, 20, 30, 20)); // 패널의 여백 설정
+
+        descriptionLabel = new JLabel("조작키 설명이 여기에 표시됩니다.");
+        descriptionLabel.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        descriptionLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        descriptionPanel.add(descriptionLabel);
+        descriptionPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // 타입 선택 패널의 여백 설정
+        //panel.add(descriptionPanel, BorderLayout.CENTER);
+
+        // 각 버튼의 액션 리스너 내에서 descriptionLabel의 텍스트 업데이트
+        typeAButton.addActionListener(e -> {
+            setTypeA();
+            descriptionLabel.setText("타입 A 조작키 설정");
+        });
+        typeBButton.addActionListener(e -> {
+            setTypeB();
+            descriptionLabel.setText("타입 B 조작키 설정");
+        });
+        typeCButton.addActionListener(e -> {
+            setTypeC();
+            descriptionLabel.setText("타입 C 조작키 설정");
+        });
+        typesetUserControlKeyButton.addActionListener(e -> {
+            setUserControlKey();
+            descriptionLabel.setText("사용자 정의 조작키");
+        });
+
 
         // 사이즈
         setSize(400, 550);
