@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+
 public class StartMenu extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -20,6 +21,7 @@ public class StartMenu extends JFrame {
     public JButton[] buttons;
     private int selectedButtonIndex;
     public boolean isBackButton;
+
 
     private void handleKeyEvent(KeyEvent e) {
         int keyCode = e.getKeyCode();
@@ -62,11 +64,9 @@ public class StartMenu extends JFrame {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(4, 1, 0, 15));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
-        
         for (JButton button : buttons) {
             buttonPanel.add(button);
         }
-        
         panel.add(buttonPanel, BorderLayout.CENTER);
         panel.setBorder(BorderFactory.createEmptyBorder(30, 20, 30, 20));
         add(panel);
@@ -97,11 +97,6 @@ public class StartMenu extends JFrame {
                         settingMenu.setSize(getSize());
                         ScreenAdjustComponent.sizeAdjust(settingMenu.labels, settingMenu.buttons, settingMenu.isBackButton, ScreenAdjustSizeMenu.size);
                         settingMenu.setVisible(true);
-                        if (settingMenu.isColorBlindModeOn()) {
-                            // 게임에 색맹 모드를 적용하는 코드 추가 "색맹 모드 적용됨!"
-                        } else {
-                            // 게임에서 색맹 모드를 해제하는 코드 추가 "색맹 모드 적용 해제됨!"
-                        }
                     }
                 });
             }

@@ -11,7 +11,6 @@ import main.java.util.ScreenAdjustComponent;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Arrays;
 
 public class SettingMenu extends JFrame {
     private JLabel titleLabel;
@@ -20,7 +19,7 @@ public class SettingMenu extends JFrame {
     public JButton[] buttons;
     private int selectedButtonIndex;
     public boolean isBackButton;
-    private boolean colorBlindModeOn; // 색맹 모드 상태를 저장할 변수
+    private static boolean colorBlindModeOn; // 색맹 모드 상태를 저장할 변수
 
     
     private void handleKeyEvent(KeyEvent e) {
@@ -54,7 +53,7 @@ public class SettingMenu extends JFrame {
         sizeAdjustButton = new JButton("크기 조절");
         controlKeyButton = new JButton("조작키 설정");
         resetscoreButton = new JButton("스코어보드 초기화");
-        colorBlindModeButton = new JButton("색맹 모드 >> OFF <<");
+        colorBlindModeButton = new JButton("색맹 모드 >> " + (colorBlindModeOn ? "ON" : "OFF") + " <<");
         resetSettingButton = new JButton("설정 초기화");
         backButton = new JButton("뒤로가기");
         
@@ -117,11 +116,10 @@ public class SettingMenu extends JFrame {
         colorBlindModeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (colorBlindModeButton.getText().equals("색맹 모드 >> OFF <<")) {
-                    colorBlindModeOn = true;
+                SettingMenu.setColorBlindMode(!SettingMenu.isColorBlindModeOn());
+                if (SettingMenu.isColorBlindModeOn()) {
                     colorBlindModeButton.setText("색맹 모드 >> ON <<");
                 } else {
-                    colorBlindModeOn = false;
                     colorBlindModeButton.setText("색맹 모드 >> OFF <<");
                 }
             }
@@ -139,7 +137,8 @@ public class SettingMenu extends JFrame {
                     	StartMenu StartMenu = new StartMenu();
                     	StartMenu.setSize(getSize());
                         ScreenAdjustComponent.sizeAdjust(StartMenu.labels, StartMenu.buttons, StartMenu.isBackButton, ScreenAdjustSizeMenu.size);
-                    	StartMenu.setVisible(true);
+
+                        StartMenu.setVisible(true);
                     }
                 });
             }
@@ -160,7 +159,11 @@ public class SettingMenu extends JFrame {
         setFocusable(true);
     }
 
-    public boolean isColorBlindModeOn() {
+    public static void setColorBlindMode(boolean colorBlindmode) {
+        colorBlindModeOn = colorBlindmode;
+    }
+
+    public static boolean isColorBlindModeOn() {
         return colorBlindModeOn;
     }
 }
