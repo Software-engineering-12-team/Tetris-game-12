@@ -28,6 +28,7 @@ public class Board extends JPanel {
     private boolean isFallingFinished = false;
     private boolean isStarted = false;
     private boolean isPaused = false;
+    private boolean isColorBlind = true;
     private int numLinesRemoved = 0;
     private int curX = 0;
     private int curY = 0;
@@ -318,17 +319,30 @@ public class Board extends JPanel {
     private void drawBlock(Graphics g, int x, int y, 
             Tetrominoe block) {
 
-        Color colors[] = {
+        Color colors[] = {	//일반 색깔
             new Color(0, 0, 0), new Color(204, 102, 102),
             new Color(102, 204, 102), new Color(102, 102, 204),
             new Color(204, 204, 102), new Color(204, 102, 204),
             new Color(102, 204, 204), new Color(218, 170, 0)
         };
-
-        Color color = colors[block.ordinal()];
-
-        g.setColor(Color.BLACK);
-        g.fillRect(x + 1, y + 1, squareWidth() - 2, squareHeight() - 2);
+	    
+	Color cbcolors[] = {	//색맹 모드 전용 색깔(현재는 비교를 위한 임시)
+            new Color(0, 0, 0), new Color(0, 255, 0),
+            new Color(0, 0, 255), new Color(255, 0,0),
+            new Color(0, 255, 255), new Color(255, 0, 255),
+            new Color(255, 255, 0), new Color(125, 125, 125)	
+        };
+        
+        if(!isColorBlind)
+        {
+        	Color color = colors[block.ordinal()];
+           	 g.setColor(color); 
+        }
+        else
+        {
+        	Color color = cbcolors[block.ordinal()];
+           	 g.setColor(color); 
+        }
         
         g.setColor(color); 
         Font boldFont = new Font("Arial", Font.BOLD, 20);
