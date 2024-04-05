@@ -340,6 +340,3 @@ public class ControlKeySettingMenu extends JFrame {
     }
 
 }
-
-
-

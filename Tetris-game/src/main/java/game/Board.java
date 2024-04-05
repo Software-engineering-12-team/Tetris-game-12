@@ -12,6 +12,7 @@ import javax.swing.SwingUtilities;
 
 import main.java.game.Blocks.Tetrominoe;
 import main.java.menu.ScoreBoardMenu;
+import main.java.setting.SettingMenu;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -340,7 +341,7 @@ public class Board extends JPanel {
             new Color(0, 0, 0)
         };
         
-        if(!isColorBlind)
+        if(!SettingMenu.isColorBlindModeOn())
         {
         	Color color = colors[block.ordinal()];
            	 g.setColor(color); 
