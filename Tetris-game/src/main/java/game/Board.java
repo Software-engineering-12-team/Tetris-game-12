@@ -1,7 +1,6 @@
 package main.java.game;
 
 import java.awt.Color;
-import javax.swing.SwingUtilities;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -9,6 +8,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import main.java.game.Blocks.Tetrominoe;
 import main.java.menu.ScoreBoardMenu;
@@ -19,8 +19,8 @@ import java.util.TimerTask;
 public class Board extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private final int BOARD_WIDTH = 10;
-    private final int BOARD_HEIGHT = 20;
+	private final int BOARD_WIDTH = 12;
+    private final int BOARD_HEIGHT = 22;
     private int INITIAL_DELAY = 100;
     private int PERIOD_INTERVAL = 1000; // 동적 변경을 위해 변경
 
@@ -136,15 +136,15 @@ public class Board extends JPanel {
                     nextPieceY + y * squareHeight(), nextPiece.getBlock());
         }
         
-        g.setColor(Color.WHITE);
+        g.setColor(Color.WHITE);	//다음 블록이 들어갈 박스 그리기
         int boxWidth = 6 * squareWidth();
         int boxHeight = 4 * squareHeight();
-        int borderWidth = 5; // 박스의 두께
-     // 박스의 가로선 그리기
+        int borderWidth = 5; 
+     
      for (int i = 0; i < borderWidth; i++) {
          g.drawRect(nextPieceX - 20 + i, nextPieceY + i, boxWidth, boxHeight);
      	}
-     // 박스의 세로선 그리기
+     
      for (int i = 0; i < borderWidth; i++) {
          g.drawRect(nextPieceX - 20 + i, nextPieceY, boxWidth, boxHeight);
      	}
@@ -184,8 +184,14 @@ public class Board extends JPanel {
 
     private void clearBoard() {			//게임보드 초기화
 
-        for (int i = 0; i < BOARD_HEIGHT * BOARD_WIDTH; ++i) {
-            board[i] = Tetrominoe.NoBlock;
+    	for (int i = 0; i < BOARD_HEIGHT; ++i) {		//게임 보드의 테두리 그리기
+            for (int j = 0; j < BOARD_WIDTH; ++j) {
+                if (i == 0 || i == BOARD_HEIGHT - 1 || j == 0 || j == BOARD_WIDTH - 1) {
+                    board[(i * BOARD_WIDTH) + j] = Tetrominoe.BorderBlock;
+                } else {
+                    board[(i * BOARD_WIDTH) + j] = Tetrominoe.NoBlock;
+                }
+            }
         }
     }
 
@@ -211,10 +217,10 @@ public class Board extends JPanel {
     	curPiece = nextPiece;	// 현재 블록을 방금 표시되었던 블록으로 설정
     	nextPiece = new Blocks(); // 다음 블록 생성
     	nextPiece.setRandomBlock();
-        curX = BOARD_WIDTH / 2 ;
-        curY = BOARD_HEIGHT - 1 + curPiece.minY();
+        curX = BOARD_WIDTH / 2 - 1;
+        curY = BOARD_HEIGHT - 2 + curPiece.minY();
 
-        if (!tryMove(curPiece, curX, curY)) {
+       if (!tryMove(curPiece, curX, curY)) {
 
             curPiece.setBlock(Tetrominoe.NoBlock);		//블록을 생성할 수 없으면 게임오버
             timer.cancel();
@@ -223,11 +229,11 @@ public class Board extends JPanel {
             
             int linesRemoved = numLinesRemoved;
             SwingUtilities.invokeLater(new Runnable() {               //게임오버가 되면 점수를 스코어보드에 기록
-                @Override
+               @Override
                 public void run() {
                     ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
                     scoreBoardMenu.addScore("Score: " + linesRemoved);
-                }
+               }
             });
         }
     }
@@ -257,16 +263,16 @@ public class Board extends JPanel {
         return true;
     }
 
-    private void removeFullLines() {		//가득 찬 줄 제거
+    private void removeFullLines() {		//가득 찬 줄 제거, 테두리를 고려하여 수정
 
         int numFullLines = 0;
 
-        for (int i = BOARD_HEIGHT - 1; i >= 0; --i) {
+        for (int i = BOARD_HEIGHT - 1; i >= 1; --i) {
             boolean lineIsFull = true;
 
-            for (int j = 0; j < BOARD_WIDTH; ++j) {
+            for (int j = 1; j < BOARD_WIDTH - 1; ++j) {
                 
-                if (blockAt(j, i) == Tetrominoe.NoBlock) {
+                if (blockAt(j, i) == Tetrominoe.NoBlock || blockAt(j, i) == Tetrominoe.BorderBlock) {
                     
                     lineIsFull = false;
                     break;
@@ -277,10 +283,9 @@ public class Board extends JPanel {
                 
                 ++numFullLines;
                 
-                for (int k = i; k < BOARD_HEIGHT - 1; ++k) {
+                for (int k = i; k < BOARD_HEIGHT - 2; ++k) {
                     for (int j = 0; j < BOARD_WIDTH; ++j) {
-                        
-                        board[(k * BOARD_WIDTH) + j] = blockAt(j, k + 1);
+                    	board[(k * BOARD_WIDTH) + j] = blockAt(j, k + 1);
                     }
                 }
             }
@@ -323,14 +328,16 @@ public class Board extends JPanel {
             new Color(0, 0, 0), new Color(204, 102, 102),
             new Color(102, 204, 102), new Color(102, 102, 204),
             new Color(204, 204, 102), new Color(204, 102, 204),
-            new Color(102, 204, 204), new Color(218, 170, 0)
+            new Color(102, 204, 204), new Color(218, 170, 0),
+            new Color(0, 0, 0)
         };
 	    
 	Color cbcolors[] = {	//색맹 모드 전용 색깔(현재는 비교를 위한 임시)
             new Color(0, 0, 0), new Color(0, 255, 0),
             new Color(0, 0, 255), new Color(255, 0,0),
             new Color(0, 255, 255), new Color(255, 0, 255),
-            new Color(255, 255, 0), new Color(125, 125, 125)	
+            new Color(255, 255, 0), new Color(125, 125, 125),
+            new Color(0, 0, 0)
         };
         
         if(!isColorBlind)
@@ -348,7 +355,11 @@ public class Board extends JPanel {
         Font boldFont = new Font("Arial", Font.BOLD, 20);
         g.setFont(boldFont);
         g.drawString("O", x + squareWidth() / 2 - 5, y + squareHeight() / 2 + 5); 
-
+        
+        if (block == Tetrominoe.BorderBlock) {
+            g.setColor(Color.WHITE);
+            g.drawString("X", x + squareWidth() / 2 - 5, y + squareHeight() / 2 + 5);
+        }
     }
 
     private void doGameCycle() {

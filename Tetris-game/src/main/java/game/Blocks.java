@@ -2,10 +2,12 @@ package main.java.game;
 
 import java.util.Random;
 
+import main.java.game.Blocks.Tetrominoe;
+
 public class Blocks {
 
     protected enum Tetrominoe { NoBlock, ZBlock, SBlock, IBlock, 
-               TBlock, OBlock, LBlock, JBlock };	//블록의 종류
+               TBlock, OBlock, LBlock, JBlock, BorderBlock };	//블록의 종류, BorderBlock은 테두리를 나타냄
 
     private Tetrominoe pieceBlock;
     private int coords[][];
@@ -33,7 +35,8 @@ public class Blocks {
              { { -1, 0 },  { 0, 0 },   { 1, 0 },   { 0, 1 } },
              { { 0, 0 },   { 1, 0 },   { 0, 1 },   { 1, 1 } },
              { { -1, 1 }, { 0, 1 },  { 1, 1 },   { 1, 0 } },
-             { { -1, 0 },  { -1, 1 },  { 0, 1 },   { 1, 1 } }
+             { { -1, 0 },  { -1, 1 },  { 0, 1 },   { 1, 1 } },
+             { { 0, 0 },   { 0, 0 },   { 0, 0 },   { 0, 0 } }
         };
 
         for (int i = 0; i < 4 ; i++) {
