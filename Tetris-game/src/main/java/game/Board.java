@@ -9,10 +9,12 @@ import java.awt.event.KeyEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.JOptionPane;
 
 import main.java.game.Blocks.Tetrominoe;
 import main.java.menu.ScoreBoardMenu;
 import main.java.setting.SettingMenu;
+import main.java.game.ScoreFileWriter; // 점수 저장을 위해 추가
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -24,6 +26,7 @@ public class Board extends JPanel {
     private final int BOARD_HEIGHT = 22;
     private int INITIAL_DELAY = 100;
     private int PERIOD_INTERVAL = 1000; // 동적 변경을 위해 변경
+    private ScoreBoardMenu scoreBoardMenu;
 
     private Timer timer;
     private boolean isFallingFinished = false;
@@ -40,6 +43,7 @@ public class Board extends JPanel {
 
     public Board(TetrisGame parent) {
 
+    	scoreBoardMenu = new ScoreBoardMenu();
         initBoard(parent);
     }
 
@@ -221,22 +225,32 @@ public class Board extends JPanel {
         curX = BOARD_WIDTH / 2 - 1;
         curY = BOARD_HEIGHT - 2 + curPiece.minY();
 
-       if (!tryMove(curPiece, curX, curY)) {
-
-            curPiece.setBlock(Tetrominoe.NoBlock);		//블록을 생성할 수 없으면 게임오버
+        if (!tryMove(curPiece, curX, curY)) {
+            // 게임오버일 때 점수를 스코어보드에 추가
+            curPiece.setBlock(Tetrominoe.NoBlock);
             timer.cancel();
             isStarted = false;
             statusbar.setText("GAME OVER!");
-            
+
             int linesRemoved = numLinesRemoved;
-            SwingUtilities.invokeLater(new Runnable() {               //게임오버가 되면 점수를 스코어보드에 기록
-               @Override
+            String name = JOptionPane.showInputDialog("Enter your name:");
+            String difficulty = "Hard"; // 추후에 선택 가능하도록 수정할 수 있습니다.
+            String mode = "Item"; // 추후에 선택 가능하도록 수정할 수 있습니다.
+
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
                 public void run() {
-                    ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
-                    scoreBoardMenu.addScore("Score: " + linesRemoved);
-               }
+                    scoreBoardMenu.addScore(name, difficulty, mode, linesRemoved);
+                    scoreBoardMenu.setVisible(true); // 스코어보드 창을 보이도록 설정
+                    
+                    endGame(name, difficulty, mode, linesRemoved);
+                }
             });
         }
+    }
+    
+    public void endGame(String name, String difficulty, String mode, int score) {
+    	 ScoreFileWriter.writeScore(name, difficulty, mode, score);
     }
 
     private boolean tryMove(Blocks newPiece, int newX, int newY) {		//블록을 이동시킬 수 있는지 확인

@@ -11,9 +11,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ScoreBoardMenu extends JFrame {
-    private JLabel titleLabel;
+    
+	private JLabel nameLabel;
+    private JLabel difficultyLabel;
+    private JLabel modeLabel;
+    private JLabel scoreLabel;
+	private JLabel titleLabel;
     public JLabel[] labels;
     private JList<String> scoreList;
     private DefaultListModel<String> scoreModel;
@@ -42,6 +53,18 @@ public class ScoreBoardMenu extends JFrame {
 
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
+        
+        nameLabel = new JLabel();
+        nameLabel.setFont(new Font("NanumGothic", Font.BOLD, 14));
+
+        difficultyLabel = new JLabel();
+        difficultyLabel.setFont(new Font("NanumGothic", Font.BOLD, 14));
+
+        modeLabel = new JLabel();
+        modeLabel.setFont(new Font("NanumGothic", Font.BOLD, 14));
+
+        scoreLabel = new JLabel();
+        scoreLabel.setFont(new Font("NanumGothic", Font.BOLD, 14));
 
         titleLabel = new JLabel("스코어보드");
         titleLabel.setFont(new Font("NanumGothic", Font.BOLD, 30));
@@ -98,13 +121,41 @@ public class ScoreBoardMenu extends JFrame {
             }
         });
         setFocusable(true);
+        
+
+        loadScores(); // 스코어보드가 열릴 때마다 저장된 점수를 읽기
+    }
+    
+    private void loadScores() {
+        scoreModel.clear(); // 기존 점수를 모두 지우기
+
+        List<String> scores = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader("scoreboard.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                scoreModel.addElement(line);
+            }
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "스코어보드를 로드하는 중에 오류가 발생했습니다: " + e.getMessage(), "오류", JOptionPane.ERROR_MESSAGE);
+        }
+       
+        // 내림차순으로 정렬.
+        Collections.sort(scores);
+
+        // 정렬된 점수를 모델에 추가
+        for (String score : scores) {
+            scoreModel.addElement(score);
+        }
     }
 
     // 점수 추가 메서드
-    public void addScore(String score) {
-        scoreModel.addElement(score);
+    public void addScore(String name, String difficulty, String mode, int score) {
+    	nameLabel.setText("이름: " + name);
+        difficultyLabel.setText("난이도: " + difficulty);
+        modeLabel.setText("모드: " + mode);
+        scoreLabel.setText("점수: " + score + "점");
+        String entry = "이름: " + name + " / 난이도: " + difficulty + " / 모드: " + mode + " / 점수: " + score + "점";
+        scoreModel.addElement(entry);
     }
-
-
 
 }
