@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import main.java.game.Blocks.Tetrominoe;
 import main.java.menu.ScoreBoardMenu;
 import main.java.setting.SettingMenu;
+import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
 import main.java.game.ScoreFileWriter; // 점수 저장을 위해 추가
 
 import java.util.Timer;
@@ -32,15 +33,15 @@ public class Board extends JPanel {
     private boolean isFallingFinished = false;
     private boolean isStarted = false;
     private boolean isPaused = false;
-    private boolean isColorBlind = true;
-    private int numLinesRemoved = 0;
+    private int TotalScore = 0;
     private int curX = 0;
     private int curY = 0;
     private JLabel statusbar;
     private Blocks curPiece;
     private Blocks nextPiece;
+    private Font tetrisFont;
     private Tetrominoe[] board;
-
+    
     public Board(TetrisGame parent) {
 
     	scoreBoardMenu = new ScoreBoardMenu();
@@ -57,8 +58,15 @@ public class Board extends JPanel {
         curPiece = new Blocks();
         nextPiece = new Blocks();
         nextPiece.setRandomBlock();
-
+        if(ScreenAdjustSizeMenu.size == 0)		//화면 크기에 따른 폰트 크기 변경
+        	tetrisFont = new Font("Arial", Font.BOLD, 20);
+            else if(ScreenAdjustSizeMenu.size == 1)
+            tetrisFont = new Font("Arial", Font.BOLD, 22);
+            else
+            tetrisFont = new Font("Arial", Font.BOLD, 24);
+        
         statusbar = parent.getStatusBar();
+        statusbar.setText("");
         board = new Blocks.Tetrominoe[BOARD_WIDTH * BOARD_HEIGHT];
         addKeyListener(new TAdapter());
         clearBoard();
@@ -90,17 +98,18 @@ public class Board extends JPanel {
         }
 
         isPaused = !isPaused;
-
-        if (isPaused) {
-
-            statusbar.setText("Paused");
-        } else {
-
-            statusbar.setText(String.valueOf(numLinesRemoved));
+       
+    }
+    
+    private void showExitConfirmation() {	//종료 여부 확인하기
+        int option = JOptionPane.showConfirmDialog(this, "종료하시겠습니까?", "게임 종료", JOptionPane.YES_NO_OPTION);
+        if (option == JOptionPane.YES_OPTION) {
+            
+            System.exit(0); 
         }
     }
 
-    private void doDrawing(Graphics g) {
+    private void doDrawing(Graphics g) {	// 화면의 구성요소 그리기
 
         Dimension size = getSize();
         int boardTop = (int) size.getHeight() - BOARD_HEIGHT * squareHeight();
@@ -154,6 +163,21 @@ public class Board extends JPanel {
          g.drawRect(nextPieceX - 20 + i, nextPieceY, boxWidth, boxHeight);
      	}
      
+     	// 점수 표시 위치 계산
+     	int scoreX = nextPieceX - squareWidth()	; 
+     	int scoreY = nextPieceY + squareHeight() * 6; 
+
+     	// 점수 표시
+     	g.setColor(Color.WHITE);
+     	g.setFont(tetrisFont);
+     	if(!isPaused)
+     	{
+     		g.drawString("Score: " + TotalScore, scoreX, scoreY);
+     	}
+     	else
+     	{
+     		g.drawString("Paused", scoreX, scoreY);
+     	}
     }
 
     @Override
@@ -230,9 +254,8 @@ public class Board extends JPanel {
             curPiece.setBlock(Tetrominoe.NoBlock);
             timer.cancel();
             isStarted = false;
-            statusbar.setText("GAME OVER!");
 
-            int linesRemoved = numLinesRemoved;
+            int linesRemoved = TotalScore;
             String name = JOptionPane.showInputDialog("Enter your name:");
             String difficulty = "Hard"; // 추후에 선택 가능하도록 수정할 수 있습니다.
             String mode = "Item"; // 추후에 선택 가능하도록 수정할 수 있습니다.
@@ -281,6 +304,7 @@ public class Board extends JPanel {
     private void removeFullLines() {		//가득 찬 줄 제거, 테두리를 고려하여 수정
 
         int numFullLines = 0;
+        int consecutiveLines = 0; // 연속된 줄의 개수를 추적하는 변수 추가
 
         for (int i = BOARD_HEIGHT - 1; i >= 1; --i) {
             boolean lineIsFull = true;
@@ -297,6 +321,7 @@ public class Board extends JPanel {
             if (lineIsFull) {
                 
                 ++numFullLines;
+                ++consecutiveLines; // 연속된 줄의 개수 추가
                 
                 for (int k = i; k < BOARD_HEIGHT - 2; ++k) {
                     for (int j = 0; j < BOARD_WIDTH; ++j) {
@@ -304,12 +329,25 @@ public class Board extends JPanel {
                     }
                 }
             }
+            else {
+                // 이전 줄이 가득 찼는데 현재 줄이 가득 차지 않았을 경우
+                if (consecutiveLines > 0) {
+                    // 가산점 부여
+                    TotalScore += (consecutiveLines - 1);
+                    consecutiveLines = 0; // 연속된 줄 개수 초기화
+                }
+            }
+        }
+        
+        // 마지막 줄이 가득 찼을 경우
+        if (consecutiveLines > 0) {
+            // 가산점 부여
+            TotalScore += (consecutiveLines - 1);
         }
 
         if (numFullLines > 0) {
 
-            numLinesRemoved += numFullLines;
-            statusbar.setText(String.valueOf(numLinesRemoved));
+            TotalScore += numFullLines;
             isFallingFinished = true;
             curPiece.setBlock(Tetrominoe.NoBlock);
             repaint();
@@ -365,10 +403,8 @@ public class Board extends JPanel {
         	Color color = cbcolors[block.ordinal()];
            	 g.setColor(color); 
         }
-        
          
-        Font boldFont = new Font("Arial", Font.BOLD, 20);
-        g.setFont(boldFont);
+        g.setFont(tetrisFont);
         g.drawString("O", x + squareWidth() / 2 - 5, y + squareHeight() / 2 + 5); 
         
         if (block == Tetrominoe.BorderBlock) {
@@ -411,6 +447,12 @@ public class Board extends JPanel {
             }
 
             int keycode = e.getKeyCode();
+            
+            if (keycode == KeyEvent.VK_ESCAPE) {
+                // ESC 키가 눌렸을 때 종료 확인 팝업 표시
+                showExitConfirmation();
+                return;
+            }
 
             if (keycode == KeyEvent.VK_P) {
                 pause();
@@ -455,7 +497,7 @@ public class Board extends JPanel {
 
         @Override
         public void run() {
-
+        	TotalScore++;
             doGameCycle();
         }
     }
