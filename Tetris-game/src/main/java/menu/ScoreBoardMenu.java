@@ -1,6 +1,8 @@
 package main.java.menu;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
 import main.java.util.ButtonStyle;
@@ -19,13 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ScoreBoardMenu extends JFrame {
-    
-	private JLabel nameLabel;
-    private JLabel difficultyLabel;
-    private JLabel modeLabel;
-    private JLabel scoreLabel;
-	private JLabel titleLabel;
+	private JLabel nameLabel, difficultyLabel, modeLabel, scoreLabel, titleLabel;
     public JLabel[] labels;
+    private JTable scoreTable;
+    private DefaultTableModel tableModel;
     private JList<String> scoreList;
     private DefaultListModel<String> scoreModel;
     private JButton backButton;
@@ -50,6 +49,23 @@ public class ScoreBoardMenu extends JFrame {
         setTitle("스코어보드");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
+        
+        // 스코어 테이블 초기화
+        tableModel = new DefaultTableModel();
+        tableModel.addColumn("이름");
+        tableModel.addColumn("난이도");
+        tableModel.addColumn("모드");
+        tableModel.addColumn("점수");
+
+        scoreTable = new JTable(tableModel);
+        scoreTable.setFont(new Font("NanumGothic", Font.BOLD, 14));
+        
+        // 테이블 행 제목 렌더러 설정
+        JTableHeader header = scoreTable.getTableHeader();
+        header.setFont(new Font("NanumGothic", Font.BOLD, 16)); // 폰트 설정
+        header.setBackground(Color.WHITE); // 배경색 설정
+        header.setForeground(Color.BLACK); // 전경색 설정
+
 
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
@@ -79,8 +95,9 @@ public class ScoreBoardMenu extends JFrame {
         scoreList.setFont(new Font("NanumGothic", Font.BOLD, 14));
 
         // 점수 리스트를 스크롤 패널에 추가
-        JScrollPane scrollPane = new JScrollPane(scoreList);
-        panel.add(scrollPane, BorderLayout.CENTER);
+        JScrollPane tableScrollPane = new JScrollPane(scoreTable);
+        panel.add(tableScrollPane, BorderLayout.CENTER);
+        
 
         // 뒤로가기 버튼 생성 및 이벤트 처리
         backButton = new JButton("뒤로가기");
@@ -107,7 +124,6 @@ public class ScoreBoardMenu extends JFrame {
         });
         panel.add(backButton, BorderLayout.SOUTH); // 뒤로가기 버튼을 패널의 SOUTH에 추가
 
-        getContentPane().add(panel); // 패널을 프레임에 추가
         panel.setBorder(BorderFactory.createEmptyBorder(30, 20, 30, 20));
 
         setSize(400, 550);
@@ -124,30 +140,59 @@ public class ScoreBoardMenu extends JFrame {
         
 
         loadScores(); // 스코어보드가 열릴 때마다 저장된 점수를 읽기
+        
+        add(panel);
     }
     
     private void loadScores() {
-        scoreModel.clear(); // 기존 점수를 모두 지우기
-
-        List<String> scores = new ArrayList<>();
+        List<ScoreEntry> scoreEntries = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader("scoreboard.txt"))) {
             String line;
-            while ((line = reader.readLine()) != null) {
-                scoreModel.addElement(line);
+            while ((line = reader.readLine()) != null) {            	
+                // 각 줄에서 키워드를 찾습니다.
+                int nameIndex = line.indexOf("이름:");
+                int difficultyIndex = line.indexOf("난이도:");
+                int modeIndex = line.indexOf("모드:");
+                int scoreIndex = line.indexOf("점수:");
+                
+                // 모든 키워드가 존재하는지 확인합니다.
+                if (nameIndex != -1 && difficultyIndex != -1 && modeIndex != -1 && scoreIndex != -1) {
+                    // 키워드를 기준으로 정보를 추출합니다.
+                	String name = line.substring(nameIndex + 4, line.indexOf(" ", nameIndex + 4)).trim();
+                    String difficulty = line.substring(difficultyIndex + 5, line.indexOf(" ", difficultyIndex + 5)).trim();
+                    String mode = line.substring(modeIndex + 4, line.indexOf(" ", modeIndex + 4)).trim();
+                    int score = Integer.parseInt(line.substring(scoreIndex + 4, line.indexOf("점", scoreIndex + 4)).trim());
+                    
+                    // ScoreEntry 객체를 생성하여 리스트에 추가합니다.
+                    scoreEntries.add(new ScoreEntry(name, difficulty, mode, score));
+                    
+                    Object[] rowData = {name, difficulty, mode, score};
+                    tableModel.addRow(rowData);
+                    
+                 // 콘솔에 각 정보를 출력합니다.
+                    System.out.println("이름: " + name);
+                    System.out.println("난이도: " + difficulty);
+                    System.out.println("모드: " + mode);
+                    System.out.println("점수: " + score);
+                } 
             }
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "스코어보드를 로드하는 중에 오류가 발생했습니다: " + e.getMessage(), "오류", JOptionPane.ERROR_MESSAGE);
         }
-       
-        // 내림차순으로 정렬.
-        Collections.sort(scores);
+
+        // 내림차순으로 정렬
+        Collections.sort(scoreEntries);
+
+        // 모델 초기화
+        scoreModel.clear(); // 기존 점수를 모두 지우기
 
         // 정렬된 점수를 모델에 추가
-        for (String score : scores) {
-            scoreModel.addElement(score);
+        for (ScoreEntry entry : scoreEntries) {
+            scoreModel.addElement(entry.toString()); // ScoreEntry 객체를 문자열로 변환하여 추가
         }
     }
 
+    
     // 점수 추가 메서드
     public void addScore(String name, String difficulty, String mode, int score) {
     	nameLabel.setText("이름: " + name);
