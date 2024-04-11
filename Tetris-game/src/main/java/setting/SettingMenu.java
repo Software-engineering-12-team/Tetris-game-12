@@ -92,10 +92,10 @@ public class SettingMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose(); // 현재 설정 페이지 닫기
-                DifficultySettingMenu adjustSize = new DifficultySettingMenu(); // 크기 조정 페이지로 이동
-                adjustSize.setSize(getSize());
-                ScreenAdjustComponent.sizeAdjust(adjustSize.labels, adjustSize.buttons, adjustSize.isBackButton, ScreenAdjustSizeMenu.size);
-                adjustSize.setVisible(true);
+                DifficultySettingMenu difficultySetting = new DifficultySettingMenu(); // 크기 조정 페이지로 이동
+                difficultySetting.setSize(getSize());
+                ScreenAdjustComponent.sizeAdjust(difficultySetting.labels, difficultySetting.buttons, difficultySetting.isBackButton, ScreenAdjustSizeMenu.size);
+                difficultySetting.setVisible(true);
             }
         });
         
