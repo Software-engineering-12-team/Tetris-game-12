@@ -56,7 +56,7 @@ public class ScoreBoardMenu extends JFrame {
         titleLabel = new JLabel("스코어보드");
         titleLabel.setFont(new Font("NanumGothic", Font.BOLD, 30));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        titleLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
+        titleLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
         panel.add(titleLabel, BorderLayout.NORTH);
         
         labels = new JLabel[]{titleLabel};
