@@ -145,14 +145,6 @@ public class ControlKeySettingMenu extends JFrame {
         panel.add(titleLabel, BorderLayout.NORTH);
         labels = new JLabel[]{titleLabel};
 
-/*        keyLabel = new JLabel("조작키를 누르세요");
-        keyLabel.setFont(new Font("SansSerif", Font.PLAIN, 20));
-        keyLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(keyLabel, BorderLayout.CENTER);*/
-
-
-
-
         // 조작키 타입 선택을 위한 버튼 생성 및 설정
         JButton typeAButton = new JButton("타입 A");
         JButton typeBButton = new JButton("타입 B");
@@ -219,7 +211,7 @@ public class ControlKeySettingMenu extends JFrame {
         descriptionPanel.add(descriptionTitleLabel);
         descriptionTitleLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
 
-        descriptionLabel = new JLabel("조작키 설명~~~", SwingConstants.CENTER);
+        JLabel descriptionLabel = new JLabel("조작키 설명이 여기에 표시됩니다.", SwingConstants.CENTER);
         descriptionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         descriptionPanel.add(descriptionLabel);
         descriptionLabel.setBorder(BorderFactory.createEmptyBorder(100, 0, 100, 0));
@@ -232,10 +224,34 @@ public class ControlKeySettingMenu extends JFrame {
         typeAButton.addActionListener(e -> {
             descriptionTitleLabel.setText("타입 A 조작키 설정");
             setType(ControlKeyType.TYPE_A);
+            descriptionLabel.setText("<html><body style='text-align: left;'>" +
+                    "<b>기본키</b><br><br>" +
+                    "esc : 뒤로가기<br>" +
+                    "p : paused<br>" +
+                    "q : 한번에 아래로 이동하기<br><br><hr><br>" +
+                    "<b>블럭이동키</b><br><br>" +
+                    "← : 왼쪽으로 이동<br>" +
+                    "→ : 오른쪽으로 이동<br>" +
+                    "↓ : 아래로 이동<br>" +
+                    "↑ : 회전<br>" +
+                    "</body></html>");
+            descriptionLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 40, 0));
         });
         typeBButton.addActionListener(e -> {
             descriptionTitleLabel.setText("타입 B 조작키 설정");
             setType(ControlKeyType.TYPE_B);
+            descriptionLabel.setText("<html><body style='text-align: left;'>" +
+                    "<b>기본키</b><br><br>" +
+                    "esc : 뒤로가기<br>" +
+                    "p : paused<br>" +
+                    "q : 한번에 아래로 이동하기<br><br><hr><br>" +
+                    "<b>블럭이동키</b><br><br>" +
+                    "A : 왼쪽으로 이동<br>" +
+                    "D : 오른쪽으로 이동<br>" +
+                    "S : 아래로 이동<br>" +
+                    "W : 회전<br>" +
+                    "</body></html>");
+            descriptionLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 40, 0));
 
         });
         typeCButton.addActionListener(e -> {
@@ -252,24 +268,6 @@ public class ControlKeySettingMenu extends JFrame {
         selectedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               /* // 이전 저장상태
-
-                if (isSetTypeA) {
-                    setType(ControlKeyType.TYPE_A);
-                    updateStatus("현재 모드: 타입 A");
-                } else if (isSetTypeB) {
-                    setType(ControlKeyType.TYPE_B);
-                    updateStatus("현재 모드: 타입 B");
-                } else if (isSetTypeC) {
-                    setTypeC();
-                    updateStatus("현재 모드: 타입 C");
-                } else if (isSetUserControlKey) {
-                    setUserControlKey();
-                    updateStatus("현재 모드: 사용자 설정");
-                }
-                updateStatus(statusLabel.getText()); // 현재 모드 라벨 업데이트
-            }*/
-
                 switch (getTypeValue()) {
                     case 0:
                         setType(ControlKeyType.TYPE_A);
