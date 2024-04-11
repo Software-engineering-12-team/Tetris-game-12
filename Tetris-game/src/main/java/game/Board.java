@@ -20,6 +20,8 @@ import main.java.game.ScoreFileWriter; // 점수 저장을 위해 추가
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static java.awt.Color.black;
+
 public class Board extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -378,21 +380,30 @@ public class Board extends JPanel {
             Tetrominoe block) {
 
         Color colors[] = {	//일반 색깔
-            new Color(0, 0, 0), new Color(204, 102, 102),
-            new Color(102, 204, 102), new Color(102, 102, 204),
-            new Color(204, 204, 102), new Color(204, 102, 204),
-            new Color(102, 204, 204), new Color(218, 170, 0),
+            new Color(0, 0, 0),
+                new Color(204, 102, 102),
+            new Color(102, 204, 102),
+                new Color(102, 102, 204),
+            new Color(204, 204, 102),
+                new Color(204, 102, 204),
+            new Color(102, 204, 204),
+                new Color(218, 170, 0),
             new Color(0, 0, 0)
         };
-	    
-	Color cbcolors[] = {	//색맹 모드 전용 색깔(현재는 비교를 위한 임시)
-            new Color(0, 0, 0), new Color(0, 255, 0),
-            new Color(0, 0, 255), new Color(255, 0,0),
-            new Color(0, 255, 255), new Color(255, 0, 255),
-            new Color(255, 255, 0), new Color(125, 125, 125),
-            new Color(0, 0, 0)
+
+        Color cbcolors[] = {    // 색맹 모드 전용 색깔(현재는 비교를 위한 임시)
+                new Color(0, 0, 0),           // Black
+                new Color(255, 165, 0),       // Orange
+                new Color(135, 206, 235),     // Sky Blue
+                new Color(0, 255, 255),       // Bluish Green (Cyan으로 대체)
+                new Color(255, 255, 0),       // Yellow
+                new Color(0, 0, 255),         // Blue
+                new Color(227, 66, 52),       // Vermilion
+                new Color(147, 112, 219),     // Reddish Purple (Medium Purple로 대체)
+                new Color(0, 0, 0)            // 추가된 Black (원하시는 배치가 맞는지 확인해주세요)
         };
-        
+
+
         if(!SettingMenu.isColorBlindModeOn())
         {
         	Color color = colors[block.ordinal()];
