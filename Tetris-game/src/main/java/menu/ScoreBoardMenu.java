@@ -50,7 +50,18 @@ public class ScoreBoardMenu extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
         
-        // 스코어 테이블 초기화
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+
+        titleLabel = new JLabel("스코어보드");
+        titleLabel.setFont(new Font("NanumGothic", Font.BOLD, 30));
+        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        titleLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
+        panel.add(titleLabel, BorderLayout.NORTH);
+        
+        labels = new JLabel[]{titleLabel};
+        
+        // 스코어 테이블 설정        
         tableModel = new DefaultTableModel();
         tableModel.addColumn("이름");
         tableModel.addColumn("난이도");
@@ -59,35 +70,10 @@ public class ScoreBoardMenu extends JFrame {
 
         scoreTable = new JTable(tableModel);
         scoreTable.setFont(new Font("NanumGothic", Font.BOLD, 14));
+        scoreTable.setRowHeight(30); // 모든 행의 높이를 30으로 설정
         
-        // 테이블 행 제목 렌더러 설정
         JTableHeader header = scoreTable.getTableHeader();
-        header.setFont(new Font("NanumGothic", Font.BOLD, 16)); // 폰트 설정
-        header.setBackground(Color.WHITE); // 배경색 설정
-        header.setForeground(Color.BLACK); // 전경색 설정
-
-
-        JPanel panel = new JPanel();
-        panel.setLayout(new BorderLayout());
-        
-        nameLabel = new JLabel();
-        nameLabel.setFont(new Font("NanumGothic", Font.BOLD, 14));
-
-        difficultyLabel = new JLabel();
-        difficultyLabel.setFont(new Font("NanumGothic", Font.BOLD, 14));
-
-        modeLabel = new JLabel();
-        modeLabel.setFont(new Font("NanumGothic", Font.BOLD, 14));
-
-        scoreLabel = new JLabel();
-        scoreLabel.setFont(new Font("NanumGothic", Font.BOLD, 14));
-
-        titleLabel = new JLabel("스코어보드");
-        titleLabel.setFont(new Font("NanumGothic", Font.BOLD, 30));
-        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        panel.add(titleLabel, BorderLayout.NORTH);
-        
-        labels = new JLabel[]{titleLabel};
+        header.setFont(new Font("NanumGothic", Font.BOLD, 16));
         
         // 점수 리스트 초기화
         scoreModel = new DefaultListModel<>();
@@ -98,10 +84,14 @@ public class ScoreBoardMenu extends JFrame {
         JScrollPane tableScrollPane = new JScrollPane(scoreTable);
         panel.add(tableScrollPane, BorderLayout.CENTER);
         
-
+        // 점수 추가 메서드를 위한 라벨
+        nameLabel = new JLabel();
+        difficultyLabel = new JLabel();
+        modeLabel = new JLabel();
+        scoreLabel = new JLabel();
+        
         // 뒤로가기 버튼 생성 및 이벤트 처리
         backButton = new JButton("뒤로가기");
-        
         buttons = new JButton[]{backButton};
         selectedButtonIndex = 0;
         
@@ -149,31 +139,25 @@ public class ScoreBoardMenu extends JFrame {
         try (BufferedReader reader = new BufferedReader(new FileReader("scoreboard.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {            	
-                // 각 줄에서 키워드를 찾습니다.
+                // 각 줄에서 키워드를 찾기
                 int nameIndex = line.indexOf("이름:");
                 int difficultyIndex = line.indexOf("난이도:");
                 int modeIndex = line.indexOf("모드:");
                 int scoreIndex = line.indexOf("점수:");
                 
-                // 모든 키워드가 존재하는지 확인합니다.
+                // 모든 키워드가 존재하는지 확인
                 if (nameIndex != -1 && difficultyIndex != -1 && modeIndex != -1 && scoreIndex != -1) {
-                    // 키워드를 기준으로 정보를 추출합니다.
+                    // 키워드를 기준으로 정보 추출
                 	String name = line.substring(nameIndex + 4, line.indexOf(" ", nameIndex + 4)).trim();
                     String difficulty = line.substring(difficultyIndex + 5, line.indexOf(" ", difficultyIndex + 5)).trim();
                     String mode = line.substring(modeIndex + 4, line.indexOf(" ", modeIndex + 4)).trim();
                     int score = Integer.parseInt(line.substring(scoreIndex + 4, line.indexOf("점", scoreIndex + 4)).trim());
                     
-                    // ScoreEntry 객체를 생성하여 리스트에 추가합니다.
+                    // ScoreEntry 객체를 생성하여 리스트에 추가
                     scoreEntries.add(new ScoreEntry(name, difficulty, mode, score));
                     
                     Object[] rowData = {name, difficulty, mode, score};
                     tableModel.addRow(rowData);
-                    
-                 // 콘솔에 각 정보를 출력합니다.
-                    System.out.println("이름: " + name);
-                    System.out.println("난이도: " + difficulty);
-                    System.out.println("모드: " + mode);
-                    System.out.println("점수: " + score);
                 } 
             }
         } catch (IOException e) {
@@ -192,7 +176,6 @@ public class ScoreBoardMenu extends JFrame {
         }
     }
 
-    
     // 점수 추가 메서드
     public void addScore(String name, String difficulty, String mode, int score) {
     	nameLabel.setText("이름: " + name);
