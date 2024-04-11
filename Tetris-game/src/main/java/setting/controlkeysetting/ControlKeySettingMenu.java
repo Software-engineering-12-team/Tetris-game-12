@@ -41,21 +41,6 @@ public class ControlKeySettingMenu extends JFrame {
 
     }
 
-    public static void setTypeC() {
-        isSetTypeA = false;
-        isSetTypeB = false;
-        isSetTypeC = true;
-        isSetUserControlKey = false;
-        currentSelectedType = ControlKeyType.TYPE_C;
-    }
-
-    public static void setUserControlKey() {
-        isSetTypeA = false;
-        isSetTypeB = false;
-        isSetTypeC = false;
-        isSetUserControlKey = true;
-        currentSelectedType = ControlKeyType.TYPE_D;
-    }
 
     private static ControlKeyType selectedType;
     private static ControlKeyType currentSelectedType = ControlKeyType.TYPE_A;
@@ -66,12 +51,6 @@ public class ControlKeySettingMenu extends JFrame {
                 break;
             case TYPE_B:
                 statusLabel.setText("현재 모드: 타입 B");
-                break;
-            case TYPE_C:
-                statusLabel.setText("현재 모드: 타입 C");
-                break;
-            case TYPE_D:
-                statusLabel.setText("현재 모드: 사용자 설정");
                 break;
         }
     }
@@ -91,12 +70,6 @@ public class ControlKeySettingMenu extends JFrame {
                 break;
             case 1:
                 selectedType = ControlKeyType.TYPE_B;
-                break;
-            case 2:
-                selectedType = ControlKeyType.TYPE_C;
-                break;
-            case 3:
-                selectedType = ControlKeyType.TYPE_D;
                 break;
             default:
                 // 기본값으로 TYPE_A를 설정합니다.
@@ -148,46 +121,18 @@ public class ControlKeySettingMenu extends JFrame {
         // 조작키 타입 선택을 위한 버튼 생성 및 설정
         JButton typeAButton = new JButton("타입 A");
         JButton typeBButton = new JButton("타입 B");
-        JButton typeCButton = new JButton("타입 C");
-        JButton typesetUserControlKeyButton = new JButton("사용자 정의 설정");
 
         typeAButton.addActionListener(e -> setTypeA());
         typeBButton.addActionListener(e -> setTypeB());
-        typeCButton.addActionListener(e -> setTypeC());
-        typesetUserControlKeyButton.addActionListener(e -> setUserControlKey());
 
         // 버튼을 패널에 추가하기 위한 새로운 JPanel 인스턴스 생성
-        JPanel typePanel = new JPanel(new GridLayout(4, 1, 5, 5)); // GridLayout을 사용해 버튼을 세로로 배치
+        JPanel typePanel = new JPanel(new GridLayout(2, 1, 5, 5)); // GridLayout을 사용해 버튼을 세로로 배치
         typePanel.add(typeAButton);
         typePanel.add(typeBButton);
-        typePanel.add(typeCButton);
-        typePanel.add(typesetUserControlKeyButton);
 
         // 기존 패널에 타입 선택 패널 추가
         panel.add(typePanel, BorderLayout.EAST);
         typePanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // 타입 선택 패널의 여백 설정
-
-
-/*        // 사용자 정의 조작키 설정 버튼 이벤트 처리
-        typesetUserControlKeyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                keyLabel.setText("사용자 정의 조작키를 입력하세요...");
-
-                // 키 리스너를 임시로 추가하여 다음 키 입력을 캡처
-                typesetUserControlKeyButton.addKeyListener(new KeyAdapter() {
-                    @Override
-                    public void keyPressed(KeyEvent e) {
-                        customControlKey = e.getKeyCode(); // 사용자가 입력한 키 저장
-                        String keyText = KeyEvent.getKeyText(customControlKey);
-                        keyLabel.setText("설정된 사용자 정의 조작키: " + keyText);
-
-                        // 리스너를 제거하여 더 이상의 입력을 받지 않도록 함
-                        typesetUserControlKeyButton.removeKeyListener(this);
-                    }
-                });
-            }
-        });*/
 
 
         // 상세설명 패널
@@ -206,7 +151,7 @@ public class ControlKeySettingMenu extends JFrame {
         statusLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         descriptionPanel.add(statusLabel);
 
-        descriptionTitleLabel = new JLabel("조작키 설명이 여기에 표시됩니다.", SwingConstants.CENTER);
+        descriptionTitleLabel = new JLabel("조작키 설명이 아래에 표시됩니다.", SwingConstants.CENTER);
         descriptionTitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         descriptionPanel.add(descriptionTitleLabel);
         descriptionTitleLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
@@ -254,16 +199,6 @@ public class ControlKeySettingMenu extends JFrame {
             descriptionLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 40, 0));
 
         });
-        typeCButton.addActionListener(e -> {
-            descriptionTitleLabel.setText("타입 C 조작키 설정");
-            setType(ControlKeyType.TYPE_C);
-
-        });
-        typesetUserControlKeyButton.addActionListener(e -> {
-            descriptionTitleLabel.setText("사용자 정의 조작키");
-            setType(ControlKeyType.TYPE_D);
-        });
-
 
         selectedButton.addActionListener(new ActionListener() {
             @Override
@@ -278,16 +213,6 @@ public class ControlKeySettingMenu extends JFrame {
                         setType(ControlKeyType.TYPE_B);
                         updateStatus("현재 모드: 타입 B");
                         setTypeValue(1);
-                        break;
-                    case 2:
-                        setType(ControlKeyType.TYPE_C);
-                        updateStatus("현재 모드: 타입 C");
-                        setTypeValue(2);
-                        break;
-                    case 3:
-                        setType(ControlKeyType.TYPE_D);
-                        updateStatus("현재 모드: 사용자 설정");
-                        setTypeValue(3);
                         break;
                     default:
                         break;
