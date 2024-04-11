@@ -5,6 +5,7 @@ import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
 import main.java.util.ButtonStyle;
 import main.java.util.ScreenAdjustComponent;
 import main.java.game.TetrisGame;
+import main.java.game.ScoreFileWriter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,6 +35,8 @@ public class StartMenu extends JFrame {
     }
 
 	public StartMenu() {
+		ScoreFileWriter.createScoreboardFile();
+		
         setTitle("테트리스 게임");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
