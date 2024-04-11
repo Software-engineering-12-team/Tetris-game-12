@@ -3,6 +3,7 @@ package main.java.setting;
 import main.java.menu.StartMenu;
 import main.java.setting.controlkeysetting.ControlKeySettingMenu;
 import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
+import main.java.setting.difficulty.DifficultySettingMenu;
 import main.java.util.ButtonStyle;
 import main.java.util.ScreenAdjustComponent;
 
@@ -13,7 +14,7 @@ import java.awt.event.*;
 public class SettingMenu extends JFrame {
     private JLabel titleLabel;
     public JLabel[] labels;
-    private JButton sizeAdjustButton, controlKeyButton, resetscoreButton, colorBlindModeButton, resetSettingButton, backButton;
+    private JButton sizeAdjustButton, difficultySettingButton, controlKeyButton, resetscoreButton, colorBlindModeButton, resetSettingButton, backButton;
     public JButton[] buttons;
     private int selectedButtonIndex;
     public boolean isBackButton;
@@ -49,21 +50,22 @@ public class SettingMenu extends JFrame {
         labels = new JLabel[]{titleLabel};
 
         sizeAdjustButton = new JButton("크기 조절");
+        difficultySettingButton = new JButton("난이도 설정");
         controlKeyButton = new JButton("조작키 설정");
         resetscoreButton = new JButton("스코어보드 초기화");
         colorBlindModeButton = new JButton("색맹 모드 >> " + (colorBlindModeOn ? "ON" : "OFF") + " <<");
         resetSettingButton = new JButton("설정 초기화");
         backButton = new JButton("뒤로가기");
         
-        buttons = new JButton[]{sizeAdjustButton, controlKeyButton, resetscoreButton, colorBlindModeButton, resetSettingButton, backButton};
+        buttons = new JButton[]{sizeAdjustButton, difficultySettingButton, controlKeyButton, resetscoreButton, colorBlindModeButton, resetSettingButton, backButton};
         selectedButtonIndex = 0;
         
         isBackButton = true;
         ButtonStyle.applyButtonStyle(buttons, isBackButton);
         
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(5, 1, 0, 15));
-        buttonPanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
+        buttonPanel.setLayout(new GridLayout(6, 1, 0, 10));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(15, 30, 15, 30));
 
         for (JButton button : buttons) {
             buttonPanel.add(button);
@@ -79,6 +81,18 @@ public class SettingMenu extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 dispose(); // 현재 설정 페이지 닫기
                 ScreenAdjustSizeMenu adjustSize = new ScreenAdjustSizeMenu(); // 크기 조정 페이지로 이동
+                adjustSize.setSize(getSize());
+                ScreenAdjustComponent.sizeAdjust(adjustSize.labels, adjustSize.buttons, adjustSize.isBackButton, ScreenAdjustSizeMenu.size);
+                adjustSize.setVisible(true);
+            }
+        });
+        
+        // 난이도 설정 창 열기
+        difficultySettingButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose(); // 현재 설정 페이지 닫기
+                DifficultySettingMenu adjustSize = new DifficultySettingMenu(); // 크기 조정 페이지로 이동
                 adjustSize.setSize(getSize());
                 ScreenAdjustComponent.sizeAdjust(adjustSize.labels, adjustSize.buttons, adjustSize.isBackButton, ScreenAdjustSizeMenu.size);
                 adjustSize.setVisible(true);
