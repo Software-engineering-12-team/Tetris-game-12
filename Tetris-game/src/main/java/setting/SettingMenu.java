@@ -2,8 +2,8 @@ package main.java.setting;
 
 import main.java.menu.StartMenu;
 import main.java.setting.controlkeysetting.ControlKeySettingMenu;
+import main.java.setting.difficultysetting.DifficultySettingMenu;
 import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
-import main.java.setting.difficulty.DifficultySettingMenu;
 import main.java.util.ButtonStyle;
 import main.java.util.ScreenAdjustComponent;
 

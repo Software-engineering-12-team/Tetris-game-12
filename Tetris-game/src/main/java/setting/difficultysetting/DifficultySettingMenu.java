@@ -1,4 +1,4 @@
-package main.java.setting.difficulty;
+package main.java.setting.difficultysetting;
 
 import main.java.setting.SettingMenu;
 import main.java.util.ButtonStyle;
