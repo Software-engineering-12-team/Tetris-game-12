@@ -1,6 +1,5 @@
 package main.java.menu;
 
-import main.java.menu.ScoreBoardMenu;
 import main.java.setting.SettingMenu;
 import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
 import main.java.util.ButtonStyle;
@@ -16,7 +15,7 @@ public class StartMenu extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JLabel titleLabel, instructionLabel;
     public JLabel[] labels;
-    private JButton startButton, settingsButton, scoreboardButton, exitButton;
+    private JButton gameStartButton, settingsButton, scoreboardButton, exitButton;
     public JButton[] buttons;
     private int selectedButtonIndex;
     public boolean isBackButton;
@@ -47,12 +46,12 @@ public class StartMenu extends JFrame {
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(titleLabel, BorderLayout.NORTH);
 
-        startButton = new JButton("게임 시작");
+        gameStartButton = new JButton("게임 시작");
         settingsButton = new JButton("설정");
         scoreboardButton = new JButton("스코어보드");
         exitButton = new JButton("게임 종료");
         
-        buttons = new JButton[]{startButton, settingsButton, scoreboardButton, exitButton};
+        buttons = new JButton[]{gameStartButton, settingsButton, scoreboardButton, exitButton};
         selectedButtonIndex = 0;
         
         isBackButton = false;
@@ -69,15 +68,18 @@ public class StartMenu extends JFrame {
         panel.setBorder(BorderFactory.createEmptyBorder(30, 20, 30, 20));
         add(panel);
         
-        startButton.addActionListener(new ActionListener() {
+        //게임 시작 창 열기
+        gameStartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
             	dispose();
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        TetrisGame TetrisGame = new TetrisGame();
-                        TetrisGame.setVisible(true);
+                    	GameStartMenu gameStart = new GameStartMenu();
+                    	gameStart.setSize(getSize());
+                        ScreenAdjustComponent.sizeAdjust(gameStart.labels, gameStart.buttons, gameStart.isBackButton, ScreenAdjustSizeMenu.size);
+                        gameStart.setVisible(true);
                     }
                 });
             }
