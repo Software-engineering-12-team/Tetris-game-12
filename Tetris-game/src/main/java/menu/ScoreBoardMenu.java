@@ -14,7 +14,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.ArrayList;
@@ -24,9 +26,9 @@ public class ScoreBoardMenu extends JFrame {
 	private JLabel nameLabel, difficultyLabel, modeLabel, scoreLabel, titleLabel;
     public JLabel[] labels;
     private JTable scoreTable;
-    private DefaultTableModel tableModel;
+    private static DefaultTableModel tableModel;
     private JList<String> scoreList;
-    private DefaultListModel<String> scoreModel;
+    private static DefaultListModel<String> scoreModel;
     private JButton backButton;
     public JButton[] buttons;
     private int selectedButtonIndex;
@@ -184,6 +186,19 @@ public class ScoreBoardMenu extends JFrame {
         scoreLabel.setText("점수: " + score + "점");
         String entry = "이름: " + name + " / 난이도: " + difficulty + " / 모드: " + mode + " / 점수: " + score + "점";
         scoreModel.addElement(entry);
+    }
+    
+    public void clearScores() {
+        tableModel.setRowCount(0); // 테이블 모델의 행을 모두 지우기
+        scoreModel.clear(); // 리스트 모델의 모든 요소를 지우기
+        
+        JOptionPane.showMessageDialog(ScoreBoardMenu.this, "스코어보드가 초기화되었습니다.", "초기화 완료", JOptionPane.INFORMATION_MESSAGE);
+        // 텍스트 파일 비우기
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("scoreboard.txt"))) {
+            writer.write("");
+        } catch (IOException e) {
+            e.printStackTrace(); // 오류 발생 시 출력
+        }
     }
 
 }

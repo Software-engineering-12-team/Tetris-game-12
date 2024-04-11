@@ -1,6 +1,7 @@
 package main.java.setting;
 
 import main.java.menu.StartMenu;
+import main.java.menu.ScoreBoardMenu;
 import main.java.setting.controlkeysetting.ControlKeySettingMenu;
 import main.java.setting.difficultysetting.DifficultySettingMenu;
 import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
@@ -103,7 +104,8 @@ public class SettingMenu extends JFrame {
         resetscoreButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // 스코어보드 초기화 기능 구현하면 됨 ->  창을 나가도 유지 필요
+            	ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
+            	scoreBoardMenu.clearScores();
             }
         });
 
