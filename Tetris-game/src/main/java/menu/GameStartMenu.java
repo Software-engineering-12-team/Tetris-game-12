@@ -1,6 +1,7 @@
 package main.java.menu;
 
 import main.java.game.TetrisGame;
+import main.java.setting.difficultysetting.DifficultySettingMenu;
 import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
 import main.java.util.ButtonStyle;
 import main.java.util.ScreenAdjustComponent;
@@ -69,13 +70,15 @@ public class GameStartMenu extends JFrame {
         panel.setBorder(BorderFactory.createEmptyBorder(30, 20, 30, 20));
         add(panel);
         
-        // 노멀 모드 창 열기
+        // 노멀 모드에서 난이도 조절 창으로 연결
         normalModeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose(); // 현재 창 닫기
-                TetrisGame TetrisGame = new TetrisGame();
-                TetrisGame.setVisible(true);
+            	dispose(); // 현재 설정 페이지 닫기
+                DifficultySettingMenu difficultySetting = new DifficultySettingMenu(); // 크기 조정 페이지로 이동
+                difficultySetting.setSize(getSize());
+                ScreenAdjustComponent.sizeAdjust(difficultySetting.labels, difficultySetting.buttons, difficultySetting.isBackButton, ScreenAdjustSizeMenu.size);
+                difficultySetting.setVisible(true);
             }
         });
         

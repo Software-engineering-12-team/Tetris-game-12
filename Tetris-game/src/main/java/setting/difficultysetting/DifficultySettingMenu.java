@@ -1,6 +1,9 @@
 package main.java.setting.difficultysetting;
 
+import main.java.game.TetrisGame;
+import main.java.menu.ScoreBoardMenu;
 import main.java.setting.SettingMenu;
+import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
 import main.java.util.ButtonStyle;
 import main.java.util.ScreenAdjustComponent;
 
@@ -86,7 +89,34 @@ public class DifficultySettingMenu extends JFrame {
             }
         });
         panel.add(backButton, BorderLayout.SOUTH); // 뒤로가기 버튼을 패널의 SOUTH에 추가
-
+        
+        easyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose(); // 현재 창 닫기
+                TetrisGame TetrisGame = new TetrisGame();
+                TetrisGame.setVisible(true);
+            }
+        });
+        
+        normalButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose(); // 현재 창 닫기
+                TetrisGame TetrisGame = new TetrisGame();
+                TetrisGame.setVisible(true);
+            }
+        });
+        
+        hardButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose(); // 현재 창 닫기
+                TetrisGame TetrisGame = new TetrisGame();
+                TetrisGame.setVisible(true);
+            }
+        });
+        
         // 프레임 설정
         setSize(400, 550);
         setLocationRelativeTo(null);
