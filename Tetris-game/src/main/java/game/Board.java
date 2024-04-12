@@ -46,8 +46,6 @@ public class Board extends JPanel {
     private Tetrominoe[] board;
     
     public Board(TetrisGame parent) {
-
-    	scoreBoardMenu = new ScoreBoardMenu();
         initBoard(parent);
     }
 
@@ -266,6 +264,7 @@ public class Board extends JPanel {
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
+                	ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
                     scoreBoardMenu.addScore(name, difficulty, mode, linesRemoved);
                     endGame(name, difficulty, mode, linesRemoved);
                 	scoreBoardMenu.setSize(getSize());
