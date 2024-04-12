@@ -15,6 +15,7 @@ import main.java.game.Blocks.Tetrominoe;
 import main.java.menu.ScoreBoardMenu;
 import main.java.setting.SettingMenu;
 import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
+import main.java.util.ScreenAdjustComponent;
 import main.java.game.ScoreFileWriter; // 점수 저장을 위해 추가
 
 import java.util.Timer;
@@ -266,9 +267,11 @@ public class Board extends JPanel {
                 @Override
                 public void run() {
                     scoreBoardMenu.addScore(name, difficulty, mode, linesRemoved);
+                    endGame(name, difficulty, mode, linesRemoved);
+                	scoreBoardMenu.setSize(getSize());
+                    ScreenAdjustComponent.sizeAdjust(scoreBoardMenu.labels, scoreBoardMenu.buttons, scoreBoardMenu.isBackButton, ScreenAdjustSizeMenu.size);
                     scoreBoardMenu.setVisible(true); // 스코어보드 창을 보이도록 설정
                     
-                    endGame(name, difficulty, mode, linesRemoved);
                 }
             });
         }
