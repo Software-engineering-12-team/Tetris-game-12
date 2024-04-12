@@ -104,7 +104,11 @@ public class SettingMenu extends JFrame {
         resetscoreButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	dispose(); // 현재 페이지 닫기
             	ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
+            	scoreBoardMenu.setSize(getSize());
+                ScreenAdjustComponent.sizeAdjust(scoreBoardMenu.labels, scoreBoardMenu.buttons, scoreBoardMenu.isBackButton, ScreenAdjustSizeMenu.size);
+                scoreBoardMenu.setVisible(true);
             	scoreBoardMenu.clearScores();
             }
         });
