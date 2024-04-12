@@ -5,6 +5,7 @@ import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
 import main.java.util.ButtonStyle;
 import main.java.util.ScreenAdjustComponent;
 import main.java.game.TetrisGame;
+import main.java.menu.gamestart.GameStartMenu;
 import main.java.game.ScoreFileWriter;
 
 import javax.swing.*;
