@@ -264,12 +264,12 @@ public class Board extends JPanel {
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
+                	endGame(name, difficulty, mode, linesRemoved);
                 	ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
                     scoreBoardMenu.addScore(name, difficulty, mode, linesRemoved);
-                    endGame(name, difficulty, mode, linesRemoved);
                 	scoreBoardMenu.setSize(getSize());
                     ScreenAdjustComponent.sizeAdjust(scoreBoardMenu.labels, scoreBoardMenu.buttons, scoreBoardMenu.isBackButton, ScreenAdjustSizeMenu.size);
-                    scoreBoardMenu.setVisible(true); // 스코어보드 창을 보이도록 설정
+                  
                     
                 }
             });
