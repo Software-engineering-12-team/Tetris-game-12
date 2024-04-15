@@ -20,6 +20,9 @@ public class DifficultySettingMenu extends JFrame {
 	public static int size;
     public boolean isBackButton;
     
+    public String ENHdifficulty;
+    
+    
     private void handleKeyEvent(KeyEvent e) {
         int keyCode = e.getKeyCode();
         if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_RIGHT) {
@@ -89,12 +92,14 @@ public class DifficultySettingMenu extends JFrame {
             }
         });
         panel.add(backButton, BorderLayout.SOUTH); // 뒤로가기 버튼을 패널의 SOUTH에 추가
+       
         
         easyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose(); // 현재 창 닫기
-                TetrisGame TetrisGame = new TetrisGame();
+                ENHdifficulty = "Easy";
+                TetrisGame TetrisGame = new TetrisGame(ENHdifficulty);
                 TetrisGame.setVisible(true);
             }
         });
@@ -103,7 +108,8 @@ public class DifficultySettingMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose(); // 현재 창 닫기
-                TetrisGame TetrisGame = new TetrisGame();
+                ENHdifficulty = "Normal";
+                TetrisGame TetrisGame = new TetrisGame(ENHdifficulty);
                 TetrisGame.setVisible(true);
             }
         });
@@ -112,7 +118,8 @@ public class DifficultySettingMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose(); // 현재 창 닫기
-                TetrisGame TetrisGame = new TetrisGame();
+                ENHdifficulty = "Hard";
+                TetrisGame TetrisGame = new TetrisGame(ENHdifficulty);
                 TetrisGame.setVisible(true);
             }
         });

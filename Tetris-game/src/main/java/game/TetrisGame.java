@@ -5,16 +5,18 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import main.java.menu.gamestart.DifficultySettingMenu;
 import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
 
 
 public class TetrisGame extends JFrame {
-
+	
+	private String difficulty;
 	private static final long serialVersionUID = 1L;
 	private JLabel statusbar;
 
-    public TetrisGame() {
-
+    public TetrisGame(String difficulty) {
+    	this.difficulty = difficulty;
         initUI();
     }
 
@@ -23,7 +25,7 @@ public class TetrisGame extends JFrame {
         statusbar = new JLabel(" 0");
         add(statusbar, BorderLayout.SOUTH);
 
-        Board board = new Board(this);
+        Board board = new Board(this, difficulty);
         add(board);
         board.start();
         
@@ -40,15 +42,14 @@ public class TetrisGame extends JFrame {
     }
 
     public JLabel getStatusBar() {
-
         return statusbar;
     }
 
     public static void main(String[] args) {
-
+    	DifficultySettingMenu difficultySettingMenu = new DifficultySettingMenu();
+        String difficulty = difficultySettingMenu.ENHdifficulty;
         EventQueue.invokeLater(() -> {
-
-            TetrisGame game = new TetrisGame();
+            TetrisGame game = new TetrisGame(difficulty);
             game.setVisible(true);
         });
     }

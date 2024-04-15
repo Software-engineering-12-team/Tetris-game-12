@@ -17,6 +17,7 @@ import main.java.setting.SettingMenu;
 import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
 import main.java.util.ScreenAdjustComponent;
 import main.java.game.ScoreFileWriter; // 점수 저장을 위해 추가
+import main.java.menu.gamestart.DifficultySettingMenu;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -32,6 +33,7 @@ public class Board extends JPanel {
     private int PERIOD_INTERVAL = 1000; // 동적 변경을 위해 변경
     private ScoreBoardMenu scoreBoardMenu;
 
+    private String difficulty;
     private Timer timer;
     private boolean isFallingFinished = false;
     private boolean isStarted = false;
@@ -45,7 +47,8 @@ public class Board extends JPanel {
     private Font tetrisFont;
     private Tetrominoe[] board;
     
-    public Board(TetrisGame parent) {
+    public Board(TetrisGame parent, String difficulty) {
+    	this.difficulty = difficulty;
         initBoard(parent);
     }
 
@@ -56,9 +59,9 @@ public class Board extends JPanel {
         timer.scheduleAtFixedRate(new ScheduleTask(),
                 INITIAL_DELAY, PERIOD_INTERVAL);
 
-        curPiece = new Blocks();
-        nextPiece = new Blocks();
-        nextPiece.setRandomBlock();
+        curPiece = new Blocks(difficulty);
+        nextPiece = new Blocks(difficulty);
+        nextPiece.setRandomBlock(difficulty);
         if(ScreenAdjustSizeMenu.size == 0)		//화면 크기에 따른 폰트 크기 변경
         	tetrisFont = new Font("Arial", Font.BOLD, 20);
             else if(ScreenAdjustSizeMenu.size == 1)
@@ -245,8 +248,8 @@ public class Board extends JPanel {
     private void newPiece() {		//새로운 블록 생성
 
     	curPiece = nextPiece;	// 현재 블록을 방금 표시되었던 블록으로 설정
-    	nextPiece = new Blocks(); // 다음 블록 생성
-    	nextPiece.setRandomBlock();
+    	nextPiece = new Blocks(difficulty); // 다음 블록 생성
+    	nextPiece.setRandomBlock(difficulty);
         curX = BOARD_WIDTH / 2 - 1;
         curY = BOARD_HEIGHT - 2 + curPiece.minY();
 
@@ -258,8 +261,7 @@ public class Board extends JPanel {
 
             int linesRemoved = TotalScore;
             String name = JOptionPane.showInputDialog("Enter your name:");
-            String difficulty = "Hard"; // 추후에 선택 가능하도록 수정할 수 있습니다.
-            String mode = "Item"; // 추후에 선택 가능하도록 수정할 수 있습니다.
+            String mode = "일반"; // 추후에 선택 가능하도록 수정할 수 있습니다.
 
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
