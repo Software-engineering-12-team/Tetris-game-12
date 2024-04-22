@@ -156,37 +156,26 @@ public class ScoreBoardMenu extends JFrame {
                     int score = Integer.parseInt(line.substring(scoreIndex + 4, line.indexOf("점", scoreIndex + 4)).trim());
                     
                     // ScoreEntry 객체를 생성하여 리스트에 추가
-                    scoreEntries.add(new ScoreEntry(name, difficulty, mode, score));
-                    
-                    Object[] rowData = {name, difficulty, mode, score};
-                    tableModel.addRow(rowData);
-                } 
-            }
+                    scoreEntries.add(new ScoreEntry(name, difficulty, mode, score));   
+                }
+            } 
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "스코어보드를 로드하는 중에 오류가 발생했습니다: " + e.getMessage(), "오류", JOptionPane.ERROR_MESSAGE);
         }
 
-        // 내림차순으로 정렬
         Collections.sort(scoreEntries);
-
-        // 모델 초기화
-        scoreModel.clear(); // 기존 점수를 모두 지우기
-
-        // 정렬된 점수를 모델에 추가
+        
         for (ScoreEntry entry : scoreEntries) {
             scoreModel.addElement(entry.toString()); // ScoreEntry 객체를 문자열로 변환하여 추가
+            Object[] rowData = {entry.getName(), entry.getDifficulty(), entry.getMode(), entry.getScore()};
+            tableModel.addRow(rowData);
         }
+            
+        // 모델 초기화
+        scoreModel.clear(); // 기존 점수를 모두 지우기
     }
 
-    // 점수 추가 메서드
-    public void addScore(String name, String difficulty, String mode, int score) {
-    	nameLabel.setText("이름: " + name);
-        difficultyLabel.setText("난이도: " + difficulty);
-        modeLabel.setText("모드: " + mode);
-        scoreLabel.setText("점수: " + score + "점");
-        String entry = "이름: " + name + " / 난이도: " + difficulty + " / 모드: " + mode + " / 점수: " + score + "점";
-        scoreModel.addElement(entry);
-    }
+   
     
     public void clearScores() {
         tableModel.setRowCount(0); // 테이블 모델의 행을 모두 지우기
