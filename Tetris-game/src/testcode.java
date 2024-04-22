@@ -12,7 +12,7 @@ public class testcode{
         int[] blockCounts = new int[8]; 
 
         // 테스트 횟수
-        int testCount = 10000;
+        int testCount = 100000;
 
         // 테스트를 수행하여 블록 생성 횟수 기록
         for (int i = 0; i < testCount; i++) {

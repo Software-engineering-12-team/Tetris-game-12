@@ -331,9 +331,9 @@ public class Board extends JPanel {
                 
                 for (int k = i; k < BOARD_HEIGHT - 2; ++k) {
                     for (int j = 0; j < BOARD_WIDTH; ++j) {
-                    	board[(k * BOARD_WIDTH) + j] = blockAt(j, k + 1);
+                        board[(k * BOARD_WIDTH) + j] = blockAt(j, k + 1);
                     }
-                }
+                }        
             }
             else {
                 // 이전 줄이 가득 찼는데 현재 줄이 가득 차지 않았을 경우
@@ -363,10 +363,20 @@ public class Board extends JPanel {
         }
     }
     
-    ///속도 변경 메소드, 추후 적정수치 논의 필요 
     private void adjustSpeed(int numFullLines) {
-    	int newDelay = Math.max(INITIAL_DELAY - numFullLines*50, 0);
-    	int newInterval = Math.max(PERIOD_INTERVAL - numFullLines*10, 0); 
+    	int newDelay;
+    	int newInterval;
+    	
+    	if (difficulty.equals("Easy")) {
+            newDelay = Math.max(INITIAL_DELAY - numFullLines * 40, 0);
+            newInterval = Math.max(PERIOD_INTERVAL - numFullLines * 8, 0);
+        } else if (difficulty.equals("Hard")) {
+            newDelay = Math.max(INITIAL_DELAY - numFullLines * 60, 0);
+            newInterval = Math.max(PERIOD_INTERVAL - numFullLines * 12, 0);
+        } else {
+            newDelay = Math.max(INITIAL_DELAY - numFullLines * 50, 0);
+            newInterval = Math.max(PERIOD_INTERVAL - numFullLines * 10, 0);
+        }
     	
     	if (newInterval <= 0) {
     		newInterval = 1;

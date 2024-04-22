@@ -13,8 +13,7 @@ public class Blocks {
     private Tetrominoe pieceBlock;
     private int coords[][];
     private int[][][] coordsTable;
-    private double easyProbability;
-    private double hardProbability;
+    
     private String difficulty;
 
 
