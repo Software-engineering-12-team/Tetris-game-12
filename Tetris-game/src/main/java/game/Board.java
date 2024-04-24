@@ -268,7 +268,13 @@ public class Board extends JPanel {
                 public void run() {
                 	endGame(name, difficulty, mode, linesRemoved);
                 	ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
-                	scoreBoardMenu.setSize(getSize());
+                	 if(ScreenAdjustSizeMenu.size == 0)
+                		 scoreBoardMenu.setSize(400, 550);
+                         else if(ScreenAdjustSizeMenu.size == 1)
+                        	 scoreBoardMenu.setSize(440, 605);
+                         else
+                        	 scoreBoardMenu.setSize(460, 660);
+                	
                     ScreenAdjustComponent.sizeAdjust(scoreBoardMenu.labels, scoreBoardMenu.buttons, scoreBoardMenu.isBackButton, ScreenAdjustSizeMenu.size);
                 }
             });
