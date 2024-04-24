@@ -15,6 +15,7 @@ import main.java.game.Blocks.Tetrominoe;
 import main.java.menu.ScoreBoardMenu;
 import main.java.setting.SettingFileWriter;
 import main.java.setting.SettingMenu;
+import main.java.setting.colorblindmode.ColorBlindModeMenu;
 import main.java.util.ScreenAdjustComponent;
 import main.java.game.ScoreFileWriter; // 점수 저장을 위해 추가
 import main.java.menu.gamestart.DifficultySettingMenu;
@@ -50,6 +51,10 @@ public class Board extends JPanel {
     public Board(TetrisGame parent, String difficulty) {
     	this.difficulty = difficulty;
         initBoard(parent);
+    }
+
+    public Board(String colorBlindStatus) {
+    	ColorBlindModeMenu.colorBlindStatus = colorBlindStatus;
     }
 
     private void initBoard(TetrisGame parent) {		//게임 보드 초기화
@@ -395,7 +400,6 @@ public class Board extends JPanel {
     
     private void drawBlock(Graphics g, int x, int y, 
             Tetrominoe block) {
-
         Color colors[] = {	//일반 색깔
             new Color(0, 0, 0),
                 new Color(204, 102, 102),
@@ -408,7 +412,7 @@ public class Board extends JPanel {
             new Color(0, 0, 0)
         };
 
-        Color cbcolors[] = {    // 색맹 모드 전용 색깔(현재는 비교를 위한 임시)
+        Color rgcbcolors[] = {    // 적록 색맹 모드 전용 색깔
                 new Color(0, 0, 0),           // Black
                 new Color(255, 165, 0),       // Orange
                 new Color(135, 206, 235),     // Sky Blue
@@ -420,16 +424,33 @@ public class Board extends JPanel {
                 new Color(0, 0, 0)            // 추가된 Black (원하시는 배치가 맞는지 확인해주세요)
         };
 
+        Color bycbcolors[] = {    // 청황 색맹 모드 전용 색깔
+                new Color(0, 0, 0),           // Black
+                new Color(0, 0, 0),       // Orange
+                new Color(0, 0, 0),     // Sky Blue
+                new Color(0, 0, 0),       // Bluish Green (Cyan으로 대체)
+                new Color(0, 0, 0),       // Yellow
+                new Color(0, 0, 0),         // Blue
+                new Color(0, 0, 0),       // Vermilion
+                new Color(0, 0, 0),     // Reddish Purple (Medium Purple로 대체)
+                new Color(0, 0, 0)            // 추가된 Black (원하시는 배치가 맞는지 확인해주세요)
+        };
 
-        if(!SettingMenu.isColorBlindModeOn())
+
+        if(ColorBlindModeMenu.colorBlindStatus.equals("정상"))
         {
         	Color color = colors[block.ordinal()];
            	 g.setColor(color); 
         }
-        else
+        else if(ColorBlindModeMenu.colorBlindStatus.equals("적녹색맹"))
         {
-        	Color color = cbcolors[block.ordinal()];
-           	 g.setColor(color); 
+        	Color color = rgcbcolors[block.ordinal()];
+           	 g.setColor(color);
+        }
+        else if(ColorBlindModeMenu.colorBlindStatus.equals("청황색맹"))
+        {
+        	Color color = bycbcolors[block.ordinal()];
+           	 g.setColor(color);
         }
          
         g.setFont(tetrisFont);

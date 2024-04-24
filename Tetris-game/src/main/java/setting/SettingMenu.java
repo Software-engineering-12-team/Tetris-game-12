@@ -3,6 +3,7 @@ package main.java.setting;
 import main.java.menu.StartMenu;
 import main.java.menu.gamestart.DifficultySettingMenu;
 import main.java.menu.ScoreBoardMenu;
+import main.java.setting.colorblindmode.ColorBlindModeMenu;
 import main.java.setting.controlkeysetting.ControlKeySettingMenu;
 import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
 import main.java.util.ButtonStyle;
@@ -13,6 +14,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+
 public class SettingMenu extends JFrame {
     private JLabel titleLabel;
     public JLabel[] labels;
@@ -20,7 +22,6 @@ public class SettingMenu extends JFrame {
     public JButton[] buttons;
     private int selectedButtonIndex;
     public boolean isBackButton;
-    private static boolean colorBlindModeOn; // 색맹 모드 상태를 저장할 변수
 
     
     private void handleKeyEvent(KeyEvent e) {
@@ -54,7 +55,7 @@ public class SettingMenu extends JFrame {
         sizeAdjustButton = new JButton("크기 조절");
         controlKeyButton = new JButton("조작키 설정");
         resetscoreButton = new JButton("스코어보드 초기화");
-        colorBlindModeButton = new JButton("색맹 모드 >> " + (colorBlindModeOn ? "ON" : "OFF") + " <<");
+        colorBlindModeButton = new JButton("색맹 모드");
         resetSettingButton = new JButton("설정 초기화");
         backButton = new JButton("뒤로가기");
         
@@ -118,16 +119,23 @@ public class SettingMenu extends JFrame {
             }
         });
 
+
+
         // 색맹 모드 창 열기
         colorBlindModeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SettingMenu.setColorBlindMode(!SettingMenu.isColorBlindModeOn());
-                if (SettingMenu.isColorBlindModeOn()) {
-                    colorBlindModeButton.setText("색맹 모드 >> ON <<");
-                } else {
-                    colorBlindModeButton.setText("색맹 모드 >> OFF <<");
-                }
+                dispose();
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        ColorBlindModeMenu colorBlindModeMenu = new ColorBlindModeMenu();
+                        colorBlindModeMenu.setSize(getSize());
+                        ScreenAdjustComponent.sizeAdjust(colorBlindModeMenu.labels, colorBlindModeMenu.buttons, colorBlindModeMenu.isBackButton, SettingFileWriter.readSize());
+                        colorBlindModeMenu.setVisible(true);
+                        colorBlindModeMenu.updateColorBlindModeUI();
+                    }
+                });
             }
         });
 
@@ -181,11 +189,5 @@ public class SettingMenu extends JFrame {
         setFocusable(true);
     }
 
-    public static void setColorBlindMode(boolean colorBlindmode) {
-        colorBlindModeOn = colorBlindmode;
-    }
 
-    public static boolean isColorBlindModeOn() {
-        return colorBlindModeOn;
-    }
 }

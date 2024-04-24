@@ -77,7 +77,7 @@ public class ScreenAdjustSizeMenu extends JFrame {
             	setSize(400, 550);
             	ScreenAdjustComponent.sizeAdjust(labels, buttons, isBackButton, size);
             	SettingFileWriter.clearSetting();
-            	SettingFileWriter.writeSetting(size, "controlKey", "blindMode");
+            	SettingFileWriter.writeSetting(size, "controlKey", "colorBlindStatus");
             }
         });
         
@@ -88,7 +88,7 @@ public class ScreenAdjustSizeMenu extends JFrame {
             	setSize(440, 605);
             	ScreenAdjustComponent.sizeAdjust(labels, buttons, isBackButton, size);
             	SettingFileWriter.clearSetting();
-            	SettingFileWriter.writeSetting(size, "controlKey", "blindMode");
+            	SettingFileWriter.writeSetting(size, "controlKey", "colorBlindStatus");
             }
         });
         
@@ -99,7 +99,7 @@ public class ScreenAdjustSizeMenu extends JFrame {
             	setSize(480, 660);
             	ScreenAdjustComponent.sizeAdjust(labels, buttons, isBackButton, size);
             	SettingFileWriter.clearSetting();
-            	SettingFileWriter.writeSetting(size, "controlKey", "blindMode");
+            	SettingFileWriter.writeSetting(size, "controlKey", "colorBlindStatus");
             }
         });
 

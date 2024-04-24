@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] colorBlindMode color change">
+    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] fix ControlKey type A, B">
+      <change afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/util/SettingFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/controlkeysetting/ControlKeySettingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/controlkeysetting/ControlKeySettingMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/game/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingFileWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingFileWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/screenadjustsize/ScreenAdjustSizeMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/screenadjustsize/ScreenAdjustSizeMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,6 +148,7 @@
       <workItem from="1712288763303" duration="1388000" />
       <workItem from="1712782487115" duration="1935000" />
       <workItem from="1712799052457" duration="3624000" />
+      <workItem from="1713974216022" duration="9254000" />
     </task>
     <task id="LOCAL-00001" summary="[Feature] create Setting file">
       <option name="closed" value="true" />

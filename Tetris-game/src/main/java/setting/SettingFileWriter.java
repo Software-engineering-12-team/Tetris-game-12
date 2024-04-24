@@ -1,16 +1,14 @@
 package main.java.setting;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import main.java.setting.colorblindmode.ColorBlindModeMenu;
+
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import javax.swing.JOptionPane;
 
-import java.io.File;
-import java.io.FileReader;
+import static main.java.setting.colorblindmode.ColorBlindModeMenu.*;
 
 public class SettingFileWriter {
 	private static final String FILE_PATH = "setting.txt";
@@ -21,12 +19,12 @@ public class SettingFileWriter {
             File file = new File(FILE_PATH);
             if (file.createNewFile()) {
                 System.out.println("설정 파일이 생성되었습니다.");
-            	SettingFileWriter.writeSetting(0, "controlKey", "blindMode");
+            	SettingFileWriter.writeSetting(0, "controlKey", ColorBlindModeMenu.colorBlindStatus);
             } else {
                 System.out.println("설정 파일이 이미 존재합니다.");
                 if (Files.size(Paths.get("setting.txt")) == 0) {
                     System.out.println("파일이 존재하지만 비어 있습니다.");
-                	SettingFileWriter.writeSetting(0, "controlKey", "blindMode");
+                	SettingFileWriter.writeSetting(0, "controlKey", ColorBlindModeMenu.colorBlindStatus);
                 } else {
                     System.out.println("파일이 비어 있지 않습니다.");
                 }
@@ -61,8 +59,8 @@ public class SettingFileWriter {
         int size = Integer.parseInt(size_temp);
         return size;
     }
-    
-    private String readControlKey() {
+
+    public static String readControlKey() {
         String controlKey = null;
         try (BufferedReader reader = new BufferedReader(new FileReader("setting.txt"))) {
             String line;
@@ -79,16 +77,17 @@ public class SettingFileWriter {
         }
         return controlKey;
     }
-    private String readBlindMode() {
+    public static String readBlindMode() {
         String blindMode = null;
         try (BufferedReader reader = new BufferedReader(new FileReader("setting.txt"))) {
             String line;
-            while ((line = reader.readLine()) != null) {            	
+            while ((line = reader.readLine()) != null) {
                 int blindModeIndex = line.indexOf("색맹모드:");
-                
+
                 if (blindModeIndex != -1) {
                     // 키워드를 기준으로 정보 추출
-                    blindMode = line.substring(blindModeIndex + 6, line.indexOf(" ", blindModeIndex + 6)).trim();
+                    blindMode = line.substring(blindModeIndex + "색맹모드:".length()).trim(); // 모드 텍스트를 정확하게 추출
+                    break;
                 }
             } 
         } catch (IOException e) {
@@ -97,10 +96,10 @@ public class SettingFileWriter {
         return blindMode;
     }
     
-    public static void writeSetting(int size, String controlKey, String blindMode) {
+    public static void writeSetting(int size, String controlKey, String colorBlindStatus) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
             writer.write(Integer.toString(size)); // 설정 값을 텍스트로 변환하여 파일에 씁니다.
-            writer.write("크기: " + size + " / 조작키: " + controlKey + " / 색맹모드: " + blindMode +"\n");
+            writer.write("크기: " + size + " / 조작키: " + controlKey + " / 색맹모드: " + colorBlindStatus +"\n");
             writer.close();
             System.out.println("설정 정보가 파일에 저장되었습니다.");
         } catch (IOException e) {
