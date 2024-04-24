@@ -273,7 +273,7 @@ public class Board extends JPanel {
                          else if(ScreenAdjustSizeMenu.size == 1)
                         	 scoreBoardMenu.setSize(440, 605);
                          else
-                        	 scoreBoardMenu.setSize(460, 660);
+                        	 scoreBoardMenu.setSize(480, 660);
                 	
                     ScreenAdjustComponent.sizeAdjust(scoreBoardMenu.labels, scoreBoardMenu.buttons, scoreBoardMenu.isBackButton, ScreenAdjustSizeMenu.size);
                 }
