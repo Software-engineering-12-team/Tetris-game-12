@@ -130,6 +130,21 @@ public class SettingMenu extends JFrame {
             }
         });
 
+        resetSettingButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	//창 크기 초기화(small)
+            	ScreenAdjustSizeMenu.size = 0;
+            	setSize(400, 550);
+            	ScreenAdjustComponent.sizeAdjust(labels, buttons, isBackButton, ScreenAdjustSizeMenu.size);
+            	
+            	//조작키 초기화
+            	
+            	//색맹 모드 초기화
+            	
+            }
+        });
+
 
         // 뒤로가기 버튼 생성 및 이벤트 처리
         backButton.addActionListener(new ActionListener() {
