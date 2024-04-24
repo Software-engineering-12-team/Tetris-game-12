@@ -45,9 +45,9 @@ public class ScreenAdjustSizeMenu extends JFrame {
         
         labels = new JLabel[]{titleLabel};
         
-        smallButton = new JButton("사이즈 1");
-        mediumButton = new JButton("사이즈 2");
-        largeButton = new JButton("사이즈 3");
+        smallButton = new JButton("small");
+        mediumButton = new JButton("medium");
+        largeButton = new JButton("large");
         
         backButton = new JButton("뒤로가기");
         
