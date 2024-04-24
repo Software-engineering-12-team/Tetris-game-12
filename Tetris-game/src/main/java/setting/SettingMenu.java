@@ -7,6 +7,7 @@ import main.java.setting.controlkeysetting.ControlKeySettingMenu;
 import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
 import main.java.util.ButtonStyle;
 import main.java.util.ScreenAdjustComponent;
+import main.java.setting.SettingFileWriter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -82,7 +83,7 @@ public class SettingMenu extends JFrame {
                 dispose(); // 현재 설정 페이지 닫기
                 ScreenAdjustSizeMenu adjustSize = new ScreenAdjustSizeMenu(); // 크기 조정 페이지로 이동
                 adjustSize.setSize(getSize());
-                ScreenAdjustComponent.sizeAdjust(adjustSize.labels, adjustSize.buttons, adjustSize.isBackButton, ScreenAdjustSizeMenu.size);
+                ScreenAdjustComponent.sizeAdjust(adjustSize.labels, adjustSize.buttons, adjustSize.isBackButton, SettingFileWriter.readSize());
                 adjustSize.setVisible(true);
             }
         });
@@ -94,7 +95,7 @@ public class SettingMenu extends JFrame {
             	dispose(); // 현재 페이지 닫기
             	ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
             	scoreBoardMenu.setSize(getSize());
-                ScreenAdjustComponent.sizeAdjust(scoreBoardMenu.labels, scoreBoardMenu.buttons, scoreBoardMenu.isBackButton, ScreenAdjustSizeMenu.size);
+                ScreenAdjustComponent.sizeAdjust(scoreBoardMenu.labels, scoreBoardMenu.buttons, scoreBoardMenu.isBackButton, SettingFileWriter.readSize());
                 scoreBoardMenu.setVisible(true);
             	scoreBoardMenu.clearScores();
             }
@@ -110,7 +111,7 @@ public class SettingMenu extends JFrame {
                     public void run() {
                     	ControlKeySettingMenu operatingKeysettingMenu = new ControlKeySettingMenu();
                         operatingKeysettingMenu.setSize(getSize());
-                        ScreenAdjustComponent.sizeAdjust(operatingKeysettingMenu.labels, operatingKeysettingMenu.buttons, operatingKeysettingMenu.isBackButton, ScreenAdjustSizeMenu.size);
+                        ScreenAdjustComponent.sizeAdjust(operatingKeysettingMenu.labels, operatingKeysettingMenu.buttons, operatingKeysettingMenu.isBackButton, SettingFileWriter.readSize());
                         operatingKeysettingMenu.setVisible(true);
                     }
                 });
@@ -134,9 +135,10 @@ public class SettingMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
             	//창 크기 초기화(small)
-            	ScreenAdjustSizeMenu.size = 0;
+            	SettingFileWriter.clearSetting();
+            	SettingFileWriter.writeSetting(0, "controlKey", "blindMode");
             	setSize(400, 550);
-            	ScreenAdjustComponent.sizeAdjust(labels, buttons, isBackButton, ScreenAdjustSizeMenu.size);
+            	ScreenAdjustComponent.sizeAdjust(labels, buttons, isBackButton, SettingFileWriter.readSize());
             	
             	//조작키 초기화
             	
@@ -156,7 +158,7 @@ public class SettingMenu extends JFrame {
                     public void run() {
                     	StartMenu StartMenu = new StartMenu();
                     	StartMenu.setSize(getSize());
-                        ScreenAdjustComponent.sizeAdjust(StartMenu.labels, StartMenu.buttons, StartMenu.isBackButton, ScreenAdjustSizeMenu.size);
+                        ScreenAdjustComponent.sizeAdjust(StartMenu.labels, StartMenu.buttons, StartMenu.isBackButton, SettingFileWriter.readSize());
 
                         StartMenu.setVisible(true);
                     }

@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import main.java.menu.gamestart.DifficultySettingMenu;
-import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
+import main.java.setting.SettingFileWriter;
 
 
 public class TetrisGame extends JFrame {
@@ -30,9 +30,9 @@ public class TetrisGame extends JFrame {
         board.start();
         
         setTitle("테트리스 게임");
-        if(ScreenAdjustSizeMenu.size == 0)
+        if(SettingFileWriter.readSize() == 0)
         setSize(400, 550);
-        else if(ScreenAdjustSizeMenu.size == 1)
+        else if(SettingFileWriter.readSize() == 1)
         setSize(440,605);
         else
         setSize(480,660);

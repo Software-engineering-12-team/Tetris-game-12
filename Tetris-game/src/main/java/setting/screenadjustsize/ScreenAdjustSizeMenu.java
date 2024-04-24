@@ -1,5 +1,6 @@
 package main.java.setting.screenadjustsize;
 
+import main.java.setting.SettingFileWriter;
 import main.java.setting.SettingMenu;
 import main.java.util.ButtonStyle;
 import main.java.util.ScreenAdjustComponent;
@@ -75,6 +76,8 @@ public class ScreenAdjustSizeMenu extends JFrame {
             	size = 0;
             	setSize(400, 550);
             	ScreenAdjustComponent.sizeAdjust(labels, buttons, isBackButton, size);
+            	SettingFileWriter.clearSetting();
+            	SettingFileWriter.writeSetting(size, "controlKey", "blindMode");
             }
         });
         
@@ -84,6 +87,8 @@ public class ScreenAdjustSizeMenu extends JFrame {
             	size = 1;
             	setSize(440, 605);
             	ScreenAdjustComponent.sizeAdjust(labels, buttons, isBackButton, size);
+            	SettingFileWriter.clearSetting();
+            	SettingFileWriter.writeSetting(size, "controlKey", "blindMode");
             }
         });
         
@@ -93,6 +98,8 @@ public class ScreenAdjustSizeMenu extends JFrame {
             	size = 2;
             	setSize(480, 660);
             	ScreenAdjustComponent.sizeAdjust(labels, buttons, isBackButton, size);
+            	SettingFileWriter.clearSetting();
+            	SettingFileWriter.writeSetting(size, "controlKey", "blindMode");
             }
         });
 
@@ -106,7 +113,7 @@ public class ScreenAdjustSizeMenu extends JFrame {
                     public void run() {
                         SettingMenu settingMenu = new SettingMenu();
                         settingMenu.setSize(getSize());
-                        ScreenAdjustComponent.sizeAdjust(settingMenu.labels, settingMenu.buttons, settingMenu.isBackButton, size);
+                        ScreenAdjustComponent.sizeAdjust(settingMenu.labels, settingMenu.buttons, settingMenu.isBackButton, SettingFileWriter.readSize());
                         settingMenu.setVisible(true);
                     }
                 });

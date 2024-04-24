@@ -1,8 +1,7 @@
 package main.java.menu.gamestart;
 
-import main.java.game.TetrisGame;
 import main.java.menu.StartMenu;
-import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
+import main.java.setting.SettingFileWriter;
 import main.java.util.ButtonStyle;
 import main.java.util.ScreenAdjustComponent;
 
@@ -77,7 +76,7 @@ public class GameStartMenu extends JFrame {
             	dispose(); // 현재 설정 페이지 닫기
                 DifficultySettingMenu difficultySetting = new DifficultySettingMenu(); // 크기 조정 페이지로 이동
                 difficultySetting.setSize(getSize());
-                ScreenAdjustComponent.sizeAdjust(difficultySetting.labels, difficultySetting.buttons, difficultySetting.isBackButton, ScreenAdjustSizeMenu.size);
+                ScreenAdjustComponent.sizeAdjust(difficultySetting.labels, difficultySetting.buttons, difficultySetting.isBackButton, SettingFileWriter.readSize());
                 difficultySetting.setVisible(true);
             }
         });
@@ -100,7 +99,7 @@ public class GameStartMenu extends JFrame {
                     public void run() {
                     	StartMenu StartMenu = new StartMenu();
                     	StartMenu.setSize(getSize());
-                        ScreenAdjustComponent.sizeAdjust(StartMenu.labels, StartMenu.buttons, StartMenu.isBackButton, ScreenAdjustSizeMenu.size);
+                        ScreenAdjustComponent.sizeAdjust(StartMenu.labels, StartMenu.buttons, StartMenu.isBackButton, SettingFileWriter.readSize());
 
                         StartMenu.setVisible(true);
                     }

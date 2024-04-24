@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
+import main.java.setting.SettingFileWriter;
 import main.java.util.ButtonStyle;
 import main.java.util.ScreenAdjustComponent;
 
@@ -108,7 +108,7 @@ public class ScoreBoardMenu extends JFrame {
                     public void run() {
                     	StartMenu StartMenu = new StartMenu();
                     	StartMenu.setSize(getSize());
-                        ScreenAdjustComponent.sizeAdjust(StartMenu.labels, StartMenu.buttons, StartMenu.isBackButton, ScreenAdjustSizeMenu.size);
+                        ScreenAdjustComponent.sizeAdjust(StartMenu.labels, StartMenu.buttons, StartMenu.isBackButton, SettingFileWriter.readSize());
                     	StartMenu.setVisible(true);
                     }
                 });

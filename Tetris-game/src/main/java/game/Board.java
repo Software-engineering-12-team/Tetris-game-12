@@ -13,8 +13,8 @@ import javax.swing.JOptionPane;
 
 import main.java.game.Blocks.Tetrominoe;
 import main.java.menu.ScoreBoardMenu;
+import main.java.setting.SettingFileWriter;
 import main.java.setting.SettingMenu;
-import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
 import main.java.util.ScreenAdjustComponent;
 import main.java.game.ScoreFileWriter; // 점수 저장을 위해 추가
 import main.java.menu.gamestart.DifficultySettingMenu;
@@ -62,9 +62,9 @@ public class Board extends JPanel {
         curPiece = new Blocks(difficulty);
         nextPiece = new Blocks(difficulty);
         nextPiece.setRandomBlock(difficulty);
-        if(ScreenAdjustSizeMenu.size == 0)		//화면 크기에 따른 폰트 크기 변경
+        if(SettingFileWriter.readSize() == 0)		//화면 크기에 따른 폰트 크기 변경
         	tetrisFont = new Font("Arial", Font.BOLD, 20);
-            else if(ScreenAdjustSizeMenu.size == 1)
+            else if(SettingFileWriter.readSize() == 1)
             tetrisFont = new Font("Arial", Font.BOLD, 22);
             else
             tetrisFont = new Font("Arial", Font.BOLD, 24);
@@ -268,14 +268,14 @@ public class Board extends JPanel {
                 public void run() {
                 	endGame(name, difficulty, mode, linesRemoved);
                 	ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
-                	 if(ScreenAdjustSizeMenu.size == 0)
+                	 if(SettingFileWriter.readSize() == 0)
                 		 scoreBoardMenu.setSize(400, 550);
-                         else if(ScreenAdjustSizeMenu.size == 1)
+                         else if(SettingFileWriter.readSize() == 1)
                         	 scoreBoardMenu.setSize(440, 605);
                          else
                         	 scoreBoardMenu.setSize(480, 660);
                 	
-                    ScreenAdjustComponent.sizeAdjust(scoreBoardMenu.labels, scoreBoardMenu.buttons, scoreBoardMenu.isBackButton, ScreenAdjustSizeMenu.size);
+                    ScreenAdjustComponent.sizeAdjust(scoreBoardMenu.labels, scoreBoardMenu.buttons, scoreBoardMenu.isBackButton, SettingFileWriter.readSize());
                 }
             });
         }

@@ -2,8 +2,8 @@ package main.java.menu.gamestart;
 
 import main.java.game.TetrisGame;
 import main.java.menu.ScoreBoardMenu;
+import main.java.setting.SettingFileWriter;
 import main.java.setting.SettingMenu;
-import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
 import main.java.util.ButtonStyle;
 import main.java.util.ScreenAdjustComponent;
 
@@ -85,7 +85,7 @@ public class DifficultySettingMenu extends JFrame {
                     public void run() {
                         SettingMenu settingMenu = new SettingMenu();
                         settingMenu.setSize(getSize());
-                        ScreenAdjustComponent.sizeAdjust(settingMenu.labels, settingMenu.buttons, settingMenu.isBackButton, size);
+                        ScreenAdjustComponent.sizeAdjust(settingMenu.labels, settingMenu.buttons, settingMenu.isBackButton, SettingFileWriter.readSize());
                         settingMenu.setVisible(true);
                     }
                 });

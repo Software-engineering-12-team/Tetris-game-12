@@ -1,16 +1,18 @@
 package main.java.menu;
 
 import main.java.setting.SettingMenu;
-import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
 import main.java.util.ButtonStyle;
 import main.java.util.ScreenAdjustComponent;
-import main.java.game.TetrisGame;
 import main.java.menu.gamestart.GameStartMenu;
 import main.java.game.ScoreFileWriter;
+import main.java.setting.SettingFileWriter;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 
 public class StartMenu extends JFrame {
@@ -37,6 +39,7 @@ public class StartMenu extends JFrame {
 
 	public StartMenu() {
 		ScoreFileWriter.createScoreboardFile();
+		SettingFileWriter.createSettingFile();
 		
         setTitle("테트리스 게임");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,7 +85,7 @@ public class StartMenu extends JFrame {
                     public void run() {
                     	GameStartMenu gameStart = new GameStartMenu();
                     	gameStart.setSize(getSize());
-                        ScreenAdjustComponent.sizeAdjust(gameStart.labels, gameStart.buttons, gameStart.isBackButton, ScreenAdjustSizeMenu.size);
+                        ScreenAdjustComponent.sizeAdjust(gameStart.labels, gameStart.buttons, gameStart.isBackButton, SettingFileWriter.readSize());
                         gameStart.setVisible(true);
                     }
                 });
@@ -99,7 +102,7 @@ public class StartMenu extends JFrame {
                     public void run() {
                         SettingMenu settingMenu = new SettingMenu();
                         settingMenu.setSize(getSize());
-                        ScreenAdjustComponent.sizeAdjust(settingMenu.labels, settingMenu.buttons, settingMenu.isBackButton, ScreenAdjustSizeMenu.size);
+                        ScreenAdjustComponent.sizeAdjust(settingMenu.labels, settingMenu.buttons, settingMenu.isBackButton, SettingFileWriter.readSize());
                         settingMenu.setVisible(true);
                     }
                 });
@@ -116,7 +119,7 @@ public class StartMenu extends JFrame {
                     public void run() {
                         ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
                         scoreBoardMenu.setSize(getSize());
-                        ScreenAdjustComponent.sizeAdjust(scoreBoardMenu.labels, scoreBoardMenu.buttons, scoreBoardMenu.isBackButton, ScreenAdjustSizeMenu.size);
+                        ScreenAdjustComponent.sizeAdjust(scoreBoardMenu.labels, scoreBoardMenu.buttons, scoreBoardMenu.isBackButton, SettingFileWriter.readSize());
                         scoreBoardMenu.setVisible(true);
                     }
                 });
@@ -141,7 +144,13 @@ public class StartMenu extends JFrame {
         labels = new JLabel[]{titleLabel, instructionLabel};
 
         // 프레임 설정
-        setSize(400, 550);
+        if(SettingFileWriter.readSize() == 0)
+   		 setSize(400, 550);
+            else if(SettingFileWriter.readSize() == 1)
+           	 setSize(440, 605);
+            else
+           	 setSize(480, 660);
+    	ScreenAdjustComponent.sizeAdjust(labels, buttons, isBackButton, SettingFileWriter.readSize());
         setLocationRelativeTo(null);
         setVisible(true);
 
@@ -173,6 +182,8 @@ public class StartMenu extends JFrame {
         }
 
     }
+    
+    
 
     public static void main(String[] args) {
         setLookAndFeel();
