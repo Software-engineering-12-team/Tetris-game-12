@@ -315,7 +315,7 @@ public class Board extends JPanel {
         return true;
     }
 
-    private void removeFullLines() {		//가득 찬 줄 제거, 테두리를 고려하여 수정
+    private void removeFullLines() {     //가득 찬 줄 제거, 테두리를 고려하여 수정
 
         int numFullLines = 0;
         int consecutiveLines = 0; // 연속된 줄의 개수를 추적하는 변수 추가
@@ -324,35 +324,41 @@ public class Board extends JPanel {
             boolean lineIsFull = true;
 
             for (int j = 1; j < BOARD_WIDTH - 1; ++j) {
-                
                 if (blockAt(j, i) == Tetrominoe.NoBlock || blockAt(j, i) == Tetrominoe.BorderBlock) {
-                    
                     lineIsFull = false;
                     break;
                 }
             }
 
             if (lineIsFull) {
-                
                 ++numFullLines;
                 ++consecutiveLines; // 연속된 줄의 개수 추가
-                
-                for (int k = i; k < BOARD_HEIGHT - 2; ++k) {
-                    for (int j = 0; j < BOARD_WIDTH; ++j) {
-                        board[(k * BOARD_WIDTH) + j] = blockAt(j, k + 1);
-                    }
-                }        
-            }
-            else {
-                // 이전 줄이 가득 찼는데 현재 줄이 가득 차지 않았을 경우
-                if (consecutiveLines > 0) {
-                    // 가산점 부여
-                    TotalScore += (consecutiveLines - 1);
-                    consecutiveLines = 0; // 연속된 줄 개수 초기화
+
+                // 강조 기능 추가: 꽉 찬 줄을 하이라이트 블록으로 표시
+                for (int j = 1; j < BOARD_WIDTH - 1; ++j) {
+                    board[(i * BOARD_WIDTH) + j] = Tetrominoe.HighlightBlock;
                 }
+
+                final int row = i; // 꽉 찬 줄의 행 인덱스를 저장합니다.
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        // 타이머가 실행되면 이 부분이 실행됩니다.
+
+                        // 하이라이트 블록을 원래 블록으로 변경하는 작업을 여기에 추가하세요.
+                        for (int k = row; k < BOARD_HEIGHT - 2; ++k) {
+                            for (int j = 0; j < BOARD_WIDTH; ++j) {
+                                board[(k * BOARD_WIDTH) + j] = blockAt(j, k + 1);
+                            }
+                        }
+
+                        repaint();
+                    }
+                }, 100);
             }
         }
-        
+
         // 마지막 줄이 가득 찼을 경우
         if (consecutiveLines > 0) {
             // 가산점 부여
@@ -360,16 +366,14 @@ public class Board extends JPanel {
         }
 
         if (numFullLines > 0) {
-
             TotalScore += numFullLines;
             isFallingFinished = true;
             curPiece.setBlock(Tetrominoe.NoBlock);
             repaint();
-            
             adjustSpeed(numFullLines);
-            
         }
     }
+    
     
     private void adjustSpeed(int numFullLines) {
     	int newDelay;
@@ -409,7 +413,8 @@ public class Board extends JPanel {
                 new Color(204, 102, 204),
             new Color(102, 204, 204),
                 new Color(218, 170, 0),
-            new Color(0, 0, 0)
+            new Color(0, 0, 0),
+            new Color(255, 255, 255)
         };
 /*        Color colors[] = {	//일반 색깔
                 new Color(0, 0, 0),
@@ -432,7 +437,8 @@ public class Board extends JPanel {
                 new Color(0, 0, 255),         // Blue
                 new Color(227, 66, 52),       // Vermilion
                 new Color(147, 112, 219),     // Reddish Purple (Medium Purple로 대체)
-                new Color(0, 0, 0)            // 추가된 Black (원하시는 배치가 맞는지 확인해주세요)
+                new Color(0, 0, 0), 		  // 추가된 Black (원하시는 배치가 맞는지 확인해주세요)
+                new Color(255, 255, 255)
         };
 
 
@@ -458,6 +464,7 @@ public class Board extends JPanel {
                 new Color(128, 128, 128),
                 new Color(64, 224, 208),
                 new Color(0, 0, 0),
+                new Color(255, 255, 255)
         };
 
 /*        Color bycbcolors[] = {	//일반 색깔

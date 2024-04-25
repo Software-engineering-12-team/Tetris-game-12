@@ -8,7 +8,7 @@ import main.java.menu.gamestart.DifficultySettingMenu;
 public class Blocks {
 
     protected enum Tetrominoe { NoBlock, ZBlock, SBlock, IBlock, 
-               TBlock, OBlock, LBlock, JBlock, BorderBlock };	//블록의 종류, BorderBlock은 테두리를 나타냄
+               TBlock, OBlock, LBlock, JBlock, BorderBlock, HighlightBlock };	//블록의 종류, BorderBlock은 테두리를 나타냄
 
     private Tetrominoe pieceBlock;
     private int coords[][];
