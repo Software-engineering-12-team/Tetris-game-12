@@ -449,7 +449,6 @@ public class Board extends JPanel {
                 @Override
                 public void run() {
                 	endGame(name, difficulty, mode, linesRemoved);
-                	
                 	ScoreEntry newScore = new ScoreEntry(name, difficulty, mode, linesRemoved);
                 	ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
                 	scoreBoardMenu.addScore(newScore);
