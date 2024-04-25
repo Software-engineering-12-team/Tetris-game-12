@@ -34,7 +34,7 @@ public class ScoreBoardMenu extends JFrame {
     private int selectedButtonIndex;
     public boolean isBackButton;
     private int lastAddedRowIndex = -1; // 최근에 추가된 행의 인덱스를 저장할 변수
-    private final Color highlightColor = Color.GRAY; // 강조할 색상 정의
+    private final Color highlightColor = new Color(130, 200, 255); // 강조할 색상 정의
     
     private void handleKeyEvent(KeyEvent e) {
         int keyCode = e.getKeyCode();
@@ -181,16 +181,30 @@ public class ScoreBoardMenu extends JFrame {
     public void addScore(ScoreEntry entry) {
         // 테이블 모델에 행 추가
         Object[] rowData = {entry.getName(), entry.getDifficulty(), entry.getMode(), entry.getScore()};
-        tableModel.addRow(rowData);
-        // 마지막으로 추가된 행의 인덱스 기억
-        lastAddedRowIndex = tableModel.getRowCount() - 1;
-        // 추가된 행을 선택하고 강조
-        scoreTable.getSelectionModel().setSelectionInterval(lastAddedRowIndex, lastAddedRowIndex);
-        scoreTable.setSelectionBackground(highlightColor);
+        tableModel.insertRow(0, rowData);
+
+        // 새로 추가된 행의 인덱스를 저장
+        lastAddedRowIndex = 0;
+
+        // 새로 추가된 행을 깜빡거리게 만들기 위한 Timer 설정
+        Timer timer = new Timer(500, new ActionListener() {
+            private boolean highlighted = false;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (highlighted) {
+                    // 강조 제거
+                    scoreTable.removeRowSelectionInterval(0, 0);
+                } else {
+                    // 강조 추가
+                    scoreTable.addRowSelectionInterval(0, 0);
+                    scoreTable.setSelectionBackground(highlightColor);
+                }
+                highlighted = !highlighted;
+            }
+        });
+        timer.start();
     }
-
-
-   
     
     public void clearScores() {
         tableModel.setRowCount(0); // 테이블 모델의 행을 모두 지우기
