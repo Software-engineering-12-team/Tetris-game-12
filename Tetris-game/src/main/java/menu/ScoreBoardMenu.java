@@ -187,7 +187,7 @@ public class ScoreBoardMenu extends JFrame {
         lastAddedRowIndex = 0;
 
         // 새로 추가된 행을 깜빡거리게 만들기 위한 Timer 설정
-        Timer timer = new Timer(500, new ActionListener() {
+        Timer timer = new Timer(475, new ActionListener() {
             private boolean highlighted = false;
 
             @Override
