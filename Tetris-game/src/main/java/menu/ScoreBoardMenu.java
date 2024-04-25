@@ -164,6 +164,7 @@ public class ScoreBoardMenu extends JFrame {
         for (ScoreEntry entry : scoreEntries) {
             Object[] rowData = {entry.getName(), entry.getDifficulty(), entry.getMode(), entry.getScore()};
             tableModel.addRow(rowData);
+            
         }
 
         // 새로운 점수가 추가되었을 때 해당 행을 강조
@@ -171,6 +172,9 @@ public class ScoreBoardMenu extends JFrame {
             scoreTable.getSelectionModel().setSelectionInterval(lastAddedRowIndex, lastAddedRowIndex);
             scoreTable.setSelectionBackground(highlightColor);
         }
+        
+        // 모델 초기화
+        scoreModel.clear(); // 기존 점수를 모두 지우기
     }
 
     // 새로운 점수를 추가하는 메서드
