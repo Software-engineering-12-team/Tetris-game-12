@@ -102,7 +102,6 @@ public class ColorBlindModeMenu extends JFrame {
                 SettingFileWriter.writeSetting(size, "", colorBlindStatus);
             }
         });
-
         blueYellowBlindButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

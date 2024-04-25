@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] fix error">
+    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] fix colorblindmode color error">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/game/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/game/TetrisGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/game/TetrisGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/colorblindmode/ColorBlindModeMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/colorblindmode/ColorBlindModeMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/controlkeysetting/ControlKeySettingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/controlkeysetting/ControlKeySettingMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +151,7 @@
       <workItem from="1714020272316" duration="15239000" />
       <workItem from="1714051112448" duration="976000" />
       <workItem from="1714052091691" duration="480000" />
-      <workItem from="1714052574438" duration="905000" />
+      <workItem from="1714052574438" duration="7025000" />
     </task>
     <task id="LOCAL-00001" summary="[Feature] create Setting file">
       <option name="closed" value="true" />
@@ -424,7 +425,31 @@
       <option name="project" value="LOCAL" />
       <updated>1714052597257</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="[Fix] fix colorblindmode color error">
+      <option name="closed" value="true" />
+      <created>1714053561108</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1714053561108</updated>
+    </task>
+    <task id="LOCAL-00036" summary="[Fix] fix colorblindmode color error">
+      <option name="closed" value="true" />
+      <created>1714053600277</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1714053600277</updated>
+    </task>
+    <task id="LOCAL-00037" summary="[Fix] fix colorblindmode color error">
+      <option name="closed" value="true" />
+      <created>1714053768750</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1714053768751</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -442,7 +467,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[Fix] fix scoreboardmenu ui" />
     <MESSAGE value="[Fix] add dispose button in scoreboard menu" />
     <MESSAGE value="[Fix] add dispose button in AdjustSize.java" />
     <MESSAGE value="[Fix] add scoreboardbutton in SettingMenu" />
@@ -467,6 +491,7 @@
     <MESSAGE value="[Feat] add ColorBlindMode filewriter" />
     <MESSAGE value="[Fix] change blue-yellow color" />
     <MESSAGE value="[Fix] fix error" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Fix] fix error" />
+    <MESSAGE value="[Fix] fix colorblindmode color error" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Fix] fix colorblindmode color error" />
   </component>
 </project>

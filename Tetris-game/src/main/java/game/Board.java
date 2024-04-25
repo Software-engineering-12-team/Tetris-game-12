@@ -16,6 +16,7 @@ import main.java.menu.ScoreBoardMenu;
 import main.java.setting.SettingFileWriter;
 import main.java.setting.SettingMenu;
 import main.java.setting.colorblindmode.ColorBlindModeMenu;
+import main.java.setting.controlkeysetting.ControlKeySettingMenu;
 import main.java.util.ScreenAdjustComponent;
 import main.java.game.ScoreFileWriter; // 점수 저장을 위해 추가
 import main.java.menu.gamestart.DifficultySettingMenu;
@@ -25,6 +26,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import static java.awt.Color.black;
+import static main.java.setting.controlkeysetting.ControlKeySettingMenu.controlKeyStatus;
 
 public class Board extends JPanel {
 
@@ -48,6 +50,7 @@ public class Board extends JPanel {
     private Blocks nextPiece;
     private Font tetrisFont;
     private Tetrominoe[] board;
+    public static String controlKey = "TYPE_A"; // 기본값을 WASD로 설정
     
     public Board(TetrisGame parent, String difficulty) {
     	this.difficulty = difficulty;
@@ -543,15 +546,12 @@ public class Board extends JPanel {
                 return;
             }
 
-            int keycode = e.getKeyCode();
-            
-            if (keycode == KeyEvent.VK_ESCAPE) {
-                // ESC 키가 눌렸을 때 종료 확인 팝업 표시
+            if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                 showExitConfirmation();
                 return;
             }
 
-            if (keycode == KeyEvent.VK_P) {
+            if (e.getKeyCode() == KeyEvent.VK_P) {
                 pause();
                 return;
             }
@@ -560,32 +560,43 @@ public class Board extends JPanel {
                 return;
             }
 
-            switch (keycode) {
-
-                case KeyEvent.VK_LEFT:
-                    tryMove(curPiece, curX - 1, curY);
-                    break;
-
-                case KeyEvent.VK_RIGHT:
-                    tryMove(curPiece, curX + 1, curY);
-                    break;
-
-                case KeyEvent.VK_DOWN:
-                    tryMove(curPiece, curX, curY - 1);
-                    break;
-
-                case KeyEvent.VK_UP:
-                    tryMove(curPiece.rotateRight(), curX, curY);
-                    break;
-
-                case KeyEvent.VK_Q:
-                    dropDown();
-                    break;
-
-                case KeyEvent.VK_D:
-                    oneLineDown();
-                    break;
-                    
+            // 설정에 따라 키 맵핑을 조건부로 처리
+            if (controlKeyStatus.equals("WASD키")) {
+                switch (e.getKeyCode()) {
+                    case KeyEvent.VK_W:
+                        tryMove(curPiece.rotateRight(), curX, curY);
+                        break;
+                    case KeyEvent.VK_A:
+                        tryMove(curPiece, curX - 1, curY);
+                        break;
+                    case KeyEvent.VK_S:
+                        tryMove(curPiece, curX, curY - 1);
+                        break;
+                    case KeyEvent.VK_D:
+                        tryMove(curPiece, curX + 1, curY);
+                        break;
+                    case KeyEvent.VK_Q:
+                        dropDown();
+                        break;
+                }
+            } else if (controlKeyStatus.equals("방향키")) {
+                switch (e.getKeyCode()) {
+                    case KeyEvent.VK_UP:
+                        tryMove(curPiece.rotateRight(), curX, curY);
+                        break;
+                    case KeyEvent.VK_LEFT:
+                        tryMove(curPiece, curX - 1, curY);
+                        break;
+                    case KeyEvent.VK_DOWN:
+                        tryMove(curPiece, curX, curY - 1);
+                        break;
+                    case KeyEvent.VK_RIGHT:
+                        tryMove(curPiece, curX + 1, curY);
+                        break;
+                    case KeyEvent.VK_Q:
+                        dropDown();
+                        break;
+                }
             }
         }
     }
