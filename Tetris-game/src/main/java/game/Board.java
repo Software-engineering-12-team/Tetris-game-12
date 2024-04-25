@@ -636,16 +636,24 @@ public class Board extends JPanel {
             	new Color(0, 0, 0),
             new Color(255, 255, 255)
         };
-/*        Color colors[] = {	//일반 색깔
+        /*Color colors[] = {	//일반 색깔
+                new Color(255, 0, 0),
+                new Color(255, 0, 0),
+                new Color(255, 0, 0),
+                new Color(255, 0, 0),
+                new Color(255, 0, 0),
+                new Color(255, 0, 0),
+                new Color(255, 0, 0),
+                new Color(255, 0, 0),
                 new Color(0, 0, 0),
-                new Color(255, 0, 0),
-                new Color(255, 0, 0),
-                new Color(255, 0, 0),
-                new Color(255, 0, 0),
-                new Color(255, 0, 0),
-                new Color(255, 0, 0),
-                new Color(255, 0, 0),
-                new Color(0, 0, 0)
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(255, 255, 255),
         };*/
 
         Color rgcbcolors[] = {    // 적록 색맹 모드 전용 색깔
@@ -669,16 +677,24 @@ public class Board extends JPanel {
         };
 
 
-/*        Color rgcbcolors[] = {	//일반 색깔
+        /*Color rgcbcolors[] = {	//일반 색깔
+                new Color(0, 255, 0),
+                new Color(0, 255, 0),
+                new Color(0, 255, 0),
+                new Color(0, 255, 0),
+                new Color(0, 255, 0),
+                new Color(0, 255, 0),
+                new Color(0, 255, 0),
+                new Color(0, 255, 0),
                 new Color(0, 0, 0),
-                new Color(0, 255, 0),
-                new Color(0, 255, 0),
-                new Color(0, 255, 0),
-                new Color(0, 255, 0),
-                new Color(0, 255, 0),
-                new Color(0, 255, 0),
-                new Color(0, 255, 0),
-                new Color(0, 0, 0)
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(255, 255, 255)
         };*/
 
         Color bycbcolors[] = {    // 청황 색맹 모드 전용 색깔
@@ -701,16 +717,25 @@ public class Board extends JPanel {
                 new Color(255, 255, 255)
         };
 
-/*        Color bycbcolors[] = {	//일반 색깔
+        /*Color bycbcolors[] = {	//일반 색깔
+                new Color(0, 0, 255),
+                new Color(0, 0, 255),
+                new Color(0, 0, 255),
+                new Color(0, 0, 255),
+                new Color(0, 0, 255),
+                new Color(0, 0, 255),
+                new Color(0, 0, 255),
+                new Color(0, 0, 255),
                 new Color(0, 0, 0),
-                new Color(0, 0, 255),
-                new Color(0, 0, 255),
-                new Color(0, 0, 255),
-                new Color(0, 0, 255),
-                new Color(0, 0, 255),
-                new Color(0, 0, 255),
-                new Color(0, 0, 255),
-                new Color(0, 0, 0)
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(255, 255, 255)
+
         };*/
 
         if(ColorBlindModeMenu.colorBlindStatus.equals("정상"))
