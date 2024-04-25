@@ -472,7 +472,6 @@ public class Board extends JPanel {
                 new Color(0, 0, 0)
         };*/
 
-
         if(ColorBlindModeMenu.colorBlindStatus.equals("정상"))
         {
         	Color color = colors[block.ordinal()];
