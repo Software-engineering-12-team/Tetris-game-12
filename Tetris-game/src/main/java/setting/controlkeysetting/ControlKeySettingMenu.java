@@ -14,7 +14,7 @@ import static main.java.setting.colorblindmode.ColorBlindModeMenu.colorBlindStat
 import static main.java.setting.screenadjustsize.ScreenAdjustSizeMenu.size;
 
 public class ControlKeySettingMenu extends JFrame {
-    private JLabel titleLabel;
+    private JLabel titleLabel, subLabel, lowLabel;
     public JLabel[] labels;
     private static JButton typeAButton, typeBButton, backButton;
     public JButton[] buttons;
@@ -38,11 +38,17 @@ public class ControlKeySettingMenu extends JFrame {
         titleLabel = new JLabel("조작키 설정");
         titleLabel.setFont(new Font("NanumGothic", Font.BOLD, 30));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        subLabel = new JLabel("q : 한번에 떨어지기, p : 일시정지, esc : 종료");
+        subLabel.setFont(new Font("NanumGothic", Font.BOLD, 20));
+        subLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        lowLabel = new JLabel("블럭을 이동시킬 조작키를 아래에서 선택해주세요");
+        lowLabel.setFont(new Font("NanumGothic",Font.ITALIC, 10));
+        lowLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        labels = new JLabel[]{titleLabel};
+        labels = new JLabel[]{titleLabel, subLabel, lowLabel};
 
         typeAButton = new JButton("WASD키");
-        typeBButton = new JButton("방향키");
+        typeBButton = new JButton("방향키 \\u2190 / \\u2192 / \\u2191 / \\u2193");
 
         backButton = new JButton("뒤로가기");
 
@@ -55,12 +61,18 @@ public class ControlKeySettingMenu extends JFrame {
     private void layoutComponents() {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
-        panel.add(titleLabel, BorderLayout.NORTH);
 
+        JPanel labelPanel = new JPanel();
+        labelPanel.setLayout(new GridLayout(3, 1, 10, 15));
+
+        for (JLabel label : labels) {
+            labelPanel.add(label);
+        }
+        panel.add(labelPanel, BorderLayout.NORTH);
         // 버튼을 패널에 추가하기 위한 새로운 JPanel 인스턴스 생성
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(2, 1, 5, 5)); // GridLayout을 사용해 버튼을 세로로 배치
-        buttonPanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
+        buttonPanel.setLayout(new GridLayout(2, 1, 5, 20)); // GridLayout을 사용해 버튼을 세로로 배치
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(20, 30, 40, 30));
 
         for (JButton button : buttons) {
             buttonPanel.add(button);
@@ -120,11 +132,11 @@ public class ControlKeySettingMenu extends JFrame {
                 typeAButton.setText("WASD키 선택됨");
 
                 typeBButton.setBackground(new Color(30, 60, 90));
-                typeBButton.setText("방향키");
+                typeBButton.setText("방향키 ↑/↓/←/→");
                 break;
             case "타입B":
                 typeBButton.setBackground(new Color(30, 90, 100));
-                typeBButton.setText("방향키 선택됨");
+                typeBButton.setText("방향키 ↑/↓/←/→ 선택됨");
 
                 typeAButton.setBackground(new Color(30, 60, 90));
                 typeAButton.setText("WASD키");
