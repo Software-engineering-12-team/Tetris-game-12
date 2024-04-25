@@ -47,8 +47,8 @@ public class ControlKeySettingMenu extends JFrame {
 
         labels = new JLabel[]{titleLabel, subLabel, lowLabel};
 
-        typeAButton = new JButton("WASD키");
-        typeBButton = new JButton("방향키 \\u2190 /  \\u2192 /  \\u2191 /  \\u2193");
+        typeAButton = new JButton("방향키 ↑/↓/←/→");
+        typeBButton = new JButton("WASD키");
 
         backButton = new JButton("뒤로가기");
 
@@ -129,17 +129,17 @@ public class ControlKeySettingMenu extends JFrame {
         switch (controlKeyStatus) {
             case "타입A":
                 typeAButton.setBackground(new Color(30, 90, 100));
-                typeAButton.setText("WASD키 선택됨");
+                typeAButton.setText("방향키 ↑/↓/←/→ 선택됨");
 
                 typeBButton.setBackground(new Color(30, 60, 90));
-                typeBButton.setText("방향키 ↑ / ↓ / ← / →");
+                typeBButton.setText("WASD키");
                 break;
             case "타입B":
                 typeBButton.setBackground(new Color(30, 90, 100));
-                typeBButton.setText("방향키 ↑ / ↓ / ← / → 선택됨");
+                typeBButton.setText("WASD키 선택됨");
 
                 typeAButton.setBackground(new Color(30, 60, 90));
-                typeAButton.setText("WASD키");
+                typeAButton.setText("방향키 ↑/↓/←/→");
                 break;
         }
     }
