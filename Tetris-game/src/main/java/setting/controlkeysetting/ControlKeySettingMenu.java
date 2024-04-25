@@ -48,7 +48,7 @@ public class ControlKeySettingMenu extends JFrame {
         labels = new JLabel[]{titleLabel, subLabel, lowLabel};
 
         typeAButton = new JButton("WASD키");
-        typeBButton = new JButton("방향키 \\u2190 /  \\u2192 /  \\u2191 /  \\u2193");
+        typeBButton = new JButton("방향키 \\u2190 / ! \\u2192 /  \\u2191 /  \\u2193");
 
         backButton = new JButton("뒤로가기");
 
