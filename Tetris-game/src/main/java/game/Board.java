@@ -409,7 +409,13 @@ public class Board extends JPanel {
 
 
     private void newPiece() {		//새로운 블록 생성
-
+    	String mode;
+    	if (isItemMode == true) {
+    	    mode = "아이템";
+    	} else {
+    	    mode = "일반";
+    	}
+    	
     	if(remainRowsForItems <= 0 && isItemMode == true) 
     	{	
     		isItem = true;		// 선택된 것이 아이템임
@@ -437,8 +443,7 @@ public class Board extends JPanel {
             isStarted = false;
 
             int linesRemoved = TotalScore;
-            String name = JOptionPane.showInputDialog("Enter your name:");
-            String mode = "일반"; // 추후에 선택 가능하도록 수정할 수 있습니다.
+            String name = JOptionPane.showInputDialog("Enter your name:");            
 
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
