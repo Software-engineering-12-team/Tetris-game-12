@@ -148,14 +148,10 @@ public class SettingMenu extends JFrame {
             public void actionPerformed(ActionEvent e) {
             	//창 크기 초기화(small)
             	SettingFileWriter.clearSetting();
-            	SettingFileWriter.writeSetting(0, "controlKey", "정상");
+            	SettingFileWriter.writeSetting(0, "타입A", "정상");
             	setSize(400, 550);
             	ScreenAdjustComponent.sizeAdjust(labels, buttons, isBackButton, SettingFileWriter.readSize());
-            	
-            	//조작키 초기화
-            	
-            	//색맹 모드 초기화
-            	
+
             }
         });
 

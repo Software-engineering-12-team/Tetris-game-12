@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Feat] create controlKeySetting logic again">
+    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] controlKey FileWriter adapted">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/game/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/game/TetrisGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/game/TetrisGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingFileWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingFileWriter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/colorblindmode/ColorBlindModeMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/colorblindmode/ColorBlindModeMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/controlkeysetting/ControlKeySettingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/controlkeysetting/ControlKeySettingMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/controlkeysetting/ControlKeyType.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -156,7 +153,7 @@
       <workItem from="1714020272316" duration="15239000" />
       <workItem from="1714051112448" duration="976000" />
       <workItem from="1714052091691" duration="480000" />
-      <workItem from="1714052574438" duration="11456000" />
+      <workItem from="1714052574438" duration="12489000" />
     </task>
     <task id="LOCAL-00001" summary="[Feature] create Setting file">
       <option name="closed" value="true" />
@@ -462,7 +459,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714062415132</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="[Fix] controlKey FileWriter adapted">
+      <option name="closed" value="true" />
+      <created>1714066768067</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1714066768068</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -480,7 +485,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[Fix] add dispose button in AdjustSize.java" />
     <MESSAGE value="[Fix] add scoreboardbutton in SettingMenu" />
     <MESSAGE value="[Fix] add backbutton in SettingMenu" />
     <MESSAGE value="[Fix] rename file name and change file directory" />
@@ -505,6 +509,7 @@
     <MESSAGE value="[Fix] fix error" />
     <MESSAGE value="[Fix] fix colorblindmode color error" />
     <MESSAGE value="[Feat] create controlKeySetting logic again" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Feat] create controlKeySetting logic again" />
+    <MESSAGE value="[Fix] controlKey FileWriter adapted" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Fix] controlKey FileWriter adapted" />
   </component>
 </project>

@@ -20,7 +20,7 @@ public class SettingFileWriter {
                 System.out.println("설정 파일이 이미 존재합니다.");
                 if (Files.size(Paths.get("setting.txt")) == 0) {
                     System.out.println("파일이 존재하지만 비어 있습니다.");
-                	SettingFileWriter.writeSetting(0, "타입B", "정상");
+                	SettingFileWriter.writeSetting(0, "타입A", "정상");
                 } else {
                     System.out.println("파일이 비어 있지 않습니다.");
                 }

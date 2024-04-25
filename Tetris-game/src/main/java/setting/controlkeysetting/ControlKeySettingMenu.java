@@ -139,8 +139,8 @@ public class ControlKeySettingMenu extends JFrame {
         initComponents();
         layoutComponents();
         addEventListeners();
-        //controlKeyStatus = SettingFileWriter.readControlKey();
-        //updateControlKeyModeUI(controlKeyStatus);
+        controlKeyStatus = SettingFileWriter.readControlKey();
+        updateControlKeyModeUI(controlKeyStatus);
         pack();
 
         // 사이즈
