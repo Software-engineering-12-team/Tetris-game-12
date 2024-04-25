@@ -815,17 +815,17 @@ public class Board extends JPanel {
             // 설정에 따라 키 맵핑을 조건부로 처리
             if (ControlKeySettingMenu.controlKeyStatus.equals("타입A")) {
                 switch (e.getKeyCode()) {
-                    case KeyEvent.VK_W:
+                    case KeyEvent.VK_UP:
                         tryMove(curPiece.rotateRight(), curX, curY);
                         break;
-                    case KeyEvent.VK_A:
-                    	if(!isTouchedBlocks)tryMove(curPiece, curX - 1, curY);
+                    case KeyEvent.VK_LEFT:
+                        if(!isTouchedBlocks)tryMove(curPiece, curX - 1, curY);
                         break;
-                    case KeyEvent.VK_S:
+                    case KeyEvent.VK_DOWN:
                         tryMove(curPiece, curX, curY - 1);
                         break;
-                    case KeyEvent.VK_D:
-                    	if(!isTouchedBlocks)tryMove(curPiece, curX + 1, curY);
+                    case KeyEvent.VK_RIGHT:
+                        if(!isTouchedBlocks)tryMove(curPiece, curX + 1, curY);
                         break;
                     case KeyEvent.VK_Q:
                         dropDown();
@@ -833,17 +833,17 @@ public class Board extends JPanel {
                 }
             } else if (ControlKeySettingMenu.controlKeyStatus.equals("타입B")) {
                 switch (e.getKeyCode()) {
-                    case KeyEvent.VK_UP:
+                    case KeyEvent.VK_W:
                         tryMove(curPiece.rotateRight(), curX, curY);
                         break;
-                    case KeyEvent.VK_LEFT:
-                    	if(!isTouchedBlocks)tryMove(curPiece, curX - 1, curY);
+                    case KeyEvent.VK_A:
+                        if(!isTouchedBlocks)tryMove(curPiece, curX - 1, curY);
                         break;
-                    case KeyEvent.VK_DOWN:
+                    case KeyEvent.VK_S:
                         tryMove(curPiece, curX, curY - 1);
                         break;
-                    case KeyEvent.VK_RIGHT:
-                    	if(!isTouchedBlocks)tryMove(curPiece, curX + 1, curY);
+                    case KeyEvent.VK_D:
+                        if(!isTouchedBlocks)tryMove(curPiece, curX + 1, curY);
                         break;
                     case KeyEvent.VK_Q:
                         dropDown();
