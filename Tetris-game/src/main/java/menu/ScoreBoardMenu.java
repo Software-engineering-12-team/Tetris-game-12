@@ -33,6 +33,8 @@ public class ScoreBoardMenu extends JFrame {
     public JButton[] buttons;
     private int selectedButtonIndex;
     public boolean isBackButton;
+    private int lastAddedRowIndex = -1; // 최근에 추가된 행의 인덱스를 저장할 변수
+    private final Color highlightColor = Color.GRAY; // 강조할 색상 정의
     
     private void handleKeyEvent(KeyEvent e) {
         int keyCode = e.getKeyCode();
@@ -140,40 +142,49 @@ public class ScoreBoardMenu extends JFrame {
         List<ScoreEntry> scoreEntries = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader("scoreboard.txt"))) {
             String line;
-            while ((line = reader.readLine()) != null) {            	
-                // 각 줄에서 키워드를 찾기
+            while ((line = reader.readLine()) != null) {
                 int nameIndex = line.indexOf("이름:");
                 int difficultyIndex = line.indexOf("난이도:");
                 int modeIndex = line.indexOf("모드:");
                 int scoreIndex = line.indexOf("점수:");
-                
-                // 모든 키워드가 존재하는지 확인
                 if (nameIndex != -1 && difficultyIndex != -1 && modeIndex != -1 && scoreIndex != -1) {
-                    // 키워드를 기준으로 정보 추출
-                	String name = line.substring(nameIndex + 4, line.indexOf(" ", nameIndex + 4)).trim();
+                    String name = line.substring(nameIndex + 4, line.indexOf(" ", nameIndex + 4)).trim();
                     String difficulty = line.substring(difficultyIndex + 5, line.indexOf(" ", difficultyIndex + 5)).trim();
                     String mode = line.substring(modeIndex + 4, line.indexOf(" ", modeIndex + 4)).trim();
                     int score = Integer.parseInt(line.substring(scoreIndex + 4, line.indexOf("점", scoreIndex + 4)).trim());
-                    
-                    // ScoreEntry 객체를 생성하여 리스트에 추가
-                    scoreEntries.add(new ScoreEntry(name, difficulty, mode, score));   
+                    scoreEntries.add(new ScoreEntry(name, difficulty, mode, score));
                 }
-            } 
+            }
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "스코어보드를 로드하는 중에 오류가 발생했습니다: " + e.getMessage(), "오류", JOptionPane.ERROR_MESSAGE);
         }
 
         Collections.sort(scoreEntries);
-        
+
         for (ScoreEntry entry : scoreEntries) {
-            scoreModel.addElement(entry.toString()); // ScoreEntry 객체를 문자열로 변환하여 추가
             Object[] rowData = {entry.getName(), entry.getDifficulty(), entry.getMode(), entry.getScore()};
             tableModel.addRow(rowData);
         }
-            
-        // 모델 초기화
-        scoreModel.clear(); // 기존 점수를 모두 지우기
+
+        // 새로운 점수가 추가되었을 때 해당 행을 강조
+        if (lastAddedRowIndex != -1) {
+            scoreTable.getSelectionModel().setSelectionInterval(lastAddedRowIndex, lastAddedRowIndex);
+            scoreTable.setSelectionBackground(highlightColor);
+        }
     }
+
+    // 새로운 점수를 추가하는 메서드
+    public void addScore(ScoreEntry entry) {
+        // 테이블 모델에 행 추가
+        Object[] rowData = {entry.getName(), entry.getDifficulty(), entry.getMode(), entry.getScore()};
+        tableModel.addRow(rowData);
+        // 마지막으로 추가된 행의 인덱스 기억
+        lastAddedRowIndex = tableModel.getRowCount() - 1;
+        // 추가된 행을 선택하고 강조
+        scoreTable.getSelectionModel().setSelectionInterval(lastAddedRowIndex, lastAddedRowIndex);
+        scoreTable.setSelectionBackground(highlightColor);
+    }
+
 
    
     

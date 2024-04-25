@@ -19,6 +19,7 @@ import main.java.setting.colorblindmode.ColorBlindModeMenu;
 import main.java.util.ScreenAdjustComponent;
 import main.java.game.ScoreFileWriter; // 점수 저장을 위해 추가
 import main.java.menu.gamestart.DifficultySettingMenu;
+import main.java.menu.ScoreEntry;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -272,7 +273,11 @@ public class Board extends JPanel {
                 @Override
                 public void run() {
                 	endGame(name, difficulty, mode, linesRemoved);
+                	
+                	ScoreEntry newScore = new ScoreEntry(name, difficulty, mode, linesRemoved);
                 	ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
+                	scoreBoardMenu.addScore(newScore);
+                	
                 	 if(SettingFileWriter.readSize() == 0)
                 		 scoreBoardMenu.setSize(400, 550);
                          else if(SettingFileWriter.readSize() == 1)
@@ -286,6 +291,7 @@ public class Board extends JPanel {
         }
     }
     
+   
     public void endGame(String name, String difficulty, String mode, int score) {
     	 ScoreFileWriter.writeScore(name, difficulty, mode, score);
     }
