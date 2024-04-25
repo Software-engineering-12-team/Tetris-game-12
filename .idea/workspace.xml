@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] fix colorblindmode color error">
+    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Feat] create controlKeySetting logic again">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/game/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/game/TetrisGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/game/TetrisGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingFileWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingFileWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/SettingMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/colorblindmode/ColorBlindModeMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/colorblindmode/ColorBlindModeMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/controlkeysetting/ControlKeySettingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/controlkeysetting/ControlKeySettingMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/controlkeysetting/ControlKeyType.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,29 +55,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.SettingScreen.executor&quot;: &quot;Run&quot;,
-    &quot;Application.StartMenu.executor&quot;: &quot;Run&quot;,
-    &quot;Application.StartScreen.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TetrisGame.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-21&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.SettingFileWriter.executor": "Run",
+    "Application.SettingScreen.executor": "Run",
+    "Application.StartMenu.executor": "Run",
+    "Application.StartScreen.executor": "Run",
+    "Application.TetrisGame.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "jdk.selected.JAVA_MODULE": "openjdk-21",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="component" />
@@ -151,7 +156,7 @@
       <workItem from="1714020272316" duration="15239000" />
       <workItem from="1714051112448" duration="976000" />
       <workItem from="1714052091691" duration="480000" />
-      <workItem from="1714052574438" duration="7025000" />
+      <workItem from="1714052574438" duration="11456000" />
     </task>
     <task id="LOCAL-00001" summary="[Feature] create Setting file">
       <option name="closed" value="true" />
@@ -449,7 +454,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714053768751</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="[Feat] create controlKeySetting logic again">
+      <option name="closed" value="true" />
+      <created>1714062415132</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1714062415132</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -467,7 +480,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[Fix] add dispose button in scoreboard menu" />
     <MESSAGE value="[Fix] add dispose button in AdjustSize.java" />
     <MESSAGE value="[Fix] add scoreboardbutton in SettingMenu" />
     <MESSAGE value="[Fix] add backbutton in SettingMenu" />
@@ -492,6 +504,7 @@
     <MESSAGE value="[Fix] change blue-yellow color" />
     <MESSAGE value="[Fix] fix error" />
     <MESSAGE value="[Fix] fix colorblindmode color error" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Fix] fix colorblindmode color error" />
+    <MESSAGE value="[Feat] create controlKeySetting logic again" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Feat] create controlKeySetting logic again" />
   </component>
 </project>

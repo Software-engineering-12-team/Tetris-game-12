@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import static main.java.setting.controlkeysetting.ControlKeySettingMenu.controlKeyStatus;
+
 
 public class ColorBlindModeMenu extends JFrame {
     private JLabel titleLabel;
@@ -88,8 +90,9 @@ public class ColorBlindModeMenu extends JFrame {
                 colorBlindStatus = "정상";
                 updateColorBlindModeUI(colorBlindStatus);
                 size = SettingFileWriter.readSize();
+                controlKeyStatus = SettingFileWriter.readControlKey();
                 SettingFileWriter.clearSetting();
-                SettingFileWriter.writeSetting(size, "", colorBlindStatus);
+                SettingFileWriter.writeSetting(size, controlKeyStatus, colorBlindStatus);
             }
         });
         redGreenBlindButton.addActionListener(new ActionListener() {

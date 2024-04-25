@@ -1,30 +1,26 @@
 package main.java.setting;
 
-import main.java.setting.colorblindmode.ColorBlindModeMenu;
-
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import javax.swing.JOptionPane;
 
-import static main.java.setting.colorblindmode.ColorBlindModeMenu.*;
-
 public class SettingFileWriter {
 	private static final String FILE_PATH = "setting.txt";
-	
+
 	// 설정 저장 파일을 생성하는 메서드
     public static void createSettingFile() {
         try {
             File file = new File(FILE_PATH);
             if (file.createNewFile()) {
                 System.out.println("설정 파일이 생성되었습니다.");
-            	SettingFileWriter.writeSetting(0, "controlKey", "정상");
+            	SettingFileWriter.writeSetting(0, "타입A", "정상");
             } else {
                 System.out.println("설정 파일이 이미 존재합니다.");
                 if (Files.size(Paths.get("setting.txt")) == 0) {
                     System.out.println("파일이 존재하지만 비어 있습니다.");
-                	SettingFileWriter.writeSetting(0, "controlKey", "정상");
+                	SettingFileWriter.writeSetting(0, "타입B", "정상");
                 } else {
                     System.out.println("파일이 비어 있지 않습니다.");
                 }
@@ -69,8 +65,8 @@ public class SettingFileWriter {
                 int controlKeyIndex = line.indexOf("조작키:");
                 
                 if (controlKeyIndex != -1) {
-                    // 키워드를 기준으로 정보 추출
-                    controlKey = line.substring(controlKeyIndex + 5, line.indexOf(" ", controlKeyIndex + 5)).trim();
+                    controlKey = line.substring(controlKeyIndex + "조작키:".length(), controlKeyIndex + "조작키:".length()+4).trim();
+                    break;
                 }
             } 
         } catch (IOException e) {
@@ -97,10 +93,10 @@ public class SettingFileWriter {
         return blindMode;
     }
     
-    public static void writeSetting(int size, String controlKey, String colorBlindStatus) {
+    public static void writeSetting(int size, String controlKeyStatus, String colorBlindStatus) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
             writer.write(Integer.toString(size)); // 설정 값을 텍스트로 변환하여 파일에 씁니다.
-            writer.write("크기: " + size + " / 조작키: " + controlKey + " / 색맹모드: " + colorBlindStatus +"\n");
+            writer.write("크기: " + size + " / 조작키: " + controlKeyStatus + " / 색맹모드: " + colorBlindStatus +"\n");
             writer.close();
             System.out.println("설정 정보가 파일에 저장되었습니다.");
         } catch (IOException e) {

@@ -10,6 +10,9 @@ import main.java.util.ScreenAdjustComponent;
 import java.awt.*;
 import java.awt.event.*;
 
+import static main.java.setting.colorblindmode.ColorBlindModeMenu.colorBlindStatus;
+import static main.java.setting.screenadjustsize.ScreenAdjustSizeMenu.size;
+
 public class ControlKeySettingMenu extends JFrame {
     private JLabel titleLabel;
     public JLabel[] labels;
@@ -17,7 +20,7 @@ public class ControlKeySettingMenu extends JFrame {
     public JButton[] buttons;
     private int selectedButtonIndex;
     public boolean isBackButton;
-    public static String controlKeyStatus = "WASD키";
+    public static String controlKeyStatus = "타입A";
     private void handleKeyEvent(KeyEvent e) {
         int keyCode = e.getKeyCode();
         if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_RIGHT) {
@@ -88,30 +91,38 @@ public class ControlKeySettingMenu extends JFrame {
         typeAButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controlKeyStatus = "WASD키";
+                controlKeyStatus = "타입A";
                 updateControlKeyModeUI(controlKeyStatus);
+                size = SettingFileWriter.readSize();
+                colorBlindStatus = SettingFileWriter.readBlindMode();
+                SettingFileWriter.clearSetting();
+                SettingFileWriter.writeSetting(size, controlKeyStatus, colorBlindStatus);
             }
         });
 
         typeBButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controlKeyStatus = "방향키";
+                controlKeyStatus = "타입B";
                 updateControlKeyModeUI(controlKeyStatus);
+                size = SettingFileWriter.readSize();
+                colorBlindStatus = SettingFileWriter.readBlindMode();
+                SettingFileWriter.clearSetting();
+                SettingFileWriter.writeSetting(size, controlKeyStatus, colorBlindStatus);
             }
         });
     }
 
     public static void updateControlKeyModeUI(String controlKeyStatus) {
         switch (controlKeyStatus) {
-            case "WASD키":
+            case "타입A":
                 typeAButton.setBackground(new Color(30, 90, 100));
                 typeAButton.setText("WASD키 선택됨");
 
                 typeBButton.setBackground(new Color(30, 60, 90));
                 typeBButton.setText("방향키");
                 break;
-            case "방향키":
+            case "타입B":
                 typeBButton.setBackground(new Color(30, 90, 100));
                 typeBButton.setText("방향키 선택됨");
 
@@ -128,7 +139,8 @@ public class ControlKeySettingMenu extends JFrame {
         initComponents();
         layoutComponents();
         addEventListeners();
-        updateControlKeyModeUI(controlKeyStatus);
+        //controlKeyStatus = SettingFileWriter.readControlKey();
+        //updateControlKeyModeUI(controlKeyStatus);
         pack();
 
         // 사이즈

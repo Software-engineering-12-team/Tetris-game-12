@@ -50,7 +50,6 @@ public class Board extends JPanel {
     private Blocks nextPiece;
     private Font tetrisFont;
     private Tetrominoe[] board;
-    public static String controlKey = "TYPE_A"; // 기본값을 WASD로 설정
     
     public Board(TetrisGame parent, String difficulty) {
     	this.difficulty = difficulty;
@@ -514,13 +513,11 @@ public class Board extends JPanel {
     }
 
     private void doGameCycle() {
-
         update();
         repaint();
     }
 
     private void update() {		//게임 상태 업데이트
-        
         if (isPaused) {
             return;
         }
@@ -561,7 +558,7 @@ public class Board extends JPanel {
             }
 
             // 설정에 따라 키 맵핑을 조건부로 처리
-            if (controlKeyStatus.equals("WASD키")) {
+            if (ControlKeySettingMenu.controlKeyStatus.equals("타입A")) {
                 switch (e.getKeyCode()) {
                     case KeyEvent.VK_W:
                         tryMove(curPiece.rotateRight(), curX, curY);
@@ -579,7 +576,7 @@ public class Board extends JPanel {
                         dropDown();
                         break;
                 }
-            } else if (controlKeyStatus.equals("방향키")) {
+            } else if (ControlKeySettingMenu.controlKeyStatus.equals("타입B")) {
                 switch (e.getKeyCode()) {
                     case KeyEvent.VK_UP:
                         tryMove(curPiece.rotateRight(), curX, curY);

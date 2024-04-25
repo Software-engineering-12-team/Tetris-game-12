@@ -15,6 +15,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import static main.java.setting.colorblindmode.ColorBlindModeMenu.colorBlindStatus;
+import static main.java.setting.controlkeysetting.ControlKeySettingMenu.controlKeyStatus;
 
 
 public class SettingMenu extends JFrame {
@@ -112,10 +113,11 @@ public class SettingMenu extends JFrame {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                    	ControlKeySettingMenu operatingKeysettingMenu = new ControlKeySettingMenu();
-                        operatingKeysettingMenu.setSize(getSize());
-                        ScreenAdjustComponent.sizeAdjust(operatingKeysettingMenu.labels, operatingKeysettingMenu.buttons, operatingKeysettingMenu.isBackButton, SettingFileWriter.readSize());
-                        operatingKeysettingMenu.setVisible(true);
+                    	ControlKeySettingMenu controlKeySettingMenu = new ControlKeySettingMenu();
+                        controlKeySettingMenu.setSize(getSize());
+                        ScreenAdjustComponent.sizeAdjust(controlKeySettingMenu.labels, controlKeySettingMenu.buttons, controlKeySettingMenu.isBackButton, SettingFileWriter.readSize());
+                        controlKeySettingMenu.setVisible(true);
+                        controlKeySettingMenu.updateControlKeyModeUI(controlKeyStatus);
                     }
                 });
             }

@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import main.java.menu.gamestart.DifficultySettingMenu;
 import main.java.setting.SettingFileWriter;
 import main.java.setting.colorblindmode.ColorBlindModeMenu;
+import main.java.setting.controlkeysetting.ControlKeySettingMenu;
 
 
 public class TetrisGame extends JFrame {
@@ -22,7 +23,6 @@ public class TetrisGame extends JFrame {
     }
 
     private void initUI() {
-
         statusbar = new JLabel(" 0");
         add(statusbar, BorderLayout.SOUTH);
 
@@ -38,7 +38,8 @@ public class TetrisGame extends JFrame {
         else
         setSize(480,660);
         ColorBlindModeMenu.colorBlindStatus = SettingFileWriter.readBlindMode();
-        	
+        ControlKeySettingMenu.controlKeyStatus = SettingFileWriter.readControlKey();
+
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
     }
