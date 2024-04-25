@@ -16,6 +16,7 @@ public class GameStartMenu extends JFrame {
     public JButton[] buttons;
     private int selectedButtonIndex;
 	public static int size;
+	public static boolean isItemMode;
     public boolean isBackButton;
     
     private void handleKeyEvent(KeyEvent e) {
@@ -73,6 +74,7 @@ public class GameStartMenu extends JFrame {
         normalModeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	isItemMode = false;
             	dispose(); // 현재 설정 페이지 닫기
                 DifficultySettingMenu difficultySetting = new DifficultySettingMenu(); // 크기 조정 페이지로 이동
                 difficultySetting.setSize(getSize());
@@ -85,7 +87,13 @@ public class GameStartMenu extends JFrame {
         itemModeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+            	isItemMode = true;
+            	dispose(); 
+                DifficultySettingMenu difficultySetting = new DifficultySettingMenu(); // 크기 조정 페이지로 이동
+                difficultySetting.setSize(getSize());
+                ScreenAdjustComponent.sizeAdjust(difficultySetting.labels, difficultySetting.buttons, difficultySetting.isBackButton, SettingFileWriter.readSize());
+                difficultySetting.setVisible(true);
+
             }
         });
 
