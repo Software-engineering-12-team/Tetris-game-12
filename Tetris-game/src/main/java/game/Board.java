@@ -20,6 +20,7 @@ import main.java.setting.controlkeysetting.ControlKeySettingMenu;
 import main.java.util.ScreenAdjustComponent;
 import main.java.game.ScoreFileWriter; // 점수 저장을 위해 추가
 import main.java.menu.gamestart.DifficultySettingMenu;
+import main.java.menu.gamestart.GameStartMenu;
 import main.java.menu.ScoreEntry;
 
 import java.util.Timer;
@@ -42,6 +43,10 @@ public class Board extends JPanel {
     private boolean isFallingFinished = false;
     private boolean isStarted = false;
     private boolean isPaused = false;
+    private boolean isItemMode = GameStartMenu.isItemMode;
+    private boolean isItem = false;
+    private boolean isTouchedBlocks = false;
+    private int remainRowsForItems = 1;
     private int TotalScore = 0;
     private int curX = 0;
     private int curY = 0;
@@ -69,7 +74,7 @@ public class Board extends JPanel {
 
         curPiece = new Blocks(difficulty);
         nextPiece = new Blocks(difficulty);
-        nextPiece.setRandomBlock(difficulty);
+        nextPiece.setRandomBlock(difficulty, isItem);
         if(SettingFileWriter.readSize() == 0)		//화면 크기에 따른 폰트 크기 변경
         	tetrisFont = new Font("Arial", Font.BOLD, 20);
             else if(SettingFileWriter.readSize() == 1)
@@ -204,7 +209,23 @@ public class Board extends JPanel {
     private void dropDown() {		//블록을 한 번에 맨 아래로 떨어뜨리기
 
         int newY = curY;
+        
+        // WeightItem인 경우
+	    if (curPiece.getBlock() == Tetrominoe.WeightItem) {
+	        // 현재 블록이 놓인 위치에서 아래에 있는 모든 블록을 지우기
+	        while (newY > 0) {
+	            for (int i = 0; i < 4; ++i) {
+	                int x = curX + curPiece.x(i);
+	                int y = newY - curPiece.y(i) - 1; // WeightItem 아래에 있는 블록의 위치로 수정
+	                if (y >= 0 && blockAt(x, y) != Tetrominoe.BorderBlock) {
+	                    board[(y * BOARD_WIDTH) + x] = Tetrominoe.NoBlock; // 아래에 있는 블록을 지우기
+	                }
+	            }
+	            --newY;
+	        }
+	    }
 
+        
         while (newY > 0) {
             if (!tryMove(curPiece, curX, newY - 1)) {  
             	
@@ -235,6 +256,139 @@ public class Board extends JPanel {
             }
         }
     }
+    
+    private void deleteWeightItem() {
+   	 for (int i = 0; i < 4; i++) {
+   	        int x = curX + curPiece.x(i);
+   	        int y = curY - curPiece.y(i);
+   	        if (x >= 0 && x < BOARD_WIDTH && y >= 0 && y < BOARD_HEIGHT && board[(y * BOARD_WIDTH) + x] != Tetrominoe.BorderBlock) {
+   	            board[(y * BOARD_WIDTH) + x] = Tetrominoe.NoBlock;
+   	        }
+   	    }
+   }
+   
+   private void applyLineDelItem() {
+       int centerY = curY; 
+       TotalScore++;
+       
+       // 가로 방향으로 한 줄 제거
+       for (int j = 1; j < BOARD_WIDTH - 1; j++) {
+           if (board[(centerY * BOARD_WIDTH) + j] != Tetrominoe.BorderBlock) {
+               board[(centerY * BOARD_WIDTH) + j] = Tetrominoe.NoBlock;
+           }
+       }
+       
+    // 해당 줄 위의 모든 블록들을 한 칸씩 아래로 이동시키기
+       for (int i = centerY; i < BOARD_HEIGHT - 2; ++i) {
+           for (int j = 0; j < BOARD_WIDTH; ++j) {
+               board[(i* BOARD_WIDTH) + j] = blockAt(j, i + 1);
+           }
+       }
+   }
+
+   private void applyThreeItem() {
+   	int centerX = curX ; // 현재 블록의 중심 X 좌표
+       int centerY = curY ; // 현재 블록의 중심 Y 좌표
+       
+       // 블록이 3x3 범위 내에 있는지 확인하고 중심을 기준으로 주변 블록을 삭제
+       for (int i = centerY - 1; i <= centerY + 1; i++) {
+           for (int j = centerX - 1; j <= centerX + 1; j++) {
+               if (i >= 0 && i < BOARD_HEIGHT && j >= 0 && j < BOARD_WIDTH && board[(i * BOARD_WIDTH) + j] != Tetrominoe.BorderBlock) {
+                   board[(i * BOARD_WIDTH) + j] = Tetrominoe.NoBlock;
+               }
+           }
+       }
+   }
+
+   private void applyFiveItem() {
+   	int centerX = curX ; 
+       int centerY = curY ; 
+       
+       for (int i = centerY - 2; i <= centerY + 2; i++) {
+           for (int j = centerX - 2; j <= centerX + 2; j++) {
+               if (i >= 0 && i < BOARD_HEIGHT && j >= 0 && j < BOARD_WIDTH && board[(i * BOARD_WIDTH) + j] != Tetrominoe.BorderBlock) {
+                   board[(i * BOARD_WIDTH) + j] = Tetrominoe.NoBlock;
+               }
+           }
+       }
+   }
+   
+   private void applySevenItem() {
+   	int centerX = curX ; 
+       int centerY = curY ; 
+       
+       for (int i = centerY - 3; i <= centerY + 3; i++) {
+           for (int j = centerX - 3; j <= centerX + 3; j++) {
+               if (i >= 0 && i < BOARD_HEIGHT && j >= 0 && j < BOARD_WIDTH && board[(i * BOARD_WIDTH) + j] != Tetrominoe.BorderBlock) {
+                   board[(i * BOARD_WIDTH) + j] = Tetrominoe.NoBlock;
+               }
+           }
+       }
+   }
+   
+   private void applyPlusItem() {
+   	int centerX = curX; 
+       int centerY = curY; 
+       TotalScore++;
+       
+       // 가로 방향으로 한 줄 제거
+       for (int j = 1; j < BOARD_WIDTH - 1; j++) {
+           if (board[(centerY * BOARD_WIDTH) + j] != Tetrominoe.BorderBlock) {
+               board[(centerY * BOARD_WIDTH) + j] = Tetrominoe.NoBlock;
+           }
+       }
+       
+       // 세로 방향으로 한 줄 제거
+       for (int i = 1; i < BOARD_HEIGHT - 1; i++) {
+           if (board[(i * BOARD_WIDTH) + centerX] != Tetrominoe.BorderBlock) {
+               board[(i * BOARD_WIDTH) + centerX] = Tetrominoe.NoBlock;
+           }
+       }
+       
+    // 해당 줄 위의 모든 블록들을 한 칸씩 아래로 이동시키기
+       for (int i = centerY; i < BOARD_HEIGHT - 2; ++i) {
+           for (int j = 0; j < BOARD_WIDTH; ++j) {
+               board[(i* BOARD_WIDTH) + j] = blockAt(j, i + 1);
+           }
+       }
+   }
+
+   private void applyAllDelItem() {
+   	for (int i = 1; i < BOARD_HEIGHT - 1; i++) {
+           for (int j = 1; j < BOARD_WIDTH - 1; j++) {
+               board[(i * BOARD_WIDTH) + j] = Tetrominoe.NoBlock;
+           }
+       }
+   }
+
+   private void applyItemEffect(Tetrominoe item) {
+       switch (item) {
+       	case WeightItem:
+       		deleteWeightItem();
+       		break;
+       	case LineDelItem:
+       		applyLineDelItem();
+       		break;
+           case ThreeItem:
+               applyThreeItem();
+               break;
+           case FiveItem:
+           	applyFiveItem();
+           	break;
+           case SevenItem:
+           	applySevenItem();
+           	break;
+           case PlusItem:
+           	applyPlusItem();
+           	break;
+           case AllDelItem:
+               applyAllDelItem();
+               break;
+           default:
+               break;
+       }
+   }
+
 
     private void pieceDropped() {		//블록이 떨어진 후 
 
@@ -244,7 +398,8 @@ public class Board extends JPanel {
             int y = curY - curPiece.y(i);
             board[(y * BOARD_WIDTH) + x] = curPiece.getBlock();
         }
-
+        
+        applyItemEffect(curPiece.getBlock());
         removeFullLines();
 
         if (!isFallingFinished) {
@@ -255,15 +410,29 @@ public class Board extends JPanel {
 
     private void newPiece() {		//새로운 블록 생성
 
-    	curPiece = nextPiece;	// 현재 블록을 방금 표시되었던 블록으로 설정
-    	nextPiece = new Blocks(difficulty); // 다음 블록 생성
-    	nextPiece.setRandomBlock(difficulty);
-        curX = BOARD_WIDTH / 2 - 1;
-        curY = BOARD_HEIGHT - 2 + curPiece.minY();
+    	if(remainRowsForItems <= 0 && isItemMode == true) 
+    	{	
+    		isItem = true;		// 선택된 것이 아이템임
+    		curPiece = nextPiece;	// 현재 블록을 방금 표시되었던 블록으로 설정
+    		nextPiece = new Blocks(difficulty); // 다음 블록 생성
+    		nextPiece.setRandomBlock(difficulty, isItem);
+    		curX = BOARD_WIDTH / 2 - 1;
+    		curY = BOARD_HEIGHT - 2 + curPiece.minY();
+    		remainRowsForItems = 10;		// 아이템이 나오기까지 남은 줄 초기화
+    	}
+    	else
+    	{
+    		isItem = false;		// 선택된 것이 블록임
+    		curPiece = nextPiece;	// 현재 블록을 방금 표시되었던 블록으로 설정
+        	nextPiece = new Blocks(difficulty); // 다음 블록 생성
+        	nextPiece.setRandomBlock(difficulty, isItem);
+            curX = BOARD_WIDTH / 2 - 1;
+            curY = BOARD_HEIGHT - 2 + curPiece.minY();
+    	}
 
         if (!tryMove(curPiece, curX, curY)) {
             // 게임오버일 때 점수를 스코어보드에 추가
-            curPiece.setBlock(Tetrominoe.NoBlock);
+            //curPiece.setBlock(Tetrominoe.NoBlock);
             timer.cancel();
             isStarted = false;
 
@@ -300,27 +469,62 @@ public class Board extends JPanel {
 
     private boolean tryMove(Blocks newPiece, int newX, int newY) {		//블록을 이동시킬 수 있는지 확인
 
-        for (int i = 0; i < 4; ++i) {
-
-            int x = newX + newPiece.x(i);
-            int y = newY - newPiece.y(i);
-
-            if (x < 0 || x >= BOARD_WIDTH || y < 0 || y >= BOARD_HEIGHT) {
+    	// WeightBlock인 경우 처리
+        if (newPiece.getBlock() == Tetrominoe.WeightItem) {
+            boolean canMove = true;
+            isTouchedBlocks = false;
+            
+            // 새로운 위치에 이동할 수 있는지 확인
+            for (int i = 0; i < 4; ++i) {
+                int x = newX + newPiece.x(i);
+                int y = newY - newPiece.y(i);
+                if (x < 0 || x >= BOARD_WIDTH || y < 0 || y >= BOARD_HEIGHT) {
+                    canMove = false;
+                    break;
+                }
+                if (blockAt(x, y) == Tetrominoe.BorderBlock) {
+                    canMove = false;
+                    break;
+                }
+                else if (blockAt(x, y) != Tetrominoe.NoBlock) {		// 한 번 다른 블록을 파괴하면 더 이상 좌우로 움직일 수 없음
+                	isTouchedBlocks = true;
+                }
+            }
+            if (canMove) {
+                curPiece = newPiece;
+                curX = newX;
+                curY = newY;
+                for (int i = 0; i < 4; ++i) {
+                    int x = newX + newPiece.x(i);
+                    int y = newY - newPiece.y(i); 
+                    if (y >= 0 && blockAt(x, y) != Tetrominoe.BorderBlock) {
+                        board[(y * BOARD_WIDTH) + x] = Tetrominoe.NoBlock;	// 아래 있던 블록을 파괴함
+                    }
+                }
+                repaint();
+                return true;
+            } else {
                 return false;
             }
-
-            if (blockAt(x, y) != Tetrominoe.NoBlock) {
-                return false;
+        } else {
+            // WeightBlock이 아닌 경우 기존 동작 수행
+            for (int i = 0; i < 4; ++i) {
+                int x = newX + newPiece.x(i);
+                int y = newY - newPiece.y(i);
+                if (x < 0 || x >= BOARD_WIDTH || y < 0 || y >= BOARD_HEIGHT) {
+                    return false;
+                }
+                if (blockAt(x, y) != Tetrominoe.NoBlock) {
+                    return false;
+                }
             }
+            curPiece = newPiece;
+            curX = newX;
+            curY = newY;
+            repaint();
+            return true;
         }
 
-        curPiece = newPiece;
-        curX = newX;
-        curY = newY;
-
-        repaint();
-
-        return true;
     }
 
     private void removeFullLines() {     //가득 찬 줄 제거, 테두리를 고려하여 수정
@@ -421,7 +625,14 @@ public class Board extends JPanel {
                 new Color(204, 102, 204),
             new Color(102, 204, 204),
                 new Color(218, 170, 0),
+            new Color(0, 0, 0),	
+            	new Color(0, 0, 0),
             new Color(0, 0, 0),
+            	new Color(0, 0, 0),
+            new Color(0, 0, 0),
+            	new Color(0, 0, 0),
+            new Color(0, 0, 0),
+            	new Color(0, 0, 0),
             new Color(255, 255, 255)
         };
 /*        Color colors[] = {	//일반 색깔
@@ -446,6 +657,13 @@ public class Board extends JPanel {
                 new Color(227, 66, 52),       // Vermilion
                 new Color(147, 112, 219),     // Reddish Purple (Medium Purple로 대체)
                 new Color(0, 0, 0), 		  // 추가된 Black (원하시는 배치가 맞는지 확인해주세요)
+                new Color(0, 0, 0),	
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
                 new Color(255, 255, 255)
         };
 
@@ -471,6 +689,13 @@ public class Board extends JPanel {
                 new Color(128, 0, 128),
                 new Color(128, 128, 128),
                 new Color(64, 224, 208),
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),	
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
+                new Color(0, 0, 0),
                 new Color(0, 0, 0),
                 new Color(255, 255, 255)
         };
@@ -510,6 +735,35 @@ public class Board extends JPanel {
             g.setColor(Color.WHITE);
             g.drawString("X", x + squareWidth() / 2 - 5, y + squareHeight() / 2 + 5);
         }
+        else if (block == Tetrominoe.WeightItem) {
+        	g.setColor(Color.WHITE);
+        	g.drawString("#", x + squareWidth() / 2 - 5, y + squareHeight() / 2 + 5);
+        }
+        else if (block == Tetrominoe.LineDelItem) {
+        	g.setColor(Color.WHITE);
+        	g.drawString("L", x + squareWidth() / 2 - 5, y + squareHeight() / 2 + 5);
+        }
+        else if (block == Tetrominoe.ThreeItem) {
+        	g.setColor(Color.WHITE);
+        	g.drawString("3", x + squareWidth() / 2 - 5, y + squareHeight() / 2 + 5);
+        }
+        else if (block == Tetrominoe.FiveItem) {
+        	g.setColor(Color.WHITE);
+        	g.drawString("5", x + squareWidth() / 2 - 5, y + squareHeight() / 2 + 5);
+        }
+        else if (block == Tetrominoe.SevenItem) {
+        	g.setColor(Color.WHITE);
+        	g.drawString("7", x + squareWidth() / 2 - 5, y + squareHeight() / 2 + 5);
+        }
+        else if (block == Tetrominoe.PlusItem) {
+        	g.setColor(Color.WHITE);
+        	g.drawString("+", x + squareWidth() / 2 - 5, y + squareHeight() / 2 + 5);
+        }
+        else if (block == Tetrominoe.AllDelItem) {
+        	g.setColor(Color.WHITE);
+        	g.drawString("A", x + squareWidth() / 2 - 5, y + squareHeight() / 2 + 5);
+        }
+
     }
 
     private void doGameCycle() {
@@ -564,13 +818,13 @@ public class Board extends JPanel {
                         tryMove(curPiece.rotateRight(), curX, curY);
                         break;
                     case KeyEvent.VK_A:
-                        tryMove(curPiece, curX - 1, curY);
+                    	if(!isTouchedBlocks)tryMove(curPiece, curX - 1, curY);
                         break;
                     case KeyEvent.VK_S:
                         tryMove(curPiece, curX, curY - 1);
                         break;
                     case KeyEvent.VK_D:
-                        tryMove(curPiece, curX + 1, curY);
+                    	if(!isTouchedBlocks)tryMove(curPiece, curX + 1, curY);
                         break;
                     case KeyEvent.VK_Q:
                         dropDown();
@@ -582,13 +836,13 @@ public class Board extends JPanel {
                         tryMove(curPiece.rotateRight(), curX, curY);
                         break;
                     case KeyEvent.VK_LEFT:
-                        tryMove(curPiece, curX - 1, curY);
+                    	if(!isTouchedBlocks)tryMove(curPiece, curX - 1, curY);
                         break;
                     case KeyEvent.VK_DOWN:
                         tryMove(curPiece, curX, curY - 1);
                         break;
                     case KeyEvent.VK_RIGHT:
-                        tryMove(curPiece, curX + 1, curY);
+                    	if(!isTouchedBlocks)tryMove(curPiece, curX + 1, curY);
                         break;
                     case KeyEvent.VK_Q:
                         dropDown();
