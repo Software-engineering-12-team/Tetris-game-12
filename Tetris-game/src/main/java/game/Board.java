@@ -46,7 +46,7 @@ public class Board extends JPanel {
     private boolean isItemMode = GameStartMenu.isItemMode;
     private boolean isItem = false;
     private boolean isTouchedBlocks = false;
-    private int remainRowsForItems = 1;
+    private int remainRowsForItems = 10;
     private int TotalScore = 0;
     private int curX = 0;
     private int curY = 0;
@@ -543,6 +543,7 @@ public class Board extends JPanel {
             }
 
             if (lineIsFull) {
+		if(isItemMode == true){ --remainRowsForItems;}
                 ++numFullLines;
                 ++consecutiveLines; // 연속된 줄의 개수 추가
 
