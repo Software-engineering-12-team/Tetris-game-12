@@ -101,8 +101,9 @@ public class ColorBlindModeMenu extends JFrame {
                 colorBlindStatus = "적녹색맹";
                 updateColorBlindModeUI(colorBlindStatus);
                 size = SettingFileWriter.readSize();
+                controlKeyStatus = SettingFileWriter.readControlKey();
                 SettingFileWriter.clearSetting();
-                SettingFileWriter.writeSetting(size, "", colorBlindStatus);
+                SettingFileWriter.writeSetting(size, controlKeyStatus, colorBlindStatus);
             }
         });
         blueYellowBlindButton.addActionListener(new ActionListener() {
@@ -111,8 +112,9 @@ public class ColorBlindModeMenu extends JFrame {
                 colorBlindStatus = "청황색맹";
                 updateColorBlindModeUI(colorBlindStatus);
                 size = SettingFileWriter.readSize();
+                controlKeyStatus = SettingFileWriter.readControlKey();
                 SettingFileWriter.clearSetting();
-                SettingFileWriter.writeSetting(size, "", colorBlindStatus);
+                SettingFileWriter.writeSetting(size, controlKeyStatus, colorBlindStatus);
             }
         });
     }

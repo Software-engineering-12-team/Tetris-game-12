@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+import static main.java.setting.controlkeysetting.ControlKeySettingMenu.controlKeyStatus;
 import static main.java.setting.colorblindmode.ColorBlindModeMenu.colorBlindStatus;
 
 public class ScreenAdjustSizeMenu extends JFrame {
@@ -78,8 +79,10 @@ public class ScreenAdjustSizeMenu extends JFrame {
             	size = 0;
             	setSize(400, 550);
             	ScreenAdjustComponent.sizeAdjust(labels, buttons, isBackButton, size);
+            	controlKeyStatus = SettingFileWriter.readControlKey();
+                colorBlindStatus = SettingFileWriter.readBlindMode();
             	SettingFileWriter.clearSetting();
-            	SettingFileWriter.writeSetting(size, "controlKey", colorBlindStatus);
+            	SettingFileWriter.writeSetting(size, controlKeyStatus, colorBlindStatus);
             }
         });
         
@@ -89,8 +92,10 @@ public class ScreenAdjustSizeMenu extends JFrame {
             	size = 1;
             	setSize(440, 605);
             	ScreenAdjustComponent.sizeAdjust(labels, buttons, isBackButton, size);
+            	controlKeyStatus = SettingFileWriter.readControlKey();
+                colorBlindStatus = SettingFileWriter.readBlindMode();
             	SettingFileWriter.clearSetting();
-            	SettingFileWriter.writeSetting(size, "controlKey", colorBlindStatus);
+            	SettingFileWriter.writeSetting(size, controlKeyStatus, colorBlindStatus);
             }
         });
         
@@ -100,8 +105,10 @@ public class ScreenAdjustSizeMenu extends JFrame {
             	size = 2;
             	setSize(480, 660);
             	ScreenAdjustComponent.sizeAdjust(labels, buttons, isBackButton, size);
+            	controlKeyStatus = SettingFileWriter.readControlKey();
+                colorBlindStatus = SettingFileWriter.readBlindMode();
             	SettingFileWriter.clearSetting();
-            	SettingFileWriter.writeSetting(size, "controlKey", colorBlindStatus);
+            	SettingFileWriter.writeSetting(size, controlKeyStatus, colorBlindStatus);
             }
         });
 
