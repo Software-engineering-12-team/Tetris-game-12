@@ -14,6 +14,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+import static main.java.setting.colorblindmode.ColorBlindModeMenu.colorBlindStatus;
+
 
 public class SettingMenu extends JFrame {
     private JLabel titleLabel;
@@ -133,7 +135,7 @@ public class SettingMenu extends JFrame {
                         colorBlindModeMenu.setSize(getSize());
                         ScreenAdjustComponent.sizeAdjust(colorBlindModeMenu.labels, colorBlindModeMenu.buttons, colorBlindModeMenu.isBackButton, SettingFileWriter.readSize());
                         colorBlindModeMenu.setVisible(true);
-                        colorBlindModeMenu.updateColorBlindModeUI();
+                        colorBlindModeMenu.updateColorBlindModeUI(colorBlindStatus);
                     }
                 });
             }
@@ -144,7 +146,7 @@ public class SettingMenu extends JFrame {
             public void actionPerformed(ActionEvent e) {
             	//창 크기 초기화(small)
             	SettingFileWriter.clearSetting();
-            	SettingFileWriter.writeSetting(0, "controlKey", "blindMode");
+            	SettingFileWriter.writeSetting(0, "controlKey", "정상");
             	setSize(400, 550);
             	ScreenAdjustComponent.sizeAdjust(labels, buttons, isBackButton, SettingFileWriter.readSize());
             	

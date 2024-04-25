@@ -19,12 +19,12 @@ public class SettingFileWriter {
             File file = new File(FILE_PATH);
             if (file.createNewFile()) {
                 System.out.println("설정 파일이 생성되었습니다.");
-            	SettingFileWriter.writeSetting(0, "controlKey", ColorBlindModeMenu.colorBlindStatus);
+            	SettingFileWriter.writeSetting(0, "controlKey", "정상");
             } else {
                 System.out.println("설정 파일이 이미 존재합니다.");
                 if (Files.size(Paths.get("setting.txt")) == 0) {
                     System.out.println("파일이 존재하지만 비어 있습니다.");
-                	SettingFileWriter.writeSetting(0, "controlKey", ColorBlindModeMenu.colorBlindStatus);
+                	SettingFileWriter.writeSetting(0, "controlKey", "정상");
                 } else {
                     System.out.println("파일이 비어 있지 않습니다.");
                 }
@@ -52,6 +52,7 @@ public class SettingFileWriter {
                     // 키워드를 기준으로 정보 추출
                 	size_temp = line.substring(sizeIndex + 4, line.indexOf(" ", sizeIndex + 4)).trim();
                 }
+                break;
             } 
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "설정을 로드하는 중에 오류가 발생했습니다: " + e.getMessage(), "오류", JOptionPane.ERROR_MESSAGE);
