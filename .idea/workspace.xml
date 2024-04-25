@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] change controlKeyStatus">
-      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/game/Board.java" afterDir="false" />
+    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] colorblindmode test color add">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,31 +52,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.SettingFileWriter.executor&quot;: &quot;Run&quot;,
-    &quot;Application.SettingScreen.executor&quot;: &quot;Run&quot;,
-    &quot;Application.StartMenu.executor&quot;: &quot;Run&quot;,
-    &quot;Application.StartScreen.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TetrisGame.executor&quot;: &quot;Run&quot;,
-    &quot;Application.testcode.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-21&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.SettingFileWriter.executor": "Run",
+    "Application.SettingScreen.executor": "Run",
+    "Application.StartMenu.executor": "Run",
+    "Application.StartScreen.executor": "Run",
+    "Application.TetrisGame.executor": "Run",
+    "Application.testcode.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "jdk.selected.JAVA_MODULE": "openjdk-21",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "advanced.settings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="component" />
@@ -86,7 +86,7 @@
       <recent name="$PROJECT_DIR$/Tetris-game/src/main/java/game" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.StartMenu">
+  <component name="RunManager" selected="Application.testcode">
     <configuration name="StartMenu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.java.menu.StartMenu" />
       <module name="Tetris-game" />
@@ -113,8 +113,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="testcode" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="testcode" />
+      <module name="Tetris-game" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.testcode" />
         <item itemvalue="Application.StartMenu" />
         <item itemvalue="Application.TetrisGame" />
       </list>
@@ -154,7 +162,7 @@
       <workItem from="1714020272316" duration="15239000" />
       <workItem from="1714051112448" duration="976000" />
       <workItem from="1714052091691" duration="480000" />
-      <workItem from="1714052574438" duration="19745000" />
+      <workItem from="1714052574438" duration="21294000" />
     </task>
     <task id="LOCAL-00001" summary="[Feature] create Setting file">
       <option name="closed" value="true" />
@@ -492,7 +500,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714074572307</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="[Fix] colorblindmode test color add">
+      <option name="closed" value="true" />
+      <created>1714075140030</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1714075140030</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -510,7 +526,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[Fix] rename file name and change file directory" />
     <MESSAGE value="[Feat] create operating-key-setting-menu file" />
     <MESSAGE value="[Fix] fix ControlKeySettingMenu" />
     <MESSAGE value="[Fix] fix ControlKeySettingMenu 2" />
@@ -535,6 +550,7 @@
     <MESSAGE value="[Fix] controlKey FileWriter adapted" />
     <MESSAGE value="[Fix] add controlKey description" />
     <MESSAGE value="[Fix] change controlKeyStatus" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Fix] change controlKeyStatus" />
+    <MESSAGE value="[Fix] colorblindmode test color add" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Fix] colorblindmode test color add" />
   </component>
 </project>
