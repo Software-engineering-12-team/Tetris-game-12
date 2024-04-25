@@ -425,15 +425,15 @@ public class Board extends JPanel {
         };
 
         Color bycbcolors[] = {    // 청황 색맹 모드 전용 색깔
-                new Color(0, 0, 0),           // Black
-                new Color(0, 0, 0),       // Orange
-                new Color(0, 0, 0),     // Sky Blue
-                new Color(0, 0, 0),       // Bluish Green (Cyan으로 대체)
-                new Color(0, 0, 0),       // Yellow
-                new Color(0, 0, 0),         // Blue
-                new Color(0, 0, 0),       // Vermilion
-                new Color(0, 0, 0),     // Reddish Purple (Medium Purple로 대체)
-                new Color(0, 0, 0)            // 추가된 Black (원하시는 배치가 맞는지 확인해주세요)
+                new Color(204, 0, 0),
+                new Color(0, 204, 0),
+                new Color(0, 0, 153),
+                new Color(255, 165, 0),
+                new Color(255, 192, 203),
+                new Color(128, 0, 128),
+                new Color(128, 128, 128),
+                new Color(64, 224, 208),
+                new Color(0, 0, 0),
         };
 
 
