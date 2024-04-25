@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 
 import main.java.menu.gamestart.DifficultySettingMenu;
 import main.java.setting.SettingFileWriter;
+import main.java.setting.colorblindmode.ColorBlindModeMenu;
 
 
 public class TetrisGame extends JFrame {
@@ -36,6 +37,7 @@ public class TetrisGame extends JFrame {
         setSize(440,605);
         else
         setSize(480,660);
+        ColorBlindModeMenu.colorBlindStatus = SettingFileWriter.readBlindMode();
         	
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);

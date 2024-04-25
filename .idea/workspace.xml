@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] change blue-yellow color">
-      <change afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/colorblindmode/ColorBlindModeMenu.java" afterDir="false" />
+    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] fix error">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/game/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/game/TetrisGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/game/TetrisGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,6 +150,7 @@
       <workItem from="1714020272316" duration="15239000" />
       <workItem from="1714051112448" duration="976000" />
       <workItem from="1714052091691" duration="480000" />
+      <workItem from="1714052574438" duration="905000" />
     </task>
     <task id="LOCAL-00001" summary="[Feature] create Setting file">
       <option name="closed" value="true" />
@@ -414,7 +416,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714022834260</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="[Fix] fix error">
+      <option name="closed" value="true" />
+      <created>1714052597257</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1714052597257</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -432,7 +442,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[Fix] delete SettingScreenRunner.java" />
     <MESSAGE value="[Fix] fix scoreboardmenu ui" />
     <MESSAGE value="[Fix] add dispose button in scoreboard menu" />
     <MESSAGE value="[Fix] add dispose button in AdjustSize.java" />
@@ -457,6 +466,7 @@
     <MESSAGE value="[Fix] colorBlindMode color change" />
     <MESSAGE value="[Feat] add ColorBlindMode filewriter" />
     <MESSAGE value="[Fix] change blue-yellow color" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Fix] change blue-yellow color" />
+    <MESSAGE value="[Fix] fix error" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Fix] fix error" />
   </component>
 </project>
