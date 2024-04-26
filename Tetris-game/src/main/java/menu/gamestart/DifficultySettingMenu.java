@@ -6,6 +6,7 @@ import main.java.setting.SettingFileWriter;
 import main.java.setting.SettingMenu;
 import main.java.util.ButtonStyle;
 import main.java.util.ScreenAdjustComponent;
+import main.java.menu.gamestart.GameStartMenu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -83,10 +84,10 @@ public class DifficultySettingMenu extends JFrame {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        SettingMenu settingMenu = new SettingMenu();
-                        settingMenu.setSize(getSize());
-                        ScreenAdjustComponent.sizeAdjust(settingMenu.labels, settingMenu.buttons, settingMenu.isBackButton, SettingFileWriter.readSize());
-                        settingMenu.setVisible(true);
+                    	GameStartMenu gameStartMenu = new GameStartMenu();
+                    	gameStartMenu.setSize(getSize());
+                        ScreenAdjustComponent.sizeAdjust(gameStartMenu.labels, gameStartMenu.buttons, gameStartMenu.isBackButton, SettingFileWriter.readSize());
+                        gameStartMenu.setVisible(true);
                     }
                 });
             }
