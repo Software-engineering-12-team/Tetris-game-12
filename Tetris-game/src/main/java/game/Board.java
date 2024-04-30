@@ -529,7 +529,7 @@ public class Board extends JPanel {
 
     }
 
-    private void removeFullLines() { //오류 수정
+    private void removeFullLines() { //오류 수정!
         int numFullLines = 0;
         int consecutiveLines = 0;
         List<Integer> fullLines = new ArrayList<>(); // 강조된 줄의 인덱스를 저장할 리스트
