@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.JOptionPane;
+import java.util.List;
+import java.util.ArrayList;
 
 import main.java.game.Blocks.Tetrominoe;
 import main.java.menu.ScoreBoardMenu;
@@ -527,14 +529,16 @@ public class Board extends JPanel {
 
     }
 
-    private void removeFullLines() {     //가득 찬 줄 제거, 테두리를 고려하여 수정
-
+    private void removeFullLines() {
         int numFullLines = 0;
-        int consecutiveLines = 0; // 연속된 줄의 개수를 추적하는 변수 추가
+        int consecutiveLines = 0;
+        List<Integer> fullLines = new ArrayList<>(); // 강조된 줄의 인덱스를 저장할 리스트
 
-        for (int i = BOARD_HEIGHT - 1; i >= 1; --i) {
+        // 보드의 각 행을 확인하여 꽉 찬 줄인지 확인
+        for (int i = BOARD_HEIGHT - 2; i >= 1; --i) {
             boolean lineIsFull = true;
 
+            // 해당 줄이 꽉 찼는지 확인
             for (int j = 1; j < BOARD_WIDTH - 1; ++j) {
                 if (blockAt(j, i) == Tetrominoe.NoBlock || blockAt(j, i) == Tetrominoe.BorderBlock) {
                     lineIsFull = false;
@@ -542,40 +546,45 @@ public class Board extends JPanel {
                 }
             }
 
+            // 만약 해당 줄이 꽉 찼다면, 리스트에 추가
             if (lineIsFull) {
-		if(isItemMode == true){ --remainRowsForItems;}
+            	if (isItemMode == true) {--remainRowsForItems;}
                 ++numFullLines;
-                ++consecutiveLines; // 연속된 줄의 개수 추가
-
-                // 강조 기능 추가: 꽉 찬 줄을 하이라이트 블록으로 표시
-                for (int j = 1; j < BOARD_WIDTH - 1; ++j) {
-                    board[(i * BOARD_WIDTH) + j] = Tetrominoe.HighlightBlock;
-                }
-
-                final int row = i; // 꽉 찬 줄의 행 인덱스를 저장합니다.
-                Timer timer = new Timer();
-                timer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        // 타이머가 실행되면 이 부분이 실행됩니다.
-
-                        // 하이라이트 블록을 원래 블록으로 변경하는 작업을 여기에 추가하세요.
-                        for (int k = row; k < BOARD_HEIGHT - 2; ++k) {
-                            for (int j = 0; j < BOARD_WIDTH; ++j) {
-                                board[(k * BOARD_WIDTH) + j] = blockAt(j, k + 1);
-                            }
-                        }
-
-                        repaint();
-                    }
-                }, 100);
+                ++consecutiveLines;
+                fullLines.add(i);
             }
         }
 
-        // 마지막 줄이 가득 찼을 경우
-        if (consecutiveLines > 0) {
-            // 가산점 부여
-            TotalScore += (consecutiveLines - 1);
+        // 모든 꽉 찬 줄을 동시에 제거
+        if (!fullLines.isEmpty()) {
+            for (int fullLineIndex : fullLines) {
+                // 강조된 줄을 흰색으로 변경
+                for (int j = 1; j < BOARD_WIDTH - 1; ++j) {
+                    board[(fullLineIndex * BOARD_WIDTH) + j] = Tetrominoe.HighlightBlock;
+                }
+            }
+
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    // 강조된 줄들을 삭제하고 위의 줄들을 아래로 이동
+                    for (int fullLineIndex : fullLines) {
+                        for (int k = fullLineIndex; k < BOARD_HEIGHT - 2; ++k) {
+                            for (int j = 1; j < BOARD_WIDTH - 1; ++j) {
+                                // 윗줄의 블록을 아래 줄로 이동
+                                board[(k * BOARD_WIDTH) + j] = blockAt(j, k + 1);
+                            }
+                        }
+                    }
+
+                    repaint();
+                }
+            }, 100); // 딜레이 추가
+
+            if (consecutiveLines > 0) {
+            	TotalScore += (consecutiveLines - 1);
+            }
         }
 
         if (numFullLines > 0) {
@@ -586,6 +595,7 @@ public class Board extends JPanel {
             adjustSpeed(numFullLines);
         }
     }
+
     
     
     private void adjustSpeed(int numFullLines) {
