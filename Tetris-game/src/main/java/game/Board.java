@@ -209,7 +209,7 @@ public class Board extends JPanel {
     }
 
     private void dropDown() {		//블록을 한 번에 맨 아래로 떨어뜨리기
-
+    	int dropDistance = 0;
         int newY = curY;
         
         // WeightItem인 경우
@@ -234,10 +234,14 @@ public class Board extends JPanel {
                 break;
             }
             --newY;
+            ++dropDistance;
         }
+        
+        TotalScore += dropDistance;
+        
         pieceDropped();
     }
-
+    
     private void oneLineDown() {		//블록을 한 칸 떨어뜨리기
 
         if (!tryMove(curPiece, curX, curY - 1)) {
@@ -839,6 +843,7 @@ public class Board extends JPanel {
                         break;
                     case KeyEvent.VK_S:
                         tryMove(curPiece, curX, curY - 1);
+                        TotalScore += 1;
                         break;
                     case KeyEvent.VK_D:
                     	if(!isTouchedBlocks)tryMove(curPiece, curX + 1, curY);
@@ -857,6 +862,7 @@ public class Board extends JPanel {
                         break;
                     case KeyEvent.VK_DOWN:
                         tryMove(curPiece, curX, curY - 1);
+                        TotalScore += 1;
                         break;
                     case KeyEvent.VK_RIGHT:
                     	if(!isTouchedBlocks)tryMove(curPiece, curX + 1, curY);
