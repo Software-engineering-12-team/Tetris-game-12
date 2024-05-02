@@ -595,14 +595,13 @@ public class Board extends JPanel {
             adjustSpeed(numFullLines);
         }
     }
-
-    
-    
+   
     private void adjustSpeed(int numFullLines) {
-    	int newDelay;
-    	int newInterval;
-    	
-    	if (difficulty.equals("Easy")) {
+        int newDelay;
+        int newInterval;
+        int additionalScore = 0; // 추가 점수를 추적하기 위한 변수
+
+        if (difficulty.equals("Easy")) {
             newDelay = Math.max(INITIAL_DELAY - numFullLines * 40, 0);
             newInterval = Math.max(PERIOD_INTERVAL - numFullLines * 8, 0);
         } else if (difficulty.equals("Hard")) {
@@ -612,17 +611,24 @@ public class Board extends JPanel {
             newDelay = Math.max(INITIAL_DELAY - numFullLines * 50, 0);
             newInterval = Math.max(PERIOD_INTERVAL - numFullLines * 10, 0);
         }
-    	
-    	if (newInterval <= 0) {
-    		newInterval = 1;
-    	}
-    	
-    	timer.cancel();
-    	timer = new Timer();
-    	timer.scheduleAtFixedRate(new ScheduleTask(), newDelay, newInterval);
-    	
-    	INITIAL_DELAY = newDelay;
-    	PERIOD_INTERVAL = newInterval;
+        
+        if (PERIOD_INTERVAL < 1000) {
+        	additionalScore += (1000 - PERIOD_INTERVAL) / 100;
+        }
+
+        // TotalScore에 추가 점수 더하기
+        TotalScore += additionalScore;
+
+        if (newInterval <= 0) {
+            newInterval = 1;
+        }
+
+        timer.cancel();
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new ScheduleTask(), newDelay, newInterval);
+
+        INITIAL_DELAY = newDelay;
+        PERIOD_INTERVAL = newInterval;
     }
     
     private void drawBlock(Graphics g, int x, int y, 
