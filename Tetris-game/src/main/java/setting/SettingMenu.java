@@ -7,6 +7,7 @@ import main.java.setting.colorblindmode.ColorBlindModeMenu;
 import main.java.setting.controlkeysetting.ControlKeySettingMenu;
 import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
 import main.java.util.ButtonStyle;
+import main.java.util.HandleKeyEvent;
 import main.java.util.ScreenAdjustComponent;
 import main.java.setting.SettingFileWriter;
 
@@ -23,22 +24,7 @@ public class SettingMenu extends JFrame {
     public JLabel[] labels;
     private JButton sizeAdjustButton, controlKeyButton, resetscoreButton, colorBlindModeButton, resetSettingButton, backButton;
     public JButton[] buttons;
-    private int selectedButtonIndex;
     public boolean isBackButton;
-
-    
-    private void handleKeyEvent(KeyEvent e) {
-        int keyCode = e.getKeyCode();
-        if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_RIGHT) {
-            selectedButtonIndex = (selectedButtonIndex + 1) % buttons.length;
-        } else if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_LEFT) {
-            selectedButtonIndex = (selectedButtonIndex - 1 + buttons.length) % buttons.length;
-        } else if (keyCode == KeyEvent.VK_ENTER) {
-            buttons[selectedButtonIndex].doClick();
-            return; // Enter 키 입력 후 추가 동작을 방지하기 위해 여기서 종료
-        }
-        ButtonStyle.updateButtonStyles(buttons, selectedButtonIndex, isBackButton);
-    }
 
     public SettingMenu() {
         setTitle("설정");
@@ -63,7 +49,6 @@ public class SettingMenu extends JFrame {
         backButton = new JButton("뒤로가기");
         
         buttons = new JButton[]{sizeAdjustButton, controlKeyButton, resetscoreButton, colorBlindModeButton, resetSettingButton, backButton};
-        selectedButtonIndex = 0;
         
         isBackButton = true;
         ButtonStyle.applyButtonStyle(buttons, isBackButton);
@@ -89,6 +74,7 @@ public class SettingMenu extends JFrame {
                 adjustSize.setSize(getSize());
                 ScreenAdjustComponent.sizeAdjust(adjustSize.labels, adjustSize.buttons, adjustSize.isBackButton, SettingFileWriter.readSize());
                 adjustSize.setVisible(true);
+                HandleKeyEvent.selectedButtonIndex = 0;
             }
         });
         
@@ -102,6 +88,7 @@ public class SettingMenu extends JFrame {
                 ScreenAdjustComponent.sizeAdjust(scoreBoardMenu.labels, scoreBoardMenu.buttons, scoreBoardMenu.isBackButton, SettingFileWriter.readSize());
                 scoreBoardMenu.setVisible(true);
             	scoreBoardMenu.clearScores();
+            	HandleKeyEvent.selectedButtonIndex = 0;
             }
         });
 
@@ -110,6 +97,7 @@ public class SettingMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
             	dispose();
+            	HandleKeyEvent.selectedButtonIndex = 0;
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
@@ -130,6 +118,7 @@ public class SettingMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
+                HandleKeyEvent.selectedButtonIndex = 0;
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
@@ -161,13 +150,13 @@ public class SettingMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose(); // 현재 창 닫기
+                HandleKeyEvent.selectedButtonIndex = 0;
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
                     	StartMenu StartMenu = new StartMenu();
                     	StartMenu.setSize(getSize());
                         ScreenAdjustComponent.sizeAdjust(StartMenu.labels, StartMenu.buttons, StartMenu.isBackButton, SettingFileWriter.readSize());
-
                         StartMenu.setVisible(true);
                     }
                 });
@@ -183,7 +172,7 @@ public class SettingMenu extends JFrame {
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                handleKeyEvent(e);
+            	HandleKeyEvent.handleKeyEvent(e, buttons, isBackButton);
             }
         });
         setFocusable(true);

@@ -5,6 +5,7 @@ import javax.swing.*;
 import main.java.setting.SettingFileWriter;
 import main.java.setting.SettingMenu;
 import main.java.util.ButtonStyle;
+import main.java.util.HandleKeyEvent;
 import main.java.util.ScreenAdjustComponent;
 
 import java.awt.*;
@@ -18,21 +19,8 @@ public class ControlKeySettingMenu extends JFrame {
     public JLabel[] labels;
     private static JButton typeAButton, typeBButton, backButton;
     public JButton[] buttons;
-    private int selectedButtonIndex;
     public boolean isBackButton;
     public static String controlKeyStatus = "타입A";
-    private void handleKeyEvent(KeyEvent e) {
-        int keyCode = e.getKeyCode();
-        if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_RIGHT) {
-            selectedButtonIndex = (selectedButtonIndex + 1) % buttons.length;
-        } else if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_LEFT) {
-            selectedButtonIndex = (selectedButtonIndex - 1 + buttons.length) % buttons.length;
-        } else if (keyCode == KeyEvent.VK_ENTER) {
-            buttons[selectedButtonIndex].doClick();
-            return; // Enter 키 입력 후 추가 동작을 방지하기 위해 여기서 종료
-        }
-        ButtonStyle.updateButtonStyles(buttons, selectedButtonIndex, isBackButton);
-    }
 
     private void initComponents() {
         titleLabel = new JLabel("조작키 설정");
@@ -47,7 +35,6 @@ public class ControlKeySettingMenu extends JFrame {
         backButton = new JButton("뒤로가기");
 
         buttons = new JButton[]{typeAButton, typeBButton, backButton};
-        selectedButtonIndex = 0;
 
         isBackButton = true;
         ButtonStyle.applyButtonStyle(buttons, isBackButton);
@@ -77,6 +64,7 @@ public class ControlKeySettingMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose(); // 현재 창 닫기
+                HandleKeyEvent.selectedButtonIndex = 0;
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
@@ -152,7 +140,7 @@ public class ControlKeySettingMenu extends JFrame {
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                handleKeyEvent(e);
+            	HandleKeyEvent.handleKeyEvent(e, buttons, isBackButton);
             }
         });
         setFocusable(true);

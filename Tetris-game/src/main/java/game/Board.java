@@ -19,6 +19,7 @@ import main.java.setting.SettingFileWriter;
 import main.java.setting.SettingMenu;
 import main.java.setting.colorblindmode.ColorBlindModeMenu;
 import main.java.setting.controlkeysetting.ControlKeySettingMenu;
+import main.java.util.HandleKeyEvent;
 import main.java.util.ScreenAdjustComponent;
 import main.java.game.ScoreFileWriter; // 점수 저장을 위해 추가
 import main.java.menu.gamestart.DifficultySettingMenu;
@@ -446,6 +447,7 @@ public class Board extends JPanel {
             String name = JOptionPane.showInputDialog("Enter your name:");
             String mode = "일반"; // 추후에 선택 가능하도록 수정할 수 있습니다.
 
+            HandleKeyEvent.selectedButtonIndex = 0;
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {

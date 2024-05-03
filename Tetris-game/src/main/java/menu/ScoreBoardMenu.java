@@ -6,6 +6,7 @@ import javax.swing.table.JTableHeader;
 
 import main.java.setting.SettingFileWriter;
 import main.java.util.ButtonStyle;
+import main.java.util.HandleKeyEvent;
 import main.java.util.ScreenAdjustComponent;
 
 import java.awt.*;
@@ -31,23 +32,9 @@ public class ScoreBoardMenu extends JFrame {
     private static DefaultListModel<String> scoreModel;
     private JButton backButton;
     public JButton[] buttons;
-    private int selectedButtonIndex;
     public boolean isBackButton;
     private int lastAddedRowIndex = -1; // 최근에 추가된 행의 인덱스를 저장할 변수
     private final Color highlightColor = new Color(130, 200, 255); // 강조할 색상 정의
-    
-    private void handleKeyEvent(KeyEvent e) {
-        int keyCode = e.getKeyCode();
-        if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_RIGHT) {
-            selectedButtonIndex = (selectedButtonIndex + 1) % buttons.length;
-        } else if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_LEFT) {
-            selectedButtonIndex = (selectedButtonIndex - 1 + buttons.length) % buttons.length;
-        } else if (keyCode == KeyEvent.VK_ENTER) {
-            buttons[selectedButtonIndex].doClick();
-            return; // Enter 키 입력 후 추가 동작을 방지하기 위해 여기서 종료
-        }
-        ButtonStyle.updateButtonStyles(buttons, selectedButtonIndex, isBackButton);
-    }
 
     public ScoreBoardMenu() {
         setTitle("스코어보드");
@@ -97,7 +84,6 @@ public class ScoreBoardMenu extends JFrame {
         // 뒤로가기 버튼 생성 및 이벤트 처리
         backButton = new JButton("뒤로가기");
         buttons = new JButton[]{backButton};
-        selectedButtonIndex = 0;
         
         isBackButton = true;
         ButtonStyle.applyButtonStyle(buttons, isBackButton);
@@ -105,6 +91,7 @@ public class ScoreBoardMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose(); // 현재 창 닫기
+                HandleKeyEvent.selectedButtonIndex = 0;
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
@@ -127,7 +114,7 @@ public class ScoreBoardMenu extends JFrame {
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                handleKeyEvent(e);
+            	HandleKeyEvent.handleKeyEvent(e, buttons, isBackButton);
             }
         });
         setFocusable(true);
