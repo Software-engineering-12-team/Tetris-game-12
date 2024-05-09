@@ -2,9 +2,6 @@ package main.java.game;
 
 import java.util.Random;
 
-import main.java.game.Blocks.Tetrominoe;
-import main.java.menu.gamestart.DifficultySettingMenu;
-
 public class Blocks {
 
     protected enum Tetrominoe { NoBlock, ZBlock, SBlock, IBlock, 
@@ -14,20 +11,15 @@ public class Blocks {
     private Tetrominoe pieceBlock;
     private int coords[][];
     private int[][][] coordsTable;
-    
     private String difficulty;
-
-
     public Blocks(String difficulty) {
     	this.difficulty = difficulty;
         initBlock();
     }
-    
     private void initBlock() {		//블록 초기화
         coords = new int[4][2];
         setBlock(Tetrominoe.NoBlock);
     }
-
     protected void setBlock(Tetrominoe block) {		//블록 설정 
          coordsTable = new int[][][] {
              { { 0, 0 },   { 0, 0 },   { 0, 0 },   { 0, 0 } },
@@ -47,13 +39,9 @@ public class Blocks {
              { { 0, 0 },   { 0, 0 },   { 0, 0 },   { 0, 0 } },
              { { 0, 0 },   { 0, 0 },   { 0, 0 },   { 0, 0 } },
              { { 0, 0 },   { 0, 0 },   { 0, 0 },   { 0, 0 } }
-
         };
-
         for (int i = 0; i < 4 ; i++) {
-            
             for (int j = 0; j < 2; ++j) {
-                
                 coords[i][j] = coordsTable[block.ordinal()][i][j];
             }
         }
@@ -132,8 +120,6 @@ public class Blocks {
     	}
     }
 
-        
-
     public int minX() {		//현재 블록의 가장 왼쪽 x좌표 반환
         
       int m = coords[0][0];
@@ -158,7 +144,6 @@ public class Blocks {
       
       return m;
     }
-
     public Blocks rotateLeft() {
         
         if (pieceBlock == Tetrominoe.OBlock)
@@ -175,7 +160,6 @@ public class Blocks {
         
         return result;
     }
-
     public Blocks rotateRight() {
         
         if (pieceBlock == Tetrominoe.OBlock)

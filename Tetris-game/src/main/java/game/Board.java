@@ -16,14 +16,10 @@ import java.util.ArrayList;
 import main.java.game.Blocks.Tetrominoe;
 import main.java.menu.ScoreBoardMenu;
 import main.java.setting.SettingFileWriter;
-import main.java.setting.SettingMenu;
 import main.java.setting.colorblindmode.ColorBlindModeMenu;
 import main.java.setting.controlkeysetting.ControlKeySettingMenu;
 import main.java.util.HandleKeyEvent;
 import main.java.util.ScreenAdjustComponent;
-import main.java.game.ScoreFileWriter; // 점수 저장을 위해 추가
-import main.java.menu.gamestart.DifficultySettingMenu;
-import main.java.menu.gamestart.GameStartMenu;
 import main.java.menu.ScoreEntry;
 
 import java.util.Timer;
@@ -39,14 +35,12 @@ public class Board extends JPanel {
     private final int BOARD_HEIGHT = 22;
     private int INITIAL_DELAY = 100;
     private int PERIOD_INTERVAL = 1000; // 동적 변경을 위해 변경
-    private ScoreBoardMenu scoreBoardMenu;
 
-    private String difficulty;
+	private String specialMode, gameMode, difficulty; // 게임모드 설정 관련 수정
     private Timer timer;
     private boolean isFallingFinished = false;
     private boolean isStarted = false;
     private boolean isPaused = false;
-    private boolean isItemMode = GameStartMenu.isItemMode;
     private boolean isItem = false;
     private boolean isTouchedBlocks = false;
     private int remainRowsForItems = 10;
@@ -59,7 +53,10 @@ public class Board extends JPanel {
     private Font tetrisFont;
     private Tetrominoe[] board;
     
-    public Board(TetrisGame parent, String difficulty) {
+    // 게임모드 설정 관련 수정
+    public Board(TetrisGame parent, String specialMode, String gameMode, String difficulty) {
+    	this.specialMode = specialMode;
+    	this.gameMode = gameMode;
     	this.difficulty = difficulty;
         initBoard(parent);
     }
@@ -77,7 +74,7 @@ public class Board extends JPanel {
 
         curPiece = new Blocks(difficulty);
         nextPiece = new Blocks(difficulty);
-        nextPiece.setRandomBlock(difficulty, isItem);
+        nextPiece.setRandomBlock(difficulty, isItem); // 게임모드 설정 관련 수정
         if(SettingFileWriter.readSize() == 0)		//화면 크기에 따른 폰트 크기 변경
         	tetrisFont = new Font("Arial", Font.BOLD, 20);
             else if(SettingFileWriter.readSize() == 1)
@@ -415,18 +412,19 @@ public class Board extends JPanel {
     }
 
 
+    // 게임모드 설정 관련 수정
     private void newPiece() {		//새로운 블록 생성
 
-    	if(remainRowsForItems <= 0 && isItemMode == true) 
+    	if(remainRowsForItems <= 0 && gameMode == "아이템") 
     	{	
-    		isItem = true;		// 선택된 것이 아이템임
+    		isItem = true;			// 선택된 것이 아이템임
     		curPiece = nextPiece;	// 현재 블록을 방금 표시되었던 블록으로 설정
     		nextPiece = new Blocks(difficulty); // 다음 블록 생성
     		nextPiece.setRandomBlock(difficulty, isItem);
     		curX = BOARD_WIDTH / 2 - 1;
     		curY = BOARD_HEIGHT - 2 + curPiece.minY();
     		remainRowsForItems = 10;		// 아이템이 나오기까지 남은 줄 초기화
-    	}
+    	} 
     	else
     	{
     		isItem = false;		// 선택된 것이 블록임
@@ -445,15 +443,14 @@ public class Board extends JPanel {
 
             int linesRemoved = TotalScore;
             String name = JOptionPane.showInputDialog("Enter your name:");
-            String mode = "일반"; // 추후에 선택 가능하도록 수정할 수 있습니다.
 
             HandleKeyEvent.selectedButtonIndex = 0;
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                	endGame(name, difficulty, mode, linesRemoved);
+                	endGame(name, difficulty, gameMode, linesRemoved);
                 	
-                	ScoreEntry newScore = new ScoreEntry(name, difficulty, mode, linesRemoved);
+                	ScoreEntry newScore = new ScoreEntry(name, difficulty, gameMode, linesRemoved);
                 	ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
                 	scoreBoardMenu.addScore(newScore);
                 	
@@ -554,7 +551,7 @@ public class Board extends JPanel {
 
             // 만약 해당 줄이 꽉 찼다면, 리스트에 추가
             if (lineIsFull) {
-            	if (isItemMode == true) {--remainRowsForItems;}
+            	if (gameMode == "아이템") {--remainRowsForItems;} // 게임모드 설정 관련 수정
                 ++numFullLines;
                 ++consecutiveLines;
                 fullLines.add(i);
