@@ -1,13 +1,10 @@
 package main.java.menu.gamestart;
 
 import main.java.game.TetrisGame;
-import main.java.menu.ScoreBoardMenu;
 import main.java.setting.SettingFileWriter;
-import main.java.setting.SettingMenu;
 import main.java.util.ButtonStyle;
 import main.java.util.HandleKeyEvent;
 import main.java.util.ScreenAdjustComponent;
-import main.java.menu.gamestart.GameStartMenu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +17,6 @@ public class DifficultySettingMenu extends JFrame {
     public JButton[] buttons;
 	public static int size;
     public boolean isBackButton;
-    
     public String ENHdifficulty;
 
     public DifficultySettingMenu() {

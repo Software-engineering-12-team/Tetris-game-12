@@ -11,11 +11,6 @@ import main.java.setting.SettingFileWriter;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-
-
 public class StartMenu extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JLabel titleLabel, instructionLabel;

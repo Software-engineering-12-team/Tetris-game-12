@@ -10,7 +10,6 @@ import main.java.setting.SettingFileWriter;
 import main.java.setting.colorblindmode.ColorBlindModeMenu;
 import main.java.setting.controlkeysetting.ControlKeySettingMenu;
 
-
 public class TetrisGame extends JFrame {
 	
 	private String difficulty;

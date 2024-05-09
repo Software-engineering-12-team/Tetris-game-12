@@ -1,7 +1,6 @@
 package main.java.setting;
 
 import main.java.menu.StartMenu;
-import main.java.menu.gamestart.DifficultySettingMenu;
 import main.java.menu.ScoreBoardMenu;
 import main.java.setting.colorblindmode.ColorBlindModeMenu;
 import main.java.setting.controlkeysetting.ControlKeySettingMenu;
@@ -9,7 +8,6 @@ import main.java.setting.screenadjustsize.ScreenAdjustSizeMenu;
 import main.java.util.ButtonStyle;
 import main.java.util.HandleKeyEvent;
 import main.java.util.ScreenAdjustComponent;
-import main.java.setting.SettingFileWriter;
 
 import javax.swing.*;
 import java.awt.*;

@@ -25,15 +25,10 @@ import main.java.game.ScoreFileWriter; // 점수 저장을 위해 추가
 import main.java.menu.gamestart.DifficultySettingMenu;
 import main.java.menu.gamestart.GameStartMenu;
 import main.java.menu.ScoreEntry;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static java.awt.Color.black;
-import static main.java.setting.controlkeysetting.ControlKeySettingMenu.controlKeyStatus;
-
 public class Board extends JPanel {
-
 	private static final long serialVersionUID = 1L;
 	private final int BOARD_WIDTH = 12;
     private final int BOARD_HEIGHT = 22;
