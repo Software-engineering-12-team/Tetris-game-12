@@ -25,6 +25,12 @@
       </list>
     </option>
   </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/main" />
+  </component>
+  <component name="Git.Rebase.Settings">
+    <option name="NEW_BASE" value="main" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
@@ -66,6 +72,7 @@
     "Application.testcode.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.ColorBlindModeMenuTest.executor": "Run",
+    "JUnit.ColorBlindModeMenuTest.testComponentInitialization.executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
@@ -73,6 +80,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "create.test.in.the.same.root": "true",
     "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "openjdk-21",
     "kotlin-language-version-configured": "true",
@@ -103,7 +111,7 @@
       <recent name="main.java.setting.colorblindmode" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ColorBlindModeMenuTest.testComponentInitialization">
+  <component name="RunManager" selected="Application.StartMenu">
     <configuration name="StartMenu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.java.menu.StartMenu" />
       <module name="Tetris-game" />
@@ -168,11 +176,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.StartMenu" />
+      <item itemvalue="Application.testcode" />
+      <item itemvalue="Application.TetrisGame" />
+      <item itemvalue="JUnit.ColorBlindModeMenuTest" />
+      <item itemvalue="JUnit.ColorBlindModeMenuTest.testComponentInitialization" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.StartMenu" />
         <item itemvalue="JUnit.ColorBlindModeMenuTest.testComponentInitialization" />
         <item itemvalue="JUnit.ColorBlindModeMenuTest" />
-        <item itemvalue="Application.StartMenu" />
         <item itemvalue="Application.testcode" />
         <item itemvalue="Application.TetrisGame" />
       </list>
@@ -621,5 +636,10 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Tetris_game_12$ColorBlindModeMenuTest.ic" NAME="ColorBlindModeMenuTest Coverage Results" MODIFIED="1715224477119" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>main.java.setting.colorblindmode.*</FILTER>
+    </SUITE>
   </component>
 </project>
