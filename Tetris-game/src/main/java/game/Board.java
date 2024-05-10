@@ -21,6 +21,7 @@ import main.java.setting.controlkeysetting.ControlKeySettingMenu;
 import main.java.util.HandleKeyEvent;
 import main.java.util.ScreenAdjustComponent;
 import main.java.menu.ScoreEntry;
+import main.java.game.BlockDrawer;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -50,7 +51,7 @@ public class Board extends JPanel {
     private JLabel statusbar;
     private Blocks curPiece;
     private Blocks nextPiece;
-    private Font tetrisFont;
+    public static Font tetrisFont;
     private Tetrominoe[] board;
     
     // 게임모드 설정 관련 수정
@@ -139,8 +140,8 @@ public class Board extends JPanel {
 
                 if (block != Tetrominoe.NoBlock) {
                     
-                    drawBlock(g, 0 + j * squareWidth(),
-                            boardTop + i * squareHeight(), block);
+                    BlockDrawer.drawBlock(g, 0 + j * squareWidth(),
+                            boardTop + i * squareHeight(), squareWidth(), squareHeight(), block);
                 }
             }
         }
@@ -151,8 +152,8 @@ public class Board extends JPanel {
 
                 int x = curX + curPiece.x(i);
                 int y = curY - curPiece.y(i);
-                drawBlock(g, 0 + x * squareWidth(),
-                        boardTop + (BOARD_HEIGHT - y - 1) * squareHeight(),
+                BlockDrawer.drawBlock(g, 0 + x * squareWidth(),
+                        boardTop + (BOARD_HEIGHT - y - 1) * squareHeight(), squareWidth(), squareHeight(),
                         curPiece.getBlock());
             }
         }
@@ -163,8 +164,8 @@ public class Board extends JPanel {
         for (int i = 0; i < 4; ++i) {
             int x = nextPiece.x(i) + 1;
             int y = nextPiece.y(i) + 1;
-            drawBlock(g, nextPieceX + x * squareWidth(),
-                    nextPieceY + y * squareHeight(), nextPiece.getBlock());
+            BlockDrawer.drawBlock(g, nextPieceX + x * squareWidth(),
+                    nextPieceY + y * squareHeight(), squareWidth(), squareHeight(), nextPiece.getBlock());
         }
         
         g.setColor(Color.WHITE);	//다음 블록이 들어갈 박스 그리기
@@ -633,158 +634,7 @@ public class Board extends JPanel {
         INITIAL_DELAY = newDelay;
         PERIOD_INTERVAL = newInterval;
     }
-    
-    private void drawBlock(Graphics g, int x, int y, 
-            Tetrominoe block) {
-        Color colors[] = {	//일반 색깔
-            new Color(0, 0, 0),
-                new Color(204, 102, 102),
-            new Color(102, 204, 102),
-                new Color(102, 102, 204),
-            new Color(204, 204, 102),
-                new Color(204, 102, 204),
-            new Color(102, 204, 204),
-                new Color(218, 170, 0),
-            new Color(0, 0, 0),	
-            	new Color(0, 0, 0),
-            new Color(0, 0, 0),
-            	new Color(0, 0, 0),
-            new Color(0, 0, 0),
-            	new Color(0, 0, 0),
-            new Color(0, 0, 0),
-            	new Color(0, 0, 0),
-            new Color(255, 255, 255)
-        };
-/*        Color colors[] = {	//일반 색깔
-                new Color(0, 0, 0),
-                new Color(255, 0, 0),
-                new Color(255, 0, 0),
-                new Color(255, 0, 0),
-                new Color(255, 0, 0),
-                new Color(255, 0, 0),
-                new Color(255, 0, 0),
-                new Color(255, 0, 0),
-                new Color(0, 0, 0)
-        };*/
-
-        Color rgcbcolors[] = {    // 적록 색맹 모드 전용 색깔
-                new Color(0, 0, 0),           // Black
-                new Color(255, 165, 0),       // Orange
-                new Color(135, 206, 235),     // Sky Blue
-                new Color(0, 255, 255),       // Bluish Green (Cyan으로 대체)
-                new Color(255, 255, 0),       // Yellow
-                new Color(0, 0, 255),         // Blue
-                new Color(227, 66, 52),       // Vermilion
-                new Color(147, 112, 219),     // Reddish Purple (Medium Purple로 대체)
-                new Color(0, 0, 0), 		  // 추가된 Black (원하시는 배치가 맞는지 확인해주세요)
-                new Color(0, 0, 0),	
-                new Color(0, 0, 0),
-                new Color(0, 0, 0),
-                new Color(0, 0, 0),
-                new Color(0, 0, 0),
-                new Color(0, 0, 0),
-                new Color(0, 0, 0),
-                new Color(255, 255, 255)
-        };
-
-
-/*        Color rgcbcolors[] = {	//일반 색깔
-                new Color(0, 0, 0),
-                new Color(0, 255, 0),
-                new Color(0, 255, 0),
-                new Color(0, 255, 0),
-                new Color(0, 255, 0),
-                new Color(0, 255, 0),
-                new Color(0, 255, 0),
-                new Color(0, 255, 0),
-                new Color(0, 0, 0)
-        };*/
-
-        Color bycbcolors[] = {    // 청황 색맹 모드 전용 색깔
-                new Color(204, 0, 0),
-                new Color(0, 204, 0),
-                new Color(0, 0, 153),
-                new Color(255, 165, 0),
-                new Color(255, 192, 203),
-                new Color(128, 0, 128),
-                new Color(128, 128, 128),
-                new Color(64, 224, 208),
-                new Color(0, 0, 0),
-                new Color(0, 0, 0),	
-                new Color(0, 0, 0),
-                new Color(0, 0, 0),
-                new Color(0, 0, 0),
-                new Color(0, 0, 0),
-                new Color(0, 0, 0),
-                new Color(0, 0, 0),
-                new Color(255, 255, 255)
-        };
-
-/*        Color bycbcolors[] = {	//일반 색깔
-                new Color(0, 0, 0),
-                new Color(0, 0, 255),
-                new Color(0, 0, 255),
-                new Color(0, 0, 255),
-                new Color(0, 0, 255),
-                new Color(0, 0, 255),
-                new Color(0, 0, 255),
-                new Color(0, 0, 255),
-                new Color(0, 0, 0)
-        };*/
-
-        if(ColorBlindModeMenu.colorBlindStatus.equals("정상"))
-        {
-        	Color color = colors[block.ordinal()];
-           	 g.setColor(color); 
-        }
-        else if(ColorBlindModeMenu.colorBlindStatus.equals("적녹색맹"))
-        {
-        	Color color = rgcbcolors[block.ordinal()];
-           	 g.setColor(color);
-        }
-        else if(ColorBlindModeMenu.colorBlindStatus.equals("청황색맹"))
-        {
-        	Color color = bycbcolors[block.ordinal()];
-           	 g.setColor(color);
-        }
-         
-        g.setFont(tetrisFont);
-        g.drawString("O", x + squareWidth() / 2 - 5, y + squareHeight() / 2 + 5); 
-        
-        if (block == Tetrominoe.BorderBlock) {
-            g.setColor(Color.WHITE);
-            g.drawString("X", x + squareWidth() / 2 - 5, y + squareHeight() / 2 + 5);
-        }
-        else if (block == Tetrominoe.WeightItem) {
-        	g.setColor(Color.WHITE);
-        	g.drawString("#", x + squareWidth() / 2 - 5, y + squareHeight() / 2 + 5);
-        }
-        else if (block == Tetrominoe.LineDelItem) {
-        	g.setColor(Color.WHITE);
-        	g.drawString("L", x + squareWidth() / 2 - 5, y + squareHeight() / 2 + 5);
-        }
-        else if (block == Tetrominoe.ThreeItem) {
-        	g.setColor(Color.WHITE);
-        	g.drawString("3", x + squareWidth() / 2 - 5, y + squareHeight() / 2 + 5);
-        }
-        else if (block == Tetrominoe.FiveItem) {
-        	g.setColor(Color.WHITE);
-        	g.drawString("5", x + squareWidth() / 2 - 5, y + squareHeight() / 2 + 5);
-        }
-        else if (block == Tetrominoe.SevenItem) {
-        	g.setColor(Color.WHITE);
-        	g.drawString("7", x + squareWidth() / 2 - 5, y + squareHeight() / 2 + 5);
-        }
-        else if (block == Tetrominoe.PlusItem) {
-        	g.setColor(Color.WHITE);
-        	g.drawString("+", x + squareWidth() / 2 - 5, y + squareHeight() / 2 + 5);
-        }
-        else if (block == Tetrominoe.AllDelItem) {
-        	g.setColor(Color.WHITE);
-        	g.drawString("A", x + squareWidth() / 2 - 5, y + squareHeight() / 2 + 5);
-        }
-
-    }
+   
 
     private void doGameCycle() {
         update();
