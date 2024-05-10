@@ -118,7 +118,7 @@ public class ScoreBoardMenu extends JFrame {
             }
         });
         setFocusable(true);
-
+        
         loadScores(); // 스코어보드가 열릴 때마다 저장된 점수를 읽기
         
         add(panel);

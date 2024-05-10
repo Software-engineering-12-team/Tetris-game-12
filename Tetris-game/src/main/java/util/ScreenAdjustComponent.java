@@ -27,7 +27,7 @@ public class ScreenAdjustComponent {
     }
 	public static void adjustLabelSize(JLabel[] labels, double scaleFactor) {
 		int titleLabelFontSize = 30;
-        int labelFontSize = 16;
+        int labelFontSize = 18;
         
         // 0번째만 title로 받음
         int adjustedTitleLabelFontSize = (int) (titleLabelFontSize * scaleFactor);
