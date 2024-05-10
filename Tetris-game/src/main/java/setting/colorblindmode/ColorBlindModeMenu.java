@@ -17,9 +17,9 @@ import static main.java.setting.controlkeysetting.ControlKeySettingMenu.controlK
 
 
 public class ColorBlindModeMenu extends JFrame {
-    private JLabel titleLabel;
+    public JLabel titleLabel;
     public JLabel[] labels;
-    private static JButton normalButton, redGreenBlindButton, blueYellowBlindButton, backButton;
+    public static JButton normalButton, redGreenBlindButton, blueYellowBlindButton, backButton;
     public JButton[] buttons;
     public static int size;
     public boolean isBackButton;
