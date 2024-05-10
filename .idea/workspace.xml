@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[Fix] fix code">
-      <change afterPath="$PROJECT_DIR$/Tetris-game/test/main/java/setting/colorblindmode/ColorBlindModeMenuTest.java" afterDir="false" />
+    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[add] create test directory and test code">
+      <change afterPath="$PROJECT_DIR$/Tetris-game/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tetris-game/Tetris-game.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/Tetris-game.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/colorblindmode/ColorBlindModeMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/setting/colorblindmode/ColorBlindModeMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/testcode.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/testcode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/test/main/java/setting/colorblindmode/ColorBlindModeMenuTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/test/main/java/setting/colorblindmode/ColorBlindModeMenuTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +52,7 @@
     </option>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -92,7 +93,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "advanced.settings",
+    "settings.editor.selected.configurable": "MavenSettings",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -196,6 +197,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
+        <option value="jdk-19.0.2-corretto-19.0.2-4caba194b151-be841094" />
         <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-322ed176" />
       </set>
     </attachedChunks>
@@ -581,7 +583,23 @@
       <option name="project" value="LOCAL" />
       <updated>1715220893472</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="[add] create test directory and test code">
+      <option name="closed" value="true" />
+      <created>1715371419653</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1715371419653</updated>
+    </task>
+    <task id="LOCAL-00046" summary="[add] create test directory and test code">
+      <option name="closed" value="true" />
+      <created>1715371427052</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1715371427052</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -599,7 +617,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[Fix] fix ControlKeySettingMenu" />
     <MESSAGE value="[Fix] fix ControlKeySettingMenu 2" />
     <MESSAGE value="[Feat] create ColorBlindModeMenu" />
     <MESSAGE value="[Fix] fix controlkey, scoreboard, colorblind ui" />
@@ -624,7 +641,8 @@
     <MESSAGE value="[Fix] change controlKeyStatus" />
     <MESSAGE value="[Fix] colorblindmode test color add" />
     <MESSAGE value="[Fix] fix code" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Fix] fix code" />
+    <MESSAGE value="[add] create test directory and test code" />
+    <option name="LAST_COMMIT_MESSAGE" value="[add] create test directory and test code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
