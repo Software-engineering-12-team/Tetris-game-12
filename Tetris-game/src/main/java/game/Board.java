@@ -470,7 +470,12 @@ public class Board extends JPanel {
     
    
     public void endGame(String name, String difficulty, String mode, int score) {
-    	 ScoreFileWriter.writeScore(name, difficulty, mode, score);
+    	 SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                ScoreFileWriter.writeScore(name, difficulty, mode, score);
+            }
+        });
     }
 
     private boolean tryMove(Blocks newPiece, int newX, int newY) {		//블록을 이동시킬 수 있는지 확인
