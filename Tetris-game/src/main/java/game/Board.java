@@ -39,15 +39,18 @@ public class Board extends JPanel {
 
 	private String specialMode, gameMode, difficulty; // 게임모드 설정 관련 수정
     private Timer timer;
+    private Timer timerMode;
     private boolean isFallingFinished = false;
     private boolean isStarted = false;
     private boolean isPaused = false;
     private boolean isItem = false;
     private boolean isTouchedBlocks = false;
+    private boolean istimerModeCancelled = false;
     private int remainRowsForItems = 10;
     private int TotalScore = 0;
     private int curX = 0;
     private int curY = 0;
+    private int timerModeLimit; 
     private JLabel statusbar;
     private Blocks curPiece;
     private Blocks nextPiece;
@@ -195,6 +198,17 @@ public class Board extends JPanel {
      	else
      	{
      		g.drawString("Paused", scoreX, scoreY);
+     	}
+     	
+     	// 남은 시간 표시 위치
+     	int timerX = nextPieceX - squareWidth()	; 
+     	int timerY = nextPieceY + squareHeight() * 7; 
+
+     	// 남은 시간 표시
+     	g.setColor(Color.WHITE);
+     	g.setFont(tetrisFont);
+     	if(gameMode == "타이머") {
+     		g.drawString("Time: " + timerModeLimit, timerX, timerY);    		
      	}
     }
 
@@ -435,8 +449,43 @@ public class Board extends JPanel {
             curX = BOARD_WIDTH / 2 - 1;
             curY = BOARD_HEIGHT - 2 + curPiece.minY();
     	}
+    	
+    	if (gameMode == "타이머") {
+    	    if (timerMode == null) {
+    	        timerMode = new Timer();
+    	        if(difficulty == "Easy") {
+        	        timerModeLimit = 151;
+    	        }
+    	        else if (difficulty == "Normal") {
+        	        timerModeLimit = 101;
+    	        }
+    	        else {
+        	        timerModeLimit = 51;
+    	        }
+    	        timerMode.scheduleAtFixedRate(new TimerTask() {
+    	            @Override
+    	            public void run() {
+    	            	if (!isPaused) { // isPaused가 false일 때만 타이머 동작
+    	                    timerModeLimit--; // 1초씩 감소
+    	                    if (timerModeLimit <= 0) {
+    	                    	// 0.75초의 딜레이를 추가
+    	                        try {
+    	                            Thread.sleep(75);
+    	                        } catch (InterruptedException e) {
+    	                            e.printStackTrace();
+    	                        }
+    	                    	
+        	                    timerMode.cancel(); // 타이머 중단
+        	                    istimerModeCancelled = true;
+        	                    isFallingFinished = true; // 게임 진행 중지
+        	                }   
+    	                }
+    	            }
+    	        }, 0, 1000); // 1초마다 실행
+    	    }
+    	}
 
-        if (!tryMove(curPiece, curX, curY)) {
+        if (!tryMove(curPiece, curX, curY) || istimerModeCancelled) {
             // 게임오버일 때 점수를 스코어보드에 추가
             //curPiece.setBlock(Tetrominoe.NoBlock);
             timer.cancel();
@@ -466,8 +515,7 @@ public class Board extends JPanel {
                 }
             });
         }
-    }
-    
+    }  
    
     public void endGame(String name, String difficulty, String mode, int score) {
     	 SwingUtilities.invokeLater(new Runnable() {
