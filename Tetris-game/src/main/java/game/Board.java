@@ -468,7 +468,7 @@ public class Board extends JPanel {
     	            	if (!isPaused) { // isPaused가 false일 때만 타이머 동작
     	                    timerModeLimit--; // 1초씩 감소
     	                    if (timerModeLimit <= 0) {
-    	                    	// 0.75초의 딜레이를 추가
+    	                    	// 0.075초의 딜레이를 추가
     	                        try {
     	                            Thread.sleep(75);
     	                        } catch (InterruptedException e) {
