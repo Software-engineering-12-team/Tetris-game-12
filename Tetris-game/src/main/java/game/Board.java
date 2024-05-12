@@ -292,18 +292,20 @@ public class Board extends JPanel {
        		break;
        	case LineDelItem:
        		ItemEffectHandler.applyLineDelItem(board, curX, curY);
+		TotalScore++;
        		break;
            case ThreeItem:
-        	   ItemEffectHandler.applyThreeItem(board, curX, curY);
+        	ItemEffectHandler.applyThreeItem(board, curX, curY);
                break;
            case FiveItem:
-        	   ItemEffectHandler.applyFiveItem(board, curX, curY);
+        	ItemEffectHandler.applyFiveItem(board, curX, curY);
            	break;
            case SevenItem:
-        	   ItemEffectHandler.applySevenItem(board, curX, curY);
+        	ItemEffectHandler.applySevenItem(board, curX, curY);
            	break;
            case PlusItem:
-        	   ItemEffectHandler.applyPlusItem(board, curX, curY);
+        	ItemEffectHandler.applyPlusItem(board, curX, curY);
+		TotalScore++;
            	break;
            case AllDelItem:
                ItemEffectHandler.applyAllDelItem(board);
