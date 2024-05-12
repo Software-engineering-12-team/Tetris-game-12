@@ -32,8 +32,8 @@ import static main.java.setting.controlkeysetting.ControlKeySettingMenu.controlK
 public class Board extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private final int BOARD_WIDTH = 12;
-    private final int BOARD_HEIGHT = 22;
+	public static final int BOARD_WIDTH = 12;
+    public static final int BOARD_HEIGHT = 22;
     private int INITIAL_DELAY = 100;
     private int PERIOD_INTERVAL = 1000; // 동적 변경을 위해 변경
 
@@ -284,133 +284,29 @@ public class Board extends JPanel {
             }
         }
     }
-    
-    private void deleteWeightItem() {
-   	 for (int i = 0; i < 4; i++) {
-   	        int x = curX + curPiece.x(i);
-   	        int y = curY - curPiece.y(i);
-   	        if (x >= 0 && x < BOARD_WIDTH && y >= 0 && y < BOARD_HEIGHT && board[(y * BOARD_WIDTH) + x] != Tetrominoe.BorderBlock) {
-   	            board[(y * BOARD_WIDTH) + x] = Tetrominoe.NoBlock;
-   	        }
-   	    }
-   }
-   
-   private void applyLineDelItem() {
-       int centerY = curY; 
-       TotalScore++;
-       
-       // 가로 방향으로 한 줄 제거
-       for (int j = 1; j < BOARD_WIDTH - 1; j++) {
-           if (board[(centerY * BOARD_WIDTH) + j] != Tetrominoe.BorderBlock) {
-               board[(centerY * BOARD_WIDTH) + j] = Tetrominoe.NoBlock;
-           }
-       }
-       
-    // 해당 줄 위의 모든 블록들을 한 칸씩 아래로 이동시키기
-       for (int i = centerY; i < BOARD_HEIGHT - 2; ++i) {
-           for (int j = 0; j < BOARD_WIDTH; ++j) {
-               board[(i* BOARD_WIDTH) + j] = blockAt(j, i + 1);
-           }
-       }
-   }
-
-   private void applyThreeItem() {
-   	int centerX = curX ; // 현재 블록의 중심 X 좌표
-       int centerY = curY ; // 현재 블록의 중심 Y 좌표
-       
-       // 블록이 3x3 범위 내에 있는지 확인하고 중심을 기준으로 주변 블록을 삭제
-       for (int i = centerY - 1; i <= centerY + 1; i++) {
-           for (int j = centerX - 1; j <= centerX + 1; j++) {
-               if (i >= 0 && i < BOARD_HEIGHT && j >= 0 && j < BOARD_WIDTH && board[(i * BOARD_WIDTH) + j] != Tetrominoe.BorderBlock) {
-                   board[(i * BOARD_WIDTH) + j] = Tetrominoe.NoBlock;
-               }
-           }
-       }
-   }
-
-   private void applyFiveItem() {
-   	int centerX = curX ; 
-       int centerY = curY ; 
-       
-       for (int i = centerY - 2; i <= centerY + 2; i++) {
-           for (int j = centerX - 2; j <= centerX + 2; j++) {
-               if (i >= 0 && i < BOARD_HEIGHT && j >= 0 && j < BOARD_WIDTH && board[(i * BOARD_WIDTH) + j] != Tetrominoe.BorderBlock) {
-                   board[(i * BOARD_WIDTH) + j] = Tetrominoe.NoBlock;
-               }
-           }
-       }
-   }
-   
-   private void applySevenItem() {
-   	int centerX = curX ; 
-       int centerY = curY ; 
-       
-       for (int i = centerY - 3; i <= centerY + 3; i++) {
-           for (int j = centerX - 3; j <= centerX + 3; j++) {
-               if (i >= 0 && i < BOARD_HEIGHT && j >= 0 && j < BOARD_WIDTH && board[(i * BOARD_WIDTH) + j] != Tetrominoe.BorderBlock) {
-                   board[(i * BOARD_WIDTH) + j] = Tetrominoe.NoBlock;
-               }
-           }
-       }
-   }
-   
-   private void applyPlusItem() {
-   	int centerX = curX; 
-       int centerY = curY; 
-       TotalScore++;
-       
-       // 가로 방향으로 한 줄 제거
-       for (int j = 1; j < BOARD_WIDTH - 1; j++) {
-           if (board[(centerY * BOARD_WIDTH) + j] != Tetrominoe.BorderBlock) {
-               board[(centerY * BOARD_WIDTH) + j] = Tetrominoe.NoBlock;
-           }
-       }
-       
-       // 세로 방향으로 한 줄 제거
-       for (int i = 1; i < BOARD_HEIGHT - 1; i++) {
-           if (board[(i * BOARD_WIDTH) + centerX] != Tetrominoe.BorderBlock) {
-               board[(i * BOARD_WIDTH) + centerX] = Tetrominoe.NoBlock;
-           }
-       }
-       
-    // 해당 줄 위의 모든 블록들을 한 칸씩 아래로 이동시키기
-       for (int i = centerY; i < BOARD_HEIGHT - 2; ++i) {
-           for (int j = 0; j < BOARD_WIDTH; ++j) {
-               board[(i* BOARD_WIDTH) + j] = blockAt(j, i + 1);
-           }
-       }
-   }
-
-   private void applyAllDelItem() {
-   	for (int i = 1; i < BOARD_HEIGHT - 1; i++) {
-           for (int j = 1; j < BOARD_WIDTH - 1; j++) {
-               board[(i * BOARD_WIDTH) + j] = Tetrominoe.NoBlock;
-           }
-       }
-   }
 
    private void applyItemEffect(Tetrominoe item) {
        switch (item) {
        	case WeightItem:
-       		deleteWeightItem();
+       		ItemEffectHandler.deleteWeightItem(board, curPiece, curX, curY);
        		break;
        	case LineDelItem:
-       		applyLineDelItem();
+       		ItemEffectHandler.applyLineDelItem(board, curX, curY);
        		break;
            case ThreeItem:
-               applyThreeItem();
+        	   ItemEffectHandler.applyThreeItem(board, curX, curY);
                break;
            case FiveItem:
-           	applyFiveItem();
+        	   ItemEffectHandler.applyFiveItem(board, curX, curY);
            	break;
            case SevenItem:
-           	applySevenItem();
+        	   ItemEffectHandler.applySevenItem(board, curX, curY);
            	break;
            case PlusItem:
-           	applyPlusItem();
+        	   ItemEffectHandler.applyPlusItem(board, curX, curY);
            	break;
            case AllDelItem:
-               applyAllDelItem();
+               ItemEffectHandler.applyAllDelItem(board);
                break;
            default:
                break;
@@ -537,7 +433,7 @@ public class Board extends JPanel {
                 winnerMessage = "Player " + opponentBoard.playerNumber + " Wins!";
             } else {
                 winnerMessage = "It's a Tie!";
-            }
+            } 
             JOptionPane.showMessageDialog(this, winnerMessage);
             System.exit(0); // 게임 종료
         }
