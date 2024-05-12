@@ -452,7 +452,16 @@ public class Board extends JPanel {
         if (gameMode.equals("타이머")) {
             if (timerMode == null) {
                 timerMode = new Timer();
-                timerModeLimit = 150; // 타이머 모드에서의 초기 시간 설정
+                if(difficulty == "Easy") {
+        	        timerModeLimit = 151;
+    	        }
+    	        else if (difficulty == "Normal") {
+        	        timerModeLimit = 101;
+    	        }
+    	        else {
+        	        timerModeLimit = 51;
+    	        }
+           
                 timerMode.scheduleAtFixedRate(new TimerTask() {
                     @Override
                     public void run() {
