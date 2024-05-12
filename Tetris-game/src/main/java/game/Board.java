@@ -56,21 +56,27 @@ public class Board extends JPanel {
     private Blocks nextPiece;
     public static Font tetrisFont;
     private Tetrominoe[] board;
+    private Board opponentBoard; // 상대방 보드 추가
+    private int playerNumber; // 플레이어 번호 추가
     
     // 게임모드 설정 관련 수정
-    public Board(TetrisGame parent, String specialMode, String gameMode, String difficulty) {
-    	this.specialMode = specialMode;
-    	this.gameMode = gameMode;
-    	this.difficulty = difficulty;
+    public Board(TetrisGame parent, String specialMode, String gameMode, String difficulty, int playerNumber) {
+        this.specialMode = specialMode;
+        this.gameMode = gameMode;
+        this.difficulty = difficulty;
+        this.playerNumber = playerNumber;
         initBoard(parent);
     }
 
     public Board(String colorBlindStatus) {
     	ColorBlindModeMenu.colorBlindStatus = colorBlindStatus;
     }
+    
+    public void setOpponent(Board opponent) {
+        this.opponentBoard = opponent;
+    }
 
-    private void initBoard(TetrisGame parent) {		//게임 보드 초기화
-
+    private void initBoard(TetrisGame parent) { // 게임 보드 초기화
         setFocusable(true);
         timer = new Timer();
         timer.scheduleAtFixedRate(new ScheduleTask(),
@@ -79,15 +85,13 @@ public class Board extends JPanel {
         curPiece = new Blocks(difficulty);
         nextPiece = new Blocks(difficulty);
         nextPiece.setRandomBlock(difficulty, isItem); // 게임모드 설정 관련 수정
-        if(SettingFileWriter.readSize() == 0)		//화면 크기에 따른 폰트 크기 변경
-        	tetrisFont = new Font("Arial", Font.BOLD, 20);
-            else if(SettingFileWriter.readSize() == 1)
+        if(SettingFileWriter.readSize() == 0) // 화면 크기에 따른 폰트 크기 변경
+            tetrisFont = new Font("Arial", Font.BOLD, 20);
+        else if(SettingFileWriter.readSize() == 1)
             tetrisFont = new Font("Arial", Font.BOLD, 22);
-            else
+        else
             tetrisFont = new Font("Arial", Font.BOLD, 24);
         
-        statusbar = parent.getStatusBar();
-        statusbar.setText("");
         board = new Blocks.Tetrominoe[BOARD_WIDTH * BOARD_HEIGHT];
         addKeyListener(new TAdapter());
         clearBoard();
@@ -427,95 +431,103 @@ public class Board extends JPanel {
     }
 
 
-    // 게임모드 설정 관련 수정
-    private void newPiece() {		//새로운 블록 생성
-
-    	if(remainRowsForItems <= 0 && gameMode == "아이템") 
-    	{	
-    		isItem = true;			// 선택된 것이 아이템임
-    		curPiece = nextPiece;	// 현재 블록을 방금 표시되었던 블록으로 설정
-    		nextPiece = new Blocks(difficulty); // 다음 블록 생성
-    		nextPiece.setRandomBlock(difficulty, isItem);
-    		curX = BOARD_WIDTH / 2 - 1;
-    		curY = BOARD_HEIGHT - 2 + curPiece.minY();
-    		remainRowsForItems = 10;		// 아이템이 나오기까지 남은 줄 초기화
-    	} 
-    	else
-    	{
-    		isItem = false;		// 선택된 것이 블록임
-    		curPiece = nextPiece;	// 현재 블록을 방금 표시되었던 블록으로 설정
-        	nextPiece = new Blocks(difficulty); // 다음 블록 생성
-        	nextPiece.setRandomBlock(difficulty, isItem);
+    private void newPiece() {        // 새로운 블록 생성
+        if(remainRowsForItems <= 0 && gameMode.equals("아이템")) {    
+            isItem = true;            // 선택된 것이 아이템임
+            curPiece = nextPiece;    // 현재 블록을 방금 표시되었던 블록으로 설정
+            nextPiece = new Blocks(difficulty); // 다음 블록 생성
+            nextPiece.setRandomBlock(difficulty, isItem);
             curX = BOARD_WIDTH / 2 - 1;
             curY = BOARD_HEIGHT - 2 + curPiece.minY();
-    	}
-    	
-    	if (gameMode == "타이머") {
-    	    if (timerMode == null) {
-    	        timerMode = new Timer();
-    	        if(difficulty == "Easy") {
-        	        timerModeLimit = 151;
-    	        }
-    	        else if (difficulty == "Normal") {
-        	        timerModeLimit = 101;
-    	        }
-    	        else {
-        	        timerModeLimit = 51;
-    	        }
-    	        timerMode.scheduleAtFixedRate(new TimerTask() {
-    	            @Override
-    	            public void run() {
-    	            	if (!isPaused) { // isPaused가 false일 때만 타이머 동작
-    	                    timerModeLimit--; // 1초씩 감소
-    	                    if (timerModeLimit <= 0) {
-    	                    	// 0.075초의 딜레이를 추가
-    	                        try {
-    	                            Thread.sleep(75);
-    	                        } catch (InterruptedException e) {
-    	                            e.printStackTrace();
-    	                        }
-    	                    	
-        	                    timerMode.cancel(); // 타이머 중단
-        	                    istimerModeCancelled = true;
-        	                    isFallingFinished = true; // 게임 진행 중지
-        	                }   
-    	                }
-    	            }
-    	        }, 0, 1000); // 1초마다 실행
-    	    }
-    	}
+            remainRowsForItems = 10;        // 아이템이 나오기까지 남은 줄 초기화
+        } else {
+            isItem = false;        // 선택된 것이 블록임
+            curPiece = nextPiece;    // 현재 블록을 방금 표시되었던 블록으로 설정
+            nextPiece = new Blocks(difficulty); // 다음 블록 생성
+            nextPiece.setRandomBlock(difficulty, isItem);
+            curX = BOARD_WIDTH / 2 - 1;
+            curY = BOARD_HEIGHT - 2 + curPiece.minY();
+        }
+        
+        if (gameMode.equals("타이머")) {
+            if (timerMode == null) {
+                timerMode = new Timer();
+                timerModeLimit = 150; // 타이머 모드에서의 초기 시간 설정
+                timerMode.scheduleAtFixedRate(new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (!isPaused) { // isPaused가 false일 때만 타이머 동작
+                            timerModeLimit--; // 1초씩 감소
+                            if (timerModeLimit <= 0) {
+                                // 0.075초의 딜레이를 추가
+                                try {
+                                    Thread.sleep(75);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                timerMode.cancel(); // 타이머 중단
+                                istimerModeCancelled = true;
+                                isFallingFinished = true; // 게임 진행 중지
+                                checkWinner(); // 타이머가 끝났을 때 승자 확인
+                            }
+                        }
+                    }
+                }, 0, 1000); // 1초마다 실행
+            }
+        }
 
         if (!tryMove(curPiece, curX, curY) || istimerModeCancelled) {
-            // 게임오버일 때 점수를 스코어보드에 추가
-            //curPiece.setBlock(Tetrominoe.NoBlock);
+            // 게임오버일 때 대전 모드인지 확인
             timer.cancel();
             isStarted = false;
 
-            int linesRemoved = TotalScore;
-            String name = JOptionPane.showInputDialog("Enter your name:");
+            if (specialMode.equals("대전 모드")) {
+                // 대전 모드일 때는 이름 입력 및 스코어보드 표시 없이 바로 종료
+                checkWinner();
+            } else {
+                // 솔로 모드일 때는 기존 로직 유지
+                int linesRemoved = TotalScore;
+                String name = JOptionPane.showInputDialog("Enter your name:");
 
-            HandleKeyEvent.selectedButtonIndex = 0;
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                	endGame(name, difficulty, gameMode, linesRemoved);
-                	
-                	ScoreEntry newScore = new ScoreEntry(name, difficulty, gameMode, linesRemoved);
-                	ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
-                	scoreBoardMenu.addScore(newScore);
-                	
-                	 if(SettingFileWriter.readSize() == 0)
-                		 scoreBoardMenu.setSize(400, 550);
-                         else if(SettingFileWriter.readSize() == 1)
-                        	 scoreBoardMenu.setSize(440, 605);
-                         else
-                        	 scoreBoardMenu.setSize(480, 660);
-                	
-                    ScreenAdjustComponent.sizeAdjust(scoreBoardMenu.labels, scoreBoardMenu.buttons, scoreBoardMenu.isBackButton, SettingFileWriter.readSize());
-                }
-            });
+                HandleKeyEvent.selectedButtonIndex = 0;
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        endGame(name, difficulty, gameMode, linesRemoved);
+
+                        ScoreEntry newScore = new ScoreEntry(name, difficulty, gameMode, linesRemoved);
+                        ScoreBoardMenu scoreBoardMenu = new ScoreBoardMenu();
+                        scoreBoardMenu.addScore(newScore);
+
+                        if(SettingFileWriter.readSize() == 0)
+                            scoreBoardMenu.setSize(400, 550);
+                        else if(SettingFileWriter.readSize() == 1)
+                            scoreBoardMenu.setSize(440, 605);
+                        else
+                            scoreBoardMenu.setSize(480, 660);
+
+                        ScreenAdjustComponent.sizeAdjust(scoreBoardMenu.labels, scoreBoardMenu.buttons, scoreBoardMenu.isBackButton, SettingFileWriter.readSize());
+                    }
+                });
+            }
         }
-    }  
+    }
+
+    // 타이머가 끝났을 때 승자 확인하는 메서드
+    private void checkWinner() {
+        if (opponentBoard != null) {
+            String winnerMessage;
+            if (TotalScore > opponentBoard.TotalScore) {
+                winnerMessage = "Player " + playerNumber + " Wins!";
+            } else if (TotalScore < opponentBoard.TotalScore) {
+                winnerMessage = "Player " + opponentBoard.playerNumber + " Wins!";
+            } else {
+                winnerMessage = "It's a Tie!";
+            }
+            JOptionPane.showMessageDialog(this, winnerMessage);
+            System.exit(0); // 게임 종료
+        }
+    }
    
     public void endGame(String name, String difficulty, String mode, int score) {
     	 SwingUtilities.invokeLater(new Runnable() {
