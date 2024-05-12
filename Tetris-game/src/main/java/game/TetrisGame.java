@@ -69,7 +69,18 @@ public class TetrisGame extends JFrame {
         ColorBlindModeMenu.colorBlindStatus = SettingFileWriter.readBlindMode();
         ControlKeySettingMenu.controlKeyStatus = SettingFileWriter.readControlKey();
 
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                // 창이 닫힐 때 타이머 중지
+                board1.stopTimers();
+                if (board2 != null) {
+                    board2.stopTimers();
+                }
+            }
+        });
+        
         setLocationRelativeTo(null);
         setFocusable(true); // 프레임 포커스 설정
         requestFocusInWindow(); // 프레임 포커스 요청

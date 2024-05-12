@@ -551,7 +551,17 @@ public class Board extends JPanel {
             }
         });
     }
-
+    
+    public void stopTimers() {
+        if (timer != null) {
+            timer.cancel();
+        }
+        if (timerMode != null) {
+            timerMode.cancel();
+        }
+    }
+    
+    
     private boolean tryMove(Blocks newPiece, int newX, int newY) {		//블록을 이동시킬 수 있는지 확인
 
     	// WeightBlock인 경우 처리
