@@ -3,6 +3,8 @@ package main.java.game;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel; // 추가된 임포트
@@ -16,6 +18,8 @@ public class TetrisGame extends JFrame {
     private static final long serialVersionUID = 1L;
     private JLabel statusbar1;
     private JLabel statusbar2;
+    private Board board1;
+    private Board board2;
 
     // 게임모드 설정 관련 수정
     public TetrisGame(String specialMode, String gameMode, String difficulty) {
@@ -28,9 +32,6 @@ public class TetrisGame extends JFrame {
     private void initUI() {
         setLayout(new BorderLayout());
  
-        Board board1;
-        Board board2 = null;
-
         if (specialMode.equals("대전 모드")) {
  
             board1 = new Board(this, specialMode, gameMode, difficulty, 1);
@@ -44,10 +45,19 @@ public class TetrisGame extends JFrame {
             add(boardPanel, BorderLayout.CENTER);
 
             adjustFrameSizeForDualBoards();
+            addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    board1.dispatchEvent(e); // board1에 키 이벤트 전달
+                    board2.dispatchEvent(e); // board2에 키 이벤트 전달
+                }
+            });
         } else {
             board1 = new Board(this, specialMode, gameMode, difficulty, 1);
             add(board1, BorderLayout.CENTER);
             adjustFrameSizeForSingleBoard();
+            
+            addKeyListener(board1.new TAdapter(1)); // board1에 KeyListener 추가
         }
 
         board1.start();
@@ -61,6 +71,8 @@ public class TetrisGame extends JFrame {
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
+        setFocusable(true); // 프레임 포커스 설정
+        requestFocusInWindow(); // 프레임 포커스 요청
     }
 
     private void adjustFrameSizeForSingleBoard() {

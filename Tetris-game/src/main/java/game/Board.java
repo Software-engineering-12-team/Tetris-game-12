@@ -93,7 +93,12 @@ public class Board extends JPanel {
             tetrisFont = new Font("Arial", Font.BOLD, 24);
         
         board = new Blocks.Tetrominoe[BOARD_WIDTH * BOARD_HEIGHT];
-        addKeyListener(new TAdapter());
+        
+        if (getKeyListeners().length == 0) {
+            addKeyListener(new TAdapter(playerNumber));
+            requestFocusInWindow();
+        }
+        
         clearBoard();
     }
 
@@ -730,13 +735,15 @@ public class Board extends JPanel {
         }
     }
 
-    private class TAdapter extends KeyAdapter {		//키 이벤트 핸들러
+    public class TAdapter extends KeyAdapter { // 키 이벤트 핸들러
+        private int playerNumber;
+
+        public TAdapter(int playerNumber) {
+            this.playerNumber = playerNumber;
+        }
 
         @Override
         public void keyPressed(KeyEvent e) {
-            
-            System.out.println("key pressed");
-
             if (!isStarted || curPiece.getBlock() == Tetrominoe.NoBlock) {
                 return;
             }
@@ -755,21 +762,70 @@ public class Board extends JPanel {
                 return;
             }
 
-            // 설정에 따라 키 맵핑을 조건부로 처리
-            if (ControlKeySettingMenu.controlKeyStatus.equals("타입A")) {
+            if (specialMode.equals("대전 모드")) {
+                handleKeyEventForPlayer(e);
+            } else {
+                handleKeyEventForSolo(e);
+            }
+        }
+
+        private void handleKeyEventForPlayer(KeyEvent e) {
+            if (playerNumber == 1) {
                 switch (e.getKeyCode()) {
                     case KeyEvent.VK_W:
                         tryMove(curPiece.rotateRight(), curX, curY);
                         break;
                     case KeyEvent.VK_A:
-                    	if(!isTouchedBlocks)tryMove(curPiece, curX - 1, curY);
+                        if (!isTouchedBlocks) tryMove(curPiece, curX - 1, curY);
                         break;
                     case KeyEvent.VK_S:
                         tryMove(curPiece, curX, curY - 1);
                         TotalScore += 1;
                         break;
                     case KeyEvent.VK_D:
-                    	if(!isTouchedBlocks)tryMove(curPiece, curX + 1, curY);
+                        if (!isTouchedBlocks) tryMove(curPiece, curX + 1, curY);
+                        break;
+                    case KeyEvent.VK_Q:
+                        dropDown();
+                        break;
+                }
+            } else if (playerNumber == 2) {
+                switch (e.getKeyCode()) {
+                    case KeyEvent.VK_UP:
+                        tryMove(curPiece.rotateRight(), curX, curY);
+                        break;
+                    case KeyEvent.VK_LEFT:
+                        if (!isTouchedBlocks) tryMove(curPiece, curX - 1, curY);
+                        break;
+                    case KeyEvent.VK_DOWN:
+                        tryMove(curPiece, curX, curY - 1);
+                        TotalScore += 1;
+                        break;
+                    case KeyEvent.VK_RIGHT:
+                        if (!isTouchedBlocks) tryMove(curPiece, curX + 1, curY);
+                        break;
+                    case KeyEvent.VK_SHIFT:
+                        dropDown();
+                        break;
+                }
+            }
+        }
+
+        private void handleKeyEventForSolo(KeyEvent e) {
+            if (ControlKeySettingMenu.controlKeyStatus.equals("타입A")) {
+                switch (e.getKeyCode()) {
+                    case KeyEvent.VK_W:
+                        tryMove(curPiece.rotateRight(), curX, curY);
+                        break;
+                    case KeyEvent.VK_A:
+                        if (!isTouchedBlocks) tryMove(curPiece, curX - 1, curY);
+                        break;
+                    case KeyEvent.VK_S:
+                        tryMove(curPiece, curX, curY - 1);
+                        TotalScore += 1;
+                        break;
+                    case KeyEvent.VK_D:
+                        if (!isTouchedBlocks) tryMove(curPiece, curX + 1, curY);
                         break;
                     case KeyEvent.VK_Q:
                         dropDown();
@@ -781,14 +837,14 @@ public class Board extends JPanel {
                         tryMove(curPiece.rotateRight(), curX, curY);
                         break;
                     case KeyEvent.VK_LEFT:
-                    	if(!isTouchedBlocks)tryMove(curPiece, curX - 1, curY);
+                        if (!isTouchedBlocks) tryMove(curPiece, curX - 1, curY);
                         break;
                     case KeyEvent.VK_DOWN:
                         tryMove(curPiece, curX, curY - 1);
                         TotalScore += 1;
                         break;
                     case KeyEvent.VK_RIGHT:
-                    	if(!isTouchedBlocks)tryMove(curPiece, curX + 1, curY);
+                        if (!isTouchedBlocks) tryMove(curPiece, curX + 1, curY);
                         break;
                     case KeyEvent.VK_Q:
                         dropDown();
