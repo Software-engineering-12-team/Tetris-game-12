@@ -394,8 +394,7 @@ public class Board extends JPanel {
             isStarted = false;
 
             if (specialMode.equals("대전 모드")) {
-                // 대전 모드일 때는 이름 입력 및 스코어보드 표시 없이 바로 종료
-                checkWinner();
+                opponentBoard.declareWinner(playerNumber == 1 ? 2 : 1);
             } else {
                 // 솔로 모드일 때는 기존 로직 유지
                 int linesRemoved = TotalScore;
@@ -428,17 +427,28 @@ public class Board extends JPanel {
     // 타이머가 끝났을 때 승자 확인하는 메서드
     private void checkWinner() {
         if (opponentBoard != null) {
-            String winnerMessage;
-            if (TotalScore > opponentBoard.TotalScore) {
-                winnerMessage = "Player " + playerNumber + " Wins!";
-            } else if (TotalScore < opponentBoard.TotalScore) {
-                winnerMessage = "Player " + opponentBoard.playerNumber + " Wins!";
-            } else {
-                winnerMessage = "It's a Tie!";
-            } 
-            JOptionPane.showMessageDialog(this, winnerMessage);
+            if (timerModeLimit <= 0) { // 타이머가 0이 된 경우 점수를 비교하여 승자 결정
+                String winnerMessage;
+                if (TotalScore > opponentBoard.TotalScore) {
+                    winnerMessage = "Player " + playerNumber + " Wins!";
+                } else if (TotalScore < opponentBoard.TotalScore) {
+                    winnerMessage = "Player " + opponentBoard.playerNumber + " Wins!";
+                } else {
+                    winnerMessage = "It's a Tie!";
+                }
+                JOptionPane.showMessageDialog(this, winnerMessage);
+            } else { // 타이머가 0이 되기 전에 게임 오버가 된 경우 상대방이 승리
+                String winnerMessage = "Player " + (playerNumber == 1 ? 2 : 1) + " Wins!";
+                JOptionPane.showMessageDialog(this, winnerMessage);
+            }
             System.exit(0); // 게임 종료
         }
+    }
+    
+    public void declareWinner(int winnerPlayerNumber) {
+        String winnerMessage = "Player " + winnerPlayerNumber + " Wins!";
+        JOptionPane.showMessageDialog(this, winnerMessage);
+        System.exit(0); // 게임 종료
     }
    
     public void endGame(String name, String difficulty, String mode, int score) {
