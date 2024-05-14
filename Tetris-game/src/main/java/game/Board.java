@@ -383,7 +383,7 @@ public class Board extends JPanel {
                                 isFallingFinished = true; // 게임 진행 중지
                                 if (!isGameOver) {
                                 	isGameOver = true;
-                                	parent.gameOver(playerNumber);
+                                	parent.gameOver(0);
                                 }
                             }
                         }
@@ -400,7 +400,7 @@ public class Board extends JPanel {
             if (specialMode.equals("대전 모드")) {
             	if(!isGameOver) {
             		isGameOver = true;
-            		parent.gameOver(opponentBoard.playerNumber);
+            		parent.gameOver(playerNumber);
             	}
             } else {
                 // 솔로 모드일 때는 기존 로직 유지
@@ -429,6 +429,10 @@ public class Board extends JPanel {
                 });
             }
         }
+    }
+    
+    public int getTotalScore() {
+    	return TotalScore;
     }
 
     public void declareWinner(int winnerPlayerNumber) {

@@ -112,14 +112,24 @@ public class TetrisGame extends JFrame {
         return playerNumber == 1 ? statusbar1 : statusbar2;
     }
 
-    public void gameOver(int playerNumber) {
+    public void gameOver(int loserPlayerNumber) {
         if (!gameOverDisplayed) {
             gameOverDisplayed = true;
             String winnerMessage;
-            if (playerNumber == 0) {
-                winnerMessage = "It's a Tie!";
+            if (loserPlayerNumber == 1) {
+                winnerMessage = "Player 2 Wins!";
+            } else if (loserPlayerNumber == 2) {
+                winnerMessage = "Player 1 Wins!";
             } else {
-                winnerMessage = "Player " + playerNumber + " Wins!";
+                int score1 = board1.getTotalScore();
+                int score2 = board2.getTotalScore();
+                if (score1 == score2) {
+                    winnerMessage = "It's a Tie!";
+                } else if (score1 > score2) {
+                    winnerMessage = "Player 1 Wins!";
+                } else {
+                    winnerMessage = "Player 2 Wins!";
+                }
             }
             displayWinnerMessage(winnerMessage);
         }
