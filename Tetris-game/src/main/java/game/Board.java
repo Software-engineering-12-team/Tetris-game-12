@@ -58,10 +58,13 @@ public class Board extends JPanel {
     private Tetrominoe[] board;
     private Board opponentBoard; // 상대방 보드 추가
     private int playerNumber; // 플레이어 번호 추가
+    private boolean isGameOver = false; //게임 종료 상태 추가 
+    private TetrisGame parent;
     
     // 게임모드 설정 관련 수정
     public Board(TetrisGame parent, String specialMode, String gameMode, String difficulty, int playerNumber) {
-        this.specialMode = specialMode;
+        this.parent = parent;
+    	this.specialMode = specialMode;
         this.gameMode = gameMode;
         this.difficulty = difficulty;
         this.playerNumber = playerNumber;
@@ -79,9 +82,7 @@ public class Board extends JPanel {
     private void initBoard(TetrisGame parent) { // 게임 보드 초기화
         setFocusable(true);
         timer = new Timer();
-        timer.scheduleAtFixedRate(new ScheduleTask(),
-                INITIAL_DELAY, PERIOD_INTERVAL);
-
+        timer.scheduleAtFixedRate(new ScheduleTask(), INITIAL_DELAY, PERIOD_INTERVAL);
         curPiece = new Blocks(difficulty);
         nextPiece = new Blocks(difficulty);
         nextPiece.setRandomBlock(difficulty, isItem); // 게임모드 설정 관련 수정
@@ -380,7 +381,10 @@ public class Board extends JPanel {
                                 timerMode.cancel(); // 타이머 중단
                                 istimerModeCancelled = true;
                                 isFallingFinished = true; // 게임 진행 중지
-                                checkWinner(); // 타이머가 끝났을 때 승자 확인
+                                if (!isGameOver) {
+                                	isGameOver = true;
+                                	parent.gameOver(playerNumber);
+                                }
                             }
                         }
                     }
@@ -394,7 +398,10 @@ public class Board extends JPanel {
             isStarted = false;
 
             if (specialMode.equals("대전 모드")) {
-                opponentBoard.declareWinner(playerNumber == 1 ? 2 : 1);
+            	if(!isGameOver) {
+            		isGameOver = true;
+            		parent.gameOver(opponentBoard.playerNumber);
+            	}
             } else {
                 // 솔로 모드일 때는 기존 로직 유지
                 int linesRemoved = TotalScore;
@@ -424,30 +431,9 @@ public class Board extends JPanel {
         }
     }
 
-    // 타이머가 끝났을 때 승자 확인하는 메서드
-    private void checkWinner() {
-        if (opponentBoard != null) {
-            if (timerModeLimit <= 0) { // 타이머가 0이 된 경우 점수를 비교하여 승자 결정
-                String winnerMessage;
-                if (TotalScore > opponentBoard.TotalScore) {
-                    winnerMessage = "Player " + playerNumber + " Wins!";
-                } else if (TotalScore < opponentBoard.TotalScore) {
-                    winnerMessage = "Player " + opponentBoard.playerNumber + " Wins!";
-                } else {
-                    winnerMessage = "It's a Tie!";
-                }
-                JOptionPane.showMessageDialog(this, winnerMessage);
-            } else { // 타이머가 0이 되기 전에 게임 오버가 된 경우 상대방이 승리
-                String winnerMessage = "Player " + (playerNumber == 1 ? 2 : 1) + " Wins!";
-                JOptionPane.showMessageDialog(this, winnerMessage);
-            }
-            System.exit(0); // 게임 종료
-        }
-    }
-    
     public void declareWinner(int winnerPlayerNumber) {
         String winnerMessage = "Player " + winnerPlayerNumber + " Wins!";
-        JOptionPane.showMessageDialog(this, winnerMessage);
+        parent.displayWinnerMessage(winnerMessage);
         System.exit(0); // 게임 종료
     }
    

@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel; // 추가된 임포트
+import javax.swing.JOptionPane;
 import main.java.menu.gamestart.GameStartMenu;
 import main.java.setting.SettingFileWriter;
 import main.java.setting.colorblindmode.ColorBlindModeMenu;
@@ -20,6 +21,7 @@ public class TetrisGame extends JFrame {
     private JLabel statusbar2;
     private Board board1;
     private Board board2;
+    private boolean gameOverDisplayed = false;
 
     // 게임모드 설정 관련 수정
     public TetrisGame(String specialMode, String gameMode, String difficulty) {
@@ -110,6 +112,23 @@ public class TetrisGame extends JFrame {
         return playerNumber == 1 ? statusbar1 : statusbar2;
     }
 
+    public void gameOver(int playerNumber) {
+        if (!gameOverDisplayed) {
+            gameOverDisplayed = true;
+            String winnerMessage;
+            if (playerNumber == 0) {
+                winnerMessage = "It's a Tie!";
+            } else {
+                winnerMessage = "Player " + playerNumber + " Wins!";
+            }
+            displayWinnerMessage(winnerMessage);
+        }
+    }
+
+    public void displayWinnerMessage(String message) {
+        JOptionPane.showMessageDialog(this, message);
+        System.exit(0);
+    }
     public static void main(String[] args) {
         // 게임모드 설정 관련 수정
         GameStartMenu gameStartMenu = new GameStartMenu();
