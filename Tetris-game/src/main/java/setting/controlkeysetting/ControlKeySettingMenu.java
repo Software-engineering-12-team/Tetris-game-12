@@ -15,14 +15,14 @@ import static main.java.setting.colorblindmode.ColorBlindModeMenu.colorBlindStat
 import static main.java.setting.screenadjustsize.ScreenAdjustSizeMenu.size;
 
 public class ControlKeySettingMenu extends JFrame {
-    private JLabel titleLabel;
+    public JLabel titleLabel;
     public JLabel[] labels;
-    private static JButton typeAButton, typeBButton, backButton;
+    public static JButton typeAButton, typeBButton, backButton;
     public JButton[] buttons;
     public boolean isBackButton;
     public static String controlKeyStatus = "타입A";
 
-    private void initComponents() {
+    public void initComponents() {
         titleLabel = new JLabel("조작키 설정");
         titleLabel.setFont(new Font("NanumGothic", Font.BOLD, 30));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -39,7 +39,7 @@ public class ControlKeySettingMenu extends JFrame {
         isBackButton = true;
         ButtonStyle.applyButtonStyle(buttons, isBackButton);
     }
-    private void layoutComponents() {
+    public void layoutComponents() {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
         panel.add(titleLabel, BorderLayout.NORTH);
@@ -59,7 +59,7 @@ public class ControlKeySettingMenu extends JFrame {
 
         panel.add(backButton, BorderLayout.SOUTH);
     }
-    private void addEventListeners(){
+    public void addEventListeners(){
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

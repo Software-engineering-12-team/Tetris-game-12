@@ -26,7 +26,7 @@ public class ColorBlindModeMenu extends JFrame {
 
     public static String colorBlindStatus = "정상";
 
-    private void initComponents() {
+    public void initComponents() {
         titleLabel = new JLabel("색맹 모드 선택");
         titleLabel.setFont(new Font("NanumGothic", Font.BOLD, 30));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
