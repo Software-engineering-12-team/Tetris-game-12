@@ -14,9 +14,9 @@ import static main.java.setting.controlkeysetting.ControlKeySettingMenu.controlK
 import static main.java.setting.colorblindmode.ColorBlindModeMenu.colorBlindStatus;
 
 public class ScreenAdjustSizeMenu extends JFrame {
-    private JLabel titleLabel;
+    public JLabel titleLabel;
     public JLabel[] labels;
-    private JButton smallButton, mediumButton, largeButton, backButton;
+    public JButton smallButton, mediumButton, largeButton, backButton;
     public JButton[] buttons;
 	public static int size;
     public boolean isBackButton;
