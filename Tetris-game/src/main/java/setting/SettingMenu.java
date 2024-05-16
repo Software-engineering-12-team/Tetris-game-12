@@ -18,7 +18,7 @@ import static main.java.setting.controlkeysetting.ControlKeySettingMenu.controlK
 
 
 public class SettingMenu extends JFrame {
-    private JLabel titleLabel;
+    public JLabel titleLabel;
     public JLabel[] labels;
     private JButton sizeAdjustButton, controlKeyButton, resetscoreButton, colorBlindModeButton, resetSettingButton, backButton;
     public JButton[] buttons;
