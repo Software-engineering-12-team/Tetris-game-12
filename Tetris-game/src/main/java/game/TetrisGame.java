@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel; // 추가된 임포트
 import javax.swing.JOptionPane;
+import main.java.menu.StartMenu;
 import main.java.menu.gamestart.GameStartMenu;
 import main.java.setting.SettingFileWriter;
 import main.java.setting.colorblindmode.ColorBlindModeMenu;
@@ -137,8 +138,15 @@ public class TetrisGame extends JFrame {
 
     public void displayWinnerMessage(String message) {
         JOptionPane.showMessageDialog(this, message);
-        System.exit(0);
+        returnToStartMenu();
     }
+    
+    private void returnToStartMenu() {
+        dispose(); // 현재 게임 창을 닫음
+        StartMenu StartMenu = new StartMenu();
+        StartMenu.setVisible(true);
+    }
+    
     public static void main(String[] args) {
         // 게임모드 설정 관련 수정
         GameStartMenu gameStartMenu = new GameStartMenu();

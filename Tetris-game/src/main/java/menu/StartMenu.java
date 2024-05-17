@@ -167,8 +167,6 @@ public class StartMenu extends JFrame {
 
     }
     
-    
-
     public static void main(String[] args) {
         setLookAndFeel();
         SwingUtilities.invokeLater(new Runnable() {
