@@ -28,7 +28,8 @@ public class BlockDrawer {    //블록을 그리는 클래스
             	new Color(0, 0, 0),
             new Color(0, 0, 0),
             	new Color(0, 0, 0),
-            new Color(255, 255, 255)
+            new Color(255, 255, 255),
+            new Color(128, 128, 128)
         };
 
         Color rgcbcolors[] = {    // 적록 색맹 모드 전용 색깔
@@ -48,7 +49,8 @@ public class BlockDrawer {    //블록을 그리는 클래스
                 new Color(0, 0, 0),
                 new Color(0, 0, 0),
                 new Color(0, 0, 0),
-                new Color(255, 255, 255)
+                new Color(255, 255, 255),
+                new Color(128, 128, 128)
         };
 
         Color bycbcolors[] = {    // 청황 색맹 모드 전용 색깔
@@ -68,7 +70,8 @@ public class BlockDrawer {    //블록을 그리는 클래스
                 new Color(0, 0, 0),
                 new Color(0, 0, 0),
                 new Color(0, 0, 0),
-                new Color(255, 255, 255)
+                new Color(255, 255, 255),
+                new Color(128, 128, 128)
         };
 
         if(ColorBlindModeMenu.colorBlindStatus.equals("정상"))

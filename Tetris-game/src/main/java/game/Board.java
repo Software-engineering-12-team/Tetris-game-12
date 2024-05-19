@@ -585,8 +585,30 @@ public class Board extends JPanel {
             repaint();
             adjustSpeed(numFullLines);
         }
+     // 상대방 보드에 줄 추가
+        if (specialMode.equals("대전 모드") && opponentBoard != null && numFullLines >= 2) {
+            opponentBoard.addLines(numFullLines);
+        }
     }
-   
+    
+    public void addLines(int numLines) {
+        // 기존 블록들을 위로 들어올림
+    	for (int y = BOARD_HEIGHT - 2 - numLines; y >= 1; y--) {
+            for (int x = 1; x < BOARD_WIDTH - 1; x++) {
+                board[(y + numLines) * BOARD_WIDTH + x] = board[y * BOARD_WIDTH + x];
+            }
+        }
+        
+        // 새로운 줄을 아래에 추가
+    	for (int i = 0; i < numLines; i++) {
+            for (int x = 1; x < BOARD_WIDTH - 1; x++) {
+                board[(numLines - 1 - i + 1) * BOARD_WIDTH + x] = Tetrominoe.GrayBlock;
+            }
+        }
+
+        repaint();
+    }
+    
     private void adjustSpeed(int numFullLines) {
         int newDelay;
         int newInterval;

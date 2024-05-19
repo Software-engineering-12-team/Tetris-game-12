@@ -6,7 +6,7 @@ public class Blocks {
 
     protected enum Tetrominoe { NoBlock, ZBlock, SBlock, IBlock, 
                TBlock, OBlock, LBlock, JBlock, BorderBlock,
-               WeightItem, LineDelItem, ThreeItem, FiveItem, SevenItem, PlusItem, AllDelItem, HighlightBlock};	//블록의 종류, BorderBlock은 테두리를 나타냄
+               WeightItem, LineDelItem, ThreeItem, FiveItem, SevenItem, PlusItem, AllDelItem, HighlightBlock, GrayBlock};	//블록의 종류, BorderBlock은 테두리를 나타냄
 
     private Tetrominoe pieceBlock;
     private int coords[][];
