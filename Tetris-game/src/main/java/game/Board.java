@@ -317,22 +317,28 @@ public class Board extends JPanel {
    }
 
 
-    private void pieceDropped() {		//블록이 떨어진 후 
+   private List<int[]> lastMovedBlocks = new ArrayList<>(); // 마지막으로 움직인 블록 좌표확인!!!!!!!
 
-        for (int i = 0; i < 4; ++i) {
+   private void pieceDropped() {		//블록이 떨어진 후 
+   	lastMovedBlocks.clear();
+       for (int i = 0; i < 4; ++i) {
+           int x = curX + curPiece.x(i);
+           int y = curY - curPiece.y(i);
+           board[(y * BOARD_WIDTH) + x] = curPiece.getBlock();
+           lastMovedBlocks.add(new int[]{x, y});
+       }
+       System.out.println("Piece Dropped - Last Moved Blocks:"); //작동 확인 테스트 코드 OK!!!! 
+       for (int[] coord : lastMovedBlocks) {
+           System.out.println("Block at (" + coord[0] + ", " + coord[1] + ")");
+       }
+       
+       applyItemEffect(curPiece.getBlock());
+       removeFullLines();
 
-            int x = curX + curPiece.x(i);
-            int y = curY - curPiece.y(i);
-            board[(y * BOARD_WIDTH) + x] = curPiece.getBlock();
-        }
-        
-        applyItemEffect(curPiece.getBlock());
-        removeFullLines();
-
-        if (!isFallingFinished) {
-            newPiece(); 
-        }
-    }
+       if (!isFallingFinished) {
+           newPiece(); 
+       }
+   }
 
 
     private void newPiece() {        // 새로운 블록 생성
@@ -524,16 +530,21 @@ public class Board extends JPanel {
         int numFullLines = 0;
         int consecutiveLines = 0;
         List<Integer> fullLines = new ArrayList<>(); // 강조된 줄의 인덱스를 저장할 리스트
+        List<int[]> excludedBlocks = new ArrayList<>(); // 제외할 블록 좌표를 저장할 리스트
 
         // 보드의 각 행을 확인하여 꽉 찬 줄인지 확인
         for (int i = BOARD_HEIGHT - 2; i >= 1; --i) {
             boolean lineIsFull = true;
+            boolean hasGrayBlock = false;
 
             // 해당 줄이 꽉 찼는지 확인
             for (int j = 1; j < BOARD_WIDTH - 1; ++j) {
                 if (blockAt(j, i) == Tetrominoe.NoBlock || blockAt(j, i) == Tetrominoe.BorderBlock) {
                     lineIsFull = false;
                     break;
+                }
+                if (blockAt(j, i) == Tetrominoe.GrayBlock) {
+                    hasGrayBlock = true;
                 }
             }
 
@@ -543,7 +554,23 @@ public class Board extends JPanel {
                 ++numFullLines;
                 ++consecutiveLines;
                 fullLines.add(i);
+                
+             // 마지막으로 움직인 블록이 삭제된 줄에 포함되면, 그 좌표를 제외할 블록 좌표 리스트에 추가
+                for (int[] coord : lastMovedBlocks) {
+                    if (coord[1] == i) {
+                        excludedBlocks.add(coord);
+                    }
+                }
+                if (hasGrayBlock) {
+                    --numFullLines; // GrayBlock이 있는 줄을 제외
+                }
             }
+        }
+        
+     // 로그 출력
+        System.out.println("Remove Full Lines - Excluded Blocks:");
+        for (int[] coord : excludedBlocks) {
+            System.out.println("Excluded Block at (" + coord[0] + ", " + coord[1] + ")");
         }
 
         // 모든 꽉 찬 줄을 동시에 제거
@@ -587,11 +614,13 @@ public class Board extends JPanel {
         }
      // 상대방 보드에 줄 추가
         if (specialMode.equals("대전 모드") && opponentBoard != null && numFullLines >= 2) {
-            opponentBoard.addLines(numFullLines);
+            opponentBoard.addLines(numFullLines, excludedBlocks);
         }
+        
+        lastMovedBlocks.clear();
     }
     
-    public void addLines(int numLines) {
+    public void addLines(int numLines, List<int[]> excludedBlocks) {
         // 기존 블록들을 위로 들어올림
     	for (int y = BOARD_HEIGHT - 2 - numLines; y >= 1; y--) {
             for (int x = 1; x < BOARD_WIDTH - 1; x++) {
@@ -605,6 +634,17 @@ public class Board extends JPanel {
                 board[(numLines - 1 - i + 1) * BOARD_WIDTH + x] = Tetrominoe.GrayBlock;
             }
         }
+    	
+    	 for (int[] coord : excludedBlocks) {
+    	        int x = coord[0];
+    	        int originalY = coord[1];
+    	        // y 계산 수정
+    	        int y = BOARD_HEIGHT - 2 - numLines + (originalY - (BOARD_HEIGHT - 2 - numLines));
+    	        System.out.println("Setting NoBlock at (" + x + ", " + y + ")"); // 로그 추가
+    	        if (y >= 1 && y < BOARD_HEIGHT - 1) { // y 좌표가 유효한 범위 내에 있는지 확인
+    	            board[y * BOARD_WIDTH + x] = Tetrominoe.NoBlock;
+    	        }
+    	    }
 
         repaint();
     }
