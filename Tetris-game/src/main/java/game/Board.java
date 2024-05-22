@@ -612,47 +612,39 @@ public class Board extends JPanel {
         
         lastMovedBlocks.clear();
     }
-  
-    private static List<int[]> adjustedExcludedBlocks = new ArrayList<>();
-    
-    private static List<int[]> fixExcludedBlocks(List<int[]> excludedBlocks, List<int[]> lastMovedBlocks) {
-        // Step 1: Find the minimum Y value (minY) in excludedBlocks
-        int minY = excludedBlocks.stream().mapToInt(coord -> coord[1]).min().orElse(Integer.MAX_VALUE);
-        
-        // Step 2: Find the maximum Y value (maxY) in excludedBlocks
-        int maxY = excludedBlocks.stream().mapToInt(coord -> coord[1]).max().orElse(Integer.MIN_VALUE);
-        
-        // Step 3: Adjust the Y values in excludedBlocks by subtracting (minY - 1)
-        List<int[]> adjustedExcludedBlocks = new ArrayList<>();
-        for (int[] coord : excludedBlocks) {
-            int newY = coord[1] - (minY - 1);
-            adjustedExcludedBlocks.add(new int[]{coord[0], newY});
+ 
+    private static List<int[]> fixExcludedBlocks(List<int[]> excludedBlocks) {
+        // Step 1: Sort the excludedBlocks by their Y values, then by their X values
+        excludedBlocks.sort((a, b) -> {
+            int yCompare = Integer.compare(a[1], b[1]);
+            if (yCompare == 0) {
+                return Integer.compare(a[0], b[0]);
+            }
+            return yCompare;
+        });
+
+        // Step 2: Create fixedExcludedBlocks with Y values starting from 1 and incrementing by 1,
+        //         keeping the same value for duplicates
+        List<int[]> fixedExcludedBlocks = new ArrayList<>();
+        int currentY = 1;
+        int previousY = excludedBlocks.get(0)[1];
+        for (int i = 0; i < excludedBlocks.size(); i++) {
+            int[] coord = excludedBlocks.get(i);
+            if (coord[1] != previousY) {
+                currentY++;
+            }
+            fixedExcludedBlocks.add(new int[]{coord[0], currentY});
+            previousY = coord[1];
         }
 
-        // Step 4: Find non-overlapping Y values between excludedBlocks and lastMovedBlocks
-        Set<Integer> lastMovedYValues = lastMovedBlocks.stream().map(coord -> coord[1]).collect(Collectors.toSet());
-        List<Integer> nonOverlappingYValues = lastMovedBlocks.stream()
-                .filter(coord -> coord[1] <= maxY && !lastMovedYValues.contains(coord[1]))
-                .map(coord -> coord[1])
-                .collect(Collectors.toList());
-
-        // Step 5: Adjust Y values again based on non-overlapping values
-        List<int[]> fixedExcludedBlocks = new ArrayList<>();
-        for (int[] coord : adjustedExcludedBlocks) {
-            int originalY = coord[1] + (minY - 1); // 원래 Y값 복원
-            int newY = coord[1];
-            for (int nonOverlapY : nonOverlappingYValues) {
-                if (originalY > nonOverlapY) {
-                    newY -= 1;
-                }
-            }
-            fixedExcludedBlocks.add(new int[]{coord[0], newY});
+        System.out.println("Fixed Excluded Blocks:");
+        for (int[] coord : fixedExcludedBlocks) {
+            System.out.println("Block Coordinate: (" + coord[0] + ", " + coord[1] + ")");
         }
 
         return fixedExcludedBlocks;
     }
-    
- 
+
     public void addLines(int numLines, List<int[]> excludedBlocks) {
         for (int y = BOARD_HEIGHT - 2 - numLines; y >= 1; y--) {
             for (int x = 1; x < BOARD_WIDTH - 1; x++) {
@@ -667,9 +659,9 @@ public class Board extends JPanel {
         }
 
         // Step 3: 제외할 블록의 좌표를 수정하여 NoBlock으로 변경
-        List<int[]> fixedExcludedBlocks = fixExcludedBlocks(excludedBlocks, lastMovedBlocks);
+        List<int[]> fixedExcludedBlocks = fixExcludedBlocks(excludedBlocks);
         replaceWithNoBlock(fixedExcludedBlocks);
-
+        
         repaint();
     }
 
