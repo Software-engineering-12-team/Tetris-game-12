@@ -614,25 +614,29 @@ public class Board extends JPanel {
     }
   
     private static List<int[]> adjustedExcludedBlocks = new ArrayList<>();
+    
     private static List<int[]> fixExcludedBlocks(List<int[]> excludedBlocks, List<int[]> lastMovedBlocks) {
-        // Step 1: Find the minimum Y value (minY)
+        // Step 1: Find the minimum Y value (minY) in excludedBlocks
         int minY = excludedBlocks.stream().mapToInt(coord -> coord[1]).min().orElse(Integer.MAX_VALUE);
-
-        // Step 2: Adjust the Y values by subtracting (minY - 1)
-        adjustedExcludedBlocks.clear(); // Ensure it's empty before use
+        
+        // Step 2: Find the maximum Y value (maxY) in excludedBlocks
+        int maxY = excludedBlocks.stream().mapToInt(coord -> coord[1]).max().orElse(Integer.MIN_VALUE);
+        
+        // Step 3: Adjust the Y values in excludedBlocks by subtracting (minY - 1)
+        List<int[]> adjustedExcludedBlocks = new ArrayList<>();
         for (int[] coord : excludedBlocks) {
             int newY = coord[1] - (minY - 1);
             adjustedExcludedBlocks.add(new int[]{coord[0], newY});
         }
 
-        // Step 3: Find non-overlapping Y values between excludedBlocks and lastMovedBlocks
+        // Step 4: Find non-overlapping Y values between excludedBlocks and lastMovedBlocks
         Set<Integer> lastMovedYValues = lastMovedBlocks.stream().map(coord -> coord[1]).collect(Collectors.toSet());
-        List<Integer> nonOverlappingYValues = excludedBlocks.stream()
-                .filter(coord -> !lastMovedYValues.contains(coord[1]))
+        List<Integer> nonOverlappingYValues = lastMovedBlocks.stream()
+                .filter(coord -> coord[1] <= maxY && !lastMovedYValues.contains(coord[1]))
                 .map(coord -> coord[1])
                 .collect(Collectors.toList());
 
-        // Step 4: Adjust Y values again based on non-overlapping values
+        // Step 5: Adjust Y values again based on non-overlapping values
         List<int[]> fixedExcludedBlocks = new ArrayList<>();
         for (int[] coord : adjustedExcludedBlocks) {
             int originalY = coord[1] + (minY - 1); // 원래 Y값 복원
