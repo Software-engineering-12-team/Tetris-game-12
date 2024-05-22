@@ -1,9 +1,11 @@
 package main.java.game;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JLabel;
@@ -176,7 +178,7 @@ public class Board extends JPanel {
             }
         }
         
-     // 다음 블록 그리기
+        // 다음 블록 그리기
         int nextPieceX = BOARD_WIDTH * squareWidth() + 60;
         int nextPieceY = 50;
         for (int i = 0; i < 4; ++i) {
@@ -186,18 +188,17 @@ public class Board extends JPanel {
                     nextPieceY + y * squareHeight(), squareWidth(), squareHeight(), nextPiece.getBlock());
         }
         
+        Graphics2D g2d = (Graphics2D) g;
+
+        // 선의 굵기 설정
+        float thickness = 3.0f; // 선의 굵기
+        g2d.setStroke(new BasicStroke(thickness));
+        
         g.setColor(Color.WHITE);	//다음 블록이 들어갈 박스 그리기
         int boxWidth = 6 * squareWidth();
         int boxHeight = 4 * squareHeight();
-        int borderWidth = 5; 
      
-     for (int i = 0; i < borderWidth; i++) {
-         g.drawRect(nextPieceX - 20 + i, nextPieceY + i, boxWidth, boxHeight);
-     	}
-     
-     for (int i = 0; i < borderWidth; i++) {
-         g.drawRect(nextPieceX - 20 + i, nextPieceY, boxWidth, boxHeight);
-     	}
+        g2d.drawRect(nextPieceX - 15, nextPieceY, boxWidth, boxHeight);
      
      	// 점수 표시 위치 계산
      	int scoreX = nextPieceX - squareWidth()	; 
@@ -225,6 +226,20 @@ public class Board extends JPanel {
      	if(gameMode == "타이머") {
      		g.drawString("Time: " + timerModeLimit, timerX, timerY);    		
      	}
+
+     	if(specialMode == "대전 모드") {
+     		int boxWidth2 = 11 * squareWidth();
+            int boxHeight2 = 10 * squareHeight();
+            
+            g2d.setColor(Color.WHITE); //다음 공격 블록이 들어갈 박스 그리기
+            if(SettingFileWriter.readSize() == 0) // 화면 크기에 따른 박스 위치 변경
+            	g2d.drawRect(nextPieceX - 45, nextPieceY + 210, boxWidth2, boxHeight2);
+            else if(SettingFileWriter.readSize() == 1)
+            	g2d.drawRect(nextPieceX - 48, nextPieceY + 245, boxWidth2, boxHeight2);
+            else
+            	g2d.drawRect(nextPieceX - 45, nextPieceY + 270, boxWidth2, boxHeight2);
+     	}
+        
     }
 
     @Override
