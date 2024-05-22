@@ -63,7 +63,9 @@ public class Board extends JPanel {
     private int playerNumber; // 플레이어 번호 추가
     private boolean isGameOver = false; //게임 종료 상태 추가 
     private TetrisGame parent;
-    
+    private List<int[]> queuedLines = new ArrayList<>(); // 대기 상태의 공격 블록을 저장하는 리스트
+    private List<int[]> queuedExcludedBlocks = new ArrayList<>(); // 대기 상태의 제외 블록을 저장하는 리스트
+
     // 게임모드 설정 관련 수정
     public Board(TetrisGame parent, String specialMode, String gameMode, String difficulty, int playerNumber) {
         this.parent = parent;
@@ -231,8 +233,29 @@ public class Board extends JPanel {
     	setBackground(Color.BLACK);
         super.paintComponent(g);
         doDrawing(g);
-
+        drawQueuedLines(g);
     }
+    
+    private void drawQueuedLines(Graphics g) {
+        int baseX = BOARD_WIDTH * squareWidth() + 20;
+        int baseY = getHeight() - (queuedLines.size() / (BOARD_WIDTH - 2)) * squareHeight() - 20;
+
+        // GrayBlock을 그리기
+        for (int[] line : queuedLines) {
+            int x = line[0];
+            int y = line[1];
+            BlockDrawer.drawBlock(g, baseX + (x - 1) * squareWidth(), baseY + (y - 1) * squareHeight(), squareWidth(), squareHeight(), Tetrominoe.GrayBlock);
+        }
+
+        // NoBlock으로 대체된 부분을 그리기
+        for (int[] coord : queuedExcludedBlocks) {
+            int x = coord[0];
+            int y = coord[1];
+            BlockDrawer.drawBlock(g, baseX + (x - 1) * squareWidth(), baseY + (y - 1) * squareHeight(), squareWidth(), squareHeight(), Tetrominoe.NoBlock);
+        }
+    }
+    
+    
 
     private void dropDown() {		//블록을 한 번에 맨 아래로 떨어뜨리기
     	int dropDistance = 0;
@@ -319,6 +342,7 @@ public class Board extends JPanel {
        }
    }
 
+   
 
    private List<int[]> lastMovedBlocks = new ArrayList<>(); 
 
@@ -335,10 +359,14 @@ public class Board extends JPanel {
        removeFullLines();
 
        if (!isFallingFinished) {
+           if (!queuedLines.isEmpty()) {
+               processQueuedLines();
+           }
            newPiece(); 
        }
    }
-
+   
+  
 
     private void newPiece() {        // 새로운 블록 생성
         if(remainRowsForItems <= 0 && gameMode.equals("아이템")) {    
@@ -607,7 +635,7 @@ public class Board extends JPanel {
         }
      // 상대방 보드에 줄 추가
         if (specialMode.equals("대전 모드") && opponentBoard != null && numFullLines >= 2) {
-            opponentBoard.addLines(numFullLines, excludedBlocks);
+        	opponentBoard.queueLines(numFullLines, excludedBlocks);
         }
         
         lastMovedBlocks.clear();
@@ -645,25 +673,44 @@ public class Board extends JPanel {
         return fixedExcludedBlocks;
     }
 
-    public void addLines(int numLines, List<int[]> excludedBlocks) {
-        for (int y = BOARD_HEIGHT - 2 - numLines; y >= 1; y--) {
-            for (int x = 1; x < BOARD_WIDTH - 1; x++) {
-                board[(y + numLines) * BOARD_WIDTH + x] = board[y * BOARD_WIDTH + x];
-            }
-        }
-        
+    public void queueLines(int numLines, List<int[]> excludedBlocks) {
+
         for (int i = 0; i < numLines; i++) {
             for (int x = 1; x < BOARD_WIDTH - 1; x++) {
-                board[(numLines - 1 - i + 1) * BOARD_WIDTH + x] = Tetrominoe.GrayBlock;
+                queuedLines.add(new int[]{x, numLines - 1 - i + 1});
+            }
+        }
+        List<int[]> fixedExcludedBlocks = fixExcludedBlocks(excludedBlocks);
+        replaceWithNoBlock(fixedExcludedBlocks);
+        
+        // 제외 블록도 대기 리스트에 추가
+        queuedExcludedBlocks.addAll(fixedExcludedBlocks);
+        repaint();
+    }
+    
+    private void processQueuedLines() {
+        // Step 1: 보드의 블록들을 위로 들어올리기
+        int maxY = queuedLines.stream().mapToInt(coord -> coord[1]).max().orElse(0);
+        for (int y = BOARD_HEIGHT - 2 - maxY; y >= 1; y--) {
+            for (int x = 1; x < BOARD_WIDTH - 1; x++) {
+                board[(y + maxY) * BOARD_WIDTH + x] = board[y * BOARD_WIDTH + x];
+            }
+        }
+
+        // Step 2: 공격 블록 생성
+        for (int[] line : queuedLines) {
+            for (int x = 1; x < BOARD_WIDTH - 1; x++) {
+                board[line[1] * BOARD_WIDTH + x] = Tetrominoe.GrayBlock;
             }
         }
 
         // Step 3: 제외할 블록의 좌표를 수정하여 NoBlock으로 변경
-        List<int[]> fixedExcludedBlocks = fixExcludedBlocks(excludedBlocks);
-        replaceWithNoBlock(fixedExcludedBlocks);
-        
-        repaint();
+        replaceWithNoBlock(queuedExcludedBlocks);
+
+        queuedLines.clear(); // 대기 리스트 초기화
+        queuedExcludedBlocks.clear(); // 대기 제외 블록 리스트 초기화
     }
+
 
     private void replaceWithNoBlock(List<int[]> fixedExcludedBlocks) {
         for (int[] coord : fixedExcludedBlocks) {

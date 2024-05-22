@@ -110,8 +110,6 @@ public class StartMenu extends JFrame {
             }
         });
 
-
-
         // 프로그램 종료
         exitButton.addActionListener(new ActionListener() {
             @Override
