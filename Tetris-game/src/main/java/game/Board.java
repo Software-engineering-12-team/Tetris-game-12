@@ -613,23 +613,25 @@ public class Board extends JPanel {
         lastMovedBlocks.clear();
     }
   
+    private static List<int[]> adjustedExcludedBlocks = new ArrayList<>();
     private static List<int[]> fixExcludedBlocks(List<int[]> excludedBlocks, List<int[]> lastMovedBlocks) {
         // Step 1: Find the minimum Y value (minY)
         int minY = excludedBlocks.stream().mapToInt(coord -> coord[1]).min().orElse(Integer.MAX_VALUE);
 
         // Step 2: Adjust the Y values by subtracting (minY - 1)
-        List<int[]> adjustedExcludedBlocks = new ArrayList<>();
+        adjustedExcludedBlocks.clear(); // Ensure it's empty before use
         for (int[] coord : excludedBlocks) {
             int newY = coord[1] - (minY - 1);
             adjustedExcludedBlocks.add(new int[]{coord[0], newY});
         }
 
-        // Step 3: Find non-overlapping Y values
+        // Step 3: Find non-overlapping Y values between excludedBlocks and lastMovedBlocks
         Set<Integer> lastMovedYValues = lastMovedBlocks.stream().map(coord -> coord[1]).collect(Collectors.toSet());
-        List<Integer> nonOverlappingYValues = adjustedExcludedBlocks.stream()
+        List<Integer> nonOverlappingYValues = excludedBlocks.stream()
                 .filter(coord -> !lastMovedYValues.contains(coord[1]))
                 .map(coord -> coord[1])
                 .collect(Collectors.toList());
+
         // Step 4: Adjust Y values again based on non-overlapping values
         List<int[]> fixedExcludedBlocks = new ArrayList<>();
         for (int[] coord : adjustedExcludedBlocks) {
@@ -648,38 +650,32 @@ public class Board extends JPanel {
     
  
     public void addLines(int numLines, List<int[]> excludedBlocks) {
-        // Step 1: 기존 블록들을 위로 들어올림
         for (int y = BOARD_HEIGHT - 2 - numLines; y >= 1; y--) {
             for (int x = 1; x < BOARD_WIDTH - 1; x++) {
                 board[(y + numLines) * BOARD_WIDTH + x] = board[y * BOARD_WIDTH + x];
             }
         }
         
-        // Step 2: 새로운 줄을 아래에 추가
         for (int i = 0; i < numLines; i++) {
             for (int x = 1; x < BOARD_WIDTH - 1; x++) {
                 board[(numLines - 1 - i + 1) * BOARD_WIDTH + x] = Tetrominoe.GrayBlock;
             }
         }
-     // Step 3: Adjust the excluded blocks
-        List<int[]> adjustedExcludedBlocks = new ArrayList<>();
-        int minY = excludedBlocks.stream().mapToInt(coord -> coord[1]).min().orElse(Integer.MAX_VALUE);
-        for (int[] coord : excludedBlocks) {
-            int newY = coord[1] - (minY - 1);
-            adjustedExcludedBlocks.add(new int[]{coord[0], newY});
-        }
 
-        // Step 4: Replace Adjusted Excluded Blocks with NoBlock
-        replaceWithNoBlock(adjustedExcludedBlocks);
-        
+        // Step 3: 제외할 블록의 좌표를 수정하여 NoBlock으로 변경
+        List<int[]> fixedExcludedBlocks = fixExcludedBlocks(excludedBlocks, lastMovedBlocks);
+        replaceWithNoBlock(fixedExcludedBlocks);
+
         repaint();
     }
 
-    private void replaceWithNoBlock(List<int[]> adjustedExcludedBlocks) {
-        for (int[] coord : adjustedExcludedBlocks) {
+    private void replaceWithNoBlock(List<int[]> fixedExcludedBlocks) {
+        for (int[] coord : fixedExcludedBlocks) {
             int x = coord[0];
             int y = coord[1];
-            board[y * BOARD_WIDTH + x] = Tetrominoe.NoBlock;
+            if (y > 0 && y < BOARD_HEIGHT) {
+                board[y * BOARD_WIDTH + x] = Tetrominoe.NoBlock;
+            }
         }
     }
     
