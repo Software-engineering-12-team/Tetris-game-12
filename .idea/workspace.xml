@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[add] create and fix test code in blindmode, controlkeysetting, screenadjustsize">
-      <change afterPath="$PROJECT_DIR$/Tetris-game/test/main/java/setting/SettingFileWriterTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/Tetris-game.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/Tetris-game.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/test/main/java/setting/SettingFileWriterTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/test/main/java/setting/SettingMenuTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/test/main/java/setting/colorblindmode/ColorBlindModeMenuTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/test/main/java/setting/controlkeysetting/ControlKeySettingMenuTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/test/main/java/setting/screenadjustsize/ScreenAdjustSizeMenuTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +85,7 @@
     "JUnit.ColorBlindModeMenuTest.updateColorBlindModeUI.executor": "Coverage",
     "JUnit.ControlKeySettingMenuTest.executor": "Coverage",
     "JUnit.ScreenAdjustSizeMenuTest.executor": "Coverage",
+    "JUnit.SettingMenuTest.executor": "Run",
     "JUnit.main.java.setting.colorblindmode in Tetris-game.executor": "Coverage",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
@@ -97,7 +103,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "MavenSettings",
@@ -123,7 +129,7 @@
       <recent name="setting.colorblindmode" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SettingMenuTest">
+  <component name="RunManager">
     <configuration name="ColorBlindModeMenuTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Tetris-game" />
       <extension name="coverage">
@@ -213,8 +219,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-19.0.2-corretto-19.0.2-4caba194b151-be841094" />
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-322ed176" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
       </set>
     </attachedChunks>
   </component>
@@ -248,6 +254,7 @@
       <workItem from="1714052574438" duration="21294000" />
       <workItem from="1715886009276" duration="835000" />
       <workItem from="1715889361979" duration="5538000" />
+      <workItem from="1716499239333" duration="467000" />
     </task>
     <task id="LOCAL-00001" summary="[Feature] create Setting file">
       <option name="closed" value="true" />

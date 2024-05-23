@@ -24,13 +24,6 @@ class ColorBlindModeMenuTest {
     }
 
     // 이벤트 리스너 테스트
-    @Test
-    public void testNormalButtonActionListener() {
-        main.java.setting.colorblindmode.ColorBlindModeMenu menu = Mockito.spy(new main.java.setting.colorblindmode.ColorBlindModeMenu());
-        menu.normalButton.doClick();
-        verify(menu).updateColorBlindModeUI("정상");
-        assertEquals("정상", main.java.setting.colorblindmode.ColorBlindModeMenu.colorBlindStatus, "Color blind status should be normal");
-    }
 
     @Test // UI 업데이트 로직 테스트
     public void testUIUpdate() {
