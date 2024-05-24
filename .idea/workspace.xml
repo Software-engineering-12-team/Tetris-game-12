@@ -157,10 +157,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ScreenAdjustSizeMenuTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ScreenAdjustSizeMenuTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Tetris-game" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ScreenAdjustSizeMenuTest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.java.setting.screenadjustsize.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="main.java.setting.screenadjustsize" />
+      <option name="MAIN_CLASS_NAME" value="main.java.setting.screenadjustsize.ScreenAdjustSizeMenuTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -197,8 +203,8 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.ScreenAdjustSizeMenuTest (1)" />
       <item itemvalue="JUnit.ControlKeySettingMenuTest" />
-      <item itemvalue="JUnit.ScreenAdjustSizeMenuTest" />
       <item itemvalue="JUnit.SettingFileWriterTest" />
       <item itemvalue="JUnit.SettingMenuTest" />
       <item itemvalue="JUnit.ColorBlindModeMenuTest" />
@@ -207,9 +213,9 @@
       <list>
         <item itemvalue="JUnit.ControlKeySettingMenuTest" />
         <item itemvalue="JUnit.ColorBlindModeMenuTest" />
+        <item itemvalue="JUnit.ScreenAdjustSizeMenuTest (1)" />
         <item itemvalue="JUnit.SettingMenuTest" />
         <item itemvalue="JUnit.SettingFileWriterTest" />
-        <item itemvalue="JUnit.ScreenAdjustSizeMenuTest" />
       </list>
     </recent_temporary>
   </component>
