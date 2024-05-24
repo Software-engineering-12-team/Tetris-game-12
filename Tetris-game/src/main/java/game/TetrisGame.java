@@ -173,9 +173,20 @@
 	    }
 	    
 	    public void returnToStartMenu() {
+		stopGame();
 	        dispose(); // 현재 게임 창을 닫음
 	        StartMenu StartMenu = new StartMenu();
 	        StartMenu.setVisible(true);
+	    }
+
+	    private void stopGame() {
+	        // 현재 보드의 타이머 중지
+	        if (board1 != null) {
+	            board1.stopTimers();
+	        }
+	        if (board2 != null) {
+	            board2.stopTimers();
+	        }
 	    }
 	    
 	    public static void main(String[] args) {
