@@ -176,4 +176,8 @@ public class Blocks {
         
         return result;
     }
+
+    public int[][] getCoords() {
+        return coords;
+    }
 }

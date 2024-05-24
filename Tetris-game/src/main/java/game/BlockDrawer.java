@@ -12,11 +12,11 @@ public class BlockDrawer {    //블록을 그리는 클래스
 	{
 		
         Color colors[] = {	//일반 색깔
-            new Color(0, 0, 0),
-                new Color(204, 102, 102),
-            new Color(102, 204, 102),
-                new Color(102, 102, 204),
-            new Color(204, 204, 102),
+            new Color(0, 0, 0), //NoBlock
+                new Color(204, 102, 102), //ZBlock
+            new Color(102, 204, 102), //SBlock
+                new Color(102, 102, 204), //IBlock
+            new Color(204, 204, 102), //TBlock
                 new Color(204, 102, 204),
             new Color(102, 204, 204),
                 new Color(218, 170, 0),
