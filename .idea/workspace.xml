@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[add] add testcode, ScreenAdjustSizeMenuTest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/menu/gamestart/GameStartMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/menu/gamestart/GameStartMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +80,7 @@
     "JUnit.ControlKeySettingMenuTest.executor": "Coverage",
     "JUnit.ScreenAdjustSizeMenuTest (1).executor": "Coverage",
     "JUnit.ScreenAdjustSizeMenuTest.executor": "Coverage",
+    "JUnit.SettingFileWriterTest.executor": "Coverage",
     "JUnit.SettingMenuTest.executor": "Run",
     "JUnit.main.java.setting.colorblindmode in Tetris-game.executor": "Coverage",
     "Repository.Attach.Annotations": "false",
@@ -125,7 +125,7 @@
       <recent name="setting.colorblindmode" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.SettingFileWriterTest">
     <configuration name="ColorBlindModeMenuTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Tetris-game" />
       <extension name="coverage">
@@ -210,11 +210,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SettingFileWriterTest" />
         <item itemvalue="JUnit.ControlKeySettingMenuTest" />
         <item itemvalue="JUnit.ColorBlindModeMenuTest" />
         <item itemvalue="JUnit.ScreenAdjustSizeMenuTest (1)" />
         <item itemvalue="JUnit.SettingMenuTest" />
-        <item itemvalue="JUnit.SettingFileWriterTest" />
       </list>
     </recent_temporary>
   </component>
@@ -722,7 +722,7 @@
     <SUITE FILE_PATH="coverage/Tetris_game_12$ColorBlindModeMenuTest_testComponentInitialization.ic" NAME="ColorBlindModeMenuTest.testComponentInitialization Coverage Results" MODIFIED="1715892980793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>main.java.setting.colorblindmode.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$SettingFileWriterTest.ic" NAME="SettingFileWriterTest Coverage Results" MODIFIED="1716547083151" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/Tetris_game_12$SettingFileWriterTest.ic" NAME="SettingFileWriterTest Coverage Results" MODIFIED="1716562693089" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.setting.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Tetris_game_12$ColorBlindModeMenuTest.ic" NAME="ColorBlindModeMenuTest Coverage Results" MODIFIED="1716547206331" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
