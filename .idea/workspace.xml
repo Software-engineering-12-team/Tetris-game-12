@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[add] add testcode,BlocksTest">
-      <change afterPath="$PROJECT_DIR$/Tetris-game/test/main/java/menu/StartMenuTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/menu/StartMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/menu/StartMenu.java" afterDir="false" />
+    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[add] add testcode,StartMenuTest">
+      <change afterPath="$PROJECT_DIR$/Tetris-game/test/main/java/menu/ScoreBoardMenuTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/menu/ScoreBoardMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/menu/ScoreBoardMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,6 +97,7 @@
     "JUnit.SettingMenuTest.testBackButton.executor": "Coverage",
     "JUnit.SettingMenuTest.testColorBlindModeButton.executor": "Coverage",
     "JUnit.SettingMenuTest.testSizeAdjustButton.executor": "Coverage",
+    "JUnit.StartMenuTest.executor": "Coverage",
     "JUnit.main.java.setting.colorblindmode in Tetris-game.executor": "Coverage",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
@@ -139,22 +141,7 @@
       <recent name="main.java.setting.controlkeysetting" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.StartMenuTest">
-    <configuration name="BlockDrawerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Tetris-game" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.java.game.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="main.java.game" />
-      <option name="MAIN_CLASS_NAME" value="main.java.game.BlockDrawerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.ScoreBoardMenuTest">
     <configuration name="BlocksTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Tetris-game" />
       <extension name="coverage">
@@ -202,6 +189,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ScoreBoardMenuTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Tetris-game" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.java.menu.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="main.java.menu" />
+      <option name="MAIN_CLASS_NAME" value="main.java.menu.ScoreBoardMenuTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="StartMenuTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Tetris-game" />
       <extension name="coverage">
@@ -218,19 +220,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.BlockDrawerTest" />
       <item itemvalue="JUnit.BlocksTest" />
       <item itemvalue="JUnit.BlocksTest.rotateLeft" />
       <item itemvalue="JUnit.BlocksTest.rotateRight" />
+      <item itemvalue="JUnit.ScoreBoardMenuTest" />
       <item itemvalue="JUnit.StartMenuTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ScoreBoardMenuTest" />
         <item itemvalue="JUnit.StartMenuTest" />
         <item itemvalue="JUnit.BlocksTest.rotateRight" />
         <item itemvalue="JUnit.BlocksTest.rotateLeft" />
         <item itemvalue="JUnit.BlocksTest" />
-        <item itemvalue="JUnit.BlockDrawerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -273,14 +275,6 @@
       <workItem from="1715886009276" duration="835000" />
       <workItem from="1715889361979" duration="5538000" />
       <workItem from="1716499239333" duration="467000" />
-    </task>
-    <task id="LOCAL-00007" summary="[Fix] fix scoreboard, settingscreen button logic">
-      <option name="closed" value="true" />
-      <created>1711627166626</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1711627166626</updated>
     </task>
     <task id="LOCAL-00008" summary="[Remove] delete SettingScreenRunner.java">
       <option name="closed" value="true" />
@@ -666,7 +660,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716570946616</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="[add] add testcode,StartMenuTest">
+      <option name="closed" value="true" />
+      <created>1716571139669</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1716571139669</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -684,7 +686,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[Feat] update controlKey description" />
     <MESSAGE value="[Fix] remove ColorBlindModeMenu.java" />
     <MESSAGE value="[Fix] create controlKey button" />
     <MESSAGE value="[Fix] create controlKey button not always" />
@@ -709,7 +710,8 @@
     <MESSAGE value="[add] add testcode, SettingMenuTest" />
     <MESSAGE value="[add] add testcode,BlockDrawer(but it has error)" />
     <MESSAGE value="[add] add testcode,BlocksTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="[add] add testcode,BlocksTest" />
+    <MESSAGE value="[add] add testcode,StartMenuTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="[add] add testcode,StartMenuTest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -755,6 +757,9 @@
       <FILTER>main.java.setting.controlkeysetting.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Tetris_game_12$ScreenAdjustSizeMenuTest.ic" NAME="ScreenAdjustSizeMenuTest Coverage Results" MODIFIED="1715894413661" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Tetris_game_12$StartMenuTest.ic" NAME="StartMenuTest Coverage Results" MODIFIED="1716571114690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.menu.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/Tetris_game_12$BlockDrawerTest_testDrawSpecialBlockWeightItem.ic" NAME="BlockDrawerTest.testDrawSpecialBlockWeightItem Coverage Results" MODIFIED="1716567969500" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.game.*</FILTER>
     </SUITE>

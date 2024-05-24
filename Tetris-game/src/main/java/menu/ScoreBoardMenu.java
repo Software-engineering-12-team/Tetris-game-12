@@ -220,4 +220,12 @@ public class ScoreBoardMenu extends JFrame {
         }
     }
 
+    public JTable getScoreTable() {
+        return scoreTable;
+    }
+
+    public JList<String> getScoreList() {
+        return scoreList;
+    }
+
 }
