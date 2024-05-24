@@ -15,9 +15,7 @@ import javax.swing.JOptionPane;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
-
 import java.util.stream.Collectors;
-
 import main.java.game.Blocks.Tetrominoe;
 import main.java.menu.ScoreBoardMenu;
 import main.java.setting.SettingFileWriter;
@@ -27,7 +25,6 @@ import main.java.util.HandleKeyEvent;
 import main.java.util.ScreenAdjustComponent;
 import main.java.menu.ScoreEntry;
 import main.java.game.BlockDrawer;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -35,14 +32,12 @@ import static java.awt.Color.black;
 import static main.java.setting.controlkeysetting.ControlKeySettingMenu.controlKeyStatus;
 
 public class Board extends JPanel {
-
-	private static final long serialVersionUID = 1L;
-	public static final int BOARD_WIDTH = 12;
+    private static final long serialVersionUID = 1L;
+    public static final int BOARD_WIDTH = 12;
     public static final int BOARD_HEIGHT = 22;
     private int INITIAL_DELAY = 100;
     private int PERIOD_INTERVAL = 1000; // 동적 변경을 위해 변경
-
-	private String specialMode, gameMode, difficulty; // 게임모드 설정 관련 수정
+    private String specialMode, gameMode, difficulty; // 게임모드 설정 관련 수정
     private Timer timer;
     private Timer timerMode;
     private boolean isFallingFinished = false;
@@ -71,7 +66,7 @@ public class Board extends JPanel {
     // 게임모드 설정 관련 수정
     public Board(TetrisGame parent, String specialMode, String gameMode, String difficulty, int playerNumber) {
         this.parent = parent;
-    	this.specialMode = specialMode;
+        this.specialMode = specialMode;
         this.gameMode = gameMode;
         this.difficulty = difficulty;
         this.playerNumber = playerNumber;
@@ -79,7 +74,7 @@ public class Board extends JPanel {
     }
 
     public Board(String colorBlindStatus) {
-    	ColorBlindModeMenu.colorBlindStatus = colorBlindStatus;
+        ColorBlindModeMenu.colorBlindStatus = colorBlindStatus;
     }
     
     public void setOpponent(Board opponent) {
@@ -110,50 +105,43 @@ public class Board extends JPanel {
         clearBoard();
     }
 
-    private int squareWidth() {		//한칸의 너비
+    private int squareWidth() {        //한칸의 너비
         return (int) getSize().getWidth() / BOARD_WIDTH / 2;
     }
 
-    private int squareHeight() {	//한칸의 높이
+    private int squareHeight() {    //한칸의 높이
         return (int) getSize().getHeight() / BOARD_HEIGHT;
     }
 
-    private Tetrominoe blockAt(int x, int y) {		//해당 좌표의 블록 반환
+    private Tetrominoe blockAt(int x, int y) {        //해당 좌표의 블록 반환
         return board[(y * BOARD_WIDTH) + x];
     }
 
-    public void start() {		//게임 시작
+    public void start() {        //게임 시작
 
         isStarted = true;
         clearBoard();
         newPiece();
     }
 
-    private void pause() {		//일시정지
+    private void pause() {        //일시정지
 
         if (!isStarted) {
             return;
         }
 
         isPaused = !isPaused;
-       
     }
     
-    
-
-    private void doDrawing(Graphics g) {	// 화면의 구성요소 그리기
+    private void doDrawing(Graphics g) {    // 화면의 구성요소 그리기
 
         Dimension size = getSize();
         int boardTop = (int) size.getHeight() - BOARD_HEIGHT * squareHeight();
 
         for (int i = 0; i < BOARD_HEIGHT; ++i) {
-
             for (int j = 0; j < BOARD_WIDTH; ++j) {
-
                 Tetrominoe block = blockAt(j, BOARD_HEIGHT - i - 1);
-
                 if (block != Tetrominoe.NoBlock) {
-                    
                     BlockDrawer.drawBlock(g, 0 + j * squareWidth(),
                             boardTop + i * squareHeight(), squareWidth(), squareHeight(), block);
                 }
@@ -161,9 +149,7 @@ public class Board extends JPanel {
         }
 
         if (curPiece.getBlock() != Tetrominoe.NoBlock) {
-
             for (int i = 0; i < 4; ++i) {
-
                 int x = curX + curPiece.x(i);
                 int y = curY - curPiece.y(i);
                 BlockDrawer.drawBlock(g, 0 + x * squareWidth(),
@@ -188,107 +174,105 @@ public class Board extends JPanel {
         float thickness = 3.0f; // 선의 굵기
         g2d.setStroke(new BasicStroke(thickness));
         
-        g.setColor(Color.WHITE);	//다음 블록이 들어갈 박스 그리기
+        g.setColor(Color.WHITE);    //다음 블록이 들어갈 박스 그리기
         int boxWidth = 6 * squareWidth();
         int boxHeight = 4 * squareHeight();
      
         g2d.drawRect(nextPieceX - 15, nextPieceY, boxWidth, boxHeight);
      
-     	// 점수 표시 위치 계산
-     	int scoreX = nextPieceX - squareWidth()	; 
-     	int scoreY = nextPieceY + squareHeight() * 6; 
+        // 점수 표시 위치 계산
+        int scoreX = nextPieceX - squareWidth(); 
+        int scoreY = nextPieceY + squareHeight() * 6; 
 
-     	// 점수 표시
-     	g.setColor(Color.WHITE);
-     	g.setFont(tetrisFont);
-     	if(!isPaused)
-     	{
-     		g.drawString("Score: " + TotalScore, scoreX, scoreY);
-     	}
-     	else
-     	{
-     		g.drawString("Paused", scoreX, scoreY);
-     	}
-     	
-     	// 남은 시간 표시 위치
-     	int timerX = nextPieceX - squareWidth()	; 
-     	int timerY = nextPieceY + squareHeight() * 7; 
+        // 점수 표시
+        g.setColor(Color.WHITE);
+        g.setFont(tetrisFont);
+        if(!isPaused) {
+            g.drawString("Score: " + TotalScore, scoreX, scoreY);
+        } else {
+            g.drawString("Paused", scoreX, scoreY);
+        }
+        
+        // 남은 시간 표시 위치
+        int timerX = nextPieceX - squareWidth(); 
+        int timerY = nextPieceY + squareHeight() * 7; 
 
-     	// 남은 시간 표시
-     	g.setColor(Color.WHITE);
-     	g.setFont(tetrisFont);
-     	if(gameMode == "타이머") {
-     		g.drawString("Time: " + timerModeLimit, timerX, timerY);    		
-     	}
+        // 남은 시간 표시
+        g.setColor(Color.WHITE);
+        g.setFont(tetrisFont);
+        if(gameMode == "타이머") {
+            g.drawString("Time: " + timerModeLimit, timerX, timerY);            
+        }
 
-     	if(specialMode == "대전 모드") {
-     		int boxWidth2 = 11 * squareWidth();
+        if(specialMode == "대전 모드") {
+            int boxWidth2 = 11 * squareWidth();
             int boxHeight2 = 10 * squareHeight();
             
             g2d.setColor(Color.WHITE); //다음 공격 블록이 들어갈 박스 그리기
             if(SettingFileWriter.readSize() == 0) // 화면 크기에 따른 박스 위치 변경
-            	g2d.drawRect(nextPieceX - 45, nextPieceY + 210, boxWidth2, boxHeight2);
+                g2d.drawRect(nextPieceX - 45, nextPieceY + 210, boxWidth2, boxHeight2);
             else if(SettingFileWriter.readSize() == 1)
-            	g2d.drawRect(nextPieceX - 48, nextPieceY + 245, boxWidth2, boxHeight2);
+                g2d.drawRect(nextPieceX - 48, nextPieceY + 245, boxWidth2, boxHeight2);
             else
-            	g2d.drawRect(nextPieceX - 45, nextPieceY + 270, boxWidth2, boxHeight2);
-     	}
-        
+                g2d.drawRect(nextPieceX - 45, nextPieceY + 270, boxWidth2, boxHeight2);
+        }
     }
 
     @Override
     public void paintComponent(Graphics g) {
-    	
-    	setBackground(Color.BLACK);
+        setBackground(Color.BLACK);
         super.paintComponent(g);
         doDrawing(g);
         drawQueuedLines(g);
     }
-    
+
     private void drawQueuedLines(Graphics g) {
+        int maxY = queuedLines.stream().mapToInt(coord -> coord[1]).max().orElse(0);
+        int blockSize = squareHeight();
         int baseX = BOARD_WIDTH * squareWidth() + 20;
-        int baseY = getHeight() - (queuedLines.size() / (BOARD_WIDTH - 2)) * squareHeight() - 20;
+        int baseY = getHeight() - 20; // 기본 Y 위치를 윗쪽으로 고정
 
         // GrayBlock을 그리기
         for (int[] line : queuedLines) {
-            int x = line[0];
-            int y = line[1];
-            BlockDrawer.drawBlock(g, baseX + (x - 1) * squareWidth(), baseY + (y - 1) * squareHeight(), squareWidth(), squareHeight(), Tetrominoe.GrayBlock);
+            if (line[1] > maxY - 10) { // maxY - 10 이하의 값만 그리기
+                int x = line[0];
+                int y = line[1];
+                BlockDrawer.drawBlock(g, baseX + (x - 1) * squareWidth(), baseY - (y * blockSize), squareWidth(), squareHeight(), Tetrominoe.GrayBlock);
+            }
         }
 
         // NoBlock으로 대체된 부분을 그리기
         for (int[] coord : queuedExcludedBlocks) {
-            int x = coord[0];
-            int y = coord[1];
-            BlockDrawer.drawBlock(g, baseX + (x - 1) * squareWidth(), baseY + (y - 1) * squareHeight(), squareWidth(), squareHeight(), Tetrominoe.NoBlock);
+            if (coord[1] > maxY - 10) { // maxY - 10 이하의 값만 그리기
+                int x = coord[0];
+                int y = coord[1];
+                System.out.println("Drawing NoBlock at coordinate: (" + x + ", " + y + ")");
+                BlockDrawer.drawBlock(g, baseX + (x - 1) * squareWidth(), baseY - (y * blockSize), squareWidth(), squareHeight(), Tetrominoe.NoBlock);
+            }
         }
     }
-    
-    
 
-    private void dropDown() {		//블록을 한 번에 맨 아래로 떨어뜨리기
-    	int dropDistance = 0;
+    private void dropDown() {        //블록을 한 번에 맨 아래로 떨어뜨리기
+        int dropDistance = 0;
         int newY = curY;
         
         // WeightItem인 경우
-	    if (curPiece.getBlock() == Tetrominoe.WeightItem) {
-	        // 현재 블록이 놓인 위치에서 아래에 있는 모든 블록을 지우기
-	        while (newY > 0) {
-	            for (int i = 0; i < 4; ++i) {
-	                int x = curX + curPiece.x(i);
-	                int y = newY - curPiece.y(i) - 1; // WeightItem 아래에 있는 블록의 위치로 수정
-	                if (y >= 0 && blockAt(x, y) != Tetrominoe.BorderBlock) {
-	                    board[(y * BOARD_WIDTH) + x] = Tetrominoe.NoBlock; // 아래에 있는 블록을 지우기
-	                }
-	            }
-	            --newY;
-	        }
-	    }
+        if (curPiece.getBlock() == Tetrominoe.WeightItem) {
+            // 현재 블록이 놓인 위치에서 아래에 있는 모든 블록을 지우기
+            while (newY > 0) {
+                for (int i = 0; i < 4; ++i) {
+                    int x = curX + curPiece.x(i);
+                    int y = newY - curPiece.y(i) - 1; // WeightItem 아래에 있는 블록의 위치로 수정
+                    if (y >= 0 && blockAt(x, y) != Tetrominoe.BorderBlock) {
+                        board[(y * BOARD_WIDTH) + x] = Tetrominoe.NoBlock; // 아래에 있는 블록을 지우기
+                    }
+                }
+                --newY;
+            }
+        }
 
-        
         while (newY > 0) {
             if (!tryMove(curPiece, curX, newY - 1)) {  
-            	
                 break;
             }
             --newY;
@@ -299,18 +283,15 @@ public class Board extends JPanel {
         
         pieceDropped();
     }
-    
-    private void oneLineDown() {		//블록을 한 칸 떨어뜨리기
 
+    private void oneLineDown() {        //블록을 한 칸 떨어뜨리기
         if (!tryMove(curPiece, curX, curY - 1)) {
-            
             pieceDropped();
         }
     }
 
-    private void clearBoard() {			//게임보드 초기화
-
-    	for (int i = 0; i < BOARD_HEIGHT; ++i) {		//게임 보드의 테두리 그리기
+    private void clearBoard() {            //게임보드 초기화
+        for (int i = 0; i < BOARD_HEIGHT; ++i) {        //게임 보드의 테두리 그리기
             for (int j = 0; j < BOARD_WIDTH; ++j) {
                 if (i == 0 || i == BOARD_HEIGHT - 1 || j == 0 || j == BOARD_WIDTH - 1) {
                     board[(i * BOARD_WIDTH) + j] = Tetrominoe.BorderBlock;
@@ -323,59 +304,55 @@ public class Board extends JPanel {
 
    private void applyItemEffect(Tetrominoe item) {
        switch (item) {
-       	case WeightItem:
-       		ItemEffectHandler.deleteWeightItem(board, curPiece, curX, curY);
-       		break;
-       	case LineDelItem:
-       		ItemEffectHandler.applyLineDelItem(board, curX, curY);
-		TotalScore++;
-       		break;
-           case ThreeItem:
-        	ItemEffectHandler.applyThreeItem(board, curX, curY);
-               break;
-           case FiveItem:
-        	ItemEffectHandler.applyFiveItem(board, curX, curY);
-           	break;
-           case SevenItem:
-        	ItemEffectHandler.applySevenItem(board, curX, curY);
-           	break;
-           case PlusItem:
-        	ItemEffectHandler.applyPlusItem(board, curX, curY);
-		TotalScore++;
-           	break;
-           case AllDelItem:
-               ItemEffectHandler.applyAllDelItem(board);
-               break;
-           default:
-               break;
+            case WeightItem:
+                ItemEffectHandler.deleteWeightItem(board, curPiece, curX, curY);
+                break;
+            case LineDelItem:
+                ItemEffectHandler.applyLineDelItem(board, curX, curY);
+                TotalScore++;
+                break;
+            case ThreeItem:
+                ItemEffectHandler.applyThreeItem(board, curX, curY);
+                break;
+            case FiveItem:
+                ItemEffectHandler.applyFiveItem(board, curX, curY);
+                break;
+            case SevenItem:
+                ItemEffectHandler.applySevenItem(board, curX, curY);
+                break;
+            case PlusItem:
+                ItemEffectHandler.applyPlusItem(board, curX, curY);
+                TotalScore++;
+                break;
+            case AllDelItem:
+                ItemEffectHandler.applyAllDelItem(board);
+                break;
+            default:
+                break;
        }
    }
-
-   
 
    private List<int[]> lastMovedBlocks = new ArrayList<>(); 
 
-   private void pieceDropped() {		//블록이 떨어진 후 
-   	lastMovedBlocks.clear();
-       for (int i = 0; i < 4; ++i) {
-           int x = curX + curPiece.x(i);
-           int y = curY - curPiece.y(i);
-           board[(y * BOARD_WIDTH) + x] = curPiece.getBlock();
-           lastMovedBlocks.add(new int[]{x, y});
-       }
+   private void pieceDropped() {        //블록이 떨어진 후 
+        lastMovedBlocks.clear();
+        for (int i = 0; i < 4; ++i) {
+            int x = curX + curPiece.x(i);
+            int y = curY - curPiece.y(i);
+            board[(y * BOARD_WIDTH) + x] = curPiece.getBlock();
+            lastMovedBlocks.add(new int[]{x, y});
+        }
        
-       applyItemEffect(curPiece.getBlock());
-       removeFullLines();
+        applyItemEffect(curPiece.getBlock());
+        removeFullLines();
 
-       if (!isFallingFinished) {
-           if (!queuedLines.isEmpty()) {
-               processQueuedLines();
-           }
-           newPiece(); 
-       }
+        if (!isFallingFinished) {
+            if (!queuedLines.isEmpty()) {
+                processQueuedLines();
+            }
+            newPiece(); 
+        }
    }
-   
-  
 
     private void newPiece() {        // 새로운 블록 생성
         if(remainRowsForItems <= 0 && gameMode.equals("아이템")) {    
@@ -399,14 +376,12 @@ public class Board extends JPanel {
             if (timerMode == null) {
                 timerMode = new Timer();
                 if(difficulty == "Easy") {
-        	        timerModeLimit = 151;
-    	        }
-    	        else if (difficulty == "Normal") {
-        	        timerModeLimit = 101;
-    	        }
-    	        else {
-        	        timerModeLimit = 51;
-    	        }
+                    timerModeLimit = 151;
+                } else if (difficulty == "Normal") {
+                    timerModeLimit = 101;
+                } else {
+                    timerModeLimit = 51;
+                }
            
                 timerMode.scheduleAtFixedRate(new TimerTask() {
                     @Override
@@ -424,8 +399,8 @@ public class Board extends JPanel {
                                 istimerModeCancelled = true;
                                 isFallingFinished = true; // 게임 진행 중지
                                 if (!isGameOver) {
-                                	isGameOver = true;
-                                	parent.gameOver(0);
+                                    isGameOver = true;
+                                    parent.gameOver(0);
                                 }
                             }
                         }
@@ -440,10 +415,10 @@ public class Board extends JPanel {
             isStarted = false;
 
             if (specialMode.equals("대전 모드")) {
-            	if(!isGameOver) {
-            		isGameOver = true;
-            		parent.gameOver(playerNumber);
-            	}
+                if(!isGameOver) {
+                    isGameOver = true;
+                    parent.gameOver(playerNumber);
+                }
             } else {
                 // 솔로 모드일 때는 기존 로직 유지
                 int linesRemoved = TotalScore;
@@ -474,7 +449,7 @@ public class Board extends JPanel {
     }
     
     public int getTotalScore() {
-    	return TotalScore;
+        return TotalScore;
     }
 
     public void declareWinner(int winnerPlayerNumber) {
@@ -484,7 +459,7 @@ public class Board extends JPanel {
     }
    
     public void endGame(String name, String difficulty, String mode, int score) {
-    	 SwingUtilities.invokeLater(new Runnable() {
+        SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 ScoreFileWriter.writeScore(name, difficulty, mode, score);
@@ -501,10 +476,9 @@ public class Board extends JPanel {
         }
     }
     
-    
-    private boolean tryMove(Blocks newPiece, int newX, int newY) {		//블록을 이동시킬 수 있는지 확인
+    private boolean tryMove(Blocks newPiece, int newX, int newY) {        //블록을 이동시킬 수 있는지 확인
 
-    	// WeightBlock인 경우 처리
+        // WeightBlock인 경우 처리
         if (newPiece.getBlock() == Tetrominoe.WeightItem) {
             boolean canMove = true;
             isTouchedBlocks = false;
@@ -520,9 +494,8 @@ public class Board extends JPanel {
                 if (blockAt(x, y) == Tetrominoe.BorderBlock) {
                     canMove = false;
                     break;
-                }
-                else if (blockAt(x, y) != Tetrominoe.NoBlock) {		// 한 번 다른 블록을 파괴하면 더 이상 좌우로 움직일 수 없음
-                	isTouchedBlocks = true;
+                } else if (blockAt(x, y) != Tetrominoe.NoBlock) {        // 한 번 다른 블록을 파괴하면 더 이상 좌우로 움직일 수 없음
+                    isTouchedBlocks = true;
                 }
             }
             if (canMove) {
@@ -533,7 +506,7 @@ public class Board extends JPanel {
                     int x = newX + newPiece.x(i);
                     int y = newY - newPiece.y(i); 
                     if (y >= 0 && blockAt(x, y) != Tetrominoe.BorderBlock) {
-                        board[(y * BOARD_WIDTH) + x] = Tetrominoe.NoBlock;	// 아래 있던 블록을 파괴함
+                        board[(y * BOARD_WIDTH) + x] = Tetrominoe.NoBlock;    // 아래 있던 블록을 파괴함
                     }
                 }
                 repaint();
@@ -559,7 +532,6 @@ public class Board extends JPanel {
             repaint();
             return true;
         }
-
     }
 
     private void removeFullLines() {
@@ -586,12 +558,14 @@ public class Board extends JPanel {
 
             // 만약 해당 줄이 꽉 찼다면, 리스트에 추가
             if (lineIsFull) {
-            	if (gameMode == "아이템") {--remainRowsForItems;} // 게임모드 설정 관련 수정
+                if (gameMode == "아이템") {
+                    --remainRowsForItems;
+                } // 게임모드 설정 관련 수정
                 ++numFullLines;
                 ++consecutiveLines;
                 fullLines.add(i);
                 
-             // 마지막으로 움직인 블록이 삭제된 줄에 포함되면, 그 좌표를 제외할 블록 좌표 리스트에 추가
+                // 마지막으로 움직인 블록이 삭제된 줄에 포함되면, 그 좌표를 제외할 블록 좌표 리스트에 추가
                 for (int[] coord : lastMovedBlocks) {
                     if (coord[1] == i) {
                         excludedBlocks.add(coord);
@@ -631,7 +605,7 @@ public class Board extends JPanel {
             }, 100); // 딜레이 추가
 
             if (consecutiveLines > 0) {
-            	TotalScore += (consecutiveLines - 1);
+                TotalScore += (consecutiveLines - 1);
             }
         }
 
@@ -642,16 +616,15 @@ public class Board extends JPanel {
             repaint();
             adjustSpeed(numFullLines);
         }
-     // 상대방 보드에 줄 추가
+        // 상대방 보드에 줄 추가
         if (specialMode.equals("대전 모드") && opponentBoard != null && numFullLines >= 2) {
-        	opponentBoard.queueLines(numFullLines, excludedBlocks);
+            opponentBoard.queueLines(numFullLines, excludedBlocks);
         }
         
         lastMovedBlocks.clear();
     }
- 
+
     private static List<int[]> fixExcludedBlocks(List<int[]> excludedBlocks) {
-        // Step 1: Sort the excludedBlocks by their Y values, then by their X values
         excludedBlocks.sort((a, b) -> {
             int yCompare = Integer.compare(a[1], b[1]);
             if (yCompare == 0) {
@@ -660,8 +633,6 @@ public class Board extends JPanel {
             return yCompare;
         });
 
-        // Step 2: Create fixedExcludedBlocks with Y values starting from 1 and incrementing by 1,
-        //         keeping the same value for duplicates
         List<int[]> fixedExcludedBlocks = new ArrayList<>();
         int currentY = 1;
         int previousY = excludedBlocks.get(0)[1];
@@ -683,33 +654,44 @@ public class Board extends JPanel {
     }
 
     public void queueLines(int numLines, List<int[]> excludedBlocks) {
-
+        int offset = queuedLines.isEmpty() ? 0 : queuedLines.stream().mapToInt(coord -> coord[1]).max().orElse(0);
         for (int i = 0; i < numLines; i++) {
             for (int x = 1; x < BOARD_WIDTH - 1; x++) {
-                queuedLines.add(new int[]{x, numLines - 1 - i + 1});
+                queuedLines.add(new int[]{x, offset + numLines - i});
             }
         }
+
         List<int[]> fixedExcludedBlocks = fixExcludedBlocks(excludedBlocks);
-        replaceWithNoBlock(fixedExcludedBlocks);
-        
-        // 제외 블록도 대기 리스트에 추가
-        queuedExcludedBlocks.addAll(fixedExcludedBlocks);
+
+        // Add to queuedExcludedBlocks with offset
+        for (int[] block : fixedExcludedBlocks) {
+            queuedExcludedBlocks.add(new int[]{block[0], block[1] + offset});
+        }
         repaint();
     }
+
     
     private void processQueuedLines() {
+        if (queuedLines.isEmpty()) {
+            return;
+        }
+
         // Step 1: 보드의 블록들을 위로 들어올리기
         int maxY = queuedLines.stream().mapToInt(coord -> coord[1]).max().orElse(0);
-        for (int y = BOARD_HEIGHT - 2 - maxY; y >= 1; y--) {
+        int linesToAdd = Math.min(10, maxY);
+
+        for (int y = BOARD_HEIGHT - 2 - linesToAdd; y >= 1; y--) {
             for (int x = 1; x < BOARD_WIDTH - 1; x++) {
-                board[(y + maxY) * BOARD_WIDTH + x] = board[y * BOARD_WIDTH + x];
+                board[(y + linesToAdd) * BOARD_WIDTH + x] = board[y * BOARD_WIDTH + x];
             }
         }
 
         // Step 2: 공격 블록 생성
         for (int[] line : queuedLines) {
-            for (int x = 1; x < BOARD_WIDTH - 1; x++) {
-                board[line[1] * BOARD_WIDTH + x] = Tetrominoe.GrayBlock;
+            if (line[1] > maxY - 10) {
+                for (int x = 1; x < BOARD_WIDTH - 1; x++) {
+                    board[line[1] * BOARD_WIDTH + x] = Tetrominoe.GrayBlock;
+                }
             }
         }
 
@@ -719,7 +701,6 @@ public class Board extends JPanel {
         queuedLines.clear(); // 대기 리스트 초기화
         queuedExcludedBlocks.clear(); // 대기 제외 블록 리스트 초기화
     }
-
 
     private void replaceWithNoBlock(List<int[]> fixedExcludedBlocks) {
         for (int[] coord : fixedExcludedBlocks) {
@@ -748,7 +729,7 @@ public class Board extends JPanel {
         }
         
         if (PERIOD_INTERVAL < 1000) {
-        	additionalScore += (1000 - PERIOD_INTERVAL) / 100;
+            additionalScore += (1000 - PERIOD_INTERVAL) / 100;
         }
 
         // TotalScore에 추가 점수 더하기
@@ -765,24 +746,21 @@ public class Board extends JPanel {
         INITIAL_DELAY = newDelay;
         PERIOD_INTERVAL = newInterval;
     }
-   
 
     private void doGameCycle() {
         update();
         repaint();
     }
 
-    private void update() {		//게임 상태 업데이트
+    private void update() {        //게임 상태 업데이트
         if (isPaused) {
             return;
         }
 
         if (isFallingFinished) {
-
             isFallingFinished = false;
             newPiece();
         } else {
-
             oneLineDown();
         }
     }
@@ -902,10 +880,9 @@ public class Board extends JPanel {
     }
 
     private class ScheduleTask extends TimerTask {
-
         @Override
         public void run() {
-        	TotalScore++;
+            TotalScore++;
             doGameCycle();
         }
     }
