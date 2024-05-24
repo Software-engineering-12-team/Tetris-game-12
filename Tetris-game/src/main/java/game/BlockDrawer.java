@@ -54,13 +54,13 @@ public class BlockDrawer {    //블록을 그리는 클래스
         };
 
         Color bycbcolors[] = {    // 청황 색맹 모드 전용 색깔
-                new Color(204, 0, 0),
+                new Color(0, 0, 0),
                 new Color(0, 204, 0),
                 new Color(0, 0, 153),
                 new Color(255, 165, 0),
                 new Color(255, 192, 203),
                 new Color(128, 0, 128),
-                new Color(128, 128, 128),
+                new Color(255, 255, 0),
                 new Color(64, 224, 208),
                 new Color(0, 0, 0),
                 new Color(0, 0, 0),	
