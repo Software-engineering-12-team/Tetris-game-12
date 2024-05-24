@@ -12,15 +12,15 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class GameStartMenu extends JFrame {
-    private JLabel titleLabel;
+    public JLabel titleLabel;
     public JLabel[] labels;
-    private JButton backButton;
+    public JButton backButton;
     public JButton[] buttons;
     public static int size;
     public boolean isBackButton;
-    private JButton[][] modeButtons;
-    private JButton[] selectedButtons;
-    private JLabel[] inputLabels;
+    public JButton[][] modeButtons;
+    public JButton[] selectedButtons;
+    public JLabel[] inputLabels;
     private String[] inputNames = {"특수 모드", "게임 모드", "난이도 설정"};
     private String[][] modes = {{"솔로 모드", "대전 모드"}, {"노멀", "타이머", "아이템"}, {"Easy", "Normal", "Hard"}};
     private int[] columnCounts = {2, 3, 3};
@@ -164,7 +164,7 @@ public class GameStartMenu extends JFrame {
         return allLabels;
     }
     
-    private void checkAndStartGame() {
+    public void checkAndStartGame() {
         boolean allSelected = true;
         for (String mode : selectedModes) {
             if (mode == null) {
