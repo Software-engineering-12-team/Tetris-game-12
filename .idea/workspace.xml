@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[add] create and fix test code in blindmode, controlkeysetting, screenadjustsize">
+    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[add] add testcode, ColorBlindModeMenuTest">
+      <change afterPath="$PROJECT_DIR$/Tetris-game/test/main/java/setting/controlkeysetting/ControlKeySettingMenuTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/Tetris-game.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/Tetris-game.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/test/main/java/setting/SettingFileWriterTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/test/main/java/setting/SettingMenuTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/test/main/java/setting/colorblindmode/ColorBlindModeMenuTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/test/main/java/setting/controlkeysetting/ControlKeySettingMenuTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/test/main/java/setting/screenadjustsize/ScreenAdjustSizeMenuTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/setting.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/setting.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/test/main/java/setting/colorblindmode/ColorBlindModeMenuTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/test/main/java/setting/colorblindmode/ColorBlindModeMenuTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,48 +65,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.SettingFileWriter.executor": "Run",
-    "Application.SettingScreen.executor": "Run",
-    "Application.StartMenu.executor": "Run",
-    "Application.StartScreen.executor": "Run",
-    "Application.TetrisGame.executor": "Run",
-    "Application.testcode.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "JUnit.ColorBlindModeMenuTest (1).executor": "Coverage",
-    "JUnit.ColorBlindModeMenuTest.executor": "Coverage",
-    "JUnit.ColorBlindModeMenuTest.testComponentInitialization (1).executor": "Coverage",
-    "JUnit.ColorBlindModeMenuTest.testComponentInitialization.executor": "Coverage",
-    "JUnit.ColorBlindModeMenuTest.testNormalButtonActionListener.executor": "Coverage",
-    "JUnit.ColorBlindModeMenuTest.updateColorBlindModeUI.executor": "Coverage",
-    "JUnit.ControlKeySettingMenuTest.executor": "Coverage",
-    "JUnit.ScreenAdjustSizeMenuTest.executor": "Coverage",
-    "JUnit.SettingMenuTest.executor": "Run",
-    "JUnit.main.java.setting.colorblindmode in Tetris-game.executor": "Coverage",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "create.test.in.the.same.root": "true",
-    "git-widget-placeholder": "main",
-    "jdk.selected.JAVA_MODULE": "openjdk-21",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.SettingFileWriter.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SettingScreen.executor&quot;: &quot;Run&quot;,
+    &quot;Application.StartMenu.executor&quot;: &quot;Run&quot;,
+    &quot;Application.StartScreen.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TetrisGame.executor&quot;: &quot;Run&quot;,
+    &quot;Application.testcode.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.ColorBlindModeMenuTest (1).executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.ColorBlindModeMenuTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.ColorBlindModeMenuTest.testComponentInitialization (1).executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.ColorBlindModeMenuTest.testComponentInitialization.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.ColorBlindModeMenuTest.testNormalButtonActionListener.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.ColorBlindModeMenuTest.updateColorBlindModeUI.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.ControlKeySettingMenuTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.ScreenAdjustSizeMenuTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.SettingMenuTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.main.java.setting.colorblindmode in Tetris-game.executor&quot;: &quot;Coverage&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-21&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="component" />
@@ -122,14 +119,14 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="main.java.setting.controlkeysetting" />
       <recent name="main.java.setting" />
       <recent name="main.java.setting.screenadjustsize" />
-      <recent name="main.java.setting.controlkeysetting" />
       <recent name="main.java.setting.colorblindmode" />
       <recent name="setting.colorblindmode" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.ControlKeySettingMenuTest">
     <configuration name="ColorBlindModeMenuTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Tetris-game" />
       <extension name="coverage">
@@ -208,11 +205,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ControlKeySettingMenuTest" />
+        <item itemvalue="JUnit.ColorBlindModeMenuTest" />
         <item itemvalue="JUnit.SettingMenuTest" />
         <item itemvalue="JUnit.SettingFileWriterTest" />
         <item itemvalue="JUnit.ScreenAdjustSizeMenuTest" />
-        <item itemvalue="JUnit.ControlKeySettingMenuTest" />
-        <item itemvalue="JUnit.ColorBlindModeMenuTest" />
       </list>
     </recent_temporary>
   </component>
@@ -640,7 +637,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715894505526</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="[add] add testcode, ColorBlindModeMenuTest">
+      <option name="closed" value="true" />
+      <created>1716540885054</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1716540885054</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -658,7 +663,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[Fix] change file directory" />
     <MESSAGE value="[Fix] fix error Board.java" />
     <MESSAGE value="[Fix] fix resetscoreButton addActionlistener" />
     <MESSAGE value="[Fix] fix colorBlindModeButton addActionlistener" />
@@ -683,7 +687,8 @@
     <MESSAGE value="[add] create test code in blindmode, controlkeysetting" />
     <MESSAGE value="[add] create test code in blindmode, controlkeysetting, screenadjustsize" />
     <MESSAGE value="[add] create and fix test code in blindmode, controlkeysetting, screenadjustsize" />
-    <option name="LAST_COMMIT_MESSAGE" value="[add] create and fix test code in blindmode, controlkeysetting, screenadjustsize" />
+    <MESSAGE value="[add] add testcode, ColorBlindModeMenuTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="[add] add testcode, ColorBlindModeMenuTest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -706,30 +711,30 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Tetris_game_12$ColorBlindModeMenuTest_updateColorBlindModeUI.ic" NAME="ColorBlindModeMenuTest.updateColorBlindModeUI Coverage Results" MODIFIED="1715892973899" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>main.java.setting.colorblindmode.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$ColorBlindModeMenuTest_testComponentInitialization.ic" NAME="ColorBlindModeMenuTest.testComponentInitialization Coverage Results" MODIFIED="1715892980793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>main.java.setting.colorblindmode.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$ColorBlindModeMenuTest.ic" NAME="ColorBlindModeMenuTest Coverage Results" MODIFIED="1716540846047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.setting.colorblindmode.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/Tetris_game_12$ColorBlindModeMenuTest_testComponentInitialization__1_.ic" NAME="ColorBlindModeMenuTest.testComponentInitialization (1) Coverage Results" MODIFIED="1715892898796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>setting.colorblindmode.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Tetris_game_12$ColorBlindModeMenuTest_testNormalButtonActionListener.ic" NAME="ColorBlindModeMenuTest.testNormalButtonActionListener Coverage Results" MODIFIED="1715892989314" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>main.java.setting.colorblindmode.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$ColorBlindModeMenuTest__1_.ic" NAME="ColorBlindModeMenuTest (1) Coverage Results" MODIFIED="1715892133398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>setting.colorblindmode.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$ColorBlindModeMenuTest_testComponentInitialization.ic" NAME="ColorBlindModeMenuTest.testComponentInitialization Coverage Results" MODIFIED="1715892980793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>main.java.setting.colorblindmode.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$ControlKeySettingMenuTest.ic" NAME="ControlKeySettingMenuTest Coverage Results" MODIFIED="1715893733690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Tetris_game_12$ControlKeySettingMenuTest.ic" NAME="ControlKeySettingMenuTest Coverage Results" MODIFIED="1716541202410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.setting.controlkeysetting.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Tetris_game_12$ScreenAdjustSizeMenuTest.ic" NAME="ScreenAdjustSizeMenuTest Coverage Results" MODIFIED="1715894413661" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/Tetris_game_12$ColorBlindModeMenuTest.ic" NAME="ColorBlindModeMenuTest Coverage Results" MODIFIED="1715893241577" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>main.java.setting.colorblindmode.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/Tetris_game_12$main_java_setting_colorblindmode_in_Tetris_game.ic" NAME="main.java.setting.colorblindmode in Tetris-game Coverage Results" MODIFIED="1715893183846" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>main.java.setting.colorblindmode.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$ColorBlindModeMenuTest_updateColorBlindModeUI.ic" NAME="ColorBlindModeMenuTest.updateColorBlindModeUI Coverage Results" MODIFIED="1715892973899" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>main.java.setting.colorblindmode.*</FILTER>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$ColorBlindModeMenuTest__1_.ic" NAME="ColorBlindModeMenuTest (1) Coverage Results" MODIFIED="1715892133398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>setting.colorblindmode.*</FILTER>
     </SUITE>
   </component>
 </project>
