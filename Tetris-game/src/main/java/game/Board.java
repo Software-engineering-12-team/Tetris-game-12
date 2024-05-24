@@ -458,12 +458,7 @@ public class Board extends JPanel {
     }
    
     public void endGame(String name, String difficulty, String mode, int score) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                ScoreFileWriter.writeScore(name, difficulty, mode, score);
-            }
-        });
+    	ScoreFileWriter.writeScore(name, difficulty, mode, score);
     }
     
     public void stopTimers() {

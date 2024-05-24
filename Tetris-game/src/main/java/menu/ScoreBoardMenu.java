@@ -165,12 +165,27 @@ public class ScoreBoardMenu extends JFrame {
 
     // 새로운 점수를 추가하는 메서드
     public void addScore(ScoreEntry entry) {
-        // 테이블 모델에 행 추가
-        Object[] rowData = {entry.getName(), entry.getDifficulty(), entry.getMode(), entry.getScore()};
-        tableModel.insertRow(0, rowData);
+    	// 새로운 점수가 이미 테이블에 존재하는지 확인
+        int existingRowIndex = -1;
+        for (int i = 0; i < tableModel.getRowCount(); i++) {
+            if (tableModel.getValueAt(i, 0).equals(entry.getName()) &&
+                tableModel.getValueAt(i, 1).equals(entry.getDifficulty()) &&
+                tableModel.getValueAt(i, 2).equals(entry.getMode()) &&
+                tableModel.getValueAt(i, 3).equals(entry.getScore())) {
+                existingRowIndex = i;
+                break;
+            }
+        }
+
+        // 새로운 점수가 존재하지 않으면 추가
+        if (existingRowIndex == -1) {
+            Object[] rowData = {entry.getName(), entry.getDifficulty(), entry.getMode(), entry.getScore()};
+            tableModel.addRow(rowData);
+            existingRowIndex = tableModel.getRowCount() - 1;
+        }
 
         // 새로 추가된 행의 인덱스를 저장
-        lastAddedRowIndex = 0;
+        lastAddedRowIndex = existingRowIndex;
 
         // 새로 추가된 행을 깜빡거리게 만들기 위한 Timer 설정
         Timer timer = new Timer(475, new ActionListener() {
@@ -180,10 +195,10 @@ public class ScoreBoardMenu extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (highlighted) {
                     // 강조 제거
-                    scoreTable.removeRowSelectionInterval(0, 0);
+                    scoreTable.removeRowSelectionInterval(lastAddedRowIndex, lastAddedRowIndex);
                 } else {
                     // 강조 추가
-                    scoreTable.addRowSelectionInterval(0, 0);
+                    scoreTable.addRowSelectionInterval(lastAddedRowIndex, lastAddedRowIndex);
                     scoreTable.setSelectionBackground(highlightColor);
                 }
                 highlighted = !highlighted;
