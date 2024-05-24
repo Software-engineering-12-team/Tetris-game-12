@@ -13,9 +13,9 @@ import java.awt.*;
 import java.awt.event.*;
 public class StartMenu extends JFrame {
 	private static final long serialVersionUID = 1L;
-	private JLabel titleLabel, instructionLabel;
+	public JLabel titleLabel, instructionLabel;
     public JLabel[] labels;
-    private JButton gameStartButton, settingsButton, scoreboardButton, exitButton;
+    public JButton gameStartButton, settingsButton, scoreboardButton, exitButton;
     public JButton[] buttons;
     public boolean isBackButton;
 
