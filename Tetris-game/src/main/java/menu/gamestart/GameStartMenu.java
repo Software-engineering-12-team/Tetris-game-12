@@ -65,6 +65,18 @@ public class GameStartMenu extends JFrame {
                         String selectedMode = modes[inputIndex][modeIndex];
                         selectedModes[inputIndex] = selectedMode; // 선택된 모드를 저장
                         JOptionPane.showMessageDialog(panel, inputNames[inputIndex] + " : '" + selectedMode + "' (이)가 선택되었습니다");
+                        if (selectedMode.equals("대전 모드")) {
+                            // 첫 번째 메시지 창을 닫은 후에 두 번째 메시지 창을 띄우기 위해 invokeLater 사용
+                            SwingUtilities.invokeLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    JOptionPane.showMessageDialog(panel,
+                                            "<html>대전 모드 조작키는 다음과 같습니다.<br><br>" +
+                                                    "player 1: 조작키 - wasd, 한번에 내리기 - q <br>" +
+                                                    "player 2: 조작키 - 방향키, 한번에 내리기 - shift(우)</html>");
+                                }
+                            });
+                        }
                         checkAndStartGame();
                     }
                 });
