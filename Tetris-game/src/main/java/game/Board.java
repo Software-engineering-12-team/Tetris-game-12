@@ -139,13 +139,7 @@ public class Board extends JPanel {
        
     }
     
-    private void showExitConfirmation() {	//종료 여부 확인하기
-        int option = JOptionPane.showConfirmDialog(this, "종료하시겠습니까?", "게임 종료", JOptionPane.YES_NO_OPTION);
-        if (option == JOptionPane.YES_OPTION) {
-            
-            System.exit(0); 
-        }
-    }
+    
 
     private void doDrawing(Graphics g) {	// 화면의 구성요소 그리기
 
@@ -803,11 +797,6 @@ public class Board extends JPanel {
         @Override
         public void keyPressed(KeyEvent e) {
             if (!isStarted || curPiece.getBlock() == Tetrominoe.NoBlock) {
-                return;
-            }
-
-            if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                showExitConfirmation();
                 return;
             }
 
