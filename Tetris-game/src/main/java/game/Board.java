@@ -246,7 +246,6 @@ public class Board extends JPanel {
             if (coord[1] > maxY - 10) { // maxY - 10 이하의 값만 그리기
                 int x = coord[0];
                 int y = coord[1];
-                System.out.println("Drawing NoBlock at coordinate: (" + x + ", " + y + ")");
                 BlockDrawer.drawBlock(g, baseX + (x - 1) * squareWidth(), baseY - (y * blockSize), squareWidth(), squareHeight(), Tetrominoe.NoBlock);
             }
         }
@@ -654,21 +653,34 @@ public class Board extends JPanel {
     }
 
     public void queueLines(int numLines, List<int[]> excludedBlocks) {
-        int offset = queuedLines.isEmpty() ? 0 : queuedLines.stream().mapToInt(coord -> coord[1]).max().orElse(0);
+        // 현재 대기 줄의 최대 y 값을 찾습니다.
+        int currentMaxY = queuedLines.stream().mapToInt(coord -> coord[1]).max().orElse(0);
+
+        // 대기 블록에 있는 블록들을 새로운 블록만큼 위로 들어올립니다.
+        for (int[] line : queuedLines) {
+            line[1] += numLines;
+        }
+        for (int[] coord : queuedExcludedBlocks) {
+            coord[1] += numLines;
+        }
+
+        // 새로운 줄을 추가합니다.
+        int newMaxY = numLines;
         for (int i = 0; i < numLines; i++) {
             for (int x = 1; x < BOARD_WIDTH - 1; x++) {
-                queuedLines.add(new int[]{x, offset + numLines - i});
+                queuedLines.add(new int[]{x, newMaxY - i});
             }
         }
 
+        // 제외 블록도 대기 리스트에 추가
         List<int[]> fixedExcludedBlocks = fixExcludedBlocks(excludedBlocks);
-
-        // Add to queuedExcludedBlocks with offset
-        for (int[] block : fixedExcludedBlocks) {
-            queuedExcludedBlocks.add(new int[]{block[0], block[1] + offset});
+        for (int[] coord : fixedExcludedBlocks) {
+            queuedExcludedBlocks.add(new int[]{coord[0], coord[1]});
         }
+
         repaint();
     }
+
 
     
     private void processQueuedLines() {
