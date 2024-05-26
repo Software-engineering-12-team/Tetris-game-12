@@ -1,9 +1,11 @@
 package main.java.game;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 import main.java.game.Blocks.Tetrominoe;
+import main.java.setting.SettingFileWriter;
 import main.java.setting.colorblindmode.ColorBlindModeMenu;
 
 public class BlockDrawer {    //블록을 그리는 클래스
@@ -90,8 +92,30 @@ public class BlockDrawer {    //블록을 그리는 클래스
            	 g.setColor(color);
         }
         
+        
+        if (SettingFileWriter.readSize() == 0) {
+        	x += 8;
+            y -= 16;
+        } else if (SettingFileWriter.readSize() == 1) {
+        	x += 8;
+            y -= 27;
+        } else {
+        	x += 8;
+            y -= 16;
+        }
+        
 		g.setFont(Board.tetrisFont);
-        g.drawString("O", x + w / 2 - 5, y + h / 2 + 5); 
+        if(block == Tetrominoe.GrayBlock || block == Tetrominoe.NoBlock) {
+            if(SettingFileWriter.readSize() == 0) // 화면 크기에 따른 폰트 크기 변경
+            	g.setFont(new Font("Arial", Font.BOLD, 19
+            			));
+            else if(SettingFileWriter.readSize() == 1)
+            	g.setFont(new Font("Arial", Font.BOLD, 20));
+            else
+            	g.setFont(new Font("Arial", Font.BOLD, 22));
+        }
+
+        g.drawString("O", x + w / 2 - 5, y + h / 2 + 5);
         
         if (block == Tetrominoe.BorderBlock) {
             g.setColor(Color.WHITE);

@@ -111,7 +111,7 @@ public class Board extends JPanel {
     }
 
     private int squareHeight() {    //한칸의 높이
-        return (int) getSize().getHeight() / BOARD_HEIGHT;
+        return (int) getSize().getHeight() / BOARD_HEIGHT - 2;
     }
 
     private Tetrominoe blockAt(int x, int y) {        //해당 좌표의 블록 반환
@@ -137,7 +137,10 @@ public class Board extends JPanel {
     private void doDrawing(Graphics g) {    // 화면의 구성요소 그리기
 
         Dimension size = getSize();
-        int boardTop = (int) size.getHeight() - BOARD_HEIGHT * squareHeight();
+        int boardTop = (int) size.getHeight() - BOARD_HEIGHT * squareHeight() - 10;
+
+    	g.setColor(Color.BLACK);
+    	g.fillRect(9, 22, BOARD_WIDTH * squareWidth() + 2, BOARD_HEIGHT * squareHeight());
 
         for (int i = 0; i < BOARD_HEIGHT; ++i) {
             for (int j = 0; j < BOARD_WIDTH; ++j) {
@@ -158,35 +161,50 @@ public class Board extends JPanel {
                         curPiece.getBlock());
             }
         }
-        
-        // 다음 블록 그리기
-        int nextPieceX = BOARD_WIDTH * squareWidth() + 60;
-        int nextPieceY = 50;
-        for (int i = 0; i < 4; ++i) {
-            int x = nextPiece.x(i) + 1;
-            int y = nextPiece.y(i) + 1;
-            BlockDrawer.drawBlock(g, nextPieceX + x * squareWidth(),
-                    nextPieceY + y * squareHeight(), squareWidth(), squareHeight(), nextPiece.getBlock());
-        }
-        
+
         Graphics2D g2d = (Graphics2D) g;
 
         // 선의 굵기 설정
         float thickness = 3.0f; // 선의 굵기
         g2d.setStroke(new BasicStroke(thickness));
         
-        g.setColor(Color.WHITE);    //다음 블록이 들어갈 박스 그리기
+        // 다음 블록 그리기
+        int nextPieceX = BOARD_WIDTH * squareWidth() + 60;
+        int nextPieceY = 50;
+
+        //다음 블록이 들어갈 박스 그리기
         int boxWidth = 6 * squareWidth();
         int boxHeight = 4 * squareHeight();
-     
-        g2d.drawRect(nextPieceX - 15, nextPieceY, boxWidth, boxHeight);
+
+        // 내부를 검정색으로 채우기
+        g.setColor(Color.BLACK);
+        g.fillRect(nextPieceX - 35 + 3 * squareWidth() / 2, nextPieceY, boxWidth, boxHeight);
+
+
+        // 테두리 1
+        g2d.setColor(new Color(250, 250, 250));
+        g2d.setStroke(new BasicStroke(3.0f));
+        g2d.drawRect(nextPieceX - 35 - 4 + 3 * squareWidth() / 2, nextPieceY - 4, boxWidth + 8, boxHeight + 8);
+
+        // 테두리 2
+        g2d.setColor(Color.GRAY);
+        g2d.setStroke(new BasicStroke(1.5f));
+        g2d.drawRect(nextPieceX - 35 - 8 + 3 * squareWidth() / 2, nextPieceY - 8, boxWidth + 16, boxHeight + 16);
+
+        // 다음 블록 그리기
+        for (int i = 0; i < 4; ++i) {
+            int x = nextPiece.x(i) + 1;
+            int y = nextPiece.y(i) + 1;
+            BlockDrawer.drawBlock(g, nextPieceX + x * squareWidth() - 32 + 3 * squareWidth() / 2,
+                    nextPieceY + y * squareHeight() + 24, squareWidth(), squareHeight(), nextPiece.getBlock());
+        }
      
         // 점수 표시 위치 계산
-        int scoreX = nextPieceX - squareWidth(); 
+        int scoreX = nextPieceX - 30 + 3 * squareWidth() / 2; 
         int scoreY = nextPieceY + squareHeight() * 6; 
 
         // 점수 표시
-        g.setColor(Color.WHITE);
+        g.setColor(Color.BLACK);
         g.setFont(tetrisFont);
         if(!isPaused) {
             g.drawString("Score: " + TotalScore, scoreX, scoreY);
@@ -195,33 +213,72 @@ public class Board extends JPanel {
         }
         
         // 남은 시간 표시 위치
-        int timerX = nextPieceX - squareWidth(); 
+        int timerX = nextPieceX - 30 + 3 * squareWidth() / 2; 
         int timerY = nextPieceY + squareHeight() * 7; 
 
         // 남은 시간 표시
-        g.setColor(Color.WHITE);
+        g.setColor(Color.BLACK);
         g.setFont(tetrisFont);
         if(gameMode == "타이머") {
             g.drawString("Time: " + timerModeLimit, timerX, timerY);            
         }
 
         if(specialMode == "대전 모드") {
-            int boxWidth2 = 11 * squareWidth();
+            int boxWidth2 = 9 * squareWidth();
             int boxHeight2 = 10 * squareHeight();
             
             g2d.setColor(Color.WHITE); //다음 공격 블록이 들어갈 박스 그리기
-            if(SettingFileWriter.readSize() == 0) // 화면 크기에 따른 박스 위치 변경
-                g2d.drawRect(nextPieceX - 45, nextPieceY + 210, boxWidth2, boxHeight2);
-            else if(SettingFileWriter.readSize() == 1)
-                g2d.drawRect(nextPieceX - 48, nextPieceY + 245, boxWidth2, boxHeight2);
-            else
-                g2d.drawRect(nextPieceX - 45, nextPieceY + 270, boxWidth2, boxHeight2);
+            if(SettingFileWriter.readSize() == 0) { // 화면 크기에 따른 박스 위치 변경
+	            // 내부를 검정색으로 채우기
+	            g.setColor(Color.BLACK);
+	            g.fillRect(nextPieceX - 35, nextPieceY + 200, boxWidth2 + 18, boxHeight2);
+	            
+	            // 테두리 1
+	            g2d.setColor(new Color(250, 250, 250));
+	            g2d.setStroke(new BasicStroke(3.0f));
+	            g2d.drawRect(nextPieceX - 35 - 4, nextPieceY + 200 - 4, boxWidth2 + 18 + 8, boxHeight2 + 8);
+	
+	            // 테두리 2
+	            g2d.setColor(Color.GRAY);
+	            g2d.setStroke(new BasicStroke(1.5f));
+	            g2d.drawRect(nextPieceX - 35 - 8, nextPieceY + 200 - 8, boxWidth2 + 18 + 16, boxHeight2 + 16);
+            }
+            else if(SettingFileWriter.readSize() == 1) {
+	            // 내부를 검정색으로 채우기
+	            g.setColor(Color.BLACK);
+	            g.fillRect(nextPieceX - 38, nextPieceY + 235, boxWidth2 + 18, boxHeight2);
+	            
+	            // 테두리 1
+	            g2d.setColor(new Color(250, 250, 250));
+	            g2d.setStroke(new BasicStroke(3.0f));
+	            g2d.drawRect(nextPieceX - 38 - 4, nextPieceY + 235 - 4, boxWidth2 + 18 + 8, boxHeight2 + 8);
+	
+	            // 테두리 2
+	            g2d.setColor(Color.GRAY);
+	            g2d.setStroke(new BasicStroke(1.5f));
+	            g2d.drawRect(nextPieceX - 38 - 8, nextPieceY + 235 - 8, boxWidth2 + 18 + 16, boxHeight2 + 16);
+            }
+            else{
+	            // 내부를 검정색으로 채우기
+	            g.setColor(Color.BLACK);
+	            g.fillRect(nextPieceX - 35, nextPieceY + 260, boxWidth2 + 18, boxHeight2);
+	            
+	            // 테두리 1
+	            g2d.setColor(new Color(250, 250, 250));
+	            g2d.setStroke(new BasicStroke(3.0f));
+	            g2d.drawRect(nextPieceX - 35 - 4, nextPieceY + 260 - 4, boxWidth2 + 18 + 8, boxHeight2 + 8);
+	
+	            // 테두리 2
+	            g2d.setColor(Color.GRAY);
+	            g2d.setStroke(new BasicStroke(1.5f));
+	            g2d.drawRect(nextPieceX - 35 - 8, nextPieceY + 260 - 8, boxWidth2 + 18 + 16, boxHeight2 + 16);
+            }
         }
     }
 
     @Override
     public void paintComponent(Graphics g) {
-        setBackground(Color.BLACK);
+    	setBackground(new Color(220, 220, 220));
         super.paintComponent(g);
         doDrawing(g);
         drawQueuedLines(g);
@@ -230,15 +287,26 @@ public class Board extends JPanel {
     private void drawQueuedLines(Graphics g) {
         int maxY = queuedLines.stream().mapToInt(coord -> coord[1]).max().orElse(0);
         int blockSize = squareHeight();
-        int baseX = BOARD_WIDTH * squareWidth() + 20;
-        int baseY = getHeight() - 20; // 기본 Y 위치를 윗쪽으로 고정
+        int baseX;
+        int baseY;
+        
+        if (SettingFileWriter.readSize() == 0) {
+        	baseX = BOARD_WIDTH * squareWidth() + 23;
+            baseY = getHeight() - 28; // 기본 Y 위치를 윗쪽으로 고정
+        } else if (SettingFileWriter.readSize() == 1) {
+        	baseX = BOARD_WIDTH * squareWidth() + 21;
+            baseY = getHeight() - 12; // 기본 Y 위치를 윗쪽으로 고정
+        } else {
+        	baseX = BOARD_WIDTH * squareWidth() + 23;
+            baseY = getHeight() - 24; // 기본 Y 위치를 윗쪽으로 고정
+        }
 
         // GrayBlock을 그리기
         for (int[] line : queuedLines) {
             if (line[1] > maxY - 10) { // maxY - 10 이하의 값만 그리기
                 int x = line[0];
                 int y = line[1];
-                BlockDrawer.drawBlock(g, baseX + (x - 1) * squareWidth(), baseY - (y * blockSize), squareWidth(), squareHeight(), Tetrominoe.GrayBlock);
+                BlockDrawer.drawBlock(g, baseX + (x - 1) * squareWidth(), baseY - (y * blockSize), squareWidth() / 18, squareHeight() / 18, Tetrominoe.GrayBlock);
             }
         }
 
@@ -247,7 +315,7 @@ public class Board extends JPanel {
             if (coord[1] > maxY - 10) { // maxY - 10 이하의 값만 그리기
                 int x = coord[0];
                 int y = coord[1];
-                BlockDrawer.drawBlock(g, baseX + (x - 1) * squareWidth(), baseY - (y * blockSize), squareWidth(), squareHeight(), Tetrominoe.NoBlock);
+                BlockDrawer.drawBlock(g, baseX + (x - 1) * squareWidth(), baseY - (y * blockSize), squareWidth() / 18, squareHeight() / 18, Tetrominoe.NoBlock);
             }
         }
     }
