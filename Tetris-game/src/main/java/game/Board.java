@@ -27,6 +27,7 @@ import main.java.menu.ScoreEntry;
 import main.java.game.BlockDrawer;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.Comparator;
 
 import static java.awt.Color.black;
 import static main.java.setting.controlkeysetting.ControlKeySettingMenu.controlKeyStatus;
@@ -333,25 +334,42 @@ public class Board extends JPanel {
 
    private List<int[]> lastMovedBlocks = new ArrayList<>(); 
 
-   private void pieceDropped() {        //블록이 떨어진 후 
-        lastMovedBlocks.clear();
-        for (int i = 0; i < 4; ++i) {
-            int x = curX + curPiece.x(i);
-            int y = curY - curPiece.y(i);
-            board[(y * BOARD_WIDTH) + x] = curPiece.getBlock();
-            lastMovedBlocks.add(new int[]{x, y});
-        }
-       
-        applyItemEffect(curPiece.getBlock());
-        removeFullLines();
+   private int countGrayBlocks() {
+	    int grayLines = 0;
+	    for (int y = 1; y < BOARD_HEIGHT - 1; y++) {
+	        boolean hasGrayBlock = false;
+	        for (int x = 1; x < BOARD_WIDTH - 1; x++) {
+	            if (blockAt(x, y) == Tetrominoe.GrayBlock) {
+	                hasGrayBlock = true;
+	                break;
+	            }
+	        }
+	        if (hasGrayBlock) {
+	            grayLines++;
+	        }
+	    }
+	    return grayLines;
+	}
+   
+   private void pieceDropped() {
+	    lastMovedBlocks.clear();
+	    for (int i = 0; i < 4; ++i) {
+	        int x = curX + curPiece.x(i);
+	        int y = curY - curPiece.y(i);
+	        board[(y * BOARD_WIDTH) + x] = curPiece.getBlock();
+	        lastMovedBlocks.add(new int[]{x, y});
+	    }
 
-        if (!isFallingFinished) {
-            if (!queuedLines.isEmpty()) {
-                processQueuedLines();
-            }
-            newPiece(); 
-        }
-   }
+	    applyItemEffect(curPiece.getBlock());
+	    removeFullLines();
+
+	    if (!isFallingFinished) {
+	        if (!queuedLines.isEmpty()) {
+	            processQueuedLines();
+	        }
+	        newPiece();
+	    }
+	}
 
     private void newPiece() {        // 새로운 블록 생성
         if(remainRowsForItems <= 0 && gameMode.equals("아이템")) {    
@@ -648,20 +666,40 @@ public class Board extends JPanel {
     }
 
     public void queueLines(int numLines, List<int[]> excludedBlocks) {
-        // 현재 대기 줄의 최대 y 값을 찾습니다.
-        int currentMaxY = queuedLines.stream().mapToInt(coord -> coord[1]).max().orElse(0);
+        // 현재 보드 위의 GrayBlock 줄 수를 확인합니다.
+        int grayOnBoard = countGrayBlocks();
 
-        // 대기 블록에 있는 블록들을 새로운 블록만큼 위로 들어올립니다.
+        // 대기 블록의 최대 줄 수를 확인합니다.
+        int queuedLineCount = (int) queuedLines.stream().mapToInt(coord -> coord[1]).distinct().count();
+        int totalLines = grayOnBoard + queuedLineCount;
+
+        // 새로 추가되는 줄 수를 제한합니다.
+        int maxNewLines = 10 - totalLines;
+        int linesToAdd = Math.min(numLines, maxNewLines);
+        int linesToElimination = numLines - linesToAdd;
+
+        // 탈락하는 줄의 y값을 로그에 출력합니다.
+        if (linesToElimination > 0) {
+            List<int[]> removedLines = queuedLines.stream()
+                    .sorted(Comparator.comparingInt(coord -> coord[1]))
+                    .limit(linesToElimination)
+                    .collect(Collectors.toList());
+            for (int[] coord : removedLines) {
+                System.out.println("Removing line at y: " + coord[1]);
+            }
+        }
+
+        // 기존 대기 블록의 y 값을 증가시킵니다.
         for (int[] line : queuedLines) {
-            line[1] += numLines;
+            line[1] += linesToAdd;
         }
         for (int[] coord : queuedExcludedBlocks) {
-            coord[1] += numLines;
+            coord[1] += linesToAdd;
         }
 
         // 새로운 줄을 추가합니다.
-        int newMaxY = numLines;
-        for (int i = 0; i < numLines; i++) {
+        int newMaxY = linesToAdd;
+        for (int i = 0; i < linesToAdd; i++) {
             for (int x = 1; x < BOARD_WIDTH - 1; x++) {
                 queuedLines.add(new int[]{x, newMaxY - i});
             }
@@ -670,7 +708,10 @@ public class Board extends JPanel {
         // 제외 블록도 대기 리스트에 추가
         List<int[]> fixedExcludedBlocks = fixExcludedBlocks(excludedBlocks);
         for (int[] coord : fixedExcludedBlocks) {
-            queuedExcludedBlocks.add(new int[]{coord[0], coord[1]});
+            coord[1] -= linesToElimination;
+            if (coord[1] > 0) { // y 좌표가 0보다 큰 경우에만 추가
+                queuedExcludedBlocks.add(new int[]{coord[0], coord[1]});
+            }
         }
 
         repaint();
@@ -681,6 +722,34 @@ public class Board extends JPanel {
     private void processQueuedLines() {
         if (queuedLines.isEmpty()) {
             return;
+        }
+
+        // 현재 보드 위의 GrayBlock 줄 수를 확인합니다.
+        int grayOnBoard = countGrayBlocks();
+        int maxAllowedLines = 10 - grayOnBoard;
+
+        // 대기 블록의 최대 줄 수를 초과하지 않도록 제한합니다.
+        int queuedLineCount = (int) queuedLines.stream().mapToInt(coord -> coord[1]).distinct().count();
+        if (queuedLineCount > maxAllowedLines) {
+            int linesToRemove = queuedLineCount - maxAllowedLines;
+
+            // 남은 블록들의 y 값을 줄어든 만큼 조정합니다.
+            for (int[] coord : queuedLines) {
+                coord[1] -= linesToRemove;
+            }
+            for (int[] coord : queuedExcludedBlocks) {
+                coord[1] -= linesToRemove;
+            }
+
+            // 초과된 줄 제거
+            queuedLines = queuedLines.stream()
+                    .sorted(Comparator.comparingInt(coord -> coord[1]))
+                    .skip(linesToRemove)
+                    .collect(Collectors.toList());
+            queuedExcludedBlocks = queuedExcludedBlocks.stream()
+                    .sorted(Comparator.comparingInt(coord -> coord[1]))
+                    .skip(linesToRemove)
+                    .collect(Collectors.toList());
         }
 
         // Step 1: 보드의 블록들을 위로 들어올리기
