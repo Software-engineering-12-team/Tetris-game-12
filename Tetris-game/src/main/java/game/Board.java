@@ -690,7 +690,7 @@ public class Board extends JPanel {
         }
 
         if (numFullLines > 0) {
-            TotalScore += numFullLines;
+            TotalScore += numFullLines*10;
             isFallingFinished = true;
             curPiece.setBlock(Tetrominoe.NoBlock);
             repaint();
