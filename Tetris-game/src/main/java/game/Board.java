@@ -42,25 +42,25 @@ public class Board extends JPanel {
     private Timer timer;
     private Timer timerMode;
     private boolean isFallingFinished = false;
-    private boolean isStarted = false;
-    private boolean isPaused = false;
+    public boolean isStarted = false;
+    public boolean isPaused = false;
     private boolean isItem = false;
     private boolean isTouchedBlocks = false;
     private boolean istimerModeCancelled = false;
     private int remainRowsForItems = 10;
-    private int TotalScore = 0;
-    private int curX = 0;
-    private int curY = 0;
+    public int TotalScore = 0;
+    public int curX = 0;
+    public int curY = 0;
     private int timerModeLimit; 
     private JLabel statusbar;
-    private Blocks curPiece;
-    private Blocks nextPiece;
+    public Blocks curPiece;
+    public Blocks nextPiece;
     public static Font tetrisFont;
     private Tetrominoe[] board;
     private Board opponentBoard; // 상대방 보드 추가
     private int playerNumber; // 플레이어 번호 추가
-    private boolean isGameOver = false; //게임 종료 상태 추가 
-    private TetrisGame parent;
+    public boolean isGameOver = false; //게임 종료 상태 추가
+    public TetrisGame parent;
     private List<int[]> queuedLines = new ArrayList<>(); // 대기 상태의 공격 블록을 저장하는 리스트
     private List<int[]> queuedExcludedBlocks = new ArrayList<>(); // 대기 상태의 제외 블록을 저장하는 리스트
 
@@ -114,7 +114,7 @@ public class Board extends JPanel {
         return (int) getSize().getHeight() / BOARD_HEIGHT - 2;
     }
 
-    private Tetrominoe blockAt(int x, int y) {        //해당 좌표의 블록 반환
+    public Tetrominoe blockAt(int x, int y) {        //해당 좌표의 블록 반환
         return board[(y * BOARD_WIDTH) + x];
     }
 
@@ -125,7 +125,7 @@ public class Board extends JPanel {
         newPiece();
     }
 
-    private void pause() {        //일시정지
+    public void pause() {        //일시정지
 
         if (!isStarted) {
             return;
@@ -320,7 +320,7 @@ public class Board extends JPanel {
         }
     }
 
-    private void dropDown() {        //블록을 한 번에 맨 아래로 떨어뜨리기
+    public void dropDown() {        //블록을 한 번에 맨 아래로 떨어뜨리기
         int dropDistance = 0;
         int newY = curY;
         
@@ -358,7 +358,7 @@ public class Board extends JPanel {
         }
     }
 
-    private void clearBoard() {            //게임보드 초기화
+    public void clearBoard() {            //게임보드 초기화
         for (int i = 0; i < BOARD_HEIGHT; ++i) {        //게임 보드의 테두리 그리기
             for (int j = 0; j < BOARD_WIDTH; ++j) {
                 if (i == 0 || i == BOARD_HEIGHT - 1 || j == 0 || j == BOARD_WIDTH - 1) {
@@ -370,7 +370,7 @@ public class Board extends JPanel {
         }
     }
 
-   private void applyItemEffect(Tetrominoe item) {
+   public void applyItemEffect(Tetrominoe item) {
        switch (item) {
             case WeightItem:
                 ItemEffectHandler.deleteWeightItem(board, curPiece, curX, curY);
@@ -556,7 +556,7 @@ public class Board extends JPanel {
         }
     }
     
-    private boolean tryMove(Blocks newPiece, int newX, int newY) {        //블록을 이동시킬 수 있는지 확인
+    public boolean tryMove(Blocks newPiece, int newX, int newY) {        //블록을 이동시킬 수 있는지 확인
 
         // WeightBlock인 경우 처리
         if (newPiece.getBlock() == Tetrominoe.WeightItem) {

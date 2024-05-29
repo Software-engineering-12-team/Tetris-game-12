@@ -75,7 +75,7 @@ class BlockDrawerTest {
         ColorBlindModeMenu.colorBlindStatus = "정상";
         BlockDrawer.drawBlock(graphics, 10, 10, 20, 20, Tetrominoe.ThreeItem);
         Color color = new Color(canvas.getRGB(20, 20));
-        assertEquals(Color.WHITE, color);
+        assertEquals(Color.BLACK, color);
     }
 
     @Test
@@ -83,7 +83,7 @@ class BlockDrawerTest {
         ColorBlindModeMenu.colorBlindStatus = "정상";
         BlockDrawer.drawBlock(graphics, 10, 10, 20, 20, Tetrominoe.FiveItem);
         Color color = new Color(canvas.getRGB(20, 20));
-        assertEquals(Color.WHITE, color);
+        assertEquals(Color.BLACK, color);
     }
 
     @Test
@@ -91,7 +91,7 @@ class BlockDrawerTest {
         ColorBlindModeMenu.colorBlindStatus = "정상";
         BlockDrawer.drawBlock(graphics, 10, 10, 20, 20, Tetrominoe.SevenItem);
         Color color = new Color(canvas.getRGB(20, 20));
-        assertEquals(Color.WHITE, color);
+        assertEquals(Color.BLACK, color);
     }
 
     @Test
@@ -99,7 +99,7 @@ class BlockDrawerTest {
         ColorBlindModeMenu.colorBlindStatus = "정상";
         BlockDrawer.drawBlock(graphics, 10, 10, 20, 20, Tetrominoe.PlusItem);
         Color color = new Color(canvas.getRGB(20, 20));
-        assertEquals(Color.WHITE, color);
+        assertEquals(Color.BLACK, color);
     }
 
     @Test
@@ -107,6 +107,6 @@ class BlockDrawerTest {
         ColorBlindModeMenu.colorBlindStatus = "정상";
         BlockDrawer.drawBlock(graphics, 10, 10, 20, 20, Tetrominoe.AllDelItem);
         Color color = new Color(canvas.getRGB(20, 20));
-        assertEquals(Color.WHITE, color);
+        assertEquals(Color.BLACK, color);
     }
 }

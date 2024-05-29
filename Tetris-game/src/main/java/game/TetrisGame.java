@@ -16,13 +16,13 @@
 	import main.java.setting.controlkeysetting.ControlKeySettingMenu;
 		
 	public class TetrisGame extends JFrame {
-	    private String specialMode, gameMode, difficulty; // 게임모드 설정 관련 수정
+	    public String specialMode, gameMode, difficulty; // 게임모드 설정 관련 수정
 	    private static final long serialVersionUID = 1L;
 	    private JLabel statusbar1;
 	    private JLabel statusbar2;
 	    private Board board1;
 	    private Board board2;
-	    private boolean gameOverDisplayed = false;
+	    public boolean gameOverDisplayed = false;
 	
 	    // 게임모드 설정 관련 수정
 	    public TetrisGame(String specialMode, String gameMode, String difficulty) {
@@ -100,7 +100,7 @@
 	        requestFocusInWindow(); // 프레임 포커스 요청
 	    }
 	
-	    private void adjustFrameSizeForSingleBoard() {
+	    public void adjustFrameSizeForSingleBoard() {
 	        if (SettingFileWriter.readSize() == 0) {
 	            setSize(400, 550);
 	        } else if (SettingFileWriter.readSize() == 1) {
@@ -110,7 +110,7 @@
 	        }
 	    }
 	
-	    private void adjustFrameSizeForDualBoards() {
+	    public void adjustFrameSizeForDualBoards() {
 	        if (SettingFileWriter.readSize() == 0) {
 	            setSize(800, 550);
 	        } else if (SettingFileWriter.readSize() == 1) {
