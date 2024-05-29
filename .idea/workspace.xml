@@ -4,24 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[add] add testcode,ButtonStyleTest, HandleKeyEventTest, ScreenAdjustComponentTest in util">
-      <change afterPath="$PROJECT_DIR$/Tetris-game/test/main/java/game/BoardTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tetris-game/test/main/java/game/ItemEffectHandlerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tetris-game/test/main/java/game/TetrisGameTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/setting.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/setting.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/game/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/game/TetrisGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/game/TetrisGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/BlockDrawer.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/BlockDrawer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board$ScheduleTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board$ScheduleTask.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board$TAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board$TAdapter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/TetrisGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/TetrisGame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tetris-game/test/main/java/game/BlockDrawerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/test/main/java/game/BlockDrawerTest.java" afterDir="false" />
+    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[add] add testcode,BlockDrawerTest, BoardTest, ItemEffectHandlerTest, TetrisGameTest">
+      <change afterPath="$PROJECT_DIR$/Tetris-game/test/main/java/game/ScoreFileWriterTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,6 +82,9 @@
     "JUnit.BlocksTest.rotateLeft.executor": "Coverage",
     "JUnit.BlocksTest.rotateRight.executor": "Coverage",
     "JUnit.BoardTest.executor": "Coverage",
+    "JUnit.BoardTest.testKeyPresses.executor": "Coverage",
+    "JUnit.BoardTest.testPieceDrop.executor": "Coverage",
+    "JUnit.BoardTest.testPieceRotate.executor": "Coverage",
     "JUnit.ButtonStyleTest.executor": "Coverage",
     "JUnit.ColorBlindModeMenuTest (1).executor": "Coverage",
     "JUnit.ColorBlindModeMenuTest.executor": "Coverage",
@@ -111,6 +98,7 @@
     "JUnit.ItemEffectHandlerTest.executor": "Coverage",
     "JUnit.ScoreBoardMenuTest.executor": "Coverage",
     "JUnit.ScoreEntryTest.executor": "Coverage",
+    "JUnit.ScoreFileWriterTest.executor": "Coverage",
     "JUnit.ScreenAdjustComponentTest.executor": "Coverage",
     "JUnit.ScreenAdjustSizeMenuTest (1).executor": "Coverage",
     "JUnit.ScreenAdjustSizeMenuTest.executor": "Coverage",
@@ -165,7 +153,7 @@
       <recent name="main.java.setting" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.BoardTest.testKeyPresses">
+  <component name="RunManager" selected="JUnit.ScoreFileWriterTest">
     <configuration name="BoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Tetris-game" />
       <extension name="coverage">
@@ -229,7 +217,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TetrisGameTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ScoreFileWriterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Tetris-game" />
       <extension name="coverage">
         <pattern>
@@ -238,7 +226,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="main.java.game" />
-      <option name="MAIN_CLASS_NAME" value="main.java.game.TetrisGameTest" />
+      <option name="MAIN_CLASS_NAME" value="main.java.game.ScoreFileWriterTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -249,15 +237,15 @@
       <item itemvalue="JUnit.BoardTest.testKeyPresses" />
       <item itemvalue="JUnit.BoardTest.testPieceDrop" />
       <item itemvalue="JUnit.BoardTest.testPieceRotate" />
-      <item itemvalue="JUnit.TetrisGameTest" />
+      <item itemvalue="JUnit.ScoreFileWriterTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ScoreFileWriterTest" />
         <item itemvalue="JUnit.BoardTest.testKeyPresses" />
         <item itemvalue="JUnit.BoardTest" />
         <item itemvalue="JUnit.BoardTest.testPieceDrop" />
         <item itemvalue="JUnit.BoardTest.testPieceRotate" />
-        <item itemvalue="JUnit.TetrisGameTest" />
       </list>
     </recent_temporary>
   </component>
@@ -302,15 +290,7 @@
       <workItem from="1716499239333" duration="467000" />
       <workItem from="1716721784301" duration="20000" />
       <workItem from="1716721828198" duration="20000" />
-      <workItem from="1716722073446" duration="5377000" />
-    </task>
-    <task id="LOCAL-00011" summary="[Fix] add dispose button in scoreboard menu">
-      <option name="closed" value="true" />
-      <created>1711628408160</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1711628408160</updated>
+      <workItem from="1716722073446" duration="6122000" />
     </task>
     <task id="LOCAL-00012" summary="[Fix] add dispose button in AdjustSize.java">
       <option name="closed" value="true" />
@@ -696,7 +676,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716574883743</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="[add] add testcode,BlockDrawerTest, BoardTest, ItemEffectHandlerTest, TetrisGameTest">
+      <option name="closed" value="true" />
+      <created>1717011303040</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1717011303041</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -714,7 +702,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[Feat] add ColorBlindMode filewriter" />
     <MESSAGE value="[Fix] change blue-yellow color" />
     <MESSAGE value="[Fix] fix error" />
     <MESSAGE value="[Fix] fix colorblindmode color error" />
@@ -739,7 +726,8 @@
     <MESSAGE value="[add] add testcode,ScoreBoardMenuTest(Indexrange error)" />
     <MESSAGE value="[add] add testcode,ScoreBoardMenuTest, GameStartMenuTest" />
     <MESSAGE value="[add] add testcode,ButtonStyleTest, HandleKeyEventTest, ScreenAdjustComponentTest in util" />
-    <option name="LAST_COMMIT_MESSAGE" value="[add] add testcode,ButtonStyleTest, HandleKeyEventTest, ScreenAdjustComponentTest in util" />
+    <MESSAGE value="[add] add testcode,BlockDrawerTest, BoardTest, ItemEffectHandlerTest, TetrisGameTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="[add] add testcode,BlockDrawerTest, BoardTest, ItemEffectHandlerTest, TetrisGameTest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -752,6 +740,15 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/Tetris-game/test/main/java/game/BoardTest.java</url>
+          <line>73</line>
+          <properties class="main.java.game.BoardTest" method="testPieceRotate">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Tetris-game/src/main/java/menu/ScoreEntry.java</url>
@@ -767,6 +764,9 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BoardTest.ic" NAME="BoardTest Coverage Results" MODIFIED="1717011092905" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.game.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/Tetris_game_12$BlocksTest_rotateRight.ic" NAME="BlocksTest.rotateRight Coverage Results" MODIFIED="1716570887226" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.game.*</FILTER>
     </SUITE>
@@ -821,11 +821,17 @@
     <SUITE FILE_PATH="coverage/Tetris_game_12$SettingMenuTest_testColorBlindModeButton.ic" NAME="SettingMenuTest.testColorBlindModeButton Coverage Results" MODIFIED="1716564531427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.setting.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BoardTest_testPieceDrop.ic" NAME="BoardTest.testPieceDrop Coverage Results" MODIFIED="1717011068625" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.game.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/Tetris_game_12$GameStartMenuTest.ic" NAME="GameStartMenuTest Coverage Results" MODIFIED="1716723520317" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.menu.gamestart.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Tetris_game_12$All_in_Tetris_game.ic" NAME="All in Tetris-game Coverage Results" MODIFIED="1716722084705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/Tetris_game_12$TetrisGameTest.ic" NAME="TetrisGameTest Coverage Results" MODIFIED="1717010520337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.game.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BoardTest_testPieceRotate.ic" NAME="BoardTest.testPieceRotate Coverage Results" MODIFIED="1717011050097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.game.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Tetris_game_12$BlocksTest.ic" NAME="BlocksTest Coverage Results" MODIFIED="1717009956943" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
@@ -838,6 +844,9 @@
       <FILTER>main.java.menu.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Tetris_game_12$BlockDrawerTest_testDrawBlockNormalMode.ic" NAME="BlockDrawerTest.testDrawBlockNormalMode Coverage Results" MODIFIED="1716570273333" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.game.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BoardTest_testKeyPresses.ic" NAME="BoardTest.testKeyPresses Coverage Results" MODIFIED="1717011216521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.game.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Tetris_game_12$ColorBlindModeMenuTest.ic" NAME="ColorBlindModeMenuTest Coverage Results" MODIFIED="1716547206331" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
