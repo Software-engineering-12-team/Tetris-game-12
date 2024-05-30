@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.JOptionPane;
 import java.util.List;
+import java.util.Random;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -45,14 +46,16 @@ public class Board extends JPanel {
     public boolean isStarted = false;
     public boolean isPaused = false;
     private boolean isItem = false;
+    private boolean isLineDelItemWaiting = false;
+    private boolean isLineDelItemOut = false;
     private boolean isTouchedBlocks = false;
     private boolean istimerModeCancelled = false;
-    private int remainRowsForItems = 10;
+    private int remainRowsForItems = 1;
+    private int randomNumber;
     public int TotalScore = 0;
     public int curX = 0;
     public int curY = 0;
     private int timerModeLimit; 
-    private JLabel statusbar;
     public Blocks curPiece;
     public Blocks nextPiece;
     public static Font tetrisFont;
@@ -147,7 +150,7 @@ public class Board extends JPanel {
                 Tetrominoe block = blockAt(j, BOARD_HEIGHT - i - 1);
                 if (block != Tetrominoe.NoBlock) {
                     BlockDrawer.drawBlock(g, 0 + j * squareWidth(),
-                            boardTop + i * squareHeight(), squareWidth(), squareHeight(), block);
+                            boardTop + i * squareHeight(), squareWidth(), squareHeight(), block, 4, 0);
                 }
             }
         }
@@ -156,9 +159,18 @@ public class Board extends JPanel {
             for (int i = 0; i < 4; ++i) {
                 int x = curX + curPiece.x(i);
                 int y = curY - curPiece.y(i);
-                BlockDrawer.drawBlock(g, 0 + x * squareWidth(),
+                if(isLineDelItemOut)
+                {
+                	BlockDrawer.drawBlock(g, 0 + x * squareWidth(),
                         boardTop + (BOARD_HEIGHT - y - 1) * squareHeight(), squareWidth(), squareHeight(),
-                        curPiece.getBlock());
+                        curPiece.getBlock(), i, randomNumber);
+                }
+                else
+                {
+                	BlockDrawer.drawBlock(g, 0 + x * squareWidth(),
+                            boardTop + (BOARD_HEIGHT - y - 1) * squareHeight(), squareWidth(), squareHeight(),
+                            curPiece.getBlock(), 4, 0);
+                }
             }
         }
 
@@ -195,8 +207,16 @@ public class Board extends JPanel {
         for (int i = 0; i < 4; ++i) {
             int x = nextPiece.x(i) + 1;
             int y = nextPiece.y(i) + 1;
+            if(isLineDelItemWaiting)
+            {
             BlockDrawer.drawBlock(g, nextPieceX + x * squareWidth() - 32 + 3 * squareWidth() / 2,
-                    nextPieceY + y * squareHeight() + 24, squareWidth(), squareHeight(), nextPiece.getBlock());
+                    nextPieceY + y * squareHeight() + 24, squareWidth(), squareHeight(), nextPiece.getBlock(), i, randomNumber);
+            }
+            else
+            {
+            	BlockDrawer.drawBlock(g, nextPieceX + x * squareWidth() - 32 + 3 * squareWidth() / 2,
+                        nextPieceY + y * squareHeight() + 24, squareWidth(), squareHeight(), nextPiece.getBlock(), 4, 0);
+            }
         }
      
         // 점수 표시 위치 계산
@@ -306,7 +326,7 @@ public class Board extends JPanel {
             if (line[1] > maxY - 10) { // maxY - 10 이하의 값만 그리기
                 int x = line[0];
                 int y = line[1];
-                BlockDrawer.drawBlock(g, baseX + (x - 1) * squareWidth(), baseY - (y * blockSize), squareWidth() / 18, squareHeight() / 18, Tetrominoe.GrayBlock);
+                BlockDrawer.drawBlock(g, baseX + (x - 1) * squareWidth(), baseY - (y * blockSize), squareWidth() / 18, squareHeight() / 18, Tetrominoe.GrayBlock, 4, 0);
             }
         }
 
@@ -315,7 +335,7 @@ public class Board extends JPanel {
             if (coord[1] > maxY - 10) { // maxY - 10 이하의 값만 그리기
                 int x = coord[0];
                 int y = coord[1];
-                BlockDrawer.drawBlock(g, baseX + (x - 1) * squareWidth(), baseY - (y * blockSize), squareWidth() / 18, squareHeight() / 18, Tetrominoe.NoBlock);
+                BlockDrawer.drawBlock(g, baseX + (x - 1) * squareWidth(), baseY - (y * blockSize), squareWidth() / 18, squareHeight() / 18, Tetrominoe.NoBlock, 4, 0);
             }
         }
     }
@@ -370,14 +390,10 @@ public class Board extends JPanel {
         }
     }
 
-   public void applyItemEffect(Tetrominoe item) {
+   public void applyItemEffect(Tetrominoe item, int LBlockY) {
        switch (item) {
             case WeightItem:
                 ItemEffectHandler.deleteWeightItem(board, curPiece, curX, curY);
-                break;
-            case LineDelItem:
-                ItemEffectHandler.applyLineDelItem(board, curX, curY);
-                TotalScore++;
                 break;
             case ThreeItem:
                 ItemEffectHandler.applyThreeItem(board, curX, curY);
@@ -397,6 +413,10 @@ public class Board extends JPanel {
                 break;
             default:
                 break;
+       }
+       if(isLineDelItemOut)
+       {
+    	   ItemEffectHandler.applyLineDelItem(board, curY, LBlockY);
        }
    }
 
@@ -428,7 +448,7 @@ public class Board extends JPanel {
 	        lastMovedBlocks.add(new int[]{x, y});
 	    }
 
-	    applyItemEffect(curPiece.getBlock());
+	    applyItemEffect(curPiece.getBlock(), curPiece.y(randomNumber));
 	    removeFullLines();
 
 	    if (!isFallingFinished) {
@@ -445,11 +465,30 @@ public class Board extends JPanel {
             curPiece = nextPiece;    // 현재 블록을 방금 표시되었던 블록으로 설정
             nextPiece = new Blocks(difficulty); // 다음 블록 생성
             nextPiece.setRandomBlock(difficulty, isItem);
+            if(nextPiece.getBlock() == Tetrominoe.LineDelItem)	// 줄 삭제 블록이 선택됨
+            {	
+            	Tetrominoe[] blockOptions = {Tetrominoe.ZBlock, Tetrominoe.SBlock, Tetrominoe.IBlock, Tetrominoe.TBlock, Tetrominoe.OBlock, Tetrominoe.LBlock, Tetrominoe.JBlock};
+            	Tetrominoe selectedBlock = blockOptions[new Random().nextInt(blockOptions.length)];
+            	nextPiece.setBlock(selectedBlock);
+            	isLineDelItemWaiting = true;	// 줄 삭제 블록이 대기로 감
+            	randomNumber = new Random().nextInt(4);
+            	System.out.println("Selected Index:"+randomNumber);
+            }
+            else isLineDelItemWaiting = false;
             curX = BOARD_WIDTH / 2 - 1;
             curY = BOARD_HEIGHT - 2 + curPiece.minY();
             remainRowsForItems = 10;        // 아이템이 나오기까지 남은 줄 초기화
         } else {
             isItem = false;        // 선택된 것이 블록임
+            if(isLineDelItemWaiting)	// 줄 삭제 블록이 대기중이었을때
+            {
+            	isLineDelItemWaiting = false;	// 줄 삭제 블록이 보드로 나옴
+            	isLineDelItemOut = true;
+            }
+            else
+            {
+            	isLineDelItemOut = false;
+            }
             curPiece = nextPiece;    // 현재 블록을 방금 표시되었던 블록으로 설정
             nextPiece = new Blocks(difficulty); // 다음 블록 생성
             nextPiece.setRandomBlock(difficulty, isItem);
@@ -685,7 +724,7 @@ public class Board extends JPanel {
             }, 100); // 딜레이 추가
 
             if (consecutiveLines > 0) {
-                TotalScore += (consecutiveLines - 1);
+                TotalScore += (consecutiveLines - 1)*10;
             }
         }
 
