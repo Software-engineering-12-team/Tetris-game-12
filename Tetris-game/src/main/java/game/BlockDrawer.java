@@ -10,7 +10,7 @@ import main.java.setting.colorblindmode.ColorBlindModeMenu;
 
 public class BlockDrawer {    //블록을 그리는 클래스
 	
-	public static void drawBlock(Graphics g, int x, int y, int w, int h, Tetrominoe block) 
+	public static void drawBlock(Graphics g, int x, int y, int w, int h, Tetrominoe block, int index, int LBlock) 
 	{
 		
         Color colors[] = {	//일반 색깔
@@ -114,8 +114,11 @@ public class BlockDrawer {    //블록을 그리는 클래스
             else
             	g.setFont(new Font("Arial", Font.BOLD, 22));
         }
-
+        
+        if(index != LBlock)
         g.drawString("O", x + w / 2 - 5, y + h / 2 + 5);
+        else
+        g.drawString("L", x + w / 2 - 5, y + h / 2 + 5);	
         
         if (block == Tetrominoe.BorderBlock) {
             g.setColor(Color.WHITE);
