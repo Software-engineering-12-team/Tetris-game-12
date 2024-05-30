@@ -76,8 +76,6 @@
 
 ## ☑️ UI
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8e2df0eb-1ad3-4acb-a162-511b7b9230ed/1199fc0b-133f-47d1-af91-5e3dfbc59e1b/Untitled.png)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8e2df0eb-1ad3-4acb-a162-511b7b9230ed/5b94a96f-bb2d-4cd9-8b56-94802501d9ba/Untitled.png)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8e2df0eb-1ad3-4acb-a162-511b7b9230ed/e2955d06-9bbb-4a77-90a8-c7a2458b2664/Untitled.png)
+![image](https://github.com/Software-engineering-12-team/Tetris-game-12/assets/90715224/b552771d-6268-43ef-9098-fb435fc6c4af)
+![image](https://github.com/Software-engineering-12-team/Tetris-game-12/assets/90715224/84c6fb1b-2a55-4f7a-a608-8d97ebbaf9a6)
+![image](https://github.com/Software-engineering-12-team/Tetris-game-12/assets/90715224/c2239e10-62aa-44fe-97aa-e176e0273a4c)
