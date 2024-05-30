@@ -106,7 +106,7 @@ public class Blocks {
             int blockIndex = 0; // 선택된 블록의 인덱스
 
             // 각 모드에 따른 블록 생성 확률
-            double[] probabilities = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0 , 1.0, 0, 0, 0, 0, 0 };
+            double[] probabilities = {0, 0, 0, 0, 0, 0, 0, 0, 0, 1.0/7 , 1.0/7, 1.0/7, 1.0/7, 1.0/7, 1.0/7, 1.0/7 };
             for (int i = 0; i < probabilities.length; i++) {
             	if (probabilities[i] == 0) continue;
                 sum += probabilities[i];
