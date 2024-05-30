@@ -406,7 +406,7 @@ public class Board extends JPanel {
                 break;
             case PlusItem:
                 ItemEffectHandler.applyPlusItem(board, curX, curY);
-                TotalScore++;
+                TotalScore+=10;
                 break;
             case AllDelItem:
                 ItemEffectHandler.applyAllDelItem(board);
@@ -417,6 +417,7 @@ public class Board extends JPanel {
        if(isLineDelItemOut)
        {
     	   ItemEffectHandler.applyLineDelItem(board, curY, LBlockY);
+	   TotalScore+=10;
        }
    }
 
