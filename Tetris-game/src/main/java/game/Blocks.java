@@ -106,7 +106,7 @@ public class Blocks {
             int blockIndex = 0; // 선택된 블록의 인덱스
 
             // 각 모드에 따른 블록 생성 확률
-            double[] probabilities = {0, 0, 0, 0, 0, 0, 0, 0, 0, 1.0/7 , 1.0/7, 1.0/7, 1.0/7, 1.0/7, 1.0/7, 1.0/7 };
+            double[] probabilities = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0 , 1.0, 0, 0, 0, 0, 0 };
             for (int i = 0; i < probabilities.length; i++) {
             	if (probabilities[i] == 0) continue;
                 sum += probabilities[i];
@@ -117,6 +117,7 @@ public class Blocks {
             }
             Tetrominoe[] values = Tetrominoe.values(); 
             setBlock(values[blockIndex]);
+  
     	}
     }
 
@@ -144,34 +145,41 @@ public class Blocks {
       
       return m;
     }
-    public Blocks rotateLeft() {
-        
-        if (pieceBlock == Tetrominoe.OBlock)
-            return this;
 
-        Blocks result = new Blocks(difficulty);
-        result.pieceBlock = pieceBlock;
-
-        for (int i = 0; i < 4; ++i) {
-            
-            result.setX(i, y(i));
-            result.setY(i, -x(i));
-        }
-        
-        return result;
-    }
     public Blocks rotateRight() {
-        
-        if (pieceBlock == Tetrominoe.OBlock)
-            return this;
 
         Blocks result = new Blocks(difficulty);
         result.pieceBlock = pieceBlock;
-
-        for (int i = 0; i < 4; ++i) {
-
-            result.setX(i, -y(i));
-            result.setY(i, x(i));
+        
+        if(pieceBlock != Tetrominoe.OBlock)
+        {
+        	for (int i = 0; i < 4; ++i) {
+        		result.setX(i, -y(i));
+        		result.setY(i, x(i));
+        	}
+        }
+        else
+        {	
+        	/*
+            int c00 = coords[0][0];
+            int c01 = coords[0][1];
+        	int c10 = coords[1][0];
+        	int c11 = coords[1][1];
+            int c20 = coords[2][0];
+            int c21 = coords[2][1];
+            int c30 = coords[3][0];
+            int c31 = coords[3][1];
+	
+            result.setX(0,c20);
+            result.setY(0,c21);
+            result.setX(1,c00);
+            result.setY(1,c01);
+            result.setX(2,c30);
+            result.setY(2,c31);
+            result.setX(3,c10);
+            result.setX(3,c11);
+            */
+        	return this;
         }
         
         return result;
