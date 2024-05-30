@@ -50,7 +50,7 @@ public class Board extends JPanel {
     private boolean isLineDelItemOut = false;
     private boolean isTouchedBlocks = false;
     private boolean istimerModeCancelled = false;
-    private int remainRowsForItems = 1;
+    private int remainRowsForItems = 10;
     private int randomNumber;
     public int TotalScore = 0;
     public int curX = 0;
