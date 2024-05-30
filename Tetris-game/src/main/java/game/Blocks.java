@@ -160,26 +160,17 @@ public class Blocks {
         }
         else
         {	
-        	/*
-            int c00 = coords[0][0];
-            int c01 = coords[0][1];
-        	int c10 = coords[1][0];
-        	int c11 = coords[1][1];
-            int c20 = coords[2][0];
-            int c21 = coords[2][1];
-            int c30 = coords[3][0];
-            int c31 = coords[3][1];
-	
-            result.setX(0,c20);
-            result.setY(0,c21);
-            result.setX(1,c00);
-            result.setY(1,c01);
-            result.setX(2,c30);
-            result.setY(2,c31);
-            result.setX(3,c10);
-            result.setX(3,c11);
-            */
-        	return this;
+            result.setX(0, x(1));
+            result.setY(0, y(1));
+            
+            result.setX(1, x(3));
+            result.setY(1, y(3));
+            
+            result.setX(3, x(2));
+            result.setY(3, y(2));
+            
+            result.setX(2, x(0));
+            result.setY(2, y(0));
         }
         
         return result;
