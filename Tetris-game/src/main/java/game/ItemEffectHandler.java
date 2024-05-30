@@ -16,8 +16,8 @@ public class ItemEffectHandler {		// 아이템 효과를 나타내는 클래스
 	   	    }
 	   }
 	   
-	   public static void applyLineDelItem(Tetrominoe[] board, int curX, int curY) {
-	       int centerY = curY; 
+	   public static void applyLineDelItem(Tetrominoe[] board, int curY, int LBlockY) {
+	       int centerY = curY - LBlockY;
 	       
 	       // 가로 방향으로 한 줄 제거
 	       for (int j = 1; j < BOARD_WIDTH - 1; j++) {
