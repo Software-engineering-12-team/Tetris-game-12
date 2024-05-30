@@ -76,6 +76,6 @@
 
 ## ☑️ UI
 
-<img src="https://github.com/Software-engineering-12-team/Tetris-game-12/assets/90715224/b552771d-6268-43ef-9098-fb435fc6c4af" width="450" height="600">
-<img src="https://github.com/Software-engineering-12-team/Tetris-game-12/assets/90715224/84c6fb1b-2a55-4f7a-a608-8d97ebbaf9a6" width="450" height="600">
-<img src="https://github.com/Software-engineering-12-team/Tetris-game-12/assets/90715224/c2239e10-62aa-44fe-97aa-e176e0273a4c" width="450" height="600">
+<img src="https://github.com/Software-engineering-12-team/Tetris-game-12/assets/90715224/b552771d-6268-43ef-9098-fb435fc6c4af" width="400" height="550">
+<img src="https://github.com/Software-engineering-12-team/Tetris-game-12/assets/90715224/84c6fb1b-2a55-4f7a-a608-8d97ebbaf9a6" width="400" height="550">
+<img src="https://github.com/Software-engineering-12-team/Tetris-game-12/assets/90715224/c2239e10-62aa-44fe-97aa-e176e0273a4c" width="400" height="550">
