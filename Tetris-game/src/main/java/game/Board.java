@@ -39,10 +39,10 @@ public class Board extends JPanel {
     public static final int BOARD_HEIGHT = 22;
     private int INITIAL_DELAY = 100;
     private int PERIOD_INTERVAL = 1000; // 동적 변경을 위해 변경
-    private String specialMode, gameMode, difficulty; // 게임모드 설정 관련 수정
-    private Timer timer;
-    private Timer timerMode;
-    private boolean isFallingFinished = false;
+    public String specialMode, gameMode, difficulty; // 게임모드 설정 관련 수정
+    public Timer timer;
+    public Timer timerMode;
+    public boolean isFallingFinished = false;
     public boolean isStarted = false;
     public boolean isPaused = false;
     private boolean isItem = false;
@@ -59,13 +59,13 @@ public class Board extends JPanel {
     public Blocks curPiece;
     public Blocks nextPiece;
     public static Font tetrisFont;
-    private Tetrominoe[] board;
-    private Board opponentBoard; // 상대방 보드 추가
+    public Tetrominoe[] board;
+    public Board opponentBoard; // 상대방 보드 추가
     private int playerNumber; // 플레이어 번호 추가
     public boolean isGameOver = false; //게임 종료 상태 추가
     public TetrisGame parent;
-    private List<int[]> queuedLines = new ArrayList<>(); // 대기 상태의 공격 블록을 저장하는 리스트
-    private List<int[]> queuedExcludedBlocks = new ArrayList<>(); // 대기 상태의 제외 블록을 저장하는 리스트
+    public List<int[]> queuedLines = new ArrayList<>(); // 대기 상태의 공격 블록을 저장하는 리스트
+    public List<int[]> queuedExcludedBlocks = new ArrayList<>(); // 대기 상태의 제외 블록을 저장하는 리스트
 
     // 게임모드 설정 관련 수정
     public Board(TetrisGame parent, String specialMode, String gameMode, String difficulty, int playerNumber) {
@@ -440,7 +440,7 @@ public class Board extends JPanel {
 	    return grayLines;
 	}
    
-   private void pieceDropped() {
+   public void pieceDropped() {
 	    lastMovedBlocks.clear();
 	    for (int i = 0; i < 4; ++i) {
 	        int x = curX + curPiece.x(i);
@@ -460,7 +460,7 @@ public class Board extends JPanel {
 	    }
 	}
 
-    private void newPiece() {        // 새로운 블록 생성
+    public void newPiece() {        // 새로운 블록 생성
         if(remainRowsForItems <= 0 && gameMode.equals("아이템")) {    
             isItem = true;            // 선택된 것이 아이템임
             curPiece = nextPiece;    // 현재 블록을 방금 표시되었던 블록으로 설정
@@ -654,7 +654,7 @@ public class Board extends JPanel {
         }
     }
 
-    private void removeFullLines() {
+    public void removeFullLines() {
         int numFullLines = 0;
         int consecutiveLines = 0;
         List<Integer> fullLines = new ArrayList<>(); // 강조된 줄의 인덱스를 저장할 리스트

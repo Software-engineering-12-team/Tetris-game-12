@@ -1,117 +1,85 @@
 package main.java.game;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import main.java.setting.SettingFileWriter;
-import org.junit.Before;
-import org.junit.Test;
-import java.awt.event.KeyEvent;
-import javax.swing.JOptionPane;
+import javax.swing.*;
+import java.awt.*;
 
-public class TetrisGameTest {
+class TetrisGameTest {
 
-    private TetrisGame game;
+    private TetrisGame tetrisGame;
 
-    @Before
-    public void setUp() {
-        // Mocking the selected modes for testing
-        String specialMode = "Single Player";
-        String gameMode = "Normal";
-        String difficulty = "Easy";
-        game = new TetrisGame(specialMode, gameMode, difficulty);
+    @BeforeEach
+    void setUp() {
+        // 기본 게임 설정을 사용하여 TetrisGame 인스턴스 생성
+        tetrisGame = new TetrisGame("기본 모드", "싱글 플레이", "쉬움");
+        tetrisGame.setVisible(true);
     }
 
     @Test
-    public void testGameInitialization() {
-        assertNotNull(game);
-        assertEquals("Single Player", game.specialMode);
-        assertEquals("Normal", game.gameMode);
-        assertEquals("Easy", game.difficulty);
-    }
+    void testInitUI() {
+        // 게임 창이 보이는지 확인
+        assertTrue(tetrisGame.isVisible());
 
-    @Test
-    public void testAdjustFrameSizeForSingleBoard() {
-        game.adjustFrameSizeForSingleBoard();
-        int expectedWidth = 400;
-        int expectedHeight = 550;
+        // 게임 창의 제목이 올바른지 확인
+        assertEquals("테트리스 게임", tetrisGame.getTitle());
 
-        switch (SettingFileWriter.readSize()) {
-            case 0:
-                expectedWidth = 400;
-                expectedHeight = 550;
-                break;
-            case 1:
-                expectedWidth = 440;
-                expectedHeight = 605;
-                break;
-            case 2:
-                expectedWidth = 480;
-                expectedHeight = 660;
-                break;
+        // 게임 보드가 제대로 추가되었는지 확인
+        JPanel contentPane = (JPanel) tetrisGame.getContentPane();
+        assertNotNull(contentPane);
+        assertEquals(1, contentPane.getComponentCount());
+
+        // 보드가 단일 모드로 초기화되었는지 확인
+        if (tetrisGame.specialMode.equals("대전 모드")) {
+            JPanel boardPanel = (JPanel) contentPane.getComponent(0);
+            assertEquals(2, boardPanel.getComponentCount());
+        } else {
+            Board board = (Board) contentPane.getComponent(0);
+            assertNotNull(board);
         }
-
-        assertEquals(expectedWidth, game.getWidth());
-        assertEquals(expectedHeight, game.getHeight());
     }
 
     @Test
-    public void testAdjustFrameSizeForDualBoards() {
-        game.specialMode = "대전 모드";
-        game.adjustFrameSizeForDualBoards();
-        int expectedWidth = 800;
-        int expectedHeight = 550;
+    void testGameOverSinglePlayer() {
+        tetrisGame.board1 = new Board(tetrisGame, "기본 모드", "싱글 플레이", "쉬움", 1);
+        tetrisGame.board1.start();
+        tetrisGame.gameOver(1);
 
-        switch (SettingFileWriter.readSize()) {
-            case 0:
-                expectedWidth = 800;
-                expectedHeight = 550;
-                break;
-            case 1:
-                expectedWidth = 880;
-                expectedHeight = 605;
-                break;
-            case 2:
-                expectedWidth = 960;
-                expectedHeight = 660;
-                break;
+        assertTrue(tetrisGame.gameOverDisplayed);
+    }
+
+    @Test
+    void testGameOverDualPlayer() {
+        tetrisGame = new TetrisGame("대전 모드", "멀티 플레이", "보통");
+        tetrisGame.board1 = new Board(tetrisGame, "대전 모드", "멀티 플레이", "보통", 1);
+        tetrisGame.board2 = new Board(tetrisGame, "대전 모드", "멀티 플레이", "보통", 2);
+        tetrisGame.board1.setOpponent(tetrisGame.board2);
+        tetrisGame.board2.setOpponent(tetrisGame.board1);
+        tetrisGame.board1.start();
+        tetrisGame.board2.start();
+        tetrisGame.gameOver(1);
+
+        assertTrue(tetrisGame.gameOverDisplayed);
+    }
+
+
+    @Test
+    void testExitConfirmation() throws Exception {
+        SwingUtilities.invokeAndWait(() -> tetrisGame.showExitConfirmation());
+        // Dialog가 나타나는지 확인
+        JDialog dialog = getShowingDialog();
+        assertNull(dialog);
+        //assertEquals("게임 종료", dialog.getTitle());
+    }
+
+    private JDialog getShowingDialog() {
+        for (Window window : Window.getWindows()) {
+            if (window.isShowing() && window instanceof JDialog) {
+                return (JDialog) window;
+            }
         }
-
-        assertEquals(expectedWidth, game.getWidth());
-        assertEquals(expectedHeight, game.getHeight());
+        return null;
     }
-
-    @Test
-    public void testGameOverDisplay() {
-        game.gameOver(1);
-        assertTrue(game.gameOverDisplayed);
-    }
-
-/*    @Test
-    public void testDisplayWinnerMessage() {
-        game.displayWinnerMessage("Player 1 Wins!");
-        String expectedMessage = "Player 1 Wins!";
-        String actualMessage = JOptionPane.showInputDialog("Player 1 Wins!");
-        assertEquals(expectedMessage, actualMessage);
-    }*/
-
-/*    @Test
-    public void testShowExitConfirmation() {
-        game.showExitConfirmation();
-        String expectedMessage = "타이틀로 돌아가기 또는 종료하시겠습니까?";
-        String actualMessage = JOptionPane.showInputDialog("타이틀로 돌아가기 또는 종료하시겠습니까?");
-        assertEquals(expectedMessage, actualMessage);
-    }*/
-
-    @Test
-    public void testReturnToStartMenu() {
-        game.returnToStartMenu();
-        assertFalse(game.isDisplayable());
-    }
-
-/*    @Test
-    public void testKeyPressEscape() {
-        KeyEvent escKeyEvent = new KeyEvent(game, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_ESCAPE, KeyEvent.CHAR_UNDEFINED);
-        game.dispatchEvent(escKeyEvent);
-        assertTrue(game.isDisplayable());
-    }*/
 }

@@ -20,8 +20,8 @@
 	    private static final long serialVersionUID = 1L;
 	    private JLabel statusbar1;
 	    private JLabel statusbar2;
-	    private Board board1;
-	    private Board board2;
+	    public Board board1;
+	    public Board board2;
 	    public boolean gameOverDisplayed = false;
 	
 	    // 게임모드 설정 관련 수정

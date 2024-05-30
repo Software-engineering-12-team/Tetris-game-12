@@ -4,8 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[add] add testcode,BlockDrawerTest, BoardTest, ItemEffectHandlerTest, TetrisGameTest">
-      <change afterPath="$PROJECT_DIR$/Tetris-game/test/main/java/game/ScoreFileWriterTest.java" afterDir="false" />
+    <list default="true" id="8b76a09d-6e73-4671-8b6d-c385e8ff6073" name="Changes" comment="[add] add testcode,ScoreFileWriterTest">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/setting.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/setting.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/game/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/src/main/java/game/TetrisGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/src/main/java/game/TetrisGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/BlockDrawer.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/BlockDrawer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Blocks.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Blocks.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board$ScheduleTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board$ScheduleTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board$TAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board$TAdapter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/Board.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/ItemEffectHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/ItemEffectHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/TetrisGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/target/classes/main/java/game/TetrisGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/test/main/java/game/BlockDrawerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/test/main/java/game/BlockDrawerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/test/main/java/game/BlocksTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/test/main/java/game/BlocksTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/test/main/java/game/BoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/test/main/java/game/BoardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/test/main/java/game/TetrisGameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/test/main/java/game/TetrisGameTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/test/main/java/menu/ScoreBoardMenuTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/test/main/java/menu/ScoreBoardMenuTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tetris-game/test/main/java/menu/StartMenuTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tetris-game/test/main/java/menu/StartMenuTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +89,7 @@
     "Application.TetrisGame.executor": "Run",
     "Application.testcode.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
-    "JUnit.All in Tetris-game.executor": "Run",
+    "JUnit.All in Tetris-game.executor": "Coverage",
     "JUnit.BlockDrawerTest.executor": "Coverage",
     "JUnit.BlockDrawerTest.testDrawBlockBlueYellowColorBlindMode.executor": "Coverage",
     "JUnit.BlockDrawerTest.testDrawBlockNormalMode.executor": "Coverage",
@@ -81,10 +101,20 @@
     "JUnit.BlocksTest.executor": "Coverage",
     "JUnit.BlocksTest.rotateLeft.executor": "Coverage",
     "JUnit.BlocksTest.rotateRight.executor": "Coverage",
+    "JUnit.BoardTest.blockAt.executor": "Coverage",
+    "JUnit.BoardTest.dropDown.executor": "Coverage",
     "JUnit.BoardTest.executor": "Coverage",
+    "JUnit.BoardTest.paintComponent.executor": "Debug",
+    "JUnit.BoardTest.queueLines.executor": "Coverage",
+    "JUnit.BoardTest.stopTimers.executor": "Coverage",
+    "JUnit.BoardTest.testClearBoard.executor": "Coverage",
     "JUnit.BoardTest.testKeyPresses.executor": "Coverage",
     "JUnit.BoardTest.testPieceDrop.executor": "Coverage",
+    "JUnit.BoardTest.testPieceMovement.executor": "Coverage",
     "JUnit.BoardTest.testPieceRotate.executor": "Coverage",
+    "JUnit.BoardTest.testRemoveFullLines.executor": "Coverage",
+    "JUnit.BoardTest.testTryMove.executor": "Coverage",
+    "JUnit.BoardTest.testWeightItemEffect.executor": "Coverage",
     "JUnit.ButtonStyleTest.executor": "Coverage",
     "JUnit.ColorBlindModeMenuTest (1).executor": "Coverage",
     "JUnit.ColorBlindModeMenuTest.executor": "Coverage",
@@ -97,6 +127,7 @@
     "JUnit.HandleKeyEventTest.executor": "Coverage",
     "JUnit.ItemEffectHandlerTest.executor": "Coverage",
     "JUnit.ScoreBoardMenuTest.executor": "Coverage",
+    "JUnit.ScoreBoardMenuTest.testAddScore.executor": "Coverage",
     "JUnit.ScoreEntryTest.executor": "Coverage",
     "JUnit.ScoreFileWriterTest.executor": "Coverage",
     "JUnit.ScreenAdjustComponentTest.executor": "Coverage",
@@ -110,6 +141,7 @@
     "JUnit.StartMenuTest.executor": "Coverage",
     "JUnit.StartMenuTest.testButtonActions.executor": "Coverage",
     "JUnit.TetrisGameTest.executor": "Coverage",
+    "JUnit.TetrisGameTest.testExitConfirmation.executor": "Coverage",
     "JUnit.main.java.setting.colorblindmode in Tetris-game.executor": "Coverage",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
@@ -153,7 +185,15 @@
       <recent name="main.java.setting" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ScoreFileWriterTest">
+  <component name="RunManager" selected="JUnit.BoardTest">
+    <configuration name="All in Tetris-game" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Tetris-game" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Tetris-game" />
       <extension name="coverage">
@@ -165,6 +205,22 @@
       <option name="PACKAGE_NAME" value="main.java.game" />
       <option name="MAIN_CLASS_NAME" value="main.java.game.BoardTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BoardTest.queueLines" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Tetris-game" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.java.game.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="main.java.game" />
+      <option name="MAIN_CLASS_NAME" value="main.java.game.BoardTest" />
+      <option name="METHOD_NAME" value="queueLines" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -185,67 +241,36 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BoardTest.testPieceDrop" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ScoreBoardMenuTest.testAddScore" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Tetris-game" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="main.java.game.*" />
+          <option name="PATTERN" value="main.java.menu.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="main.java.game" />
-      <option name="MAIN_CLASS_NAME" value="main.java.game.BoardTest" />
-      <option name="METHOD_NAME" value="testPieceDrop" />
+      <option name="PACKAGE_NAME" value="main.java.menu" />
+      <option name="MAIN_CLASS_NAME" value="main.java.menu.ScoreBoardMenuTest" />
+      <option name="METHOD_NAME" value="testAddScore" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BoardTest.testPieceRotate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Tetris-game" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.java.game.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="main.java.game" />
-      <option name="MAIN_CLASS_NAME" value="main.java.game.BoardTest" />
-      <option name="METHOD_NAME" value="testPieceRotate" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ScoreFileWriterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Tetris-game" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.java.game.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="main.java.game" />
-      <option name="MAIN_CLASS_NAME" value="main.java.game.ScoreFileWriterTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.All in Tetris-game" />
+      <item itemvalue="JUnit.BoardTest.queueLines" />
+      <item itemvalue="JUnit.ScoreBoardMenuTest.testAddScore" />
       <item itemvalue="JUnit.BoardTest" />
       <item itemvalue="JUnit.BoardTest.testKeyPresses" />
-      <item itemvalue="JUnit.BoardTest.testPieceDrop" />
-      <item itemvalue="JUnit.BoardTest.testPieceRotate" />
-      <item itemvalue="JUnit.ScoreFileWriterTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ScoreFileWriterTest" />
-        <item itemvalue="JUnit.BoardTest.testKeyPresses" />
         <item itemvalue="JUnit.BoardTest" />
-        <item itemvalue="JUnit.BoardTest.testPieceDrop" />
-        <item itemvalue="JUnit.BoardTest.testPieceRotate" />
+        <item itemvalue="JUnit.ScoreBoardMenuTest.testAddScore" />
+        <item itemvalue="JUnit.All in Tetris-game" />
+        <item itemvalue="JUnit.BoardTest.testKeyPresses" />
+        <item itemvalue="JUnit.BoardTest.queueLines" />
       </list>
     </recent_temporary>
   </component>
@@ -291,6 +316,7 @@
       <workItem from="1716721784301" duration="20000" />
       <workItem from="1716721828198" duration="20000" />
       <workItem from="1716722073446" duration="6122000" />
+      <workItem from="1717079650980" duration="7047000" />
     </task>
     <task id="LOCAL-00012" summary="[Fix] add dispose button in AdjustSize.java">
       <option name="closed" value="true" />
@@ -741,54 +767,19 @@
           </properties>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/Tetris-game/test/main/java/game/BoardTest.java</url>
-          <line>73</line>
-          <properties class="main.java.game.BoardTest" method="testPieceRotate">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Tetris-game/src/main/java/menu/ScoreEntry.java</url>
           <line>16</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Tetris-game/test/main/java/game/BlockDrawerTest.java</url>
-          <line>104</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Tetris_game_12$BoardTest.ic" NAME="BoardTest Coverage Results" MODIFIED="1717011092905" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BoardTest_testWeightItemEffect.ic" NAME="BoardTest.testWeightItemEffect Coverage Results" MODIFIED="1717096347647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.game.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$BlocksTest_rotateRight.ic" NAME="BlocksTest.rotateRight Coverage Results" MODIFIED="1716570887226" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>main.java.game.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$ScreenAdjustComponentTest.ic" NAME="ScreenAdjustComponentTest Coverage Results" MODIFIED="1716574836948" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>main.java.util.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$ScreenAdjustSizeMenuTest__1_.ic" NAME="ScreenAdjustSizeMenuTest (1) Coverage Results" MODIFIED="1716547181473" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>main.java.setting.screenadjustsize.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$BlockDrawerTest_testDrawBlockThreeItem.ic" NAME="BlockDrawerTest.testDrawBlockThreeItem Coverage Results" MODIFIED="1716565399930" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>main.java.game.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$BlockDrawerTest_testDrawSpecialBlockBorderBlock.ic" NAME="BlockDrawerTest.testDrawSpecialBlockBorderBlock Coverage Results" MODIFIED="1716570213983" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>main.java.game.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$BlocksTest_rotateLeft.ic" NAME="BlocksTest.rotateLeft Coverage Results" MODIFIED="1716570869222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>main.java.game.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$SettingMenuTest.ic" NAME="SettingMenuTest Coverage Results" MODIFIED="1716722244359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>main.java.setting.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$ItemEffectHandlerTest.ic" NAME="ItemEffectHandlerTest Coverage Results" MODIFIED="1717010078640" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BoardTest_testPieceMovement.ic" NAME="BoardTest.testPieceMovement Coverage Results" MODIFIED="1717095567834" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.game.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Tetris_game_12$ColorBlindModeMenuTest_testComponentInitialization__1_.ic" NAME="ColorBlindModeMenuTest.testComponentInitialization (1) Coverage Results" MODIFIED="1715892898796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -803,8 +794,92 @@
     <SUITE FILE_PATH="coverage/Tetris_game_12$HandleKeyEventTest.ic" NAME="HandleKeyEventTest Coverage Results" MODIFIED="1716574757056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.util.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$ScreenAdjustSizeMenuTest.ic" NAME="ScreenAdjustSizeMenuTest Coverage Results" MODIFIED="1716722282465" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/Tetris_game_12$ScreenAdjustSizeMenuTest.ic" NAME="ScreenAdjustSizeMenuTest Coverage Results" MODIFIED="1717094653629" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.setting.screenadjustsize.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$ColorBlindModeMenuTest_updateColorBlindModeUI.ic" NAME="ColorBlindModeMenuTest.updateColorBlindModeUI Coverage Results" MODIFIED="1715892973899" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>main.java.setting.colorblindmode.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$SettingMenuTest_testColorBlindModeButton.ic" NAME="SettingMenuTest.testColorBlindModeButton Coverage Results" MODIFIED="1716564531427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.setting.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BoardTest_testPieceDrop.ic" NAME="BoardTest.testPieceDrop Coverage Results" MODIFIED="1717055482751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.game.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BoardTest_testRemoveFullLines.ic" NAME="BoardTest.testRemoveFullLines Coverage Results" MODIFIED="1717095603627" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.game.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$GameStartMenuTest.ic" NAME="GameStartMenuTest Coverage Results" MODIFIED="1716723520317" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.menu.gamestart.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$TetrisGameTest_testExitConfirmation.ic" NAME="TetrisGameTest.testExitConfirmation Coverage Results" MODIFIED="1717095183068" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.game.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BoardTest_testPieceRotate.ic" NAME="BoardTest.testPieceRotate Coverage Results" MODIFIED="1717011050097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.game.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BlocksTest.ic" NAME="BlocksTest Coverage Results" MODIFIED="1717009956943" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.game.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BoardTest_queueLines.ic" NAME="BoardTest.queueLines Coverage Results" MODIFIED="1717097929872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.game.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BoardTest_stopTimers.ic" NAME="BoardTest.stopTimers Coverage Results" MODIFIED="1717097774448" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.game.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$ScoreEntryTest.ic" NAME="ScoreEntryTest Coverage Results" MODIFIED="1716571779756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.menu.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BoardTest_testKeyPresses.ic" NAME="BoardTest.testKeyPresses Coverage Results" MODIFIED="1717098190997" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.game.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$ColorBlindModeMenuTest.ic" NAME="ColorBlindModeMenuTest Coverage Results" MODIFIED="1716547206331" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.setting.colorblindmode.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BoardTest_blockAt.ic" NAME="BoardTest.blockAt Coverage Results" MODIFIED="1717097619605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.game.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$ColorBlindModeMenuTest_testComponentInitialization.ic" NAME="ColorBlindModeMenuTest.testComponentInitialization Coverage Results" MODIFIED="1715892980793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>main.java.setting.colorblindmode.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$SettingMenuTest_testBackButton.ic" NAME="SettingMenuTest.testBackButton Coverage Results" MODIFIED="1716564170056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.setting.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BlockDrawerTest_testDrawBlockBlueYellowColorBlindMode.ic" NAME="BlockDrawerTest.testDrawBlockBlueYellowColorBlindMode Coverage Results" MODIFIED="1716566276385" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.game.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BoardTest.ic" NAME="BoardTest Coverage Results" MODIFIED="1717098628537" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.game.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BlocksTest_rotateRight.ic" NAME="BlocksTest.rotateRight Coverage Results" MODIFIED="1716570887226" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.game.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$testcodeTest.ic" NAME="testcodeTest Coverage Results" MODIFIED="1717054872344" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$ScreenAdjustComponentTest.ic" NAME="ScreenAdjustComponentTest Coverage Results" MODIFIED="1717094636430" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.util.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$ScreenAdjustSizeMenuTest__1_.ic" NAME="ScreenAdjustSizeMenuTest (1) Coverage Results" MODIFIED="1716547181473" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.setting.screenadjustsize.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BlockDrawerTest_testDrawBlockThreeItem.ic" NAME="BlockDrawerTest.testDrawBlockThreeItem Coverage Results" MODIFIED="1716565399930" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.game.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$SettingMenuTest.ic" NAME="SettingMenuTest Coverage Results" MODIFIED="1717094672554" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.setting.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$ItemEffectHandlerTest.ic" NAME="ItemEffectHandlerTest Coverage Results" MODIFIED="1717010078640" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.game.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BlocksTest_rotateLeft.ic" NAME="BlocksTest.rotateLeft Coverage Results" MODIFIED="1716570869222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.game.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BlockDrawerTest_testDrawSpecialBlockBorderBlock.ic" NAME="BlockDrawerTest.testDrawSpecialBlockBorderBlock Coverage Results" MODIFIED="1716570213983" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.game.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$TetrisGameTest_testShowExitConfirmation.ic" NAME="TetrisGameTest.testShowExitConfirmation Coverage Results" MODIFIED="1717055673263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.game.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Tetris_game_12$StartMenuTest.ic" NAME="StartMenuTest Coverage Results" MODIFIED="1716722414536" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.menu.*</FILTER>
@@ -815,65 +890,50 @@
     <SUITE FILE_PATH="coverage/Tetris_game_12$ButtonStyleTest.ic" NAME="ButtonStyleTest Coverage Results" MODIFIED="1716574662405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.util.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$ColorBlindModeMenuTest_updateColorBlindModeUI.ic" NAME="ColorBlindModeMenuTest.updateColorBlindModeUI Coverage Results" MODIFIED="1715892973899" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>main.java.setting.colorblindmode.*</FILTER>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$ScoreBoardMenuTest_testAddScore.ic" NAME="ScoreBoardMenuTest.testAddScore Coverage Results" MODIFIED="1717098390094" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.menu.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$SettingMenuTest_testColorBlindModeButton.ic" NAME="SettingMenuTest.testColorBlindModeButton Coverage Results" MODIFIED="1716564531427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>main.java.setting.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$BoardTest_testPieceDrop.ic" NAME="BoardTest.testPieceDrop Coverage Results" MODIFIED="1717011068625" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BoardTest_dropDown.ic" NAME="BoardTest.dropDown Coverage Results" MODIFIED="1717097538143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.game.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$GameStartMenuTest.ic" NAME="GameStartMenuTest Coverage Results" MODIFIED="1716723520317" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>main.java.menu.gamestart.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$All_in_Tetris_game.ic" NAME="All in Tetris-game Coverage Results" MODIFIED="1716722084705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
-    <SUITE FILE_PATH="coverage/Tetris_game_12$TetrisGameTest.ic" NAME="TetrisGameTest Coverage Results" MODIFIED="1717010520337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/Tetris_game_12$ScoreFileWriterTest.ic" NAME="ScoreFileWriterTest Coverage Results" MODIFIED="1717011709060" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.game.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$BoardTest_testPieceRotate.ic" NAME="BoardTest.testPieceRotate Coverage Results" MODIFIED="1717011050097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/Tetris_game_12$TetrisGameTest.ic" NAME="TetrisGameTest Coverage Results" MODIFIED="1717095205013" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.game.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$BlocksTest.ic" NAME="BlocksTest Coverage Results" MODIFIED="1717009956943" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/Tetris_game_12$All_in_Tetris_game.ic" NAME="All in Tetris-game Coverage Results" MODIFIED="1717098329356" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BoardTest_testClearBoard.ic" NAME="BoardTest.testClearBoard Coverage Results" MODIFIED="1717096531334" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.game.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Tetris_game_12$main_java_setting_colorblindmode_in_Tetris_game.ic" NAME="main.java.setting.colorblindmode in Tetris-game Coverage Results" MODIFIED="1715893183846" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>main.java.setting.colorblindmode.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$ScoreEntryTest.ic" NAME="ScoreEntryTest Coverage Results" MODIFIED="1716571779756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>main.java.menu.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$BlockDrawerTest_testDrawBlockNormalMode.ic" NAME="BlockDrawerTest.testDrawBlockNormalMode Coverage Results" MODIFIED="1716570273333" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BlockDrawerTest_testDrawBlockNormalMode.ic" NAME="BlockDrawerTest.testDrawBlockNormalMode Coverage Results" MODIFIED="1717056272492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.game.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$BoardTest_testKeyPresses.ic" NAME="BoardTest.testKeyPresses Coverage Results" MODIFIED="1717011216521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>main.java.game.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$ColorBlindModeMenuTest.ic" NAME="ColorBlindModeMenuTest Coverage Results" MODIFIED="1716547206331" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>main.java.setting.colorblindmode.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Tetris_game_12$BlockDrawerTest_testDrawSpecialBlockLineDelItem.ic" NAME="BlockDrawerTest.testDrawSpecialBlockLineDelItem Coverage Results" MODIFIED="1716568386979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.game.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$StartMenuTest_testButtonActions.ic" NAME="StartMenuTest.testButtonActions Coverage Results" MODIFIED="1716722429168" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/Tetris_game_12$StartMenuTest_testButtonActions.ic" NAME="StartMenuTest.testButtonActions Coverage Results" MODIFIED="1717094611153" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.menu.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$ColorBlindModeMenuTest_testComponentInitialization.ic" NAME="ColorBlindModeMenuTest.testComponentInitialization Coverage Results" MODIFIED="1715892980793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>main.java.setting.colorblindmode.*</FILTER>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BoardTest_testProcessQueuedLines.ic" NAME="BoardTest.testProcessQueuedLines Coverage Results" MODIFIED="1717056448377" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.game.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BoardTest_paintComponent.ic" NAME="BoardTest.paintComponent Coverage Results" MODIFIED="1717097594989" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.java.game.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Tetris_game_12$SettingFileWriterTest.ic" NAME="SettingFileWriterTest Coverage Results" MODIFIED="1716723558114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>main.java.setting.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$SettingMenuTest_testBackButton.ic" NAME="SettingMenuTest.testBackButton Coverage Results" MODIFIED="1716564170056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.setting.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Tetris_game_12$ScoreBoardMenuTest.ic" NAME="ScoreBoardMenuTest Coverage Results" MODIFIED="1716571547675" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.menu.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$BlockDrawerTest_testDrawBlockBlueYellowColorBlindMode.ic" NAME="BlockDrawerTest.testDrawBlockBlueYellowColorBlindMode Coverage Results" MODIFIED="1716566276385" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BlockDrawerTest_testDrawSpecialBlockAllDelItem.ic" NAME="BlockDrawerTest.testDrawSpecialBlockAllDelItem Coverage Results" MODIFIED="1717009804930" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.game.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$BlockDrawerTest_testDrawSpecialBlockAllDelItem.ic" NAME="BlockDrawerTest.testDrawSpecialBlockAllDelItem Coverage Results" MODIFIED="1717009804930" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BoardTest_testTryMove.ic" NAME="BoardTest.testTryMove Coverage Results" MODIFIED="1717096612266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.game.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Tetris_game_12$ColorBlindModeMenuTest__1_.ic" NAME="ColorBlindModeMenuTest (1) Coverage Results" MODIFIED="1715892133398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -882,7 +942,7 @@
     <SUITE FILE_PATH="coverage/Tetris_game_12$SettingMenuTest_testSizeAdjustButton.ic" NAME="SettingMenuTest.testSizeAdjustButton Coverage Results" MODIFIED="1716564538976" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.setting.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Tetris_game_12$BlockDrawerTest.ic" NAME="BlockDrawerTest Coverage Results" MODIFIED="1717009841802" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/Tetris_game_12$BlockDrawerTest.ic" NAME="BlockDrawerTest Coverage Results" MODIFIED="1717094472368" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.java.game.*</FILTER>
     </SUITE>
   </component>

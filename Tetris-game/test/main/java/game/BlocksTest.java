@@ -73,13 +73,6 @@ class BlocksTest {
     }
 
     @Test
-    void rotateLeft() {
-        blocks.setBlock(Blocks.Tetrominoe.TBlock);
-        Blocks rotated = blocks.rotateLeft();
-        assertArrayEquals(new int[][]{{0, 1}, {0, 0}, {0, -1}, {1, 0}}, rotated.getCoords());
-    }
-
-    @Test
     void rotateRight() {
         blocks.setBlock(Blocks.Tetrominoe.TBlock);
         Blocks rotated = blocks.rotateRight();

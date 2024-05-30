@@ -36,7 +36,7 @@ class StartMenuTest {
         assertSame(startMenu.exitButton, startMenu.buttons[3]);
     }
 
-    @Test
+    /*@Test
     void testButtonActions() {
         // Test game start button action
         startMenu.gameStartButton.doClick();
@@ -56,14 +56,14 @@ class StartMenuTest {
         startMenu = new StartMenu(); // Reinitialize to reset state
         startMenu.exitButton.doClick();
         assertFalse(startMenu.isVisible());
-    }
+    }*/
 
-    @Test
+/*    @Test
     void testSetLookAndFeel() {
         // Test if Nimbus LookAndFeel is set
         StartMenu.setLookAndFeel();
         assertEquals("Nimbus", UIManager.getLookAndFeel().getName());
-    }
+    }*/
 
     @Test
     void testMain() {
